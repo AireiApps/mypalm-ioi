@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light"
+      >{{ 'REPORTEDMAINTENANCE.title' | translate}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm margin-5px"
+        (click)="btn_BreakdownDowntime()"
+      >
+        <ion-icon name="cog"></ion-icon> {{
+        'REPORTEDMAINTENANCE.newreportedmaintenance' | translate}}
+      </button>
+    </ion-col>
+  </ion-row>
+  <div class="home-box">
+    <div
+      class="card gedf-card margin-bottom"
+      *ngFor="let value of breakdowndowntimelistArr"
+    >
+      <div class="card-header" style="text-align: center">
+        <div class="h7 text-danger"><b>{{value.category}}</b></div>
+      </div>
+      <div
+        style="
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 5px;
+          margin-right: 5px;
+        "
+      >
+        <div class="h7 text-dark">
+          {{ 'BREAKDOWNDOWNTIME.department' | translate}}: {{value.department}}
+        </div>
+        <div class="h7 text-dark">
+          {{ 'BREAKDOWNDOWNTIME.station' | translate}}: {{value.stationname}}
+        </div>
+        <div class="h7 text-dark">
+          {{ 'BREAKDOWNDOWNTIME.machinery' | translate}}: {{value.locationname}}
+        </div>
+        <div class="h7 text-dark">
+          {{ 'BREAKDOWNDOWNTIME.part' | translate}}: {{value.part}}
+        </div>
+        <div class="h7 text-dark">
+          {{ 'BREAKDOWNDOWNTIME.reportedtime' | translate}}:
+          {{value.breakdownTime}}
+        </div>
+        <div class="h7 text-dark" *ngIf="value.complainantRemarks!=''">
+          {{ 'BREAKDOWNDOWNTIME.complainantremarks' | translate}}:
+          {{value.complainantRemarks}}
+        </div>
+        <div class="h7 text-dark" style="float: right">
+          {{ 'BREAKDOWNDOWNTIME.date' | translate}}: {{value.insDate}}
+        </div>
+      </div>
+
+      <ion-row class="row-reverse">
+        <button
+          type="button"
+          class="btn btn-outline-success btn-sm margin-5px"
+          (click)="callmodalcontroller(value)"
+        >
+          <ion-icon name="document"></ion-icon>
+          {{ 'GENERALBUTTON.updatebutton' | translate}}
+        </button>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

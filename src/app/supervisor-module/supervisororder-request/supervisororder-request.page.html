@@ -1,0 +1,263 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'REQUESTNEWITEM.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="storeform">
+    <div class="form-row">
+      <div class="h7">{{ 'REQUESTNEWITEM.type' | translate}}</div>
+      <ion-radio-group formControlName="type">
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-radio slot="start" color="success" value="1"></ion-radio>
+              <ion-label class="h7"
+                >{{ 'REQUESTNEWITEM.normal' | translate}}</ion-label
+              >
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item lines="none">
+              <ion-radio slot="start" color="danger" value="2"></ion-radio>
+              <ion-label class="h7"
+                >{{ 'REQUESTNEWITEM.urgent' | translate}}</ion-label
+              >
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+    </div>
+
+    <ion-card class="card">
+      <div class="col" style="margin-top: 10px">
+        <div class="h7 text-dark">
+          {{ 'REQUESTNEWITEM.itemrequesttype' | translate}}
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- <div class="col">
+        <div class="h7 text-muted">Item Request Type :</div>
+      </div> -->
+        <div class="col">
+          <select
+            formControlName="item_request_type"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>
+              {{ 'REQUESTNEWITEM.selectitemrequesttype' | translate}}
+            </option>
+            <option
+              *ngFor="let value of requestList"
+              value="{{value.request_type_id}}"
+            >
+              {{ value.request_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">
+          {{ 'REQUESTNEWITEM.station' | translate}}
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- <div class="col">
+        <div class="h7 text-muted">Station :</div>
+      </div> -->
+        <div class="col">
+          <select
+            formControlName="station_name"
+            class="h7 form-control text-dark"
+            name="branch"
+            (change)="onChangeStation()"
+          >
+            <option value="" selected disabled hidden>
+              {{ 'REQUESTNEWITEM.selectstation' | translate}}
+            </option>
+            <option
+              value="{{parseString(value)}}"
+              *ngFor="let value of stationArr"
+            >
+              {{ value.station_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">
+          {{ 'REQUESTNEWITEM.machinery' | translate}}
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- <div class="col">
+        <div class="h7 text-muted">Machinery :</div>
+      </div> -->
+        <div class="col">
+          <select
+            formControlName="select_location"
+            class="h7 form-control text-dark"
+            name="branch"
+            (change)="onChangeLocation()"
+          >
+            <option value="" selected disabled hidden>
+              {{ 'REQUESTNEWITEM.selectmachinery' | translate}}
+            </option>
+            <option
+              value=" {{ parseString(value)}}"
+              *ngFor="let value of locatioArr"
+            >
+              {{ value.location_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">{{ 'REQUESTNEWITEM.part' | translate}}</div>
+      </div>
+
+      <div class="form-row">
+        <!-- <div class="col">
+        <div class="h7 text-muted">Item :</div>
+      </div> -->
+        <div class="col">
+          <select
+            formControlName="select_item"
+            class="h7 form-control text-dark"
+            name="branch"
+            (change)="onChangeItem($event)"
+          >
+            <option value="" selected disabled hidden>
+              {{ 'REQUESTNEWITEM.selectpart' | translate}}
+            </option>
+            <option value="{{parseString(item)}}" *ngFor="let item of itemsArr">
+              {{ item.item_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">{{ 'REQUESTNEWITEM.unit' | translate}}</div>
+      </div>
+
+      <div class="form-row">
+        <!-- <div class="col">
+        <div class="h7 text-dark">UNIT :</div>
+      </div> -->
+        <div class="col">
+          <!-- <select formControlName="select_unit" class="h7 form-control text-dark" name="branch">  
+          <option value="">Select Unit</option>  
+          <option value="{{ value }}" *ngFor="let value of itemUnit;">{{ value }}</option>
+        </select> -->
+
+          <input
+            type="text"
+            class="h7 form-control text-dark"
+            style="background-color: #ffffff"
+            formControlName="select_unit"
+            [(ngModel)]="selectedUnit"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            {{ 'REQUESTNEWITEM.quantity' | translate}} :
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="h7 form-control text-dark"
+            formControlName="qty"
+          />
+        </div>
+      </div>
+      <ion-row>
+        <ion-col size="12">
+          <button
+            type="submit"
+            class="btn btn-warning"
+            (click)="addNewRow()"
+            style="float: right; margin-right: 10px"
+          >
+            {{ 'GENERALBUTTON.additem' | translate}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <div formArrayName="itemRows">
+      <ion-row>
+        <div
+          class="card gedf-card margin-bottom"
+          *ngFor="let itemrow of storeform.controls.itemRows.controls; let i=index"
+          [formGroupName]="i"
+          style="width: 100%; margin: 10px"
+        >
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger">
+                    <b
+                      >{{ 'REQUESTNEWITEM.part' | translate}} :
+                      {{getItembyKey('select_item',itemrow,'item_name')}}</b
+                    >
+                  </div>
+                  <div class="h7 text-muted">
+                    {{ 'REQUESTNEWITEM.station' | translate}} :
+                    {{getItembyKey('station_name',itemrow,'station_name')}}
+                  </div>
+                  <div class="h7 text-muted">
+                    {{ 'REQUESTNEWITEM.machinery' | translate}} :
+                    {{getItembyKey('select_location',itemrow,'location_name')}}
+                  </div>
+                  <div class="h7 text-muted">
+                    {{ 'REQUESTNEWITEM.unit' | translate}} :
+                    {{itemrow.get('select_unit').value}}
+                  </div>
+                  <div class="h7 text-dark">
+                    <b
+                      >{{ 'REQUESTNEWITEM.quantity' | translate}} :
+                      {{itemrow.get('qty').value}}</b
+                    >
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-danger card-link ion-text-end btn-color"
+                (click)="deleteRow(i)"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+
+      <ion-row *ngIf="storeform.controls.itemRows.controls.length > 0">
+        <ion-col size="12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="btn_save()"
+            style="float: right; margin: 20px"
+          >
+            {{ 'REQUESTNEWITEM.request' | translate}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+</ion-content>

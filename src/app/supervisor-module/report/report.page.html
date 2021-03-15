@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Production Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="reportForm">
+    <ion-card class="card">
+      <div class="col" style="margin-top: 10px">
+        <div class="h7 text-dark">Station</div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_head"
+            class="h7 text-dark form-control"
+            name="heading"
+          >
+            <option value="">Select Head</option>
+            <option
+              value="{{parseString(value)}}"
+              *ngFor="let value of headingsArr"
+            >
+              {{ value.heading}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Observation</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea
+            class="h7 text-dark form-control"
+            formControlName="tatask"
+            placeholder="Enter Task"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- <div class="col">
+        <div>Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="form-control" formControlName="tacomments" placeholder="Enter Comments"></textarea>
+        </div>
+      </div> -->
+
+      <ion-row>
+        <ion-col size="12">
+          <button
+            type="submit"
+            class="btn btn-warning"
+            (click)="addNewRow()"
+            style="float: right; margin-right: 10px"
+          >
+            Add
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <div formArrayName="commentsitemRows">
+      <ion-row>
+        <div
+          class="card gedf-card margin-bottom"
+          *ngFor="let commentsitemrow of reportForm.controls.commentsitemRows.controls; let i=index"
+          [formGroupName]="i"
+          style="width: 100%; margin: 0px 10px 10px 10px"
+        >
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger">
+                    <b
+                      >{{getItembyKey('select_head',commentsitemrow,'heading')}}</b
+                    >
+                  </div>
+                  <div class="h7 text-dark">
+                    Observation : {{commentsitemrow.get('tatask').value}}
+                  </div>
+                  <!-- <div class="h7 text-dark">Comments : {{commentsitemrow.get('tacomments').value}}</div> -->
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-danger card-link ion-text-end btn-color"
+                (click)="deleteRow(i)"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+    </div>
+
+    <div style="text-align: center">
+      <ion-row *ngIf="reportForm.controls.commentsitemRows.controls.length > 0">
+        <!-- <ion-col size="12" style="padding-left: 10px; padding-right: 10px;">
+        <div>Comments</div>
+        <textarea class="form-control" formControlName="tacomments" placeholder="Enter Comments"></textarea>
+      </ion-col> -->
+        <ion-col size="12">
+          <button type="submit" class="btn btn-success" (click)="btn_save()">
+            Submit
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+</ion-content>

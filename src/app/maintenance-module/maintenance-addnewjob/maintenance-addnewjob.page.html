@@ -1,0 +1,350 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'ADDNEWJOB.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addnewjobForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.plandate' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_plandate"
+          display-format="DD-MM-YYYY HH:mm"
+        ></ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.category' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_category"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectcategory' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of categoryArr"
+          >
+            {{ value.categoryname }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.department' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_department"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectdepartment' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of departmentArr"
+          >
+            {{ value.deparment }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.station' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_station"
+          class="h7 text-dark form-control"
+          (change)="onChangeStation()"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectstation' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of stationArr"
+          >
+            {{ value.station_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.machinery' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_machinery"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectmachinery' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of machineryArr"
+          >
+            {{ value.location_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Part <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_part" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Part</option>
+          <option value="{{item.item_id}}" *ngFor="let item of partArr">
+            {{ item.item_name }}
+          </option>
+        </select>
+      </div>
+    </div> -->
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.observation' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_observation"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectobservation' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of observationArr"
+          >
+            {{ value.observation }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.type' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_type" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selecttype' | translate}}
+          </option>
+          <option value="{{parseString(value)}}" *ngFor="let value of typeArr">
+            {{ value.type }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.remarks' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <textarea
+          class="h7 form-control"
+          formControlName="taremarks"
+          rows="4"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'ADDNEWJOB.assignedto' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_assignedto"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'ADDNEWJOB.selectassignedto' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of assignedtoArr"
+          >
+            {{ value.user_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div style="text-align: right">
+      <button
+        type="submit"
+        class="btn btn-warning"
+        (click)="addNewRow()"
+        style="margin: 10px"
+      >
+        {{ 'GENERALBUTTON.additem' | translate}}
+      </button>
+    </div>
+
+    <div formArrayName="itemRows">
+      <ion-row>
+        <div
+          class="card gedf-card margin-bottom"
+          *ngFor="let itemrow of addnewjobForm.controls.itemRows.controls; let i=index"
+          [formGroupName]="i"
+          style="width: 100%; margin: 10px"
+        >
+          <div class="card-header" style="text-align: center">
+            <div class="h7 text-dark">
+              <b
+                >{{ 'ADDNEWJOB.category' | translate}} :
+                {{getItembyKey('select_category',itemrow,'categoryname')}}
+              </b>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 10px;
+              margin-bottom: 10px;
+              margin-left: 5px;
+              margin-right: 5px;
+            "
+          >
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.department' | translate}} :
+              {{getItembyKey('select_department',itemrow,'deparment')}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.station' | translate}} :
+              {{getItembyKey('select_station',itemrow,'station_name')}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.machiner' | translate}} :
+              {{getItembyKey('select_machinery',itemrow,'location_name')}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.observation' | translate}} :
+              {{getItembyKey('select_observation',itemrow,'observation')}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.type' | translate}} :
+              {{getItembyKey('select_type',itemrow,'type')}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.remarks' | translate}} :
+              {{itemrow.get('taremarks').value}}
+            </div>
+
+            <div class="h7 text-dark">
+              {{ 'ADDNEWJOB.assignedto' | translate}} :
+              {{getItembyKey('select_assignedto',itemrow,'user_name')}}
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-danger card-link ion-text-end btn-color"
+              (click)="deleteRow(i)"
+            >
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </ion-row>
+    </div>
+
+    <div
+      style="text-align: center"
+      *ngIf="addnewjobForm.controls.itemRows.controls.length > 0"
+    >
+      <button
+        type="submit"
+        class="btn btn-success"
+        (click)="save()"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        {{ 'GENERALBUTTON.savebutton' | translate}}
+      </button>
+    </div>
+  </form>
+</ion-content>

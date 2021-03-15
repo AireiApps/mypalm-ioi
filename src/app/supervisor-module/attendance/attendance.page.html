@@ -1,0 +1,276 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'ATTENDANCE.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="box box-primary">
+    <div class="box-body">
+      <div id="chartContainer8" style="margin: 10px">
+        <!-- <h1>{{getformVal() | json}}</h1> -->
+        <div class="h6 text-dark" style="text-align: center">
+          <b>{{ 'ATTENDANCE.date' | translate}}: {{currentdate}}</b>
+        </div>
+
+        <form [formGroup]="attendanceform">
+          <table style="width: 100%; height: 100%" class="table table-bordered">
+            <col />
+            <colgroup span="2"></colgroup>
+            <colgroup span="2"></colgroup>
+            <tr class="table_head">
+              <th rowspan="2" width="15%">
+                <span class="mdfont">
+                  {{ 'ATTENDANCE.names' | translate}}
+                </span>
+              </th>
+              <th rowspan="2">
+                <span class="mdfont">{{ 'ATTENDANCE.from' | translate}}</span>
+              </th>
+              <th rowspan="2">
+                <span class="mdfont">{{ 'ATTENDANCE.to' | translate}}</span>
+              </th>
+              <th rowspan="2">
+                <span class="mdfont">{{ 'ATTENDANCE.shift' | translate}}</span>
+              </th>
+              <th colspan="3" scope="colgroup" style="padding: 4px !important">
+                <span class="mdfont"
+                  >{{ 'ATTENDANCE.overtime' | translate}}</span
+                >
+              </th>
+              <th rowspan="2">
+                <span class="mdfont"
+                  >{{ 'ATTENDANCE.remarks' | translate}}</span
+                >
+              </th>
+            </tr>
+            <tr class="table_head">
+              <td scope="col">
+                <span class="mdfont">{{ 'ATTENDANCE.normal' | translate}}</span>
+              </td>
+              <td scope="col">
+                <span class="mdfont"
+                  >{{ 'ATTENDANCE.restday' | translate}}</span
+                >
+              </td>
+              <td scope="col">
+                <span class="mdfont"
+                  >{{ 'ATTENDANCE.publicholiday' | translate}}</span
+                >
+              </td>
+            </tr>
+            <ng-container formArrayName="stationsArr">
+              <ng-container
+                *ngFor="let itemrow of stations().controls; let stationIndex=index"
+                [formGroupName]="stationIndex"
+              >
+                <tr>
+                  <td colspan="5" style="text-align: left">
+                    <span class="mdfont"
+                      >{{itemrow.get('station_name').value}}</span
+                    >
+                  </td>
+                </tr>
+
+                <tr
+                  *ngFor="let ineritem of employee(stationIndex).controls; let employeeIndex=index"
+                  formArrayName="empArr"
+                >
+                  <ng-container [formGroupName]="employeeIndex">
+                    <td
+                      scope="row"
+                      style="overflow: hidden; text-transform: uppercase"
+                    >
+                      {{ineritem.get('name').value}}
+                    </td>
+                    <!-- <td>{{ineritem.get('from_time').value}}</td> -->
+                    <td style="overflow: hidden">
+                      <ion-datetime
+                        formControlName="from_time"
+                        displayFormat="HH:mm"
+                        placeholder="HH:mm"
+                      ></ion-datetime>
+                    </td>
+                    <td style="overflow: hidden">
+                      <ion-datetime
+                        formControlName="to_time"
+                        displayFormat="HH:mm"
+                        placeholder="HH:mm"
+                      ></ion-datetime>
+                    </td>
+
+                    <td style="overflow: hidden">
+                      <select
+                        formControlName="txt_shift"
+                        class="form-control"
+                        style="font-size: 12px"
+                      >
+                        <option value="" selected disabled hidden>
+                          {{ 'ATTENDANCE.selectshift' | translate}}
+                        </option>
+                        <option value="0">
+                          {{ 'MAINTENANCEDASHBOARD.shifta' | translate}}
+                        </option>
+                        <option value="1">
+                          {{ 'MAINTENANCEDASHBOARD.shiftb' | translate}}
+                        </option>
+                      </select>
+                    </td>
+
+                    <td style="overflow: hidden">
+                      <!-- <input
+                          type="number"
+                          class="input-group input-group-sm mb-3"
+                          formControlName="txt_normal"
+                          placeholder="Hours"
+                        /> -->
+                      <!-- <ion-datetime formControlName="txt_normal"
+                          displayFormat="HH:mm"
+                          placeholder="HH:mm"
+                        ></ion-datetime> -->
+
+                      <select
+                        formControlName="txt_normal"
+                        class="form-control"
+                        style="font-size: 12px"
+                      >
+                        <option value="" selected disabled hidden>
+                          {{ 'ATTENDANCE.selecthours' | translate}}
+                        </option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </td>
+                    <td style="overflow: hidden">
+                      <!-- <input
+                          type="number"
+                          class="input-group input-group-sm mb-3"
+                          formControlName="txt_restday"
+                          placeholder="Hours"
+                        /> -->
+                      <!-- <ion-datetime formControlName="txt_restday"
+                          displayFormat="HH:mm"
+                          placeholder="HH:mm"
+                        ></ion-datetime> -->
+
+                      <select
+                        formControlName="txt_restday"
+                        class="form-control"
+                        style="font-size: 12px"
+                      >
+                        <option value="" selected disabled hidden>
+                          {{ 'ATTENDANCE.selecthours' | translate}}
+                        </option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </td>
+
+                    <td style="overflow: hidden">
+                      <!-- <input
+                          type="number"
+                          class="input-group input-group-sm mb-3"
+                          formControlName="txt_publicholiday"
+                          placeholder="Hours"
+                        /> -->
+
+                      <!-- <ion-datetime formControlName="txt_publicholiday"
+                          displayFormat="HH:mm"
+                          placeholder="HH:mm"
+                        ></ion-datetime> -->
+
+                      <select
+                        formControlName="txt_publicholiday"
+                        class="form-control"
+                        style="font-size: 12px"
+                      >
+                        <option value="" selected disabled hidden>
+                          {{ 'ATTENDANCE.selecthours' | translate}}
+                        </option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </td>
+                    <td style="overflow: hidden">
+                      <select
+                        formControlName="txt_remarks"
+                        class="form-control"
+                        style="font-size: 12px"
+                      >
+                        <option value="" selected disabled hidden>
+                          {{ 'ATTENDANCE.selectremarks' | translate}}
+                        </option>
+                        <option value="1">
+                          {{ 'ATTENDANCE.replacement' | translate}}
+                        </option>
+                        <option value="2">
+                          {{ 'ATTENDANCE.extrawork' | translate}}
+                        </option>
+                        <option value="3">
+                          {{ 'ATTENDANCE.onleave' | translate}}
+                        </option>
+                        <option value="4">
+                          {{ 'ATTENDANCE.absent' | translate}}
+                        </option>
+                        <option value="5">
+                          {{ 'ATTENDANCE.onmc' | translate}}
+                        </option>
+                        <option value="6">
+                          {{ 'ATTENDANCE.continue' | translate}}
+                        </option>
+                      </select>
+                    </td>
+                  </ng-container>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </table>
+
+          <ion-row>
+            <ion-col size="12" style="text-align: center">
+              <button
+                type="button"
+                class="btn btn-outline-success btn-sm margin-5px"
+                (click)="btn_save()"
+                style="text-align: center; margin-bottom: 10px"
+              >
+                <ion-icon name="document"></ion-icon>
+                {{ 'GENERALBUTTON.savebutton' | translate}}
+              </button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

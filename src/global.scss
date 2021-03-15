@@ -1,0 +1,156 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.common-whitecolor {
+  color: #fff;
+}
+
+.common-black {
+  color: #000;
+}
+
+.lbl-center {
+  text-align: center;
+}
+
+.lbl-brand {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.lbl-companybrand {
+  font-size: 50px;
+  font-weight: 800;
+  color: white;
+  text-shadow: 4px 4px 5px rgb(61, 61, 61);
+  src: url("./assets/fonts/Franklin.ttf");
+  letter-spacing: 2px;
+}
+
+.lbl-title {
+  font-size: 11px;
+  color: white;
+}
+
+.bg-brown-color {
+  --background: linear-gradient(180deg, #274e91 0%, #09203f 74%);
+}
+
+.bg-search-color {
+  background-color: #f7f7f7;
+}
+
+.bg-lightbrown-color {
+  --background: var(--ion-color-lightorange);
+}
+
+.white-color {
+  color: var(--ion-color-light);
+}
+
+ion-tab-bar {
+  --background: linear-gradient(180deg, #274e91 0%, #09203f 74%);
+  --color-selected: var(--ion-color-amber) !important;
+}
+
+ion-tab-button {
+  --ripple-color: var(--ion-color-amber);
+  --color: var(--ion-color-amber);
+  --color-selected: var(--ion-color-light);
+}
+
+ion-badge {
+  background: white;
+  padding: 5px;
+  margin: 3px;
+  color: red;
+  border-radius: 20px;
+
+  position: absolute;
+  top: -0.2rem;
+  right: -0.2rem;
+  opacity: 0.9;
+
+  & ~ ion-icon {
+    margin-right: 1.2rem;
+  }
+}
+
+ion-segment-button {
+  --color-checked: var(--ion-color-appcolor);
+  --indicator-color: var(--ion-color-light-contrast);
+}
+
+ion-loading.my-loading-class {
+  .spinner-circles {
+    color: var(--ion-color-appcolor);
+  }
+}
+
+ion-title {
+  font-size: 14px;
+}
+
+.padding-10px {
+  padding: 10px;
+}
+
+.marigin-10px {
+  margin: 10px;
+}
+
+.margin-5px {
+  margin: 5px !important;
+}
+
+// list item style
+.h7 {
+  font-size: 12px !important;
+}
+
+.h6 {
+  font-size: 14px !important;
+}
+
+.status-font-size {
+  font-size: 13px !important;
+}
+.header-font {
+  font-size: 14px !important;
+}
+
+.status-card {
+  width: 150px;
+  height: 40px;
+  text-align: center;
+}
+
+.bg-green {
+  background-color: green;
+  padding: 10px;
+}

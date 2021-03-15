@@ -1,0 +1,346 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'SOPCOMPLIANCE.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box" *ngIf="sopcheckRes">
+    <div class="h7 text-dark" style="text-align: center; margin-top: 5px">
+      <b>{{ 'SOPCOMPLIANCE.date' | translate}}: {{currentdate}}</b>
+    </div>
+
+    <form [formGroup]="sopform">
+      <div class="form-group" *ngIf="sopcheckRes.tempBoardReading == 0">
+        <label for="exampleInputEmail1" class="h7"
+          >{{ 'SOPCOMPLIANCE.ques1' | translate}}</label
+        >
+        <div class="row">
+          <div class="col-sm-8" style="text-align: right">
+            <div class="imagePreview" *ngIf="imgePaths.img_path1 == ''"></div>
+            <div class="imagePresent" *ngIf="imgePaths.img_path1 != ''">
+              <img class="imagePresent" src="{{imgePaths.img_path1}}" />
+            </div>
+
+            <!-- <div class="imagePreview"></div> -->
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+            <label class="btn btn-warning">
+              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('img_path1')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="sopcheckRes.conductSafBrfSite == 0">
+        <label for="exampleInputPassword1" class="h7"
+          >{{ 'SOPCOMPLIANCE.ques2' | translate}}</label
+        >
+        <div class="row">
+          <div class="col-sm-8" style="text-align: right">
+            <div class="imagePreview" *ngIf="imgePaths.img_path2 == ''"></div>
+            <div class="imagePresent" *ngIf="imgePaths.img_path2 != ''">
+              <img class="imagePresent" src="{{imgePaths.img_path2}}" />
+            </div>
+
+            <!-- <div class="imagePreview"></div> -->
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+            <label class="btn btn-warning">
+              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('img_path2')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="sopcheckRes.wearingPpe == 0">
+        <label for="exampleInputPassword1" class="h7"
+          >{{ 'SOPCOMPLIANCE.ques3' | translate}}</label
+        >
+        <div class="row">
+          <div class="col-sm-8" style="text-align: right">
+            <div class="imagePreview" *ngIf="imgePaths.img_path3 == ''"></div>
+            <div class="imagePresent" *ngIf="imgePaths.img_path3 != ''">
+              <img class="imagePresent" src="{{imgePaths.img_path3}}" />
+            </div>
+
+            <!-- <div class="imagePreview"></div> -->
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+            <label class="btn btn-warning">
+              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('img_path3')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="sopcheckRes.EstimitedVolume == 0">
+        <label for="exampleInputPassword1" class="h7"
+          >{{ 'SOPCOMPLIANCE.ques4' | translate}}</label
+        >
+        <div class="row">
+          <div class="col-sm-8" style="text-align: right">
+            <div class="imagePreview" *ngIf="imgePaths.img_path4 == ''"></div>
+            <div class="imagePresent" *ngIf="imgePaths.img_path4 != ''">
+              <img class="imagePresent" src="{{imgePaths.img_path4}}" />
+            </div>
+            <!-- <div class="imagePreview"></div> -->
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+            <label class="btn btn-warning">
+              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('img_path4')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="form-group" *ngIf="sopcheckRes.handoverReportRemarks == 0">  
+        <label for="exampleInputPassword1" class="h7">FFB volume</label>        
+        <textarea
+          class="form-control"
+          formControlName="supervisor"
+          rows="4"
+        ></textarea>
+      </div> -->
+
+      <div class="form-group" *ngIf="sopcheckRes.ffbvolume == 0">
+        <label for="exampleInputPassword1" class="h7"
+          >{{ 'SOPCOMPLIANCE.ffbvolume' | translate}}</label
+        >
+        <input
+          type="number"
+          class="h7 form-control"
+          formControlName="ffbvolume"
+        />
+      </div>
+
+      <div
+        class="form-group"
+        style="margin-top: 5px"
+        *ngIf="sopcheckRes.statusofproduction == 0"
+      >
+        <div class="h7 text-dark">
+          <b>{{ 'SOPCOMPLIANCE.ques5' | translate}}</b>
+        </div>
+
+        <!-- <div *ngFor="let eachitem of stateProArr" style="margin-top: 5px">
+          <div class="form-row">
+            <ion-checkbox
+              [(ngModel)]="eachitem.isChecked"
+              [ngModelOptions]="{standalone: true}"
+              (ionChange)="statelist(eachitem.name, eachitem.isChecked)"
+            ></ion-checkbox>
+
+            <ion-label style="padding-left: 10px">
+              <div class="h5 text-dark">{{eachitem.title}}</div>
+            </ion-label>
+          </div>
+        </div> -->
+
+        <div class="form-row" style="margin-top: 5px">
+          <select
+            formControlName="select_statusofproduction"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>
+              Select Status of Production
+            </option>
+            <option *ngFor="let value of stateProArr" value="{{value.name}}">
+              {{ value.title }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="sopcheckRes.estimatedtimetoStart == 0">
+        <label for="exampleInputPassword1" class="h7"
+          >{{ 'SOPCOMPLIANCE.cb5' | translate}}</label
+        >
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="est_timetostart"
+          display-format="DD-MM-YYYY HH:mm"
+          placeholder="DD-MM-YYYY HH:mm"
+        ></ion-datetime>
+      </div>
+
+      <div class="form-group" *ngIf="sopcheckRes.checklist == 0">
+        <div style="text-align: center" class="h7 text-dark">
+          <b>{{ 'SOPCOMPLIANCE.checklist' | translate}}</b>
+        </div>
+
+        <div *ngFor="let item of checklistArr" style="margin-top: 5px">
+          <div class="form-row">
+            <ion-checkbox
+              [(ngModel)]="item.isChecked"
+              [ngModelOptions]="{standalone: true}"
+              (ionChange)="checklist(item.name, item.isChecked)"
+            ></ion-checkbox>
+
+            <ion-label style="padding-left: 5px">
+              <div class="h5 text-dark">{{item.title}}</div>
+            </ion-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div
+          style="text-align: center"
+          class="h7 text-dark"
+          *ngIf="sopcheckRes.numberOfCycle == 0 || sopcheckRes.throughput == 0"
+        >
+          <b>{{ 'SOPCOMPLIANCE.settargets' | translate}}</b>
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.numberOfCycle == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.ques6' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              formControlName="number_cycle"
+              class="h5 form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.throughput == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.throughput' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              formControlName="through_put"
+              class="h5 form-control"
+            />
+          </div>
+        </div>
+
+        <!-- <div class="form-row" >
+          <div class="col">
+            <div class="h7 text-dark">Losses :</div>
+          </div>
+          <div class="col">
+            <input type="number" class="form-control" />
+          </div>
+        </div> -->
+        <div
+          class="h7 text-dark"
+          *ngIf="sopcheckRes.overallCpo == 0 || sopcheckRes.overallPk == 0"
+        >
+          {{ 'SOPCOMPLIANCE.losses' | translate}}
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.overallCpo == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.overallcpo' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              formControlName="overall_cpo"
+              class="h5 form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.overallPk == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.overallpk' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              formControlName="overall_pk"
+              class="h5 form-control"
+            />
+          </div>
+        </div>
+
+        <!-- <div class="form-row" >
+          <div class="col">
+            <div class="h7 text-dark">Extrection :</div>
+          </div>
+          <div class="col">
+            <input type="number" class="form-control" />
+          </div>
+        </div> -->
+        <div
+          class="h7 text-dark"
+          *ngIf="sopcheckRes.cpo == 0 || sopcheckRes.pk == 0"
+        >
+          {{ 'SOPCOMPLIANCE.extraction' | translate}}
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.cpo == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.cpo' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              formControlName="cpo"
+              class="h5 form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="sopcheckRes.pk == 0">
+          <div class="col">
+            <div class="h5 text-dark">
+              {{ 'SOPCOMPLIANCE.pk' | translate}} :
+            </div>
+          </div>
+          <div class="col">
+            <input type="number" formControlName="pk" class="h5 form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="btn_sopCompilance()"
+          *ngIf="getStatus() == true"
+        >
+          {{ 'GENERALBUTTON.savebutton' | translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

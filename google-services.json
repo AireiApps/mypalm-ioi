@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "306681786638",
+    "firebase_url": "https://mms-airei.firebaseio.com",
+    "project_id": "mms-airei",
+    "storage_bucket": "mms-airei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306681786638:android:da682da3d24a980b76275f",
+        "android_client_info": {
+          "package_name": "com.airei.milltracking.mypalm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306681786638-i6lvvvg2l8fjtoi6l9gl9vbn6uv29rqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzzBzCZbEhCi3sNiftrpDqalfTTb0nDyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306681786638-i6lvvvg2l8fjtoi6l9gl9vbn6uv29rqs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "306681786638-j84btbo2v8gvgmrl3fi1eqnq1dv4di80.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.airei.milltracking",
+                "app_store_id": "1527034627"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{ 'SUPERVISORHOME.title' | translate}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userlist">
+  <div class="home-box">
+    <div *ngIf="userlist.desigId!='86' && userlist.desigId!='67'">
+      <ion-row *ngFor="let item of itemsArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="userlist.desigId=='86'">
+      <ion-row *ngFor="let item of productionengineerArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="userlist.desigId=='67'">
+      <ion-row *ngFor="let item of mandorArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

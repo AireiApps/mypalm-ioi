@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="gotoback()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light"
+      >{{ 'COMMUNICATIONHOME.personalizedchats' | translate}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="h6 text-primary" style="padding: 10px 0px 0px 20px">
+    {{ 'PERSONALIZEDCHATS.message' | translate}}
+  </div> -->
+  <ion-list>
+    <ion-item
+      *ngFor="let eachitem of departmentArr"
+      (click)="personalizedchat(eachitem)"
+    >
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+      <ion-label class="h7">{{eachitem.deparment}}</ion-label>
+      <!-- <ion-label
+        class="h6 text-muted"
+        style="text-align: right; margin-right: 10px"
+        >{{currenttime}}</ion-label
+      > -->
+      <ion-badge class="badgecolor" *ngIf="eachitem.deparment_count>0"
+        >{{eachitem.deparment_count}}</ion-badge
+      >
+    </ion-item>
+  </ion-list>
+</ion-content>

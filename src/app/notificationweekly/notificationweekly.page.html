@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Weekly Maintenance Notification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="notificationweeklyForm">
+    <div class="form-row" style="padding:15px;">
+      <div class="col">
+        <ion-datetime class="form-control" formControlName="fromdate" display-format="YYYY-MM-DD">
+        </ion-datetime>
+      </div>
+      <div style="margin-top: 10px;">To</div>
+      <div class="col">
+        <ion-datetime class="form-control" formControlName="todate" display-format="YYYY-MM-DD">
+        </ion-datetime>
+      </div>
+    </div>
+
+    <div style="padding-right: 15px;">
+      <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="callAPI()">
+        <ion-icon name="filter"></ion-icon>
+        Get Record(s)
+      </button>
+    </div>
+  </form>
+  
+  <div class="home-box" style="padding-top: 40px;padding-bottom: 10px;">
+  <div class="card gedf-card margin-bottom" *ngFor="let value of notificationArr">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="ml-2">
+            <div class="h7 text-danger"><b>Year : {{value.year}}</b></div>
+            <div class="h7 text-muted">Month : {{value.month}}</div>
+            <div class="h7 text-muted">Week : {{value.week}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ion-row class="row-reverse">
+      <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+        <ion-icon name="eye-outline"></ion-icon>
+        View
+      </button>
+    </ion-row>
+
+  </div>
+  </div>
+</ion-content>

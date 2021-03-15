@@ -1,0 +1,8 @@
+{
+  "name": "mms-tracking",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

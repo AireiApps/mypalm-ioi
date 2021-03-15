@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'REQUESTDETAILS.title' | translate}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="col" style="text-align: center;margin-top: 10px;">
+    <div class="h6 text-danger"><b>{{ 'REQUESTDETAILS.requesttype' | translate}} : {{orderdetail.requesttype}}</b></div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">{{ 'REQUESTDETAILS.date' | translate}} :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-dark">{{orderdetail.date}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">{{ 'REQUESTDETAILS.department' | translate}} :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-dark">{{orderdetail.department}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">{{ 'REQUESTDETAILS.name' | translate}} :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-dark">{{orderdetail.requester_name}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">{{ 'REQUESTDETAILS.requestfor' | translate}} :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-dark">{{orderdetail.requestName}}</div>
+    </div>
+  </div>
+
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of recentOrder">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="ml-2">              
+              <div class="h7 text-danger"><b>{{ 'REQUESTDETAILS.partname' | translate}} : {{value.item_name}}</b></div>
+              <div class="h7 text-muted">{{ 'REQUESTDETAILS.partcode' | translate}} : {{value.item_code}}</div>
+              <div class="h7 text-muted">{{ 'REQUESTDETAILS.station' | translate}} : {{value.station_name}}</div>
+              <div class="h7 text-muted">{{ 'REQUESTDETAILS.machinery' | translate}} : {{value.location_name}}</div>
+              <div class="h7 text-muted">{{ 'REQUESTDETAILS.quantity' | translate}} : {{value.qty}}</div>
+              <div class="h7 text-muted">{{ 'REQUESTDETAILS.stock' | translate}} : {{value.stock}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

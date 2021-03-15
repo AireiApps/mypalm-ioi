@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'JOBBYENGINEER.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" [style.background-color]="getcardcolor(value.machine_running_hours_reset_flag, value.category)" *ngFor="let value of planningArr">
+      <div class="card-header" style="text-align: center;">
+          <div class="h7 text-danger"><b>{{value.category}}</b></div>
+      </div>
+      <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 5px; margin-right: 5px;">          
+        <div class="h7 text-dark">{{ 'JOBBYENGINEER.station' | translate}}: {{value.station}}</div>
+        <div class="h7 text-dark">{{ 'JOBBYENGINEER.machinery' | translate}}: {{value.machinery}}</div>
+        <!-- <div class="h7 text-dark">Part: {{value.part}}</div> -->
+        <div class="h7 text-dark">{{ 'JOBBYENGINEER.type' | translate}}: {{value.type}}</div>      
+        <div class="h7 text-dark" *ngIf="value.remarks!=''">{{ 'JOBBYENGINEER.remarks' | translate}}: {{value.remarks}}</div>
+        <div class="h7 text-dark" style="float: right;">{{ 'JOBBYENGINEER.date' | translate}}: {{value.planningdate}}</div>       
+      </div>
+      
+      <ion-row class="row-reverse">
+        <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="callmodalcontroller(value)">
+          <ion-icon name="document"></ion-icon>
+          {{ 'GENERALBUTTON.updatebutton' | translate}}
+        </button>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

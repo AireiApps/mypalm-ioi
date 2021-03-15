@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ 'NOTIFICATION.title' | translate}}</ion-title>
+    <ion-buttons slot="primary" *ngIf="departmentid!=7 && departmentid!=10 && departmentid!=15 && departmentid!=20">
+      <ion-button class="bg-light-color" (click)="btn_clearNotification()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="departmentid!=7 && departmentid!=10 && departmentid!=15">
+    <div class="card marigin-10px" *ngFor="let value of notificationArr">
+      <ion-row class="marigin-10px row-reverse">
+        <ion-col>
+          <div class="h7 m-0">{{value.topic}}</div>
+          <div class="h7 text-muted">{{value.tags}}</div>
+          <div class="h7 text-dark" style="float: right">{{value.time}}</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div *ngIf="departmentid==7">
+    <div class="card marigin-10px" *ngFor="let value of notificationArr">
+      <ion-row class="marigin-10px row-reverse" (click)="updateitem(value)">
+        <ion-col>
+          <div class="h7 m-0">{{value.title}}</div>
+          <div class="h7 text-muted">{{value.notification_text}}</div>
+          <div class="h7 text-dark" style="float: right">
+            {{value.notification_date}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div *ngIf="departmentid==10">
+    <div class="card marigin-10px" *ngFor="let value of notificationArr">
+      <ion-row class="marigin-10px row-reverse" (click)="updateitem(value)">
+        <ion-col>
+          <div class="h7 m-0">{{value.title}}</div>
+          <div class="h7 text-muted">{{value.notification_text}}</div>
+          <div class="h7 text-dark" style="float: right">
+            {{value.notification_date}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div *ngIf="departmentid==15">
+    <div class="card marigin-10px" *ngFor="let value of notificationArr">
+      <ion-row class="marigin-10px row-reverse" (click)="updateitem(value)">
+        <ion-col>
+          <div class="h7 m-0">{{value.title}}</div>
+          <div class="h7 text-muted">{{value.notification_text}}</div>
+          <div class="h7 text-dark" style="float: right">
+            {{value.notification_date}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div *ngIf="departmentid==20">
+    <div class="card marigin-10px" *ngFor="let value of notificationArr">
+      <ion-row class="marigin-10px row-reverse" (click)="updateitem(value)">
+        <ion-col>
+          <div class="h7 m-0">{{value.title}}</div>
+          <div class="h7 text-muted">{{value.notification_text}}</div>
+          <div class="h7 text-dark" style="float: right">
+            {{value.notification_date}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

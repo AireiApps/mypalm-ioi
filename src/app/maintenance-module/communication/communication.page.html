@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Communication</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    
+    <ion-segment-button value="Broadcast">
+      <ion-label>Broadcast Comm.</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Personalized">
+      <ion-label>Personalized Comm.</ion-label>
+    </ion-segment-button>    
+
+  </ion-segment>
+
+  <div [ngSwitch]="tabs_segment">
+    <div *ngSwitchCase="'Broadcast'">
+      <form [formGroup]="broadcastcommunicationForm">
+        <ion-card class="card">
+          <div class="col text-dark" style="margin-top: 5px;">
+            <div class="h7"><b>Comments</b></div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="broadcastComments" rows="3" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark"><b>Image</b></label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.broadcastcommunication_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.broadcastcommunication_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.broadcastcommunication_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('BroadcastCommunication')">
+                </label>
+              </div>
+              </div>    
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+          <ion-row>
+            <ion-col size="12">
+              <button type="submit" class="btn btn-success" (click)="btn_save('BroadcastCommunication')">Submit</button>
+            </ion-col>
+          </ion-row>
+          </div>
+        </ion-card>
+      </form>
+    </div>
+    <div *ngSwitchCase="'Personalized'">
+      <form [formGroup]="personalizedcommunicationForm">
+
+        <div class="h7 form-row text-dark">
+          <div class="col"><b>Department</b></div>            
+        </div>
+
+          <div class="h7 form-row text-dark">
+            <div class="col">
+                <ion-select formControlName="select_department" (ionChange)="uienabledisable()" placeholder="Select Department" multiple="true" value="Select Department" ok-text="Okay" cancel-text="Dismiss">                
+                  <ion-select-option value="{{value.id + '~' +value.deparment}}" *ngFor="let value of departmentArr; let i = index">{{ value.deparment }}</ion-select-option>           
+                </ion-select>      
+            </div>            
+          </div>
+
+          <ion-card class="card" *ngIf="selecteddepartment == true">
+            <div class="col text-dark" style="margin-top: 5px;">
+              <div class="h7"><b>Comments</b></div>
+            </div>
+  
+            <div class="form-row text-dark">
+              <div class="col">
+                <textarea class="h7 form-control" formControlName="personalizedComments" rows="3" placeholder="Enter Comments"></textarea>
+              </div>
+            </div>
+  
+            <div class="form-row imgmarigin">
+              <label class="h7 text-dark"><b>Image</b></label>
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-8" style="text-align: right;">
+                    <div class="imagePreview" *ngIf="imagePaths.personalizedcommunication_path == ''"></div>
+                    <div class="imagePresent" *ngIf="imagePaths.personalizedcommunication_path != ''">
+                      <img class="imagePresent" [src]="imagePaths.personalizedcommunication_path" />
+                    </div>                                           
+                  </div>
+      
+                </div>
+      
+                <div class="row">
+                  <div class="col-sm-4" style="text-align: right;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('PersonalizedCommunication')">
+                  </label>
+                </div>
+                </div>
+      
+              </div>
+            </div>
+  
+            <div style="text-align: center;">
+            <ion-row>
+              <ion-col size="12">
+                <button type="submit" class="btn btn-success" (click)="btn_save('PersonalizedCommunication')">Submit</button>
+              </ion-col>
+            </ion-row>
+            </div>
+          </ion-card>
+
+      </form>
+    </div>
+  </div>
+</ion-content>

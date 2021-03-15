@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="callmodalcontroller('')">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <ion-list>
+    <ion-item-sliding [style.backgroundColor]="getStatusColor('a')">
+      <ion-item>
+        <ion-label>
+          <h2>HubStruck Notifications</h2>
+          <p>A new message in your network</p>
+          <p>Oceanic Next has joined your network</p>
+        </ion-label>
+        <ion-note slot="end">
+          10:45 AM
+        </ion-note>
+      </ion-item>
+  
+      <ion-item-options side="start">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list> -->
+
+  <div class="home-box">
+    <form [formGroup]="dashboardForm">
+      <div
+        class="checkcard"
+        style="
+          background-image: linear-gradient(315deg, #f7f7f7 0%, #f7f7f7 74%);
+        "
+      >
+        <ion-row>
+          <ion-col class="vertical-align-content" size="8">
+            <div class="col">
+              <select
+                class="h7 form-control"
+                formControlName="shift"
+                [(ngModel)]="selectshift.form"
+              >
+                <option value="" selected>
+                  {{ 'MAINTENANCEDASHBOARD.selectshift' | translate}}
+                </option>
+                <option value="0">
+                  {{ 'MAINTENANCEDASHBOARD.shifta' | translate}}
+                </option>
+                <option value="1">
+                  {{ 'MAINTENANCEDASHBOARD.shiftb' | translate}}
+                </option>
+              </select>
+            </div>
+          </ion-col>
+
+          <ion-col class="vertical-align-content" size="4">
+            <ion-col style="vertical-align: middle; text-align: center">
+              <div (click)="confirmShift(checkinoutflag)">
+                <div>
+                  <img
+                    src="../../assets/img/on-button.png"
+                    alt="PROFILE"
+                    *ngIf="checkinoutflag == 0"
+                  />
+                  <img
+                    src="../../assets/img/off-button.png"
+                    alt="PROFILE"
+                    *ngIf="checkinoutflag != 0"
+                  />
+                  <!-- <div>
+                    <p *ngIf="checkinoutflag == 0" class="h7">
+                      {{ 'MAINTENANCEDASHBOARD.checkin' | translate}}
+                    </p>
+                    <p *ngIf="checkinoutflag != 0" class="h7">
+                      {{ 'MAINTENANCEDASHBOARD.checkout' | translate}}
+                    </p>
+                  </div> -->
+                </div>
+              </div>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </div>
+    </form>
+
+    <div style="margin-top: 10px">
+      <ion-list #notificationlist lines="none">
+        <ion-item-sliding
+          #slidingItem
+          class="itemcard"
+          *ngFor="let value of dashboardArr"
+        >
+          <ion-item
+            [style.--ion-background-color]="getStatusColor(value.redirect)"
+            (click)="updateitem(value)"
+          >
+            <!-- <ion-label>
+              <h2>{{value.title}}</h2>
+              <p style="color: black">{{value.notification_text}}</p>          
+              <p style="color: black; float: right;">{{value.notification_date}}</p>
+            </ion-label>         -->
+
+            <ion-col>
+              <div class="h7 text-dark" style="text-align: center">
+                <b>{{value.title}}</b>
+              </div>
+              <div class="h7 text-dark">{{value.notification_text}}</div>
+              <div class="h7 text-dark" style="float: right">
+                {{value.notification_date}}
+              </div>
+            </ion-col>
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option color="danger" (click)="removeitem(value)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>{{
+              'MAINTENANCEDASHBOARD.delete' | translate}}
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,632 @@
+{
+
+  "LOGIN": 
+  {
+    "username": "Nama pengguna",
+    "password": "Kata sandi",
+    "millcode": "Kode Pabrik",
+    "buttonlogin": "Gabung",
+    "millcodeerror": "Kode Pabrik Diperlukan",
+    "millcodeerrortoast": "MillCode adalah Wajib",    
+    "usernameerror": "Nama Pengguna Diperlukan",
+    "usernameerrortoast": "UserName adalah Wajib",
+    "passworderror": "Sandi Diperlukan",
+    "passworderrortoast": "Kata sandi adalah Wajib",
+    "copyrights": "Versi: kapan 1.9 hak cipta © 2020-2021 AIREI"
+  },
+
+  "MORE": {
+    "title": "Pengaturan",
+    "logout": "Keluar",
+    "changepassword": "Ganti kata sandi",
+    "poweredby": "Dipersembahkan oleh"
+  },
+
+  "CHANGEPASSWORD": {
+    "title": "Ganti kata sandi",
+    "newpassword": "kata sandi baru",
+    "buttonchangepassword": "Ganti kata sandi"
+  },
+
+  "COMMUNICATIONHOME": {
+    "title": "Obrolan",
+    "broadcastchats": "Siaran",
+    "personalizedchats": "Dipersonalisasi"    
+  },
+
+  "GRADINGHOME": {
+    "title": "Penilaian",
+    "suppliername": "nama pemasok",
+    "lorrynumber": "Nomor Lorry",
+    "date": "Tanggal",
+    "drivername": "Nama pengemudi",
+    "check":"Memeriksa"   
+  },
+
+  "GRADINGFORM": {
+    "title": "Formulir Penilaian",
+    "message": "* Harap masukkan '0' jika tidak ada nilai. Jangan biarkan kotak kosong.",
+    "selectvehicleorenterlorrynumber": "Pilih Kendaraan (atau) Masukkan Nomor Lorry",
+    "suppliername": "nama pemasok",
+    "lorrynumber": "Nomor Lorry",
+    "yearofplanting": "Tahun Tanam",
+    "averagebunchweight": "Berat Tandan Rata-rata",
+    "hardbunches": "Tandan Keras",
+    "underripebunches": "Di bawah Ripe Bunches",
+    "loosefruits": "Buah Longgar",
+    "otherfactors": "Faktor lain",
+    "dirt": "Kotoran",
+    "sand": "Pasir",
+    "notfresh": "Tidak segar",
+    "wet": "Basah",
+    "bigbunches": "Tandan Besar",
+    "mediumbunches": "Tandan Sedang",
+    "smallbunches": "Tandan Kecil",
+    "rejectedbunches": "Tandan yang Ditolak",
+    "dxd": "DXD",
+    "longstalk": "Tangkai Panjang",
+    "lessoer": "Kurang (OER)",
+    "lessweight": "Kurang (Weight)",
+    "overallffbqualityimage": "Kualitas Gambar TBS Keseluruhan",
+    "lorryimagewithregistrationnumber": "Gambar Lorry dengan Nomor Registrasi",    
+    "rejectedffbimage": "Gambar TBS yang Ditolak",
+    "supplierdispatchimage": "Gambar Pengiriman Pemasok",
+    "searchsupplier": "Cari Pemasok",
+    "buttonsearch": "Cari",
+    "buttonsearch": "Search",
+    "vehicle": "Kendaraan",
+    "selectvehicle": "Pilih Kendaraan"
+  },
+
+  "DETAILSTRANSACTION": {
+    "title": "Detail"
+  },
+
+  "GENERALBUTTON": {
+    "savebutton": "Menyimpan",
+    "uploadbutton": "Unggah",
+    "updatebutton": "Memperbarui",
+    "additem": "Tambahkan Barang",
+    "resetbutton": "Setel Ulang",
+    "receivedbutton": "Diterima",
+    "detailsbutton": "Detailnya",
+    "start": "Mulailah",
+    "stop": "Berhenti",
+    "getrecords": "Dapatkan Catatan"
+  },
+
+  "NOTIFICATION": {
+    "title": "Pemberitahuan"    
+  },
+
+  "PERSONALIZEDCHATS": {
+    "message": "Departemen"    
+  },
+
+  "HISTORY": {
+    "title": "Sejarah",
+    "button": "Dapatkan Catatan",
+    "detailsbutton": "Detail",
+    "suppliername": "nama pemasok",
+    "lorrynumber": "Nomor Lorry",
+    "date": "Tanggal",
+    "drivername": "Nama pengemudi"
+  },
+
+  "TABSGRADING": {
+    "home": "Rumah",
+    "history": "Sejarah",
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "GRADINGDASHBOARD": {
+    "title": "Rumah",
+    "message": "Pemeriksaan Kualitas Buah",
+    "buttonreceivenewload": "Terima Beban Baru"    
+  },
+
+  "DEPARTMENTS": {
+    "Accounts": "Akun",
+    "Laboratory": "Laboratorium",
+    "Boiler": "Ketel",
+    "Production": "Produksi",
+    "Procurement": "Pembelian",
+    "Electrical": "Listrik",
+    "Maintenance": "Pemeliharaan",
+    "Grading": "Penilaian",
+    "Security": "Keamanan",
+    "Supplier": "Pemasok",
+    "Ffbsupplier": "FFB Pemasok",
+    "Engineer": "Insinyur",
+    "Clerk": "Pegawai",
+    "Human Resource": "Sumber daya manusia",
+    "Estate Manager": "Manajer Estate",
+    "Management": "Pengelolaan",
+    "Engineering": "Teknik",
+    "Administration": "Administrasi",
+    "Office": "Kantor",
+    "Purchasing": "Pembelian",
+    "Store": "Toko",
+    "Manager": "Pengelola",
+    "Driver": "Sopir",
+    "Foreman": "Mandor",
+    "Charge Man": "Biaya Manusia",
+    "CEO": "CEO",
+    "Visiting Consultant": "Konsultan Tamu"
+  },
+
+  "MAINTENANCEDASHBOARD": {   
+    "selectshift": "Pilih Shift",
+    "shifta": "Bergeser-A",
+    "shiftb": "Bergeser-B",
+    "checkin": "Mendaftar",
+    "checkout": "Periksa",
+    "delete": "Menghapus"
+  },
+
+  "TABSMAINTENANCE": {
+    "dashboard": "Dasbor",
+    "home": "Rumah",    
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "MAINTENANCEHOME": {
+    "title": "Rumah",
+    "breakdowndowntime": "Kerusakan",
+    "reportedmaintenace": "Pemeliharaan Dilaporkan",
+    "attendance": "Kehadiran",    
+    "addnewjob": "Pekerjaan Baru",
+    "jobbyengineer": "Pekerjaan yang Ditugaskan",    
+    "requestitem": "Item Permintaan",
+    "reports": "Laporan"
+  },
+
+   "BREAKDOWNDOWNTIME": {
+    "title": "Kerusakan",
+    "newbreakdowndowntime": "Kerusakan Baru",
+    "department": "Departemen",
+    "selectdepartment": "Pilih Departemen",
+    "station": "Stasiun",
+    "selectstation": "Pilih Stasiun",
+    "machinery": "Mesin",
+    "selectmachinery": "Pilih Mesin",
+    "part": "Bagian",
+    "selectpart": "Pilih Bagian",
+    "observation": "Pengamatan",
+    "selectobservation": "Pilih Pengamatan",
+    "breakdowntime": "Kerusakan Waktu",
+    "reportedtime": "Dilaporkan Waktu",
+    "complainantremarks": "Komentar Pengadu",
+    "date": "Tanggal",
+    "complainantimage": "Gambar Pelapor",
+    "rectifiedtime": "Waktu yang Diperbaiki",
+    "foremanremarks": "Keterangan Mandor",
+    "rectifiedimage": "Gambar yang Diperbaiki",
+    "assignedto": "Ditugaskan Untuk",
+    "selectassignedto": "Pilih DitugaskanUntuk"
+  },
+
+  "REPORTEDMAINTENANCE": {
+    "title": "Pemeliharaan Dilaporkan",
+    "newreportedmaintenance": "Pemeliharaan Baru Dilaporkan"
+  },
+
+  "ATTENDANCE": {
+    "title": "Kehadiran",
+    "date": "Tanggal",
+    "names": "Nama",
+    "from": "dari",
+    "to": "Untuk",
+    "shift": "Bergeser",
+    "overtime": "Lembur",
+    "remarks": "Catatan",
+    "normal": "Normal",
+    "restday": "Hari Istirahat",
+    "publicholiday": "Libur Bersama",
+    "selectshift": "Bergeser",
+    "selecthours": "Jam",
+    "selectremarks": "Catatan",
+    "replacement": "Penggantian",
+    "extrawork": "Kerja Tambahan",
+    "onleave": "Sedang Cuti",
+    "absent": "Tidak Hadir",
+    "onmc": "Di MC",
+    "continue": "Terus"
+  },
+
+  "ADDNEWJOB": {
+    "title": "Pekerjaan Baru",
+    "plandate": "Tanggal Rencana",
+    "category": "Kategori",
+    "selectcategory": "Pilih Kategori",
+    "department": "Departemen",
+    "selectdepartment": "Pilih Departemen",
+    "station": "Stasiun",
+    "selectstation": "Pilih Stasiun",
+    "machinery": "Mesin",
+    "selectmachinery": "Pilih Mesin",
+    "observation": "Pengamatan",
+    "selectobservation": "Pilih Pengamatan",
+    "type": "Tipe",
+    "selecttype": "Pilih Tipe",
+    "remarks": "Catatan",
+    "assignedto": "Ditugaskan Untuk",
+    "selectassignedto": "Pilih DitugaskanUntuk"
+  },
+
+  "JOBBYENGINEER": {
+    "title": "Pekerjaan yang Ditugaskan",
+    "station": "Stasiun",    
+    "machinery": "Mesin",    
+    "type": "Tipe",    
+    "remarks": "Catatan",
+    "date": "Tanggal"
+  },
+
+  "JOBDETAILS": {
+    "title": "Rincian Pekerjaan",
+    "category": "Kategori",
+    "station": "Stasiun",    
+    "machinery": "Mesin",    
+    "type": "Tipe",    
+    "engineerremarks": "Keterangan Insinyur",
+    "observation": "Pengamatan",
+    "selectobservation": "Pilih Pengamatan",
+    "status": "Status",
+    "selectstatus": "Pilih Status",
+    "remarks": "Catatan",
+    "personincharge": "Orang Incharge",
+    "selectpersonincharge": "Pilih Orang Incharge",
+    "image": "Gambar",
+    "totalrunninghours": "Total Jam Kerja",
+    "runninghours": "Jam Kerja"    
+  },
+
+  "REQUESTITEM": {
+    "title": "Item Permintaan",
+    "requestnewitem": "Minta Item Baru",
+    "recentrequestitems": "Item Permintaan Terbaru",    
+    "requesttype": "Jenis Permintaan",    
+    "requestfor": "Meminta",    
+    "noofitems": "Jumlah Item",
+    "requestedby": "Diminta Oleh",
+    "date": "Tanggal",
+    "alertheader": "Minta Konfirmasi",
+    "alertmessage": "Apakah Anda menerima semua item seperti yang Anda minta?",
+    "alertyes": "Iya",
+    "alertno": "Tidak"
+  },
+
+   "REQUESTNEWITEM": {
+    "title": "Minta Item Baru",
+    "type": "Tipe",
+    "normal": "Normal",
+    "urgent": "Mendesak",
+    "itemrequesttype": "Jenis Permintaan Barang",
+    "selectitemrequesttype": "Pilih Jenis Permintaan Barang",
+    "station": "Stasiun",
+    "selectstation": "Pilih Stasiun",
+    "machinery": "Mesin",
+    "selectmachinery": "Pilih Mesin",
+    "part": "Bagian",
+    "selectpart": "Pilih Bagian",
+    "unit": "Satuan",
+    "quantity": "Kuantitas",
+    "request": "Permintaan"
+  },
+
+  "REQUESTDETAILS": {
+    "title": "Detail Permintaan",
+    "requesttype": "Jenis Permintaan",   
+    "date": "Tanggal",
+    "department": "Departemen",
+    "name": "Nama",
+    "requestfor": "Meminta",
+    "partname": "Bagian Nama",
+    "partcode": "Kode Bagian",
+    "station": "Stasiun",
+    "machinery": "Mesin",
+    "quantity": "Kuantitas",
+    "stock": "Persediaan"
+  },
+
+  "SCHEDULING": {
+    "title": "Penjadwalan"
+  },
+
+  "SUPERVISORDASHBOARD": {   
+    "selectshift": "Pilih Shift",
+    "shifta": "Bergeser-A",
+    "shiftb": "Bergeser-B",
+    "checkin": "Mendaftar",
+    "checkout": "Periksa",
+    "machinerunninghours": "Jam Kerja Mesin",
+    "productionstart": "Produksi Mulai",
+    "productionstop": "Produksi Berhenti",
+    "delete": "Menghapus"
+  },
+
+  "TABSSUPERVISOR": {
+    "dashboard": "Dasbor",
+    "home": "Rumah",    
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "SUPERVISORHOME": {
+    "title": "Rumah",      
+    "attendance": "Kehadiran",    
+    "sopcompliance": "Kepatuhan SOP",
+    "hourreporting": "Pelaporan Setiap Jam",
+    "leaveform": "Tinggalkan Formulir",    
+    "requestitem": "Item Permintaan",
+    "requestitemhistory": "Riwayat Permintaan",
+    "breakdowndowntime": "Kerusakan",
+    "reports": "Laporan"
+  },
+
+  "SOPCOMPLIANCE": 
+  {
+    "title": "Kepatuhan SOP",       
+    "date": "Tanggal",    
+    "ques1": "Semua pekerja memakai smart band dan pembacaannya akurat",
+    "ques2": "Lakukan pengarahan keamanan di lokasi",
+    "ques3": "Pastikan semua pekerja memakai PPE",    
+    "ques4": "Perkiraan volume FFB",
+    "ffbvolume": "Volume FFB",
+    "ques5": "Status produksi selama pengambilalihan",
+    "cb1": "Mulai Produksi",
+    "cb2": "Lanjutkan Produksi",
+    "cb3": "Kerusakan",
+    "cb4": "Pembersihan",
+    "cb5": "Perkiraan Tanggal & Waktu Mulai",
+    "checklist": "Daftar Periksa",
+    "cb6": "Dibahas dengan shift Boilerman",
+    "cb7": "Dibahas dengan tim shift maintenace",
+    "cb8": "Dibahas dengan Personil Lab",
+    "cb9": "Dibahas dengan Personil Store",
+    "cb10": "Pekerja cukup memadai di semua stasiun",
+    "cb11": "Memeriksa semua Mesin",
+    "cb12": "Keamanan tempat kerja yang diperiksa",
+    "cb13": "Aspek lingkungan yang diperiksa",
+    "cb14": "Kondisi kendaraan yang diperiksa",
+    "settargets": "Tetapkan Target",
+    "ques6": "Jumlah Siklus",
+    "throughput": "Throughput",
+    "losses": "Kerugian",
+    "overallcpo": "CPO keseluruhan",
+    "overallpk": "PK keseluruhan",
+    "extraction": "Ekstraksi",
+    "cpo": "CPO",
+    "pk": "PK"
+  },
+
+  "REPORTS": 
+  {
+    "title": "Laporan",       
+    "attendancereport": "Laporan Kehadiran",    
+    "sopcompliancereport": "Laporan Kepatuhan SOP",
+    "hourreporting": "Pelaporan Setiap Jam",
+    "weighbridgereport": "Laporan Jembatan Timbang",
+    "preventivemaintenancereport": "Laporan Pemeliharaan Preventif",
+    "generallabreport": "Laporan Laboratorium",
+    "jobdonereport": "Laporan Pekerjaan Selesai",
+    "observationreport": "Laporan Pengamatan",
+    "compliancereport": "Laporan Kepatuhan",
+    "productionreport": "Laporan Produksi"
+  },
+
+  "HOURLYREPORTING": 
+  {
+    "title": "Pelaporan Setiap Jam",
+    "date": "Tanggal",       
+    "numberofcycles": "Jumlah Siklus",    
+    "vsgraph": "Grafik VS",
+    "digestortemperature": "Suhu Pencernaan",
+    "digestorsteam": "Pelepasan Uap Digestor",
+    "pressfibercondition": "Tekan Kondisi Fiber",
+    "digestordrainpipe": "Pipa Pembuangan Digestor",
+    "ebpress": "EB Tekan",
+    "sunle": "Sun Le",
+    "mbc": "MBL",
+    "usb": "USB",
+    "fatpit": "Lubang Lemak",
+    "hydrocyclone": "Hidrosiklon"
+  },
+
+  "LEAVEFORM": 
+  {
+    "title": "Tinggalkan Formulir",       
+    "fromdate": "Dari Tanggal",
+    "todate": "Saat ini",    
+    "employee": "Karyawan",
+    "selectemployee": "Pilih Karyawan",
+    "image": "Gambar",
+    "status": "Status",
+    "selectstatus": "Pilih Status",
+    "accept": "Menerima",
+    "reject": "Menolak"
+  },
+
+  "LABDASHBOARD": {   
+    "selectshift": "Pilih Shift",
+    "shifta": "Bergeser-A",
+    "shiftb": "Bergeser-B",
+    "checkin": "Mendaftar",
+    "checkout": "Periksa",    
+    "delete": "Menghapus"
+  },
+
+  "TABSLAB": {
+    "dashboard": "Dasbor",
+    "home": "Rumah",    
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "LABHOME": {
+    "title": "Rumah",      
+    "breakdowndowntime": "Kerusakan",
+    "reportedmaintenace": "Pemeliharaan Dilaporkan",
+    "reports": "Laporan"
+  },
+
+  "BOILERDASHBOARD": {   
+    "selectshift": "Pilih Shift",
+    "shifta": "Bergeser-A",
+    "shiftb": "Bergeser-B",
+    "checkin": "Mendaftar",
+    "checkout": "Periksa",
+    "startboiler": "Mulailah-Naik Boiler",
+    "stopboiler": "Mematikan Boiler", 
+    "delete": "Menghapus"
+  },
+
+  "BOILERHOME":
+  {
+    "title": "Rumah",
+    "boilerlog": "Entri Log",
+    "turbineperformance": "Kinerja Turbin",
+    "boilerperformance": "Kinerja Boiler",
+    "breakdowndowntime": "Kerusakan",
+    "reportedmaintenace": "Pemeliharaan Dilaporkan",
+    "requestitem": "Item Permintaan",
+    "boilerlogbook": "Buku Log",
+    "reports": "Laporan"
+  },
+
+  "TABSBOILER": {
+    "dashboard": "Dasbor",
+    "home": "Rumah",    
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "BOILERLOGENTRY":
+  {
+    "title": "Entri Log",
+    "1hourlog": "1 Log Jam",
+    "2hourslog": "2 Jam Log",
+    "4hourslog": "4 Jam Log",
+    "12hourslog": "12 Jam Log",
+    "levels": "Level"
+  },
+
+  "1HOURLOG":
+  {
+    "title": "1 Log Jam",    
+    "boilerperformance": "Kinerja Boiler",
+    "turbineperformance": "Kinerja Turbin",
+    "date": "Tanggal",
+    "frequency": "Frekuensi",
+    "boilerpressure": "Tekanan Boiler",
+    "steamoutput": "Keluaran Uap",
+    "boilerpressuresteamoutputimage": "Gambar Tekanan Boiler dan Output Uap",
+    "boilerwaterlevel": "Ketinggian Air Boiler",
+    "boilerwaterlevelimage": "Gambar Ketinggian Air Boiler",
+    "boilersmokeanalysis": "Analisis Asap Boiler",
+    "opacity": "Kegelapan",
+    "concentration": "Concentration",
+    "smokeanalysisimage": "Gambar Analisis Asap",
+    "inletpressure": "Tekanan Inlet",
+    "nozzlepressure": "Tekanan Nozzle",
+    "oilpressure": "Tekanan Minyak",
+    "powerconsumption": "Konsumsi Daya",
+    "powerconsumptionimage": "Gambar Konsumsi Daya",
+    "powerfrequency": "Frekuensi Kekuatan",
+    "powerfrequencyimage": "Gambar Frekuensi Daya",
+    "powerdistribution": "Distribusi Tenaga",
+    "reason": "Alasan",
+    "selectoption": "Pilih opsi",
+    "powerdistributionimage": "Gambar Distribusi Daya"
+  },
+
+  "2HOURSLOG":
+  {
+    "title": "2 Jam Log",
+    "date": "Tanggal",
+    "frequency": "Frekuensi",
+    "selecthour": "Jam",
+    "blowtime": "Meniup",
+    "selecttime": "Waktu"
+  },
+
+  "4HOURSLOG":
+  {
+    "title": "4 Jam Log",
+    "date": "Tanggal",
+    "frequency": "Frekuensi",
+    "selecthour": "Jam",
+    "ashremoval": "Penghapusan Abu",
+    "sootblow": "Pukulan Jelaga",
+    "selecttime": "Waktu"
+  },
+
+  "12HOURSLOG":
+  {
+    "title": "12 Jam Log",
+    "date": "Tanggal",
+    "frequency": "Frekuensi",
+    "selecthour": "Jam",
+    "watergageglasstesting": "Pengujian Kaca Pengukur Air",
+    "lowwaterleveltesting": "Pengujian Level Air Rendah",
+    "selecttime": "Waktu"   
+  },
+
+  "LEVELS":
+  {
+    "title": "Level",
+    "water": "Air",
+    "chemical": "Bahan Kimia",
+    "level": "Tingkat",
+    "date": "Tanggal",
+    "waterclarifierdrainout": "Tiriskan Penjernih Air",
+    "waterclarifierdrainoutimage": "Gambar Pembuangan Penjernih Air",
+    "sandfilterbackwash": "Sand Filter Backwash",
+    "sandfilterbackwashimage": "Gambar Sand Filter Backwash",
+    "softenerregeneration": "Regenerasi Pelembut",
+    "softenerregenerationimage": "Gambar Regenerasi Pelembut",
+    "sofenerhardness": "Kekerasan Pelembut",
+    "tds": "TDS",
+    "select": "Pilih",
+    "selecttime": "Waktu",
+    "corrosioninhibitor": "Penghambat Korosi",
+    "scaleinhibitor": "Penghambat Skala",
+    "sludgeconditioner": "Kondisioner Lumpur",
+    "onlinecleaning": "Pembersihan On-Line",
+    "overheadtank": "Tangki Overhead",
+    "boilerfeedwatertank": "Tangki Air Umpan Boiler",
+    "tubineoillevel": "Level Oli Turbin"
+  },
+  
+  "TABSMANAGER": {
+    "dashboard": "Dasbor",
+    "home": "Rumah",    
+    "chats": "Obrolan",    
+    "more": "Lebih"
+  },
+
+  "MANGERDASHBOARD": {   
+    "selectshift": "Pilih Shift",
+    "shifta": "Bergeser-A",
+    "shiftb": "Bergeser-B",
+    "checkin": "Mendaftar",
+    "checkout": "Periksa",
+    "startboiler": "Mulailah-Naik Boiler",
+    "stopboiler": "Mematikan Boiler", 
+    "delete": "Menghapus"
+  },
+
+  "MANAGERHOME":
+  {
+    "title": "Rumah",
+    "breakdowndowntime": "Kerusakan",
+    "reportedmaintenace": "Pemeliharaan Dilaporkan",
+    "quotation": "Kutipan",
+    "boilerlogbook": "Buku Log",
+    "requestitem": "Item Permintaan",    
+    "reports": "Laporan"
+  }
+}

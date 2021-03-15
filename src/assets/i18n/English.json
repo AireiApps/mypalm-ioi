@@ -1,0 +1,635 @@
+{
+  
+  "LOGIN": 
+  {
+    "username": "Username",
+    "password": "Password",
+    "millcode": "Mill Code",
+    "buttonlogin": "Login",
+    "millcodeerror": "Mill Code Required",
+    "millcodeerrortoast": "MillCode is Mandatory",    
+    "usernameerror": "Username Required",
+    "usernameerrortoast": "Username is Mandatory",
+    "passworderror": "Password Required",
+    "passworderrortoast": "Password is Mandatory",
+    "copyrights": "Copyright © 2020-2021 AIREI"
+  },
+
+  "MORE": {
+    "title": "Settings",
+    "logout": "Logout",
+    "changepassword": "Change Password",
+    "poweredby": "Powered By"
+  },
+
+  "CHANGEPASSWORD": {
+    "title": "Change Password",
+    "newpassword": "New Password",
+    "buttonchangepassword": "Change Password"
+  },
+
+  "COMMUNICATIONHOME": {
+  	"title": "Chats",
+    "broadcastchats": "Broadcast",
+    "personalizedchats": "Personalized"    
+  },
+
+  "GRADINGHOME": {
+    "title": "Grading",
+    "suppliername": "Supplier Name",
+    "lorrynumber": "Lorry Number",
+    "date": "Date",
+    "drivername": "Driver Name",
+    "check":"Check"
+  },
+  
+  "GRADINGFORM": {
+    "title": "Grading Form",
+    "message": "* Please key in '0' if there are no values. Do not leave the boxes empty.",
+    "selectvehicleorenterlorrynumber": "Select Vehicle (or) Enter Lorry Number",
+    "suppliername": "Supplier Name",
+    "lorrynumber": "Lorry Number",
+    "yearofplanting": "Year of Planting",
+    "averagebunchweight": "Average Bunch WT",
+    "hardbunches": "Hard Bunches",
+    "underripebunches": "Under Ripe Bunches",
+    "loosefruits": "Loose Fruits",
+    "otherfactors": "Other Factors",
+    "dirt": "Dirt",
+    "sand": "Sand",
+    "notfresh": "Not Fresh",
+    "wet": "Wet",
+    "bigbunches": "Big Bunches",
+    "mediumbunches": "Medium Bunches",
+    "smallbunches": "Small Bunches",
+    "rejectedbunches": "Rejected Bunches",
+    "dxd": "DXD",
+    "longstalk": "Long Stalk",
+    "lessoer": "Less (OER)",
+    "lessweight": "Less (Weight)",
+    "overallffbqualityimage": "Overall FFB Quality Image",
+    "lorryimagewithregistrationnumber": "Lorry Image with Registration Number",    
+    "rejectedffbimage": "Rejected FFB Image",
+    "supplierdispatchimage": "Supplier Dispatch Image",
+    "searchsupplier": "Search Supplier",
+    "buttonsearch": "Search",
+    "vehicle": "Vehicle",
+    "selectvehicle": "Select Vehicle"
+  },
+
+  "DETAILSTRANSACTION": {
+    "title": "Details"
+  },
+
+  "GENERALBUTTON": {
+    "savebutton": "Save",
+    "uploadbutton": "Upload",
+    "updatebutton": "Update",
+    "additem": "Add Item",
+    "resetbutton": "Reset",
+    "receivedbutton": "Received",
+    "detailsbutton": "Details",
+    "start": "Start",
+  	"stop": "Stop",
+  	"getrecords": "Get Records"
+  },
+
+  "NOTIFICATION": {
+    "title": "Notification"    
+  },
+
+  "PERSONALIZEDCHATS": {
+    "message": "Departments"    
+  },
+
+  "HISTORY": {
+    "title": "History",
+    "button": "Get Records",
+    "detailsbutton": "Details",
+    "suppliername": "Supplier Name",
+    "lorrynumber": "Lorry Number",
+    "date": "Date",
+    "drivername": "Driver Name"
+  },
+
+  "TABSGRADING": {
+  	"home": "Home",
+    "history": "History",
+    "chats": "Chats",    
+    "more": "More"
+  },
+
+  "GRADINGDASHBOARD": {
+  	"title": "Home",
+    "message": "Fruit Quality Check",
+    "buttonreceivenewload": "Receive New Load"    
+  },
+
+  "DEPARTMENTS": {
+    "Accounts": "Accounts",
+    "Laboratory": "Laboratory",
+    "Boiler": "Boiler",
+    "Production": "Production",
+    "Procurement": "Procurement",
+    "Electrical": "Electrical",
+    "Maintenance": "Maintenance",
+    "Grading": "Grading",
+    "Security": "Security",
+    "Supplier": "Supplier",
+    "Ffbsupplier": "FFB Supplier",
+    "Engineer": "Engineer",
+    "Clerk": "Clerk",
+    "Human Resource": "Human Resource",
+    "Estate Manager": "Estate Manager",
+    "Management": "Management",
+    "Engineering": "Engineering",
+    "Administration": "Administration",
+    "Office": "Office",
+    "Purchasing": "Purchasing",
+    "Store": "Store",
+    "Manager": "Manager",
+    "Driver": "Driver",
+    "Foreman": "Foreman",
+    "Charge Man": "Charge Man",
+    "CEO": "CEO",
+    "Visiting Consultant": "Visiting Consultant"
+  },
+
+  "MAINTENANCEDASHBOARD": {  	
+  	"selectshift": "Select Shift",
+  	"shifta": "Shift-A",
+  	"shiftb": "Shift-B",
+  	"checkin": "Check-In",
+  	"checkout": "Check-Out",
+  	"delete": "Delete"
+  },
+
+  "TABSMAINTENANCE": {
+    "dashboard": "Dashboard",
+    "home": "Home",    
+    "chats": "Chats",
+    "more": "More"
+  },
+
+  "MAINTENANCEHOME": {
+    "title": "Home",
+    "breakdowndowntime": "Breakdown/Downtime",
+    "reportedmaintenace": "Report Maintenance",    
+    "attendance": "Attendance",    
+    "addnewjob": "Add New Job",
+    "jobbyengineer": "Job By Engineer",       
+    "requestitem": "Request Item",
+    "reports": "Reports"
+  },
+
+   "BREAKDOWNDOWNTIME": {
+    "title": "Breakdown/Downtime",
+    "newbreakdowndowntime": "New Breakdown/Downtime",
+    "department": "Department",
+    "selectdepartment": "Select Department",
+    "station": "Station",
+    "selectstation": "Select Station",
+    "machinery": "Machinery",
+    "selectmachinery": "Select Machinery",
+    "part": "Part",
+    "selectpart": "Select Part",
+    "observation": "Observation",
+    "selectobservation": "Select Observation",
+    "breakdowntime": "Breakdown Time",
+    "reportedtime": "Reported Time",
+    "complainantremarks": "Complainant Remarks",
+    "date": "Date",
+    "complainantimage": "Complainant Image",
+    "rectifiedtime": "Rectified Time",
+    "foremanremarks": "Foreman Remarks",
+    "rectifiedimage": "Rectified Image",
+    "assignedto": "Assigned To",
+    "selectassignedto": "Select AssignedTo"
+  },
+
+
+  "REPORTEDMAINTENANCE": {
+    "title": "Reported Maintenance",
+    "newreportedmaintenance": "New Reported Maintenance"
+  },
+
+  "ATTENDANCE": {
+    "title": "Attendance",
+    "date": "Date",
+    "names": "Names",
+    "from": "From",
+    "to": "To",
+    "shift": "Shift",
+    "overtime": "OverTime",
+    "remarks": "Remarks",
+    "normal": "Normal",
+    "restday": "Rest Day",
+    "publicholiday": "Public Holiday",
+    "selectshift": "Shift",
+    "selecthours": "Hrs",
+    "selectremarks": "Remarks",
+    "replacement": "Replacement",
+    "extrawork": "Extra Work",
+    "onleave": "On Leave",
+    "absent": "Absent",
+    "onmc": "On MC",
+    "continue": "Continue"
+  },
+
+   "ADDNEWJOB": {
+    "title": "Add New Job",
+    "plandate": "Plan Date",
+    "category": "Category",
+    "selectcategory": "Select Category",
+    "department": "Department",
+    "selectdepartment": "Select Department",
+    "station": "Station",
+    "selectstation": "Select Station",
+    "machinery": "Machinery",
+    "selectmachinery": "Select Machinery",
+    "observation": "Observation",
+    "selectobservation": "Select Observation",
+    "type": "Type",
+    "selecttype": "Select Type",
+    "remarks": "Remarks",
+    "assignedto": "Assigned To",
+    "selectassignedto": "Select AssignedTo"
+  },
+
+  "JOBBYENGINEER": {
+    "title": "Job By Engineer",
+    "station": "Station",    
+    "machinery": "Machinery",    
+    "type": "Type",    
+    "remarks": "Remarks",
+    "date": "Date"
+  },
+
+  "JOBDETAILS": {
+    "title": "Job Details",
+    "category": "Category",
+    "station": "Station",    
+    "machinery": "Machinery",    
+    "type": "Type",    
+    "engineerremarks": "Engineer Remarks",
+    "observation": "Observation",
+    "selectobservation": "Select Observation",
+    "status": "Status",
+    "selectstatus": "Select Status",
+    "remarks": "Remarks",
+    "personincharge": "Person Incharge",
+    "selectpersonincharge": "Select Person Incharge",
+    "image": "Image",
+    "totalrunninghours": "Total Running Hours",
+    "runninghours": "Running Hours"    
+  },
+
+   "REQUESTITEM": {
+    "title": "Request Item",
+    "requestnewitem": "Request New Item",
+    "recentrequestitems": "Recent Request Items",    
+    "requesttype": "Request Type",    
+    "requestfor": "Request For",    
+    "noofitems": "Number Of Items",
+    "requestedby": "Requested By",
+    "date": "Date",  
+    "alertheader": "Request Confirmation",
+    "alertmessage": "Do you received all item(s) as you requested?",
+    "alertyes": "Yes",
+    "alertno": "No"
+  },
+
+  "REQUESTNEWITEM": {
+    "title": "Request New Item",
+    "type": "Type",
+    "normal": "Normal",
+    "urgent": "Urgent",
+    "itemrequesttype": "Item Request Type",
+    "selectitemrequesttype": "Select Item Request Type",
+    "station": "Station",
+    "selectstation": "Select Station",
+    "machinery": "Machinery",
+    "selectmachinery": "Select Machinery",
+    "part": "Part",
+    "selectpart": "Select Part",
+    "unit": "Unit",
+    "quantity": "Quantity",
+    "request": "Request"
+  },
+
+  "REQUESTDETAILS": {
+    "title": "Request Details",
+    "requesttype": "Request Type",   
+    "date": "Date",
+    "department": "Department",
+    "name": "Name",
+    "requestfor": "Request For",
+    "partname": "Part Name",
+    "partcode": "Part Code",
+    "station": "Station",
+    "machinery": "Machinery",
+    "quantity": "Quantity",
+    "stock": "Stock"
+  },
+
+  "SCHEDULING": {
+    "title": "Scheduling"
+  },
+
+  "SUPERVISORDASHBOARD": {
+  	"selectshift": "Select Shift",
+  	"shifta": "Shift-A",
+  	"shiftb": "Shift-B",
+  	"checkin": "Check-In",
+  	"checkout": "Check-Out",
+  	"machinerunninghours": "Machine Running Hours",
+  	"productionstart": "Start Production",
+  	"productionstop": "Stop Production",
+  	"delete": "Delete"
+  },
+
+   "TABSSUPERVISOR": {
+    "dashboard": "Dashboard",
+    "home": "Home",    
+    "chats": "Chats",
+    "more": "More"
+  },
+
+  "SUPERVISORHOME": 
+  {
+    "title": "Home",       
+    "attendance": "Attendance",    
+    "sopcompliance": "SOP Compliance",
+    "hourreporting": "Hourly Reporting",
+    "leaveform": "Leave Form",    
+    "requestitem": "Request Item",
+    "requestitemhistory": "Request Item History",
+    "breakdowndowntime": "Breakdown/Downtime",
+    "reports": "Reports"
+  },
+
+  "SOPCOMPLIANCE": 
+  {
+    "title": "SOP Compliance",       
+    "date": "Date",    
+    "ques1": "All workers are wearing smart band and readings are accurate",
+    "ques2": "Conduct safety briefing on site",
+    "ques3": "Ensure all workers are wearing PPE",    
+    "ques4": "Estimated FFB volume",
+    "ffbvolume": "FFB volume",
+    "ques5": "Status of Production during Take Over",
+    "cb1": "Start Production",
+    "cb2": "Continue Production",
+    "cb3": "Break Down",
+    "cb4": "Cleaning",
+    "cb5": "Estimated Date & Time to Start",
+    "checklist": "Pre-Production Checklist",
+    "cb6": "Discussed with shift Boilerman",
+    "cb7": "Discussed with shift Maintenance Team",
+    "cb8": "Discussed with Lab Personnel",
+    "cb9": "Discussed with Store Personnel",
+    "cb10": "Make sure workers are sufficent at all stations",
+    "cb11": "Inspected all machineries",
+    "cb12": "Inspected safety of workplace",
+    "cb13": "Inspected environmental aspects",
+    "cb14": "Inspected vechicles conditions",
+    "settargets": "Set Targets",
+    "ques6": "Number Of Cycles",
+    "throughput": "Throughput",
+    "losses": "Losses",
+    "overallcpo": "Overall CPO",
+    "overallpk": "Overall PK",
+    "extraction": "Extraction",
+    "cpo": "CPO",
+    "pk": "PK"
+  },
+
+  "REPORTS": 
+  {
+    "title": "Reports",       
+    "attendancereport": "Attendance Report",    
+    "sopcompliancereport": "SOP Compliance Report",
+    "hourreporting": "Hourly Reporting",
+    "weighbridgereport": "Weighbridge Report",
+    "preventivemaintenancereport": "Preventive Maintenance Report",
+    "generallabreport": "Laboratory Report",
+    "jobdonereport": "Job Done Report",
+    "observationreport": "Observation Report",
+    "compliancereport": "Compliance Report",
+    "productionreport": "Production Report"
+  },
+
+  "HOURLYREPORTING": 
+  {
+    "title": "Hourly Reporting",       
+    "date": "Date",
+    "numberofcycles": "Number Of Cycles",    
+    "vsgraph": "VS Graph",
+    "digestortemperature": "Digestor Temperature",
+    "digestorsteam": "Digestor Steam Release",
+    "pressfibercondition": "Press Fiber Condition",
+    "digestordrainpipe": "Digestor Drain Pipe",
+    "ebpress": "EB Press",
+    "sunle": "Sun Le",
+    "mbc": "MBL",
+    "usb": "USB",
+    "fatpit": "Fat Pit",
+    "hydrocyclone": "Hydrocyclone"
+  },
+
+  "LEAVEFORM": 
+  {
+    "title": "Leave Form",       
+    "fromdate": "From Date",
+    "todate": "To Date",    
+    "employee": "Employee",
+    "selectemployee": "Select Employee",
+    "image": "Image",
+    "status": "Status",
+    "selectstatus": "Select Status",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+
+   "LABDASHBOARD": {
+  	"selectshift": "Select Shift",
+  	"shifta": "Shift-A",
+  	"shiftb": "Shift-B",
+  	"checkin": "Check-In",
+  	"checkout": "Check-Out",  	
+  	"delete": "Delete"
+  },
+
+  "TABSLAB": {
+    "dashboard": "Dashboard",
+    "home": "Home",    
+    "chats": "Chats",
+    "more": "More"
+  },
+
+  "LABHOME": 
+  {
+    "title": "Home",       
+    "breakdowndowntime": "Breakdown/Downtime",
+    "reportedmaintenace": "Report Maintenance",
+    "reports": "Reports"
+  },
+
+  "BOILERDASHBOARD": {
+  	"selectshift": "Select Shift",
+  	"shifta": "Shift-A",
+  	"shiftb": "Shift-B",
+  	"checkin": "Check-In",
+  	"checkout": "Check-Out",
+  	"startboiler": "Start-Up Boiler",
+  	"stopboiler": "Shutdown Boiler",
+  	"delete": "Delete"
+  },
+
+  "BOILERHOME":
+  {
+    "title": "Home",
+    "boilerlog": "Boiler Log Entry",
+    "turbineperformance": "Turbine Performance",
+    "boilerperformance": "Boiler Performance",
+    "breakdowndowntime": "Breakdown/Downtime",
+    "reportedmaintenace": "Report Maintenance",
+    "requestitem": "Request Item",
+    "boilerlogbook": "Boiler Log Book",
+    "reports": "Reports"
+  },
+
+   "TABSBOILER": {
+    "dashboard": "Dashboard",
+    "home": "Home",    
+    "chats": "Chats",
+    "more": "More"
+  },
+
+  "BOILERLOGENTRY":
+  {
+    "title": "Boiler Log Entry",
+    "1hourlog": "1 Hour Log",
+    "2hourslog": "2 Hours Log",
+    "4hourslog": "4 Hours Log",
+    "12hourslog": "12 Hours Log",
+    "levels": "Levels"
+  },
+
+  "1HOURLOG":
+  {
+    "title": "1 Hour Log",    
+    "boilerperformance": "Boiler Performance",
+    "turbineperformance": "Turbine Performance",
+    "date": "Date",
+    "frequency": "Frequency",
+    "boilerpressure": "Boiler Pressure",
+    "steamoutput": "Steam Output",
+    "boilerpressuresteamoutputimage": "Boiler Pressure and Steam Output Image",
+    "boilerwaterlevel": "Boiler Water Level",
+    "boilerwaterlevelimage": "Boiler Water Level Image",
+    "boilersmokeanalysis": "Boiler Smoke Analysis",
+    "opacity": "Opacity",
+    "concentration": "Concentration",
+    "smokeanalysisimage": "Smoke Analysis Image",
+    "inletpressure": "Inlet Pressure",
+    "nozzlepressure": "Nozzle Pressure",
+    "oilpressure": "Oil Pressure",
+    "powerconsumption": "Power Consumption",
+    "powerconsumptionimage": "Power Consumption Image",
+    "powerfrequency": "Power Frequency",
+    "powerfrequencyimage": "Power Frequency Image",
+    "powerdistribution": "Power Distribution",
+    "reason": "Reason",
+    "selectoption": "Select Option",
+    "powerdistributionimage": "Power Distribution Image"
+  },
+
+  "2HOURSLOG":
+  {
+    "title": "2 Hours Log",
+    "date": "Date",
+    "frequency": "Frequency",
+    "selecthour": "Hour",
+    "blowtime": "BlowDown",
+    "selecttime": "Time"
+  },
+
+  "4HOURSLOG":
+  {
+    "title": "4 Hours Log",
+    "date": "Date",
+    "frequency": "Frequency",
+    "selecthour": "Hour",
+    "ashremoval": "Ash Removal",
+    "sootblow": "Soot Blow",
+    "selecttime": "Time"
+  },
+
+  "12HOURSLOG":
+  {
+    "title": "12 Hours Log",
+    "date": "Date",
+    "frequency": "Frequency",
+    "selecthour": "Hour",
+    "watergageglasstesting": "Water Gage Glass Testing",
+    "lowwaterleveltesting": "Low Water Level Testing",
+    "selecttime": "Time"
+  },
+
+  "LEVELS":
+  {
+    "title": "Levels",
+    "water": "Water",
+    "chemical": "Chemical",
+    "level": "Level",
+    "date": "Date",
+    "waterclarifierdrainout": "Water Clarifier Drain Out",
+    "waterclarifierdrainoutimage": "Water Clarifier Drain Out Image",
+    "sandfilterbackwash": "Sand Filter Backwash",
+    "sandfilterbackwashimage": "Sand Filter Backwash Image",
+    "softenerregeneration": "Softener Regeneration",
+    "softenerregenerationimage": "Softener Regeneration Image",
+    "sofenerhardness": "Softener Hardness",
+    "tds": "TDS",
+    "select": "Select",
+    "selecttime": "Time",
+    "corrosioninhibitor": "Corrosion Inhibitor",
+    "scaleinhibitor": "Scale Inhibitor",
+    "sludgeconditioner": "Sludge Conditioner",
+    "onlinecleaning": "On-Line Cleaning",
+    "overheadtank": "Overhead Tank",
+    "boilerfeedwatertank": "Boiler Feed Water Tank",
+    "tubineoillevel": "Turbine Oil Level"    
+  },
+
+  "TABSMANAGER": {
+    "dashboard": "Dashboard",
+    "home": "Home",    
+    "chats": "Chats",
+    "more": "More"
+  },
+
+  "MANAGERDASHBOARD": {
+  	"selectshift": "Select Shift",
+  	"shifta": "Shift-A",
+  	"shiftb": "Shift-B",
+  	"checkin": "Check-In",
+  	"checkout": "Check-Out",
+  	"startboiler": "Start-Up Boiler",
+  	"stopboiler": "Shutdown Boiler",
+  	"delete": "Delete"
+  },
+
+  "MANAGERHOME": 
+  {
+    "title": "Home",       
+    "breakdowndowntime": "Breakdown/Downtime",
+    "reportedmaintenace": "Report Maintenance",    
+    "quotation": "Quotation",
+    "boilerlogbook": "Boiler Log Book",
+    "requestitem": "Request Item",
+    "reports": "Reports"
+  }
+}
+

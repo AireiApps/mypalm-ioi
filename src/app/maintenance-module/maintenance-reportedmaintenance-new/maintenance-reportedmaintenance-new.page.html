@@ -1,0 +1,254 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light"
+      >{{ 'REPORTEDMAINTENANCE.title' | translate}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newbreakdowndowntimeForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.department' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_department"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'BREAKDOWNDOWNTIME.selectdepartment' | translate}}
+          </option>
+          <option value="{{item.id}}" *ngFor="let item of departmentArr">
+            {{ item.deparment }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.station' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_station"
+          class="h7 text-dark form-control"
+          (change)="onChangeStation()"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'BREAKDOWNDOWNTIME.selectstation' | translate}}
+          </option>
+          <option value="{{item.station_id}}" *ngFor="let item of stationArr">
+            {{ item.station_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.machinery' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_machinery"
+          class="h7 text-dark form-control"
+          (change)="onChangeMachinery()"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'BREAKDOWNDOWNTIME.selectmachinery' | translate}}
+          </option>
+          <option
+            value="{{item.location_id}}"
+            *ngFor="let item of machineryArr"
+          >
+            {{ item.location_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.part' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_part" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>
+            {{ 'BREAKDOWNDOWNTIME.selectpart' | translate}}
+          </option>
+          <option value="{{item.item_id}}" *ngFor="let item of partArr">
+            {{ item.item_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.observation' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_observation"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>{{ 'BREAKDOWNDOWNTIME.selectobservation' | translate}}</option>
+          <option
+            value="{{item.observationid}}"
+            *ngFor="let item of observationArr"
+          >
+            {{ item.observation }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.reportedtime' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_breakdowntime"
+          display-format="DD-MM-YYYY HH:mm"
+        ></ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row imgmarigin">
+      <label class="h7 text-dark"
+        ><b>{{ 'BREAKDOWNDOWNTIME.complainantimage' | translate}}</b></label
+      >
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 nopadding" style="text-align: right">
+            <div
+              class="imagePreview"
+              *ngIf="imagePaths.complianantimagepath == ''"
+            ></div>
+            <div
+              class="imagePresent"
+              *ngIf="imagePaths.complianantimagepath != ''"
+            >
+              <img
+                class="imagePresent"
+                [src]="imagePaths.complianantimagepath"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 nopadding" style="text-align: right">
+            <label class="btn btn-warning">
+              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                type="button"
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('ComplainantImage')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b
+            >{{ 'BREAKDOWNDOWNTIME.complainantremarks' | translate}}
+            <sup>*</sup></b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <textarea
+          class="h7 form-control"
+          formControlName="tacomplaintremarks"
+          rows="4"
+          autosize
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>{{ 'BREAKDOWNDOWNTIME.assignedto' | translate}} <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_assignedto"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>
+            {{ 'BREAKDOWNDOWNTIME.selectassignedto' | translate}}
+          </option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of assignedtoArr"
+          >
+            {{ value.user_name }}
+          </option>
+        </select>
+      </div>
+    </div> -->
+
+    <div style="text-align: center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        (click)="save()"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        {{ 'GENERALBUTTON.savebutton' | translate}}
+      </button>
+    </div>
+  </form>
+</ion-content>

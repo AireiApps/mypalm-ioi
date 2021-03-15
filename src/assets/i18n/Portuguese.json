@@ -1,0 +1,633 @@
+{
+
+  "LOGIN": 
+  {
+    "username": "Nome do usuário",
+    "password": "Senha",
+    "millcode": "Código do Moinho",
+    "buttonlogin": "Conecte-se",
+    "millcodeerror": "Código do moinho obrigatório",
+    "millcodeerrortoast": "MillCode é obrigatório",    
+    "usernameerror": "Nome de usuário (necessário",
+    "usernameerrortoast": "UserName é obrigatório",
+    "passworderror": "Senha requerida",
+    "passworderrortoast": "Senha é obrigatória",
+    "copyrights": "Versão 1.9 direito autoral © 2020-2021 AIREI"
+  },
+
+  "MORE": {
+    "title": "Configurações",
+    "logout": "Sair",
+    "changepassword": "Mudar senha",
+    "poweredby": "Distribuído por"
+  },
+
+  "CHANGEPASSWORD": {
+    "title": "Mudar senha",
+    "newpassword": "Nova senha",
+    "buttonchangepassword": "Mudar senha"
+  },
+
+  "COMMUNICATIONHOME": {
+    "title": "Bate-papos",
+    "broadcastchats": "Broadcast",
+    "personalizedchats": "Personalizado"    
+  },
+
+  "GRADINGHOME": {
+    "title": "Classificação",
+    "suppliername": "Nome do Fornecedor",
+    "lorrynumber": "Número do caminhão",
+    "date": "Encontro",
+    "drivername": "Nome do motorista",
+    "check":"Verifica" 
+  },
+
+  "GRADINGFORM": {
+    "title": "Formulário de Avaliação",
+    "message": "* Digite '0' se não houver valores. Não deixe as caixas vazias.",
+    "selectvehicleorenterlorrynumber": "Selecione o Veículo (ou) Digite o Número do Caminhão",
+    "suppliername": "Nome do Fornecedor",
+    "lorrynumber": "Número do caminhão",
+    "yearofplanting": "Ano de plantio",
+    "averagebunchweight": "Peso Médio do Grupo",
+    "hardbunches": "Cachos Duros",
+    "underripebunches": "Sob Cachos Maduros",
+    "loosefruits": "Frutas soltas",
+    "otherfactors": "Outros fatores",
+    "dirt": "Sujeira",
+    "sand": "Areia",
+    "notfresh": "Não fresco",
+    "wet": "Molhado",
+    "bigbunches": "Grandes cachos",
+    "mediumbunches": "Cachos Médios",
+    "smallbunches": "Cachos pequenos",
+    "rejectedbunches": "Cachos Rejeitados",
+    "dxd": "DXD",
+    "longstalk": "Long Stalk",
+    "lessoer": "Menos (OER)",
+    "lessweight": "Menos (Weight)",
+    "overallffbqualityimage": "Imagem de qualidade geral FFB",
+    "lorryimagewithregistrationnumber": "Imagem de caminhão com número de registro",
+    "rejectedffbimage": "Imagem FFB rejeitada",
+    "supplierdispatchimage": "Imagem de despacho do fornecedor",
+    "searchsupplier": "Fornecedor de pesquisa",
+    "buttonsearch": "Pesquisa",
+    "vehicle": "Veículo",
+    "selectvehicle": "Selecione o veículo"
+  },
+
+  "DETAILSTRANSACTION": {
+    "title": "Detalhes"
+  },
+
+  "GENERALBUTTON": {
+    "savebutton": "Salvar",
+    "uploadbutton": "Envio",
+    "updatebutton": "Atualizar",
+    "additem": "Adicionar Item",
+    "resetbutton": "Redefinir",
+    "receivedbutton": "Recebido",
+    "detailsbutton": "Detalhes",
+    "start": "Começar",
+    "stop": "Pare",
+    "getrecords": "Obter Registros"
+  },
+
+  "NOTIFICATION": {
+    "title": "Notificação"    
+  },
+
+  "PERSONALIZEDCHATS": {
+    "message": "Departemen"    
+  },
+
+  "HISTORY": {
+    "title": "História",
+    "button": "Obter registros",
+    "detailsbutton": "Detalhes",
+    "suppliername": "Nome do Fornecedor",
+    "lorrynumber": "Número do caminhão",
+    "date": "Encontro",
+    "drivername": "Nome do motorista"
+  },
+
+  "TABSGRADING": {
+    "home": "Casa",
+    "history": "História",
+    "chats": "Bate-papos",    
+    "more": "Mais"
+  },
+
+  "GRADINGDASHBOARD": {
+    "title": "Casa",
+    "message": "Verificação da qualidade da fruta",
+    "buttonreceivenewload": "Receber Nova Carga"    
+  },
+
+  "DEPARTMENTS": {
+    "Accounts": "Contas",
+    "Laboratory": "Laboratório",
+    "Boiler": "Caldera",
+    "Production": "Produção",
+    "Procurement": "Compras",
+    "Electrical": "Elétrico",
+    "Maintenance": "Manutenção",
+    "Grading": "Classificação",
+    "Security": "Segurança",
+    "Supplier": "Fornecedor",
+    "Ffbsupplier": "FFB Fornecedor",
+    "Engineer": "Engenheiro",
+    "Clerk": "Escriturário",
+    "Human Resource": "Recursos humanos",
+    "Estate Manager": "Gerente de propriedade",
+    "Management": "Gestão",
+    "Engineering": "Engenharia",
+    "Administration": "Administração",
+    "Office": "Escritório",
+    "Purchasing": "Compra",
+    "Store": "Loja",
+    "Manager": "Gerente",
+    "Driver": "Motorista",
+    "Foreman": "Capataz",
+    "Charge Man": "Carregar Homem",
+    "CEO": "CEO",
+    "Visiting Consultant": "Consultor Visitante"
+  },
+
+  "MAINTENANCEDASHBOARD": {   
+    "selectshift": "Selecione Shift",
+    "shifta": "Mudança-A",
+    "shiftb": "Mudança-B",
+    "checkin": "Check-In",
+    "checkout": "Verificação de saída",
+    "delete": "Excluir"
+  },
+
+  "TABSMAINTENANCE": {
+    "dashboard": "Painel de controle",
+    "home": "Casa",
+    "chats": "Bate-papos",
+    "more": "Mais"
+  },
+
+  "MAINTENANCEHOME": {
+    "title": "Casa",
+    "breakdowndowntime": "Demolir",
+    "reportedmaintenace": "Manutenção Reportada",    
+    "attendance": "Comparecimento",    
+    "addnewjob": "Novo emprego",
+    "jobbyengineer": "Trabalhos Atribuídos",
+    "jobdonereport": "Relatório de Trabalho",
+    "requestitem": "Solicitar Item",
+    "reports": "Relatórios"
+  },
+
+
+   "BREAKDOWNDOWNTIME": {
+    "title": "Demolir",
+    "newbreakdowndowntime": "Novo Demolir",
+    "department": "Departamento",
+    "selectdepartment": "Selecione Departamento",
+    "station": "Estação",
+    "selectstation": "Selecione Estação",
+    "machinery": "Maquinário",
+    "selectmachinery": "Selecione Maquinário",
+    "part": "Parte",
+    "selectpart": "Selecione Parte",
+    "observation": "Observação",
+    "selectobservation": "Selecione Observação",
+    "breakdowntime": "Tempo de decomposição",
+    "reportedtime": "Tempo relatado",
+    "complainantremarks": "Observações do reclamante",
+    "date": "Encontro",
+    "complainantimage": "Imagem do reclamante",
+    "rectifiedtime": "Tempo Retificado",
+    "foremanremarks": "Observações do Foreman",
+    "rectifiedimage": "Imagem Retificada",
+    "assignedto": "Atribuído A",
+    "selectassignedto": "Selecione AtribuídoA"
+  },
+
+  "REPORTEDMAINTENANCE": {
+    "title": "Manutenção Reportada",
+    "newreportedmaintenance": "Nova Manutenção Relatada"
+  },
+
+  "ATTENDANCE": {
+    "title": "Comparecimento",
+    "date": "Encontro",
+    "names": "Nomes",
+    "from": "De",
+    "to": "Para",
+    "shift": "Mudança",
+    "overtime": "Hora extra",
+    "remarks": "Observações",
+    "normal": "Normal",
+    "restday": "Dia de Descanso",
+    "publicholiday": "Feriado",
+    "selectshift": "Mudança",
+    "selecthours": "Horas",
+    "selectremarks": "Observações",
+    "replacement": "Substituição",
+    "extrawork": "Trabalho Extra",
+    "onleave": "Na Licença",
+    "absent": "Ausente",
+    "onmc": "No MC",
+    "continue": "Continuar"
+  },
+
+  "ADDNEWJOB": {
+    "title": "Adicionar Novo Trabalho",
+    "plandate": "Data do Plano",
+    "category": "Categoria",
+    "selectcategory": "Selecione Categoria",
+    "department": "Departamento",
+    "selectdepartment": "Selecione Departamento",
+    "station": "Estação",
+    "selectstation": "Selecione Estação",
+    "machinery": "Maquinário",
+    "selectmachinery": "Selecione Maquinário",
+    "observation": "Observação",
+    "selectobservation": "Selecione Observação",
+    "type": "Tipo",
+    "selecttype": "Selecione Tipo",
+    "remarks": "Observações",
+    "assignedto": "Atribuído A",
+    "selectassignedto": "Selecione AtribuídoA"
+  },
+
+  "JOBBYENGINEER": {
+    "title": "Trabalho por Engenheiro",
+    "station": "Estação",    
+    "machinery": "Maquinário",    
+    "type": "Tipo",    
+    "remarks": "Observações",
+    "date": "Encontro"
+  },
+
+  "JOBDETAILS": {
+    "title": "Detalhes do Trabalho",
+    "category": "Categoria",
+    "station": "Estação",    
+    "machinery": "Maquinário",    
+    "type": "Tipo",    
+    "engineerremarks": "Observações do Engenheiro",
+    "observation": "Observação",
+    "selectobservation": "Selecione Observação",
+    "status": "Status",
+    "selectstatus": "Selecione Status",
+    "remarks": "Observações",
+    "personincharge": "Pessoa Encarregada",
+    "selectpersonincharge": "Selecione Pessoa Encarregada",
+    "image": "Imagem",
+    "totalrunninghours": "Total de Horas de Funcionamento",
+    "runninghours": "Horário de Funcionamento"    
+  },
+
+  "REQUESTITEM": {
+    "title": "Solicitar Item",
+    "requestnewitem": "Solicitar Novo Item",
+    "recentrequestitems": "Itens de Solicitação Recentes",    
+    "requesttype": "Tipo de Solicitação",    
+    "requestfor": "Pedido para",    
+    "noofitems": "Número de ítens",
+    "requestedby": "Requerido por",
+    "date": "Encontro",
+    "alertheader": "Solicitar Confirmação",
+    "alertmessage": "Você recebeu todos os itens conforme solicitado?",
+    "alertyes": "Sim",
+    "alertno": "Não"
+  },
+
+   "REQUESTNEWITEM": {
+    "title": "Solicitar Novo Item",
+    "type": "Tipo",
+    "normal": "Normal",
+    "urgent": "Urgente",
+    "itemrequesttype": "Tipo de Solicitação de Item",    
+    "selectitemrequesttype": "Selecione Tipo de Solicitação de Item", 
+    "station": "Estação",
+    "selectstation": "Selecione Estação",
+    "machinery": "Maquinário",
+    "selectmachinery": "Selecione Maquinário",
+    "part": "Parte",
+    "selectpart": "Selecione Parte",
+    "unit": "Unidade",
+    "quantity": "Quantidade",
+    "request": "Solicitação" 
+  },
+
+  "REQUESTDETAILS": {
+    "title": "Pedir Detalhes",
+    "requesttype": "Tipo de Solicitação",   
+    "date": "Encontro",
+    "department": "Departamento",
+    "name": "Nome",
+    "requestfor": "Pedido Para",
+    "partname": "Nome da Peça",
+    "partcode": "Código da Peça",
+    "station": "Estação",
+    "machinery": "Maquinário",
+    "quantity": "Quantidade",
+    "stock": "Estoque"
+  },
+
+   "SCHEDULING": {
+    "title": "Agendamento"
+  },
+
+  "SUPERVISORDASHBOARD": {  
+    "selectshift": "Selecione Shift",
+    "shifta": "Mudança-A",
+    "shiftb": "Mudança-B",
+    "checkin": "Check-In",
+    "checkout": "Verificação de saída",
+    "machinerunninghours": "Horas de Funcionamento da Máquina",
+    "productionstart": "Início da Produção",
+    "productionstop": "Parada de Produção",
+    "delete": "Excluir"
+  },
+
+  "TABSSUPERVISOR": {
+    "dashboard": "Painel de controle",
+    "home": "Casa",
+    "chats": "Bate-papos",
+    "more": "Mais"
+  },
+
+  "SUPERVISORHOME": {
+    "title": "Casa",
+    "attendance": "Comparecimento",
+    "sopcompliance": "Conformidade SOP",
+    "hourreporting": "Relatórios por Hora",
+    "leaveform": "Deixar Formulário",    
+    "requestitem": "Solicitar Item",
+    "requestitemhistory": "Solicitar Histórico",
+    "breakdowndowntime": "Demolir",
+    "reports": "Relatórios"
+  },
+
+  "SOPCOMPLIANCE": 
+  {
+    "title": "Conformidade SOP",       
+    "date": "Encontro",
+    "ques1": "Todos os trabalhadores estão usando banda inteligente e as leituras são precisas",
+    "ques2": "Realizar briefing de segurança no local",
+    "ques3": "Certifique-se de que todos os trabalhadores estejam usando EPI",    
+    "ques4": "Volume FFB estimado",
+    "ffbvolume": "Volume FFB",
+    "ques5": "Status de produção durante a aquisição",
+    "cb1": "Iniciar a Produção",
+    "cb2": "Continuar a produção",
+    "cb3": "Demolir",
+    "cb4": "Limpeza",
+    "cb5": "Data e hora estimadas de início",
+    "checklist": "Lista de controle",
+    "cb6": "Discutido com Shift Boilerman",
+    "cb7": "Discutido com a equipe de manutenção de turno",
+    "cb8": "Discutido com o pessoal do laboratório",
+    "cb9": "Discutido com o pessoal da loja",
+    "cb10": "Trabalhadores são suficientes em todas as estações",
+    "cb11": "Inspecionou todas as máquinas",
+    "cb12": "Segurança Inspecionada do local de trabalho",
+    "cb13": "Aspectos ambientais Inspecionados",
+    "cb14": "Condições Inspecionadas das véculas",
+    "settargets": "Definir alvos",
+    "ques6": "Número de Ciclos",
+    "throughput": "Taxa de transferência",
+    "losses": "Perdas",
+    "overallcpo": "CPO geral",
+    "overallpk": "PK geral",
+    "extraction": "Extração",
+    "cpo": "CPO",
+    "pk": "PK"
+  },
+
+  "REPORTS": 
+  {
+    "title": "Relatórios",  
+    "attendancereport": "Relatório de Presenças",    
+    "sopcompliancereport": "Relatório de Conformidade SOP",
+    "hourreporting": "Relatórios por Hora",
+    "weighbridgereport": "Relatório de Pesagem",
+    "preventivemaintenancereport": "Relatório de Manutenção Preventiva",
+    "generallabreport": "Relatório de Laboratório",
+    "jobdonereport": "Relatório de Trabalho Concluído",
+    "observationreport": "Relatório de Observação",
+    "compliancereport": "Relatório de Conformidade",
+    "productionreport": "Relatório de Produção"
+  },
+
+  "HOURLYREPORTING": 
+  {
+    "title": "Relatórios por Hora",
+    "date": "Encontro",       
+    "numberofcycles": "Número de Ciclos",    
+    "vsgraph": "Gráfico VS",
+    "digestortemperature": "Temperatura do Digestor",
+    "digestorsteam": "Digestor Vapor Lançamento",
+    "pressfibercondition": "Condição da Fibra da Imprensa",
+    "digestordrainpipe": "Tubo de Drenagem do Digestor",
+    "ebpress": "EB Pressione",
+    "sunle": "Sun Le",
+    "mbc": "MBL",
+    "usb": "USB",
+    "fatpit": "Poço de Gordura",
+    "hydrocyclone": "Hidrociclone"
+  },
+
+  "LEAVEFORM": 
+  {
+    "title": "Deixar Formulário",       
+    "fromdate": "Da Data",
+    "todate": "Até a Presente Data",    
+    "employee": "Empregado",
+    "selectemployee": "Selecione Empregado",
+    "image": "Imagem",
+    "status": "Status",
+    "selectstatus": "Selecione Status",
+    "accept": "Aceitar",
+    "reject": "Rejeitar"
+  },
+
+  "LABDASHBOARD": {   
+    "selectshift": "Selecione Shift",
+    "shifta": "Mudança-A",
+    "shiftb": "Mudança-B",
+    "checkin": "Check-In",
+    "checkout": "Verificação de saída",
+    "delete": "Excluir"
+  },
+
+  "TABSLAB": {
+    "dashboard": "Painel de controle",
+    "home": "Casa",
+    "chats": "Bate-papos",
+    "more": "Mais"
+  },
+
+  "LABHOME": {
+    "title": "Casa",
+    "breakdowndowntime": "Demolir",
+    "reportedmaintenace": "Manutenção Reportada",
+    "reports": "Relatórios"
+  },
+
+  "BOILERDASHBOARD": { 
+    "selectshift": "Selecione Shift",
+    "shifta": "Mudança-A",
+    "shiftb": "Mudança-B",
+    "checkin": "Check-In",
+    "checkout": "Verificação de saída",
+    "startboiler": "Começar-Acima Caldeira",
+    "stopboiler": "Desligar Caldeira",
+    "delete": "Excluir"
+  },
+
+  "BOILERHOME":
+  {
+    "title": "Casa",
+    "boilerlog": "Entrada de Registro",
+    "turbineperformance": "Atuação Turbina",
+    "boilerperformance": "Atuação Caldeira",
+    "breakdowndowntime": "Demolir",
+    "reportedmaintenace": "Manutenção Reportada",
+    "requestitem": "Solicitar Item",
+    "boilerlogbook": "Livro de Registro",
+    "reports": "Relatórios"
+  },
+
+  "TABSBOILER": {
+    "dashboard": "Painel de controle",
+    "home": "Casa",
+    "chats": "Bate-papos",
+    "more": "Mais"
+  },
+
+  "BOILERLOGENTRY":
+  {
+    "title": "Entrada de Registro",
+    "1hourlog": "Registro de 1 hora",
+    "2hourslog": "Registro de 2 horas",
+    "4hourslog": "Registro de 4 horas",
+    "12hourslog": "Registro de 12 horas",
+    "levels": "Níveis"
+  },
+
+  "1HOURLOG":
+  {
+    "title": "Registro de 1 hora",    
+    "boilerperformance": "Atuação Caldeira",
+    "turbineperformance": "Atuação Turbina",
+    "date": "Encontro",
+    "frequency": "Frequência",
+    "boilerpressure": "Pressão da Caldeira",
+    "steamoutput": "Saída de Vapor",
+    "boilerpressuresteamoutputimage": "Pressão da Caldeira e Imagem de Saída de Vapor",
+    "boilerwaterlevel": "Nível de água da Caldeira",
+    "boilerwaterlevelimage": "Imagem do nível de água da Caldeira",
+    "boilersmokeanalysis": "Análise de Fumaça de Caldeira",
+    "opacity": "Opacidade",
+    "concentration": "Concentração",
+    "smokeanalysisimage": "Imagem de análise de Fumaça",
+    "inletpressure": "Pressão de Entrada",
+    "nozzlepressure": "Pressão do Bico",
+    "oilpressure": "Pressão do óleo",
+    "powerconsumption": "Consumo de Energia",
+    "powerconsumptionimage": "Imagem de Consumo de Energia",
+    "powerfrequency": "Freqüência de Energia",
+    "powerfrequencyimage": "Imagem de Frequência de Energia",
+    "powerdistribution": "Distribuição de Poder",
+    "reason": "Razão",
+    "selectoption": "Selecione a opção",
+    "powerdistributionimage": "Imagem de Distribuição de Energia"  
+  },
+
+  "2HOURSLOG":
+  {
+    "title": "Registro de 2 horas",
+    "date": "Encontro",
+    "frequency": "Frequência",
+    "selecthour": "Hora",
+    "blowtime": "Soprar Para Baixo",
+    "selecttime": "Tempo"
+  },
+
+  "4HOURSLOG":
+  {
+    "title": "Registro de 4 horas",
+    "date": "Encontro",
+    "frequency": "Frequência",
+    "selecthour": "Hora",
+    "ashremoval": "Remoção de Cinzas",
+    "sootblow": "Sopro de Fuligem",
+    "selecttime": "Tempo"
+  },
+
+  "12HOURSLOG":
+  {
+    "title": "Registro de 12 horas",
+    "date": "Encontro",
+    "frequency": "Frequência",
+    "selecthour": "Hora",
+    "watergageglasstesting": "Teste de Vidro de Medidor de água",
+    "lowwaterleveltesting": "Teste de Baixo Nível de água",
+    "selecttime": "Tempo"   
+  },
+
+  "LEVELS":
+  {
+    "title": "Níveis",
+    "water": "Água",
+    "chemical": "Químico",
+    "level": "Nível",
+    "date": "Encontro",
+    "waterclarifierdrainout": "Escoamento do Clarificador de Água",
+    "waterclarifierdrainoutimage": "Imagem de Drenagem do Clarificador de Água",
+    "sandfilterbackwash": "Retrolavagem do Filtro de Areia",
+    "sandfilterbackwashimage": "Imagem de Retrolavagem do Filtro de Areia",
+    "softenerregeneration": "Regeneração de Amaciante",
+    "softenerregenerationimage": "Imagem de Regeneração de Amaciante",
+    "sofenerhardness": "Dureza do Amaciante",
+    "tds": "TDS",
+    "select": "Selecione",
+    "selecttime": "Tempo",
+    "corrosioninhibitor": "Inibidor de Corrosão",
+    "scaleinhibitor": "Inibidor de Escala",
+    "sludgeconditioner": "Condicionador de Lodo",
+    "onlinecleaning": "Limpeza On-Line",
+    "overheadtank": "Tanque Aéreo",
+    "boilerfeedwatertank": "Tanque de Água de Alimentação da Caldeira",
+    "tubineoillevel": "Nível de Óleo da Turbina"
+  },
+
+  "TABSMANAGER": {
+    "dashboard": "Painel de controle",
+    "home": "Casa",
+    "chats": "Bate-papos",
+    "more": "Mais"
+  },
+
+  "MANAGERDASHBOARD": { 
+    "selectshift": "Selecione Shift",
+    "shifta": "Mudança-A",
+    "shiftb": "Mudança-B",
+    "checkin": "Check-In",
+    "checkout": "Verificação de saída",
+    "startboiler": "Começar-Acima Caldeira",
+    "stopboiler": "Desligar Caldeira",
+    "delete": "Excluir"
+  },
+
+  "MANAGERHOME": 
+  {
+    "title": "Casa",  
+    "breakdowndowntime": "Demolir",
+    "reportedmaintenace": "Manutenção Reportada",
+    "quotation": "Cotação",
+    "boilerlogbook": "Livro de Registro",
+    "requestitem": "Solicitar Item",    
+    "reports": "Relatórios"
+  }
+}
