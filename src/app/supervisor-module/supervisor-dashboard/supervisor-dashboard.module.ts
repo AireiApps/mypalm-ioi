@@ -8,16 +8,13 @@ import { SupervisorDashboardPageRoutingModule } from './supervisor-dashboard-rou
 
 import { SupervisorDashboardPage } from './supervisor-dashboard.page';
 
-import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SupervisorDashboardPageRoutingModule,
-    TranslateModule
+    SupervisorDashboardPageRoutingModule    
   ],
   declarations: [SupervisorDashboardPage]
 })

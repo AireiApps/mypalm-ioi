@@ -4,7 +4,6 @@ import { Location } from "@angular/common";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { AIREIService } from "../api/api.service";
 import { Platform } from "@ionic/angular";
-import { ContactsPage } from "../component/miniapps/contacts/contacts.page";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { LanguageService } from "src/app/services/language-service/language.service";
 

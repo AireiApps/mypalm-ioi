@@ -47,48 +47,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: "attendance",
-    loadChildren: () =>
-      import("./supervisor-module/attendance/attendance.module").then(
-        (m) => m.AttendancePageModule
-      ),
-  },
-  {
-    path: "sop-compliance",
-    loadChildren: () =>
-      import("./supervisor-module/sop-compliance/sop-compliance.module").then(
-        (m) => m.SopCompliancePageModule
-      ),
-  },
-  {
-    path: "hourly-reporting",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/hourly-reporting/hourly-reporting.module"
-      ).then((m) => m.HourlyReportingPageModule),
-  },
-  {
-    path: "communication",
-    loadChildren: () =>
-      import("./supervisor-module/communication/communication.module").then(
-        (m) => m.CommunicationPageModule
-      ),
-  },
-  {
-    path: "comments",
-    loadChildren: () =>
-      import("./supervisor-module/comments/comments.module").then(
-        (m) => m.CommentsPageModule
-      ),
-  },
-  {
-    path: "leaveform",
-    loadChildren: () =>
-      import("./supervisor-module/leaveform/leaveform.module").then(
-        (m) => m.LeaveformPageModule
-      ),
-  },
-  {
     path: "forgotpassword",
     loadChildren: () =>
       import("./forgot-password/forgotpassword/forgotpassword.module").then(
@@ -103,88 +61,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: "report",
-    loadChildren: () =>
-      import("./supervisor-module/report/report.module").then(
-        (m) => m.ReportPageModule
-      ),
-  },
-  {
     path: "reporthome",
     loadChildren: () =>
       import("./supervisor-module/reporthome/reporthome.module").then(
         (m) => m.ReporthomePageModule
       ),
-  },
-  {
-    path: "report-hourlyreporting",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-hourlyreporting/report-hourlyreporting.module"
-      ).then((m) => m.ReportHourlyreportingPageModule),
-  },
-  {
-    path: "report-sopcompliance",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-sopcompliance/report-sopcompliance.module"
-      ).then((m) => m.ReportSopcompliancePageModule),
-  },
-  {
-    path: "sorhistory",
-    loadChildren: () =>
-      import("./supervisor-module/sorhistory/sorhistory.module").then(
-        (m) => m.SorhistoryPageModule
-      ),
-  },
-  {
-    path: "supervisororder-request",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisororder-request/supervisororder-request.module"
-      ).then((m) => m.SupervisororderRequestPageModule),
-  },
-  {
-    path: "supervisororderrequest-list",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisororderrequest-list/supervisororderrequest-list.module"
-      ).then((m) => m.SupervisororderrequestListPageModule),
-  },
-  {
-    path: "supervisororderrequest-detail",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisororderrequest-detail/supervisororderrequest-detail.module"
-      ).then((m) => m.SupervisororderrequestDetailPageModule),
-  },
-  {
-    path: "communicationreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/communicationreport/communicationreport.module"
-      ).then((m) => m.CommunicationreportPageModule),
-  },
-  {
-    path: "attendancereport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/attendancereport/attendancereport.module"
-      ).then((m) => m.AttendancereportPageModule),
-  },
-  {
-    path: "broadcastcommunicationreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/broadcastcommunicationreport/broadcastcommunicationreport.module"
-      ).then((m) => m.BroadcastcommunicationreportPageModule),
-  },
-  {
-    path: "personlizecommunicationreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/personlizecommunicationreport/personlizecommunicationreport.module"
-      ).then((m) => m.PersonlizecommunicationreportPageModule),
   },
   {
     path: "dashboard",
@@ -348,20 +229,6 @@ const routes: Routes = [
       ).then((m) => m.MaintenanceReportPageModule),
   },
   {
-    path: "supervisor-machinerunninghours",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-machinerunninghours/supervisor-machinerunninghours.module"
-      ).then((m) => m.SupervisorMachinerunninghoursPageModule),
-  },
-  {
-    path: "weighbridgereport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/weighbridgereport/weighbridgereport.module"
-      ).then((m) => m.WeighbridgereportPageModule),
-  },
-  {
     path: "maintenance-observationreport",
     loadChildren: () =>
       import(
@@ -397,41 +264,6 @@ const routes: Routes = [
       ).then((m) => m.MaintenancePersonalizedchatPageModule),
   },
   {
-    path: "preventivemaintenancereport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/preventivemaintenancereport/preventivemaintenancereport.module"
-      ).then((m) => m.PreventivemaintenancereportPageModule),
-  },
-  {
-    path: "laboratoryreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/laboratoryreport/laboratoryreport.module"
-      ).then((m) => m.LaboratoryreportPageModule),
-  },
-  {
-    path: "supervisor-broadcastchat",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-broadcastchat/supervisor-broadcastchat.module"
-      ).then((m) => m.SupervisorBroadcastchatPageModule),
-  },
-  {
-    path: "supervisor-personalizedchatdepartment",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-personalizedchatdepartment/supervisor-personalizedchatdepartment.module"
-      ).then((m) => m.SupervisorPersonalizedchatdepartmentPageModule),
-  },
-  {
-    path: "supervisor-personalizedchat",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-personalizedchat/supervisor-personalizedchat.module"
-      ).then((m) => m.SupervisorPersonalizedchatPageModule),
-  },
-  {
     path: "maintenance-jobdonereport",
     loadChildren: () =>
       import(
@@ -458,27 +290,6 @@ const routes: Routes = [
       import(
         "./maintenance-module/maintenance-reportedmaintenance-detail/maintenance-reportedmaintenance-detail.module"
       ).then((m) => m.MaintenanceReportedmaintenanceDetailPageModule),
-  },
-  {
-    path: "supervisor-productionreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-productionreport/supervisor-productionreport.module"
-      ).then((m) => m.SupervisorProductionreportPageModule),
-  },
-  {
-    path: "report-boilerlog",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-boilerlog/report-boilerlog.module"
-      ).then((m) => m.ReportBoilerlogPageModule),
-  },
-  {
-    path: "report-breakdown",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-breakdown/report-breakdown.module"
-      ).then((m) => m.ReportBreakdownPageModule),
   },
   {
     path: "report-maintenance-breakdownlist",
@@ -509,20 +320,6 @@ const routes: Routes = [
       ).then((m) => m.ReportMaintenanceHourlyPageModule),
   },
   {
-    path: "report-labdailyreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-labdailyreport/report-labdailyreport.module"
-      ).then((m) => m.ReportLabdailyreportPageModule),
-  },
-  {
-    path: "report-labhourlyreport",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-labhourlyreport/report-labhourlyreport.module"
-      ).then((m) => m.ReportLabhourlyreportPageModule),
-  },
-  {
     path: "report-labhourlyreport",
     loadChildren: () =>
       import(
@@ -544,13 +341,6 @@ const routes: Routes = [
       ).then((m) => m.SchedulingReportPageModule),
   },
   {
-    path: "supervisor-checklist",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/supervisor-checklist/supervisor-checklist.module"
-      ).then((m) => m.SupervisorChecklistPageModule),
-  },
-  {
     path: "maintenance-checklist",
     loadChildren: () =>
       import(
@@ -558,18 +348,18 @@ const routes: Routes = [
       ).then((m) => m.MaintenanceChecklistPageModule),
   },
   {
-    path: "report-productionchecklist",
-    loadChildren: () =>
-      import(
-        "./supervisor-module/report-productionchecklist/report-productionchecklist.module"
-      ).then((m) => m.ReportProductionchecklistPageModule),
-  },
-  {
     path: "report-maintenance-checklistreport",
     loadChildren: () =>
       import(
         "./maintenance-module/report-maintenance-checklistreport/report-maintenance-checklistreport.module"
       ).then((m) => m.ReportMaintenanceChecklistreportPageModule),
+  },
+  {
+    path: "nirpkeproductioncalibration",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/nirpkeproductioncalibration/nirpkeproductioncalibration.module"
+      ).then((m) => m.NirpkeproductioncalibrationPageModule),
   },
 ];
 

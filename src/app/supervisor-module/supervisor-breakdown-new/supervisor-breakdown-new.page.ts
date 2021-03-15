@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { AIREIService } from "src/app/api/api.service";
-import { HttpserviceService } from "../../services/httpservice/httpservice.service";
 import { SupervisorService } from "src/app/services/supervisor-service/supervisor.service";
 import { ImageUploadService } from "src/app/services/imageupload-service/imageupload";
 import { Router } from "@angular/router";
@@ -32,8 +31,7 @@ export class SupervisorBreakdownNewPage implements OnInit {
   breakdowntime = new Date().toISOString();
 
   constructor(
-    private router: Router,
-    private httpservice: HttpserviceService,
+    private router: Router,    
     private fb: FormBuilder,
     private commonservice: AIREIService,
     private service: SupervisorService,

@@ -422,4 +422,6 @@ export class appsettings {
   public static levelstatuslist = appsettings.API_ENDPOINT + "tank_level_list";
 
   public static mypalmsettings = appsettings.API_ENDPOINT + "check_version";
+
+  public static savekcp = appsettings.API_ENDPOINT + "savee_kcp";
 }
