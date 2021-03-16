@@ -204,4 +204,70 @@ export class SupervisorService {
       );
     });
   }
+
+  getConditionStatusList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.conditionlist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getMaintainStatusList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.maintainlist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  
+  savedustcollector(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);    
+
+    var api = appsettings.savedustcollector;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
 }

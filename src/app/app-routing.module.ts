@@ -361,6 +361,13 @@ const routes: Routes = [
         "./supervisor-module/nirpkeproductioncalibration/nirpkeproductioncalibration.module"
       ).then((m) => m.NirpkeproductioncalibrationPageModule),
   },
+  {
+    path: "dustcollectormonitoringchecklist",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/dustcollectormonitoringchecklist/dustcollectormonitoringchecklist.module"
+      ).then((m) => m.DustcollectormonitoringchecklistPageModule),
+  },
 ];
 
 @NgModule({

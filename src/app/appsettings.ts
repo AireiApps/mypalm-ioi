@@ -423,5 +423,13 @@ export class appsettings {
 
   public static mypalmsettings = appsettings.API_ENDPOINT + "check_version";
 
-  public static savekcp = appsettings.API_ENDPOINT + "savee_kcp";
+  /*Recently Developed*/
+
+  public static savekcp = appsettings.API_ENDPOINT + "save_kcp";
+
+  public static conditionlist = appsettings.API_ENDPOINT + "condition_status";
+
+  public static maintainlist = appsettings.API_ENDPOINT + "maintain_status";
+
+  public static savedustcollector = appsettings.API_ENDPOINT + "insert_dust_collection";
 }

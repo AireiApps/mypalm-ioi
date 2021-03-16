@@ -8,8 +8,7 @@
 </ion-header>
 
 <ion-content>
-
-  <div class="h5" style="text-align: center; margin-top: 10px; color: #09203f;">
+  <div class="h5" style="text-align: center; margin-top: 10px; color: #09203f">
     <b>KCP</b>
   </div>
 
@@ -17,63 +16,64 @@
     <b>Date: {{currentdate}}</b>
   </div>
 
-  <form [formGroup]="nirpkeproductioncalibrationForm">
-    <ion-row class="form-row">
-      <ion-col size="6">
-        <div class="h7 text-dark">Time <sup>*</sup></div>
-      </ion-col>
-      <ion-col size="5">
-        <ion-datetime
-          class="h7 form-control"
-          formControlName="txt_kcptime"
-          display-format="HH:00"
-          placeholder="Select Hour"
-        ></ion-datetime>
-      </ion-col>
-    </ion-row>
+  <ion-card class="card">
+    <form [formGroup]="nirpkeproductioncalibrationForm">
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">Time <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="5">
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_kcptime"
+            display-format="HH:00"
+            placeholder="Select Hour"
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
 
-    <ion-row class="form-row">
-      <ion-col size="6">
-        <div class="h7 text-dark">OC <sup>*</sup></div>
-      </ion-col>
-      <ion-col size="5">
-        <input
-          type="number"
-          class="h7 form-control"
-          formControlName="txt_oc"
-        />
-      </ion-col>
-      <ion-col size="1">
-        <div class="h7 text-dark"><b>%</b></div>
-      </ion-col>
-    </ion-row>
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">OC <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="5">
+          <input
+            type="number"
+            class="h7 form-control"
+            formControlName="txt_oc"
+          />
+        </ion-col>
+        <ion-col size="1">
+          <div class="h7 text-dark"><b>%</b></div>
+        </ion-col>
+      </ion-row>
 
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">M <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="5">
+          <input
+            type="number"
+            class="h7 form-control"
+            formControlName="txt_m"
+          />
+        </ion-col>
+        <ion-col size="1">
+          <div class="h7 text-dark"><b>%</b></div>
+        </ion-col>
+      </ion-row>
 
-    <ion-row class="form-row">
-      <ion-col size="6">
-        <div class="h7 text-dark">M <sup>*</sup></div>
-      </ion-col>
-      <ion-col size="5">
-        <input
-          type="number"
-          class="h7 form-control"
-          formControlName="txt_m"
-        />
-      </ion-col>
-      <ion-col size="1">
-        <div class="h7 text-dark"><b>%</b></div>
-      </ion-col>
-    </ion-row>
-
-    <div style="text-align: center">
-      <button
-        type="submit"
-        class="btn btn-info"
-        (click)="save()"
-        style="margin-top: 10px; margin-bottom: 10px"
-      >
-      Save
-      </button>
-    </div>
-  </form>
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-info"
+          (click)="save()"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </ion-card>
 </ion-content>

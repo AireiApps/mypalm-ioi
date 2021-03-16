@@ -55,7 +55,7 @@ export class SupervisorHomePage implements OnInit {
       {
         title: "Dust Collector Monitoring Checklist",
         name: "dust collector monitoring checklist",
-        path: "/supervisor-breakdown-list",
+        path: "/dustcollectormonitoringchecklist",
         imgpath: "../../assets/img/dustcollector.png",
       },
      

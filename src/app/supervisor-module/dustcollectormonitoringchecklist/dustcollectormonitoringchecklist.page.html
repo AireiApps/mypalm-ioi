@@ -1,0 +1,268 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dust Collector Monitoring Checklist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="h6" style="text-align: center; margin-top: 10px">
+    <b>Year: {{currentyear}}</b>
+  </div>
+
+  <ion-card class="card">
+    <form [formGroup]="dustcollectorForm">
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">Month <sup>*</sup></div>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_month"
+            display-format="MM"
+            placeholder="Select Month"
+          ></ion-datetime>
+        </ion-col>
+        <ion-col size="6">
+          <div class="h7 text-dark">Week <sup>*</sup></div>
+          <select formControlName="select_week" class="h7 form-control">
+            <option value="" selected disabled hidden>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <hr/>
+
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Pressure (mmHg/H2O)</b>
+      </div>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Pressure IN <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter Pressure IN"
+            class="h7 form-control"
+            formControlName="txt_pressurein"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Pressure OUT <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter Pressure OUT"
+            class="h7 form-control"
+            formControlName="txt_pressureout"
+          />
+        </ion-col>
+      </ion-row>
+
+      <hr />
+
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Temperature (<sup>o</sup>C)</b>
+      </div>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">PT.1 <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter PT.1"
+            class="h7 form-control"
+            formControlName="txt_pt1"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">PT.2 <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter PT.2"
+            class="h7 form-control"
+            formControlName="txt_pt2"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">PT.3 <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter PT.3"
+            class="h7 form-control"
+            formControlName="txt_pt3"
+          />
+        </ion-col>
+      </ion-row>
+
+      <hr />
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Velocity (m/s) <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter Velocity"
+            class="h7 form-control"
+            formControlName="txt_velocity"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Blower Current (Amp) <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <input
+            type="number"
+            placeholder="Enter Blower Current"
+            class="h7 form-control"
+            formControlName="txt_blowercurrent"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Opacity/Stack Condition <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <select
+            formControlName="select_opacity"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of conditionArr" value="{{value.id}}">
+              {{ value.status }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">
+            Discharge Hopper Condition <sup>*</sup>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <select
+            formControlName="select_dischargehopper"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of conditionArr" value="{{value.id}}">
+              {{ value.status }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Bearings Fan Condition <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <select
+            formControlName="select_bearingfancondition"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of conditionArr" value="{{value.id}}">
+              {{ value.status }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Any Leakages <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <select
+            formControlName="select_leakges"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              *ngFor="let value of maintainArr"
+              value="{{value.id}}"
+            >
+              {{ value.status }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Any Corrosion <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col>
+          <select
+            formControlName="select_corrosion"
+            class="h7 form-control text-dark"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              *ngFor="let value of maintainArr"
+              value="{{value.id}}"
+            >
+              {{ value.status }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-info"
+          (click)="save()"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

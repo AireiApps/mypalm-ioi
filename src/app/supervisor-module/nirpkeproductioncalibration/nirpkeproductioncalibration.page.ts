@@ -39,15 +39,15 @@ export class NirpkeproductioncalibrationPage implements OnInit {
         userid: this.userlist.userId,
         departmentid: this.userlist.dept_id,
         millcode: this.userlist.millcode,
-        plant: 'this.userlist.plant',
+        plant: this.userlist.plant,
         time: this.nirpkeproductioncalibrationForm.value.txt_kcptime,
         oc: this.nirpkeproductioncalibrationForm.value.txt_oc,
         m: this.nirpkeproductioncalibrationForm.value.txt_m,
       };
 
-      console.log(req);
+      //console.log(req);
 
-      /*this.service.savekcp(req).then((result) => {
+      this.service.savekcp(req).then((result) => {
         var resultdata: any;
         resultdata = result;
 
@@ -59,10 +59,12 @@ export class NirpkeproductioncalibrationPage implements OnInit {
           );
 
           this.commonservice.presentToast("KCP Inserted Successfully");
+
+          this.router.navigate(["tabs/tabsupervisiorhome"]);
         } else {
           this.commonservice.presentToast("KCP Insert Failed");
         }
-      });*/
+      });
     } else {
       this.commonservice.presentToast("Please Fill the Form");
     }
