@@ -115,7 +115,7 @@ export class AIREIService {
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.dashboardnotification;    
+    var api = appsettings.dashboardnotification;
 
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
@@ -130,7 +130,7 @@ export class AIREIService {
           console.log(error);
 
           if (error.status == 0) {
-            this.presentToast("Unable to Connect Server");
+            this.presentToast("info", "Unable to Connect Server");
           }
 
           reject(error);
@@ -159,7 +159,7 @@ export class AIREIService {
           //console.log(error);
 
           if (error.status == 0) {
-            this.presentToast("Unable to Connect Server");
+            this.presentToast("info", "Unable to Connect Server");
           }
 
           reject(error);
@@ -189,7 +189,7 @@ export class AIREIService {
           console.log(error);
 
           if (error.status == 0) {
-            this.presentToast("Unable to Connect Server");
+            this.presentToast("info", "Unable to Connect Server");
           }
 
           reject(error);
@@ -329,9 +329,8 @@ export class AIREIService {
           this.preloading.dismiss();
 
           if (error.status == 0) {
-            this.presentToast("Unable to Connect Server");
+            this.presentToast("info", "Unable to Connect Server");
           }
-
         }
       );
     });
@@ -345,7 +344,6 @@ export class AIREIService {
           resolve(data);
         },
         (error) => {
-
           /*if (error.status == 0) {
             this.presentToast("Unable to Connect Server");
           }*/
@@ -399,7 +397,7 @@ export class AIREIService {
           this.dimmissLoading();
 
           console.log(data);
-          
+
           resolve(data);
         },
         (error) => {
@@ -721,7 +719,7 @@ export class AIREIService {
           console.log(error);
 
           if (error.status == 0) {
-            this.presentToast("Unable to Connect Server");
+            this.presentToast("info", "Unable to Connect Server");
           }
 
           reject(error);
@@ -779,19 +777,53 @@ export class AIREIService {
           /*if (error.status == 0) {
             this.presentToast("Unable to Connect Server");
           }*/
-          
+
           reject(error);
         }
       );
     });
   }
 
-  async presentToast(message) {
-    const toast = await this.toastCtrl.create({
-      message: message,
-      duration: 2000,
-    });
-    toast.present();
+  async presentToast(type, message) {
+    if (type == "error") {
+      const toast = await this.toastCtrl.create({
+        message: message,
+        color: "danger",
+        duration: 2000,
+      });
+
+      toast.present();
+    }
+
+    if (type == "success") {
+      const toast = await this.toastCtrl.create({
+        message: message,
+        color: "success",
+        duration: 2000,
+      });
+
+      toast.present();
+    }
+
+    if (type == "info") {
+      const toast = await this.toastCtrl.create({
+        message: message,
+        color: "tertiary",
+        duration: 2000,
+      });
+
+      toast.present();
+    }
+
+    if (type == "warning") {
+      const toast = await this.toastCtrl.create({
+        message: message,
+        color: "warning",
+        duration: 2000,
+      });
+
+      toast.present();
+    }
   }
 
   async presentLoading() {

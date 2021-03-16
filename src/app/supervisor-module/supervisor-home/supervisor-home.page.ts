@@ -13,6 +13,11 @@ const { PushNotifications } = Plugins;
 
 import { AuthGuardService } from "src/app/services/authguard/auth-guard.service";
 
+import {
+  BarcodeScanner,
+  BarcodeScannerOptions,
+} from "@ionic-native/barcode-scanner/ngx";
+
 import { GeneralserviceService } from "src/app/services/generalservice/generalservice.service";
 
 @Component({
@@ -20,7 +25,7 @@ import { GeneralserviceService } from "src/app/services/generalservice/generalse
   templateUrl: "./supervisor-home.page.html",
   styleUrls: ["./supervisor-home.page.scss"],
 })
-export class SupervisorHomePage implements OnInit {  
+export class SupervisorHomePage implements OnInit {
   userlist = JSON.parse(localStorage.getItem("userlist"));
 
   mill_name = this.userlist.millname;
@@ -43,7 +48,6 @@ export class SupervisorHomePage implements OnInit {
         path: "/supervisor-breakdown-list",
         imgpath: "../../assets/img/breakdownreport.png",
       },
-     
     ],
     [
       {
@@ -58,9 +62,28 @@ export class SupervisorHomePage implements OnInit {
         path: "/dustcollectormonitoringchecklist",
         imgpath: "../../assets/img/dustcollector.png",
       },
-     
     ],
     [
+      {
+        title: "Water Consumption",
+        name: "Water Consumption",
+        path: "/waterconsumption",
+        imgpath: "../../assets/img/waterconsumption.png",
+      },
+      {
+        title: "Dust Plant",
+        name: "Dust Plant",
+        path: "/dustplant",
+        imgpath: "../../assets/img/boilerreport.png",
+      },
+    ],
+    [
+      {
+        title: "QR Code Scanner",
+        name: "QR Code Scanner",
+        path: "/qrcodescanner",
+        imgpath: "../../assets/img/qrcodescanner.png",
+      },
       {
         title: "Reports",
         name: "supervisor_report",
@@ -70,14 +93,14 @@ export class SupervisorHomePage implements OnInit {
     ],
   ];
 
-  constructor(    
+  constructor(
     private zone: NgZone,
-    private router: Router,        
-    private commonservice: AIREIService,        
+    private router: Router,
+    private commonservice: AIREIService,
     private notifi: AuthGuardService,
+    private barcodeScanner: BarcodeScanner,
     private generalservice: GeneralserviceService
-  ) {    
-  }
+  ) {}
 
   ngOnInit() {}
 
@@ -87,7 +110,7 @@ export class SupervisorHomePage implements OnInit {
     this.updateNotification();*/
   }
 
-  ionViewDidEnter() {    
+  ionViewDidEnter() {
     /*this.count = parseInt(localStorage.getItem("badge_count"));
     this.notifi.updateNotification();
     this.updateNotification();*/
@@ -114,20 +137,36 @@ export class SupervisorHomePage implements OnInit {
   }*/
 
   btn_Action(item) {
-    if (item.name == "supervisor_hourly") {
-      if (this.generalservice.productionstatus == "1") {
-        this.router.navigate([item.path]);
-      } else {
-        this.commonservice.presentToast("Please Start Production");
-      }
-    } else if (item.name == "supervisor_sop") {
-      if (this.generalservice.checkinoutflag != "0") {
-        this.router.navigate([item.path]);
-      } else {
-        this.commonservice.presentToast("Please Start Shift");
-      }
+    if (item.name == "QR Code Scanner") {
+      this.scanqrcode();
     } else {
       this.router.navigate([item.path]);
     }
-  } 
+  }
+
+  scanqrcode() {
+    const options: BarcodeScannerOptions = {
+      preferFrontCamera: false,
+      showFlipCameraButton: true,
+      showTorchButton: true,
+      torchOn: false,
+      prompt: "Place a Barcode inside the Scan Area",
+      resultDisplayDuration: 500,
+      formats: "QR_CODE",
+      orientation: "portrait",
+    };
+
+    this.barcodeScanner
+      .scan(options)
+      .then((barcodeData) => {
+        if (!barcodeData.cancelled) {
+          //this.checkqrcode(barcodeData.text);
+        } else {
+          this.commonservice.presentToast("error", "Barcode Scanner Cancelled");
+        }
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  }
 }

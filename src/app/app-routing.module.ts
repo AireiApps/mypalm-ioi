@@ -82,13 +82,6 @@ const routes: Routes = [
       ).then((m) => m.MaintenanceDetailPageModule),
   },
   {
-    path: "communication",
-    loadChildren: () =>
-      import("./maintenance-module/communication/communication.module").then(
-        (m) => m.CommunicationPageModule
-      ),
-  },
-  {
     path: "broadcastcommunicationreport",
     loadChildren: () =>
       import(
@@ -243,27 +236,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: "maintenance-braodcastchat",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-braodcastchat/maintenance-braodcastchat.module"
-      ).then((m) => m.MaintenanceBraodcastchatPageModule),
-  },
-  {
-    path: "maintenance-personalizedchatdepartments",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-personalizedchatdepartments/maintenance-personalizedchatdepartments.module"
-      ).then((m) => m.MaintenancePersonalizedchatdepartmentsPageModule),
-  },
-  {
-    path: "maintenance-personalizedchat",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-personalizedchat/maintenance-personalizedchat.module"
-      ).then((m) => m.MaintenancePersonalizedchatPageModule),
-  },
-  {
     path: "maintenance-jobdonereport",
     loadChildren: () =>
       import(
@@ -367,6 +339,20 @@ const routes: Routes = [
       import(
         "./supervisor-module/dustcollectormonitoringchecklist/dustcollectormonitoringchecklist.module"
       ).then((m) => m.DustcollectormonitoringchecklistPageModule),
+  },
+  {
+    path: "waterconsumption",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/waterconsumption/waterconsumption.module"
+      ).then((m) => m.WaterconsumptionPageModule),
+  },
+  {
+    path: "dustplant",
+    loadChildren: () =>
+      import("./supervisor-module/dustplant/dustplant.module").then(
+        (m) => m.DustplantPageModule
+      ),
   },
 ];
 

@@ -432,4 +432,8 @@ export class appsettings {
   public static maintainlist = appsettings.API_ENDPOINT + "maintain_status";
 
   public static savedustcollector = appsettings.API_ENDPOINT + "insert_dust_collection";
+
+  public static savewaterconsumption = appsettings.API_ENDPOINT + "insert_water_consumption";
+
+  public static savedustplant = appsettings.API_ENDPOINT + "insert_dust_plant_images";
 }

@@ -21,7 +21,6 @@ const LNG_KEY = "SELECTED_LANGUAGE";
   styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
-
   departmentArr = [];
 
   registerCredentials = { millcode: "", username: "", password: "" };
@@ -39,7 +38,7 @@ export class LoginPage implements OnInit {
     private service: AIREIService,
     private nativeStorage: NativeStorage
   ) {
-    this.loginForm = this.fb.group({      
+    this.loginForm = this.fb.group({
       username: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
     });
@@ -71,6 +70,7 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.value.millcode == "") {
       this.service.presentToast(
+        "error",
         this.translate.instant("LOGIN.millcodeerrortoast")
       );
       return;
@@ -78,6 +78,7 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.value.username == "") {
       this.service.presentToast(
+        "error",
         this.translate.instant("LOGIN.usernameerrortoast")
       );
       return;
@@ -85,13 +86,14 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.value.password == "") {
       this.service.presentToast(
+        "error",
         this.translate.instant("LOGIN.passworderrortoast")
       );
       return;
     }
 
     var req = {
-      millcode: '1001',
+      millcode: "1001",
       username: this.loginForm.value.username,
       password: this.loginForm.value.password,
       language: selectedlanguage,
@@ -124,10 +126,9 @@ export class LoginPage implements OnInit {
         this.location.go("/");
         window.location.reload();
         this.router.navigate(["/tabs"]);
-        this.service.presentToast("Login Successfully!");
-        
+        this.service.presentToast("success", "Login Successfully!");
       } else {
-        this.service.presentToast("Login Failed!");
+        this.service.presentToast("error", "Login Failed!");
       }
     });
   }

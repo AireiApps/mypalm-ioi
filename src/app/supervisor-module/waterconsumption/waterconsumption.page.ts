@@ -6,67 +6,71 @@ import { Router } from "@angular/router";
 import * as moment from "moment";
 
 @Component({
-  selector: "app-nirpkeproductioncalibration",
-  templateUrl: "./nirpkeproductioncalibration.page.html",
-  styleUrls: ["./nirpkeproductioncalibration.page.scss"],
+  selector: "app-waterconsumption",
+  templateUrl: "./waterconsumption.page.html",
+  styleUrls: ["./waterconsumption.page.scss"],
 })
-export class NirpkeproductioncalibrationPage implements OnInit {
+export class WaterconsumptionPage implements OnInit {
   userlist = JSON.parse(localStorage.getItem("userlist"));
 
-  nirpkeproductioncalibrationForm;
+  waterconsumptionForm;
 
   currentdate = moment(new Date().toISOString()).format("DD-MM-YYYY");
   currenthour = moment(new Date().toISOString()).format("HH:00");
+
+
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private commonservice: AIREIService,
-    private service: SupervisorService
+    private service: SupervisorService    
   ) {
-    this.nirpkeproductioncalibrationForm = this.fb.group({
-      txt_kcptime: new FormControl(this.currenthour),
-      txt_oc: new FormControl("", Validators.required),
-      txt_m: new FormControl("", Validators.required),
+    this.waterconsumptionForm = this.fb.group({
+      txt_time: new FormControl(this.currenthour),
+      txt_kcp: new FormControl("", Validators.required),
     });
   }
 
   ngOnInit() {}
 
   save() {
-    if (this.nirpkeproductioncalibrationForm.valid) {
+    if (this.waterconsumptionForm.valid) {
       var req = {
         userid: this.userlist.userId,
         departmentid: this.userlist.dept_id,
         millcode: this.userlist.millcode,
         plant: this.userlist.plant,
         plantid: this.userlist.plantid,
-        time: this.nirpkeproductioncalibrationForm.value.txt_kcptime,
-        oc: this.nirpkeproductioncalibrationForm.value.txt_oc,
-        m: this.nirpkeproductioncalibrationForm.value.txt_m,
+        date: this.currentdate,
+        time: this.waterconsumptionForm.value.txt_time,
+        kcp: this.waterconsumptionForm.value.txt_kcp,
       };
 
       //console.log(req);
 
-      this.service.savekcp(req).then((result) => {
+      this.service.savewaterconsumption(req).then((result) => {
         var resultdata: any;
         resultdata = result;
 
         if (resultdata.httpcode == 200) {
-          this.nirpkeproductioncalibrationForm.reset();
+          this.waterconsumptionForm.reset();
 
-          this.nirpkeproductioncalibrationForm.controls.txt_kcptime.setValue(
+          this.waterconsumptionForm.controls.txt_time.setValue(
             this.currenthour
           );
 
           this.commonservice.presentToast(
             "success",
-            "KCP Inserted Successfully"
+            "Water Consumption Inserted Successfully"
           );
 
           this.router.navigate(["tabs/tabsupervisiorhome"]);
         } else {
-          this.commonservice.presentToast("error", "KCP Insert Failed");
+          this.commonservice.presentToast(
+            "error",
+            "Water Consumption Insert Failed"
+          );
         }
       });
     } else {

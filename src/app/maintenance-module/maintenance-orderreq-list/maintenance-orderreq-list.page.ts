@@ -106,7 +106,7 @@ export class MaintenanceOrderreqListPage implements OnInit {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
-        this.commonservice.presentToast("Items Received Successfully...");
+        this.commonservice.presentToast("success","Items Received Successfully...");
       }
     });
   }

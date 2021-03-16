@@ -100,6 +100,7 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
         departmentid: this.userlist.dept_id,
         millcode: this.userlist.millcode,
         plant: this.userlist.plant,
+        plantid: this.userlist.plantid,
         year: this.currentyear,
         month: this.dustcollectorForm.value.txt_month,
         week: this.dustcollectorForm.value.select_week,
@@ -132,18 +133,18 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
             this.currentmonth
           );
 
-          this.commonservice.presentToast("Dust Collector Monitoring Data Inserted Successfully");
+          this.commonservice.presentToast("success", "Dust Collector Monitoring Data Inserted Successfully");
           
           
           this.router.navigate(["tabs/tabsupervisiorhome"]);
 
           
         } else {
-          this.commonservice.presentToast("Dust Collector Monitoring Data Insert Failed");
+          this.commonservice.presentToast("error", "Dust Collector Monitoring Data Insert Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("warning", "Please Fill the Form");
     }
   }
 }

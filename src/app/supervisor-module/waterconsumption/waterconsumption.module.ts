@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CommunicationPageRoutingModule } from './communication-routing.module';
+import { WaterconsumptionPageRoutingModule } from './waterconsumption-routing.module';
 
-import { CommunicationPage } from './communication.page';
+import { WaterconsumptionPage } from './waterconsumption.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { CommunicationPage } from './communication.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    CommunicationPageRoutingModule
+    WaterconsumptionPageRoutingModule
   ],
-  declarations: [CommunicationPage]
+  declarations: [WaterconsumptionPage]
 })
-export class CommunicationPageModule {}
+export class WaterconsumptionPageModule {}

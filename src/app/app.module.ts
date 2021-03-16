@@ -40,6 +40,7 @@ import { Market } from "@ionic-native/market/ngx";
 import { AppVersion } from "@ionic-native/app-version/ngx";
 import { GeneralserviceService } from "src/app/services/generalservice/generalservice.service";
 import { Badge } from '@ionic-native/badge/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 /*Translate Language --- Starts*/
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
@@ -115,6 +116,7 @@ const environment = {
     MediaCapture,
     GeneralserviceService,
     Badge,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

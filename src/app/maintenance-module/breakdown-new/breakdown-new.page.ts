@@ -174,9 +174,8 @@ export class BreakdownNewPage implements OnInit {
             this.imagePaths.complianantimagepath =
               resultdata.data.uploaded_path;
           }
-          this.commonservice.presentToast("Image Added Successfully!");
         } else {
-          this.commonservice.presentToast("Image Added Failed!");
+          this.commonservice.presentToast("error", "Image Added Failed!");
         }
       },
       (err) => {
@@ -232,13 +231,13 @@ export class BreakdownNewPage implements OnInit {
 
           this.router.navigate(["/breakdown-list"]);
 
-          this.commonservice.presentToast("Inserted Successfully");
+          this.commonservice.presentToast("success", "Inserted Successfully");
         } else {
-          this.commonservice.presentToast("Insertion Failed");
+          this.commonservice.presentToast("error", "Insertion Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("info", "Please Fill the Form");
     }
   }
 

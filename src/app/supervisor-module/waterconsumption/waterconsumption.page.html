@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Water Consumption</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="h6" style="text-align: center; margin-top: 10px">
+    <b>Date: {{currentdate}}</b>
+  </div>
+
+  <ion-card class="card">
+    <form [formGroup]="waterconsumptionForm">
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">Time <sup>*</sup></div>
+        </ion-col>
+        <ion-col>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_time"
+            display-format="HH:00"
+            placeholder="Select Hour"
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col>
+          <div class="h7 text-dark">KCP <sup>*</sup></div>
+        </ion-col>
+        <ion-col>
+          <input
+            type="number"
+            class="h7 form-control"
+            formControlName="txt_kcp"
+          />
+        </ion-col>
+      </ion-row>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-info"
+          (click)="save()"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

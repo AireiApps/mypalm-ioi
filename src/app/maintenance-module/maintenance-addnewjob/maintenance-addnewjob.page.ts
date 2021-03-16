@@ -273,7 +273,7 @@ export class MaintenanceAddnewjobPage implements OnInit {
       this.formArr.push(this.initItemRows(this.addnewjobForm.value));
       this.addnewjobForm.controls.select_machinery.setValue("");
     } else {
-      this.commonservice.presentToast("Please Fill the Form...");
+      this.commonservice.presentToast("warning","Please Fill the Form...");
     }
   }
 
@@ -329,15 +329,15 @@ export class MaintenanceAddnewjobPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.addnewjobForm.reset();
 
-          this.commonservice.presentToast("Job Added Successfully");
+          this.commonservice.presentToast("success","Job Added Successfully");
 
           this.dismiss();
         } else {
-          this.commonservice.presentToast("Job Addition Failed");
+          this.commonservice.presentToast("error","Job Addition Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("warning","Please Fill the Form");
     }
   }
 

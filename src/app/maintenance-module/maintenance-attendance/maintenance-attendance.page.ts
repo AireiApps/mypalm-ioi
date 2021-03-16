@@ -304,12 +304,12 @@ export class MaintenanceAttendancePage implements OnInit {
       var resultdata: any;
       resultdata = result;      
       if (resultdata.httpcode == 200) {
-        this.commonservice.presentToast("Saved Successfully!");
+        this.commonservice.presentToast("success","Saved Successfully!");
 
         this.router.navigate(['/tabs/tabmaintenancehome']);
 
       } else {
-        this.commonservice.presentToast("Saved Failed!");
+        this.commonservice.presentToast("error","Saved Failed!");
       }
     });
   }

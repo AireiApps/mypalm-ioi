@@ -30,14 +30,7 @@ export class NotificationPage implements OnInit {
   ngAfterViewInit(): void {
     localStorage.setItem("badge_count", "0");
 
-    if (
-      this.departmentid != 7 &&
-      this.departmentid != 10 &&
-      this.departmentid != 15 &&
-      this.departmentid != 20
-    ) {
-      this.getCouchBaseNotification();
-    } else if (this.departmentid == 7) {
+    if (this.departmentid == 7) {
       this.getMaintenanceDashboardNotification();
     } else if (this.departmentid == 10) {
       this.getGradingDashboardNotification();
@@ -55,81 +48,13 @@ export class NotificationPage implements OnInit {
 
     //this.getNotification();
 
-    if (
-      this.departmentid != 7 &&
-      this.departmentid != 10 &&
-      this.departmentid != 15
-    ) {
-      this.getCouchBaseNotification();
-    } else if (this.departmentid == 7) {
+    if (this.departmentid == 7) {
       this.getMaintenanceDashboardNotification();
     } else if (this.departmentid == 10) {
       this.getGradingDashboardNotification();
     } else if (this.departmentid == 15) {
       this.getManagerDashboardNotification();
     }
-  }
-
-  btn_clearNotification() {
-    var req = {
-      loginid: this.userlist.userId,
-      millcode: this.userlist.millcode,
-    };
-
-    this.service.ClearNotification(req).then((result) => {
-      var resultdata: any;
-      resultdata = result;
-
-      if (resultdata.httpcode == 200) {
-        this.notificationArr = [];
-        //this.getNotification();
-
-        this.getCouchBaseNotification();
-
-        this.service.presentToast("Notification Cleared!");
-      } else {
-        this.service.presentToast("No Record Found!");
-      }
-    });
-  }
-
-  getNotification() {
-    var req = {
-      loginid: this.userlist.userId,
-      millcode: this.userlist.millcode,
-    };
-
-    this.service.getNotification(req).then((result) => {
-      var resultdata: any;
-      resultdata = result;
-
-      if (resultdata.httpcode == 200) {
-        this.notificationArr = resultdata.data;
-      } else {
-        this.notificationArr = [];
-        this.service.presentToast("No Record Found!");
-      }
-    });
-  }
-
-  getCouchBaseNotification() {
-    var req = {
-      driver_id: this.userlist.userId,
-      millcode: this.userlist.millcode,
-    };
-
-    this.service.getNotification(req).then((result) => {
-      var resultdata: any;
-
-      resultdata = result;
-
-      if (Object.entries(resultdata).length > 0) {
-        this.notificationArr = resultdata;
-      } else {
-        this.notificationArr = [];
-        this.service.presentToast("No Record Found!");
-      }
-    });
   }
 
   getMaintenanceDashboardNotification() {
@@ -145,7 +70,7 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.notificationArr = resultdata.data;
       } else {
-        this.service.presentToast("Notifications Not Found...");
+        this.service.presentToast("info","Notifications Not Found...");
       }
     });
   }
@@ -165,7 +90,7 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.notificationArr = resultdata.data;
       } else {
-        this.service.presentToast("Notifications Not Found...");
+        this.service.presentToast("info","Notifications Not Found...");
       }
     });
   }
@@ -185,7 +110,7 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.notificationArr = resultdata.data;
       } else {
-        this.service.presentToast("Notifications Not Found...");
+        this.service.presentToast("info","Notifications Not Found...");
       }
     });
   }
@@ -205,7 +130,7 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.callmodalcontroller(value);
       } else {
-        this.service.presentToast("Notification Update Failed");
+        this.service.presentToast("error","Notification Update Failed");
       }
     });
   }

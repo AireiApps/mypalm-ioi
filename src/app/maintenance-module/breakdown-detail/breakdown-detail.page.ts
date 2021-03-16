@@ -102,7 +102,7 @@ export class BreakdownDetailPage implements OnInit {
         this.complainantremarks = "";
         this.requesteduser = "";
 
-        this.commonservice.presentToast("No Records Found...");
+        this.commonservice.presentToast("info", "No Records Found...");
       }
     });
   }
@@ -117,9 +117,8 @@ export class BreakdownDetailPage implements OnInit {
 
         if (resultdata.httpcode == 200) {
           this.imagePaths.rectifiedimagepath = resultdata.data.uploaded_path;
-          this.commonservice.presentToast("Image Added Successfully!");
         } else {
-          this.commonservice.presentToast("Image Added Failed!");
+          this.commonservice.presentToast("error", "Image Added Failed!");
         }
       },
       (err) => {
@@ -156,7 +155,7 @@ export class BreakdownDetailPage implements OnInit {
         rectifiedimagepath: this.imagePaths.rectifiedimagepath,
         breakdownid: this.breakdownid,
         assignedto: 0,
-        assignedto_deptid:0,
+        assignedto_deptid: 0,
       };
 
       //console.log(req);
@@ -168,15 +167,15 @@ export class BreakdownDetailPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.breakdowndowntimedetailForm.reset();
 
-          this.commonservice.presentToast("Updated Successfully");
+          this.commonservice.presentToast("success", "Updated Successfully");
 
           this.dismiss();
         } else {
-          this.commonservice.presentToast("Updation Failed");
+          this.commonservice.presentToast("error", "Updation Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("info", "Please Fill the Form");
     }
   }
 

@@ -102,7 +102,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         this.complainantremarks = "";
         this.requesteduser = "";
 
-        this.commonservice.presentToast("No Records Found...");
+        this.commonservice.presentToast("info","No Records Found...");
       }
     });
   }
@@ -116,10 +116,9 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         resultdata = JSON.parse(resultdata.response);
 
         if (resultdata.httpcode == 200) {
-          this.imagePaths.rectifiedimagepath = resultdata.data.uploaded_path;
-          this.commonservice.presentToast("Image Added Successfully!");
+          this.imagePaths.rectifiedimagepath = resultdata.data.uploaded_path;          
         } else {
-          this.commonservice.presentToast("Image Added Failed!");
+          this.commonservice.presentToast("error","Image Added Failed!");
         }
       },
       (err) => {
@@ -168,15 +167,15 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.breakdowndowntimedetailForm.reset();
 
-          this.commonservice.presentToast("Updated Successfully");
+          this.commonservice.presentToast("success","Updated Successfully");
 
           this.dismiss();
         } else {
-          this.commonservice.presentToast("Updation Failed");
+          this.commonservice.presentToast("error","Updation Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("warning","Please Fill the Form");
     }
   }
 

@@ -132,7 +132,7 @@ export class MaintenanceDetailPage implements OnInit {
         this.resetflag = 0;
         this.machineresetid = "";
 
-        this.commonservice.presentToast("Already Job has been Successfully Completed...");
+        this.commonservice.presentToast("info","Already Job has been Successfully Completed...");
 
         this.dismiss();
       }
@@ -215,10 +215,9 @@ export class MaintenanceDetailPage implements OnInit {
 
         if (resultdata.httpcode == 200) {
           this.imagePaths.maintenanceplanningimagepath =
-            resultdata.data.uploaded_path;
-          this.commonservice.presentToast("Image Added Successfully!");
+            resultdata.data.uploaded_path;          
         } else {
-          this.commonservice.presentToast("Image Added Failed!");
+          this.commonservice.presentToast("error","Image Added Failed!");
         }
       },
       (err) => {
@@ -267,11 +266,11 @@ export class MaintenanceDetailPage implements OnInit {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
-        this.commonservice.presentToast("Resetted Successfully...");
+        this.commonservice.presentToast("success","Resetted Successfully...");
 
         this.dismiss();
       } else {
-        this.commonservice.presentToast("Resetted Failed...");
+        this.commonservice.presentToast("error","Resetted Failed...");
       }
     });
   }
@@ -317,15 +316,15 @@ export class MaintenanceDetailPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.maintenancedetailForm.reset();
 
-          this.commonservice.presentToast("Updated Successfully");
+          this.commonservice.presentToast("success","Updated Successfully");
 
           this.dismiss();
         } else {
-          this.commonservice.presentToast("Updation Failed");
+          this.commonservice.presentToast("error","Updation Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("warning","Please Fill the Form");
     }
   }
 

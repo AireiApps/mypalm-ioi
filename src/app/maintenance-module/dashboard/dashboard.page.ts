@@ -79,7 +79,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-
     PushNotifications.removeAllDeliveredNotifications();
 
     this.count = parseInt(localStorage.getItem("badge_count"));
@@ -93,9 +92,8 @@ export class DashboardPage implements OnInit {
   }
 
   ionViewDidEnter() {
-
     PushNotifications.removeAllDeliveredNotifications();
-    
+
     this.count = parseInt(localStorage.getItem("badge_count"));
     this.notifi.updateNotification();
     this.updateNotification();
@@ -173,7 +171,7 @@ export class DashboardPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.dashboardArr = resultdata.data;
       } else {
-        this.commonservice.presentToast("Notifications Not Found...");
+        this.commonservice.presentToast("info", "Notifications Not Found...");
       }
     });
   }
@@ -269,13 +267,16 @@ export class DashboardPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.getcheckinstatus();
 
-          this.commonservice.presentToast("Saved Successfully!");
+          this.commonservice.presentToast("success", "Saved Successfully!");
         } else {
-          this.commonservice.presentToast("Saved Failed!");
+          this.commonservice.presentToast("error", "Saved Failed!");
         }
       });
     } else {
-      this.commonservice.presentToast("Shift selection is Mandatory...");
+      this.commonservice.presentToast(
+        "warning",
+        "Shift selection is Mandatory..."
+      );
     }
   }
 
@@ -296,7 +297,7 @@ export class DashboardPage implements OnInit {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
-        this.commonservice.presentToast("Deleted Successfully...");
+        this.commonservice.presentToast("success","Deleted Successfully...");
 
         this.ionViewDidEnter();
       }
@@ -322,7 +323,7 @@ export class DashboardPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.callmodalcontroller(value);
       } else {
-        this.commonservice.presentToast("Notification Update Failed");
+        this.commonservice.presentToast("error","Notification Update Failed");
       }
     });
   }
@@ -382,7 +383,6 @@ export class DashboardPage implements OnInit {
       }
 
       if (value.redirect == "PERSONAL") {
-
         /*this.router.navigate([
           "/maintenance-personalizedchat",
           { departmentid: value.baseid },

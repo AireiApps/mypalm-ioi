@@ -31,7 +31,7 @@ export class SupervisorBreakdownNewPage implements OnInit {
   breakdowntime = new Date().toISOString();
 
   constructor(
-    private router: Router,    
+    private router: Router,
     private fb: FormBuilder,
     private commonservice: AIREIService,
     private service: SupervisorService,
@@ -170,10 +170,9 @@ export class SupervisorBreakdownNewPage implements OnInit {
           if (type == "ComplainantImage") {
             this.imagePaths.complianantimagepath =
               resultdata.data.uploaded_path;
-          }
-          this.commonservice.presentToast("Image Added Successfully!");
+          }          
         } else {
-          this.commonservice.presentToast("Image Added Failed!");
+          this.commonservice.presentToast("error","Image Added Failed!");
         }
       },
       (err) => {
@@ -227,13 +226,13 @@ export class SupervisorBreakdownNewPage implements OnInit {
 
           this.router.navigate(["/supervisor-breakdown-list"]);
 
-          this.commonservice.presentToast("Inserted Successfully");
+          this.commonservice.presentToast("success", "Inserted Successfully");
         } else {
-          this.commonservice.presentToast("Insertion Failed");
+          this.commonservice.presentToast("error", "Insertion Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("Please Fill the Form");
+      this.commonservice.presentToast("info", "Please Fill the Form");
     }
   }
 

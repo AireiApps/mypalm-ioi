@@ -167,7 +167,7 @@ export class MaintenanceOrderreqAddPage implements OnInit {
       // this.profileForm.reset();
       if (resultdata.httpcode == 200) {
 
-        this.commonservice.presentToast("Saved Successfully!");
+        this.commonservice.presentToast("success","Saved Successfully!");
         
         const arr = <FormArray>this.storeform.controls.itemRows;
         while (arr.length) {
@@ -183,7 +183,7 @@ export class MaintenanceOrderreqAddPage implements OnInit {
 
         this.router.navigate(["/engineerorderreqlist"]);
       } else {
-        this.commonservice.presentToast("Saved Failed!");
+        this.commonservice.presentToast("error","Saved Failed!");
       }
     });
   }
@@ -261,7 +261,7 @@ export class MaintenanceOrderreqAddPage implements OnInit {
       this.storeform.controls.select_unit.setValue("");
       this.storeform.controls.qty.setValue("");
     } else {
-      this.commonservice.presentToast("Pls fill the form!");
+      this.commonservice.presentToast("warning","Please Fill the Form");
     }
   }
 

@@ -270,4 +270,54 @@ export class SupervisorService {
       );
     });
   }
+
+  savewaterconsumption(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);    
+
+    var api = appsettings.savewaterconsumption;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  savedustplant(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);    
+
+    var api = appsettings.savedustplant;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
 }

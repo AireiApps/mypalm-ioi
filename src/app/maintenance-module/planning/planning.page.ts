@@ -59,7 +59,7 @@ export class PlanningPage implements OnInit {
         this.planningArr = resultdata.data;
       } else {
         this.planningArr = [];
-        this.commonservice.presentToast("No Records Found...");
+        this.commonservice.presentToast("info","No Records Found...");
       }
     });
   }

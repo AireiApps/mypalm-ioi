@@ -57,7 +57,7 @@ export class BreakdownListPage implements OnInit {
         this.breakdowndowntimelistArr = resultdata.data;
       } else {
         this.breakdowndowntimelistArr = [];
-        this.commonservice.presentToast("No Records Found...");
+        this.commonservice.presentToast("info","No Records Found...");
       }
     });
   }
