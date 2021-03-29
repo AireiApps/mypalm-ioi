@@ -3,7 +3,6 @@ import { AIREIService } from "../api/api.service";
 import { ModalController } from "@ionic/angular";
 import { Router } from "@angular/router";
 
-import { MaintenanceDetailPage } from "src/app/maintenance-module/maintenance-detail/maintenance-detail.page";
 import { BreakdownDetailPage } from "src/app/maintenance-module/breakdown-detail/breakdown-detail.page";
 import { MaintenanceReportedmaintenanceDetailPage } from "src/app/maintenance-module/maintenance-reportedmaintenance-detail/maintenance-reportedmaintenance-detail.page";
 
@@ -30,37 +29,20 @@ export class NotificationPage implements OnInit {
   ngAfterViewInit(): void {
     localStorage.setItem("badge_count", "0");
 
-    if (this.departmentid == 7) {
-      this.getMaintenanceDashboardNotification();
-    } else if (this.departmentid == 10) {
-      this.getGradingDashboardNotification();
-    } else if (this.departmentid == 15) {
-      this.getManagerDashboardNotification();
-    } else if (this.departmentid == 20) {
-      this.getManagerDashboardNotification();
-    }
+    this.getMaintenanceDashboardNotification();
   }
 
   ionViewDidEnter() {
     localStorage.setItem("badge_count", "0");
 
-    //this.service.presentToast(localStorage.getItem("badge_count"));
-
-    //this.getNotification();
-
-    if (this.departmentid == 7) {
-      this.getMaintenanceDashboardNotification();
-    } else if (this.departmentid == 10) {
-      this.getGradingDashboardNotification();
-    } else if (this.departmentid == 15) {
-      this.getManagerDashboardNotification();
-    }
+    this.getMaintenanceDashboardNotification();
   }
 
   getMaintenanceDashboardNotification() {
     const req = {
       userid: this.userlist.userId,
       departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
     };
 
@@ -70,47 +52,7 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.notificationArr = resultdata.data;
       } else {
-        this.service.presentToast("info","Notifications Not Found...");
-      }
-    });
-  }
-
-  getGradingDashboardNotification() {
-    const req = {
-      userid: this.userlist.userId,
-      departmentid: this.userlist.dept_id,
-      millcode: this.userlist.millcode,
-    };
-
-    //console.log(req);
-
-    this.service.getdashboardnotification(req).then((result) => {
-      let resultdata: any;
-      resultdata = result;
-      if (resultdata.httpcode == 200) {
-        this.notificationArr = resultdata.data;
-      } else {
-        this.service.presentToast("info","Notifications Not Found...");
-      }
-    });
-  }
-
-  getManagerDashboardNotification() {
-    const req = {
-      userid: this.userlist.userId,
-      departmentid: this.userlist.dept_id,
-      millcode: this.userlist.millcode,
-    };
-
-    //console.log(req);
-
-    this.service.getdashboardnotification(req).then((result) => {
-      let resultdata: any;
-      resultdata = result;
-      if (resultdata.httpcode == 200) {
-        this.notificationArr = resultdata.data;
-      } else {
-        this.service.presentToast("info","Notifications Not Found...");
+        this.service.presentToast("info", "Notifications Not Found...");
       }
     });
   }
@@ -118,6 +60,8 @@ export class NotificationPage implements OnInit {
   updateitem(value) {
     let req = {
       user_id: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
       id: value.id,
     };
@@ -130,13 +74,13 @@ export class NotificationPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.callmodalcontroller(value);
       } else {
-        this.service.presentToast("error","Notification Update Failed");
+        this.service.presentToast("error", "Notification Update Failed");
       }
     });
   }
 
   async callmodalcontroller(value) {
-    if (
+    /*if (
       value.redirect == "PREVENTIVE MAINTENANCE" ||
       value.redirect == "NEW JOB ASSIGNMENT"
     ) {
@@ -222,6 +166,6 @@ export class NotificationPage implements OnInit {
 
     if (value.redirect == "HOURLY LAB REPORT" && this.departmentid == 20) {
       this.router.navigate(["/ceo-hourlylabreport"]);
-    }
+    }*/
   }
 }

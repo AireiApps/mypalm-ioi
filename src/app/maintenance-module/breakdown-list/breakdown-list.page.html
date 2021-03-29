@@ -3,9 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="whitefav"></ion-back-button>
     </ion-buttons>
-    <ion-title color="light"
-      >{{ 'BREAKDOWNDOWNTIME.title' | translate}}</ion-title
-    >
+    <ion-title color="light">Breakdown/Downtime</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,8 +15,7 @@
         class="btn btn-outline-danger btn-sm margin-5px"
         (click)="btn_BreakdownDowntime()"
       >
-        <ion-icon name="cog"></ion-icon> {{
-        'BREAKDOWNDOWNTIME.newbreakdowndowntime' | translate}}
+        New Breakdown/Downtime
       </button>
     </ion-col>
   </ion-row>
@@ -38,28 +35,19 @@
           margin-right: 5px;
         "
       >
-        <div class="h7 text-dark">
-          {{ 'BREAKDOWNDOWNTIME.department' | translate}}: {{value.department}}
+        <div class="h7 text-dark">Department: {{value.department}}</div>
+        <div class="h7 text-dark">Zone: {{value.zone}}</div>
+        <div class="h7 text-dark">Station: {{value.station}}</div>
+        <div class="h7 text-dark">Machinery: {{value.machinery}}</div>
+        <div class="h7 text-dark" *ngIf="value.part!=''">
+          Part: {{value.part}}
         </div>
-        <div class="h7 text-dark">
-          {{ 'BREAKDOWNDOWNTIME.station' | translate}}: {{value.stationname}}
-        </div>
-        <div class="h7 text-dark">
-          {{ 'BREAKDOWNDOWNTIME.machinery' | translate}}: {{value.locationname}}
-        </div>
-        <div class="h7 text-dark">
-          {{ 'BREAKDOWNDOWNTIME.part' | translate}}: {{value.part}}
-        </div>
-        <div class="h7 text-dark">
-          {{ 'BREAKDOWNDOWNTIME.breakdowntime' | translate}}:
-          {{value.breakdownTime}}
-        </div>
+        <div class="h7 text-dark">Breakdown Time: {{value.breakdownTime}}</div>
         <div class="h7 text-dark" *ngIf="value.complainantRemarks!=''">
-          {{ 'BREAKDOWNDOWNTIME.complainantremarks' | translate}}:
-          {{value.complainantRemarks}}
+          Complainant Remarks: {{value.complainantRemarks}}
         </div>
         <div class="h7 text-dark" style="float: right">
-          {{ 'BREAKDOWNDOWNTIME.date' | translate}}: {{value.insDate}}
+          Date: {{value.insDate}}
         </div>
       </div>
 
@@ -69,8 +57,7 @@
           class="btn btn-outline-success btn-sm margin-5px"
           (click)="callmodalcontroller(value)"
         >
-          <ion-icon name="document"></ion-icon>
-          {{ 'GENERALBUTTON.updatebutton' | translate}}
+          Update
         </button>
       </ion-row>
     </div>

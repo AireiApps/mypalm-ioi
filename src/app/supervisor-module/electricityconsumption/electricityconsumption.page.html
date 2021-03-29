@@ -1,0 +1,164 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Electricity Consumption</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="h6" style="text-align: center; margin-top: 10px">
+    <b>Date: {{currentdate}}</b>
+  </div> -->
+
+  <ion-card class="card">
+    <form [formGroup]="electricityconsumptionForm">
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">Date <sup>*</sup></div>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_date"
+            display-format="DD-MM-YYYY"
+            placeholder="Select Date"
+          ></ion-datetime>
+        </ion-col>
+
+        <ion-col size="6">
+          <div class="h7 text-dark">Time <sup>*</sup></div>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_time"
+            display-format="HH:00"
+            placeholder="Select Hour"
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select
+            formControlName="select_zone"
+            class="h7 form-control text-dark"
+            (change)="onChangeZone()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of zoneArr" value="{{value.id}}">
+              {{ value.zone }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="uienable == true">
+        <hr />
+
+        <div class="h6" style="text-align: center; margin-top: 10px">
+          <b>Electricity Consumption (kWh)</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Previous</div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              class="h7 form-control readonly"
+              formControlName="txt_previous"
+              value="{{previous}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Current <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_current"
+              (input)="onChangeCurrent()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Variance</div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              class="h7 form-control readonly"
+              formControlName="txt_variance"
+              value="{{variance}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <div *ngIf="overallstatus != ''">
+          <ion-row class="form-row">
+            <ion-col>
+              <div class="h7 text-dark">Overall Status</div>
+            </ion-col>
+            <ion-col>
+              <label class="h7" style="color: #ff0000">{{overallstatus}}</label>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Further Action <sup>*</sup></div>
+          </ion-col>
+          <ion-col>
+            <select
+              formControlName="select_furtheraction"
+              class="h7 form-control"
+              [(ngModel)]="selectaction.form"
+            >
+              <option value="" selected disabled hidden>Select Action</option>
+              <option value="NONE">None</option>
+              <option value="REPORT">Report</option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Remarks</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-info"
+            (click)="save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

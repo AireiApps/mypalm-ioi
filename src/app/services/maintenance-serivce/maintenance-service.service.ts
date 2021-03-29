@@ -22,126 +22,13 @@ export class MaintenanceServiceService {
     return postData;
   }
 
-  getCheckInStatus(params) {
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    //var api = appsettings.sorinsertedlist;
-    var api = appsettings.checkinstatus;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  saveMaintenanceshift(params) {
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-    console.log(reqOpts);
-    var api = appsettings.supervisorshift;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getEmployeeList(params) {
+  getAssignedToList(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.attendance_employee_list;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-          console.log(error);
-          reject(error);
-        }
-      );
-    });
-  }
-
-  attendaceInsert(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-    console.log(reqOpts);
-    var api = appsettings.supervisor_attendace_insert;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getRecentMaintanceList(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.sorlist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  deleteSOR(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    //var api = appsettings.sorinsertedlist;
-    var api = appsettings.deletesor;
+    var api = appsettings.assignedtolist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -161,11 +48,11 @@ export class MaintenanceServiceService {
     });
   }
 
-  getRequestList(params) {
+  getzone(params) {
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.itemrequesttype;
+    var api = appsettings.zonelist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -173,30 +60,6 @@ export class MaintenanceServiceService {
           resolve(data);
         },
         (error) => {
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getMaintenanceCategory(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.maintenancecategorylist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
           console.log(error);
 
           reject(error);
@@ -206,21 +69,17 @@ export class MaintenanceServiceService {
   }
 
   getStationList(params) {
-    this.commonservice.presentLoading();
-
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.stationlist;
+    var api = appsettings.getstationlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
-          this.commonservice.dimmissLoading();
           console.log(data);
           resolve(data);
         },
         (error) => {
-          this.commonservice.dimmissLoading();
           console.log(error);
 
           reject(error);
@@ -229,24 +88,18 @@ export class MaintenanceServiceService {
     });
   }
 
-  getLocation(params) {
-    this.commonservice.presentLoading();
-
+  getMachineryList(params) {
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.locationlist;
+    var api = appsettings.machinerylist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
-          this.commonservice.dimmissLoading();
-
           console.log(data);
           resolve(data);
         },
         (error) => {
-          this.commonservice.dimmissLoading();
-
           console.log(error);
 
           reject(error);
@@ -255,22 +108,18 @@ export class MaintenanceServiceService {
     });
   }
 
-  getItems(params) {
-    this.commonservice.presentLoading();
-
+  getPartList(params) {
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.itemlist;
+    var api = appsettings.partlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
-          this.commonservice.dimmissLoading();
           console.log(data);
           resolve(data);
         },
         (error) => {
-          this.commonservice.dimmissLoading();
           console.log(error);
 
           reject(error);
@@ -279,13 +128,13 @@ export class MaintenanceServiceService {
     });
   }
 
-  saveSOR(params) {
+  getBreakdownDowntimeList(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.sor_insert;
+    var api = appsettings.breakdowndowntimelist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -305,13 +154,13 @@ export class MaintenanceServiceService {
     });
   }
 
-  getRecentStoreListDetails(params) {
+  savebreakdowndowntime(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.sorlist_detail;
+    var api = appsettings.savebreakdowndowntime;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -331,140 +180,13 @@ export class MaintenanceServiceService {
     });
   }
 
-  getMaintenanceObservation(params) {
+  getReportedMaintenanceList(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.maintenanceplanningobservation;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getMaintenanceStatus(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.maintenanceplanningstatus;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getPersonIncharge(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.employeelist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getMaintenancePlanning(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.maintenanceplanninglist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  resetMachineRunningHours(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.resetmachinerunninghours;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  savemaintenanceplanning(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.maintenanceplanningupdate;
+    var api = appsettings.reportedmaintenancelist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -509,6 +231,55 @@ export class MaintenanceServiceService {
     });
   }
 
+  getMaintenanceObservation(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.maintenanceplanningobservation;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getMaintenanceCategory(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.maintenancecategorylist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
   getMaintenanceType(params) {
     this.commonservice.presentLoading();
 
@@ -520,84 +291,6 @@ export class MaintenanceServiceService {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
           this.commonservice.dimmissLoading();
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  saveBroadCastCommunication(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-    console.log(reqOpts);
-    var api = appsettings.supevisorcommunication;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  savePersonalizedCommunication(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-    console.log(reqOpts);
-    var api = appsettings.couchbasesupevisorcommunication;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getAssignedTo(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.employeelist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
           console.log(data);
           resolve(data);
         },
@@ -638,197 +331,13 @@ export class MaintenanceServiceService {
     });
   }
 
-  getBreakdownDowntimeList(params) {
+  getLocation(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.breakdowndowntimelist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data)
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          //console.log(error)
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  savebreakdowndowntime(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.savebreakdowndowntime;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getCommunicationList(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.communicationlist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  updateDepartmentNotification(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.updatedepartmentnotification;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          //console.log(data);
-
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getDepartmentCommunicationList(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.departmentcommunicationlist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          //console.log(data);
-
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getChatDepartment(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.chatdepartmentlist;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getDepartmentName(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.getdepartmentname;
-    return new Promise((resolve, reject) => {
-      this.httpClient.post(api, reqOpts).subscribe(
-        (data) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(data);
-          resolve(data);
-        },
-        (error) => {
-          this.commonservice.dimmissLoading();
-
-          console.log(error);
-
-          reject(error);
-        }
-      );
-    });
-  }
-
-  getReportedMaintenanceList(params) {
-    this.commonservice.presentLoading();
-
-    var reqOpts: any;
-    reqOpts = this.formParams(params);
-
-    var api = appsettings.reportedmaintenancelist;
+    var api = appsettings.locationlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {

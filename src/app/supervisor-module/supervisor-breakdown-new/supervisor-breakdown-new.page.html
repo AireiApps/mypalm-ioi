@@ -1,11 +1,9 @@
 <ion-header>
   <ion-toolbar class="bg-brown-color">
     <ion-buttons slot="start">
-      <ion-back-button color="whitefav"></ion-back-button>
+      <ion-back-button color="whitefav" (click)="goback()"></ion-back-button>
     </ion-buttons>
-    <ion-title color="light"
-      >{{ 'BREAKDOWNDOWNTIME.newbreakdowndowntime' | translate}}</ion-title
-    >
+    <ion-title color="light">Breakdown / Downtime</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,23 +11,20 @@
   <form [formGroup]="newbreakdowndowntimeForm">
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.department' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark">Zone <sup>*</sup></div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
         <select
-          formControlName="select_department"
+          formControlName="select_zone"
           class="h7 text-dark form-control"
+          (change)="onChangeZone()"
         >
-          <option value="" selected disabled hidden>
-            {{ 'BREAKDOWNDOWNTIME.selectdepartment' | translate}}
-          </option>
-          <option value="{{item.id}}" *ngFor="let item of departmentArr">
-            {{ item.deparment }}
+          <option value="" selected disabled hidden>Select</option>
+          <option value="{{item.id}}" *ngFor="let item of zoneArr">
+            {{ item.zone }}
           </option>
         </select>
       </div>
@@ -37,9 +32,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.station' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark">Station <sup>*</sup></div>
       </div>
     </div>
 
@@ -50,11 +43,9 @@
           class="h7 text-dark form-control"
           (change)="onChangeStation()"
         >
-          <option value="" selected disabled hidden>
-            {{ 'BREAKDOWNDOWNTIME.selectstation' | translate}}
-          </option>
-          <option value="{{item.station_id}}" *ngFor="let item of stationArr">
-            {{ item.station_name }}
+          <option value="" selected disabled hidden>Select</option>
+          <option value="{{item.id}}" *ngFor="let item of stationArr">
+            {{ item.station }}
           </option>
         </select>
       </div>
@@ -62,9 +53,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.machinery' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark">Machinery <sup>*</sup></div>
       </div>
     </div>
 
@@ -75,45 +64,39 @@
           class="h7 text-dark form-control"
           (change)="onChangeMachinery()"
         >
-          <option value="" selected disabled hidden>
-            {{ 'BREAKDOWNDOWNTIME.selectmachinery' | translate}}
+          <option value="" selected disabled hidden>Select</option>
+          <option value="{{item.id}}" *ngFor="let item of machineryArr">
+            {{ item.machinery }}
           </option>
-          <option
-            value="{{item.location_id}}"
-            *ngFor="let item of machineryArr"
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="partflag==true">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">Part <sup>*</sup></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_part"
+            class="h7 text-dark form-control"
           >
-            {{ item.location_name }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.part' | translate}} <sup>*</sup></b>
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{ parseString(item)}}" *ngFor="let item of partArr">
+              {{ item.part }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <select formControlName="select_part" class="h7 text-dark form-control">
-          <option value="" selected disabled hidden>
-            {{ 'BREAKDOWNDOWNTIME.selectpart' | translate}}
-          </option>
-          <option value="{{item.item_id}}" *ngFor="let item of partArr">
-            {{ item.item_name }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.breakdowntime' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark">Breakdown Time <sup>*</sup></div>
       </div>
     </div>
 
@@ -128,9 +111,7 @@
     </div>
 
     <div class="form-row imgmarigin">
-      <label class="h7 text-dark"
-        ><b>{{ 'BREAKDOWNDOWNTIME.complainantimage' | translate}}</b></label
-      >
+      <label class="h7 text-dark">Complainant Image</label>
       <div class="container">
         <div class="row">
           <div class="col-sm-8 nopadding" style="text-align: right">
@@ -153,7 +134,7 @@
         <div class="row">
           <div class="col-sm-4 nopadding" style="text-align: right">
             <label class="btn btn-warning">
-              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+              Upload<input
                 type="button"
                 class="uploadFile img"
                 value="Upload Photo"
@@ -168,12 +149,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b
-            >{{ 'BREAKDOWNDOWNTIME.complainantremarks' | translate}}
-            <sup>*</sup></b
-          >
-        </div>
+        <div class="h7 text-dark">Complainant Remarks <sup>*</sup></div>
       </div>
     </div>
 
@@ -190,9 +166,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.assignedto' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark">Assigned To <sup>*</sup></div>
       </div>
     </div>
 
@@ -202,14 +176,12 @@
           formControlName="select_assignedto"
           class="h7 text-dark form-control"
         >
-          <option value="" selected disabled hidden>
-            {{ 'BREAKDOWNDOWNTIME.selectassignedto' | translate}}
-          </option>
+          <option value="" selected disabled hidden>Select</option>
           <option
             value="{{parseString(value)}}"
             *ngFor="let value of assignedtoArr"
           >
-            {{ value.user_name }}
+            {{ value.name }}
           </option>
         </select>
       </div>
@@ -218,11 +190,11 @@
     <div style="text-align: center">
       <button
         type="submit"
-        class="btn btn-success"
+        class="btn btn-info"
         (click)="save()"
         style="margin-top: 10px; margin-bottom: 10px"
       >
-        {{ 'GENERALBUTTON.savebutton' | translate}}
+        Save
       </button>
     </div>
   </form>

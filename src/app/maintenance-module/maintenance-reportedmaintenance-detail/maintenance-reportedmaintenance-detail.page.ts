@@ -23,10 +23,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
     rectifiedimagepath: "",
   };
 
-  shiftid = localStorage.getItem("shiftid");
-  shiftdate = localStorage.getItem("shiftdate");
-
-  department = "";
+  zone = "";
   category = "";
   station = "";
   machinery = "Details";
@@ -79,27 +76,28 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
 
     console.log(req);
 
-    this.service.getReportedMaintenanceList(req).then((result) => {
+    this.service.getBreakdownDowntimeList(req).then((result) => {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
-        this.department = resultdata.data[0].department;
+        this.zone = resultdata.data[0].zone;
         this.category = resultdata.data[0].category;
-        this.station = resultdata.data[0].stationname;
-        this.machinery = resultdata.data[0].locationname;
-        this.part = resultdata.data[0].locationname;
+        this.station = resultdata.data[0].station;
+        this.machinery = resultdata.data[0].machinery;        
+        this.part = resultdata.data[0].part;
         this.breakdowntime = resultdata.data[0].breakdownTime;
         this.complainantremarks = resultdata.data[0].complainantRemarks;
         this.complainantimage = resultdata.data[0].complainantimage;
         this.requesteduser = resultdata.data[0].breakdownRequestedUser;
       } else {
-        this.department = "";
+        this.zone = "";
         this.category = "";
         this.station = "";
         this.machinery = "Details";
-        this.part = "";
+        this.part = "";        
         this.breakdowntime = "";
         this.complainantremarks = "";
+        this.complainantimage = "";
         this.requesteduser = "";
 
         this.commonservice.presentToast("info","No Records Found...");
@@ -108,7 +106,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
   }
 
   ImageUpload(type) {
-    this.imgUpload.ImageUploadMaintenancePlanning(type).then(
+    this.imgUpload.genericImageUpload(type).then(
       (result) => {
         var resultdata: any;
         resultdata = result;
@@ -140,14 +138,14 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
       ).format("YYYY-MM-DD HH:mm:00");
 
       var req = {
-        user_id: this.userlist.userId,
+        userid: this.userlist.userId,
+        departmentid: this.userlist.dept_id,
+        userzoneid: this.userlist.zoneid,
         millcode: this.userlist.millcode,
-        dept_id: this.userlist.dept_id,
-        category_id: 3,
-        station_id: 0,
-        location_id: 0,
-        machine_id: 0,
-        part_id: 0,
+        zoneid: "0",
+        stationid: 0,
+        machineid: "0",
+        categoryid: 3,
         breakdowntime: this.getrectifiedtime,
         rectifiedtime: this.getrectifiedtime,
         complainant_remarks: this.complainantremarks,
@@ -155,7 +153,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         rectifiedimagepath: this.imagePaths.rectifiedimagepath,
         breakdownid: this.breakdownid,
         assignedto: 0,
-        assignedto_deptid:0,
+        assignedtodeptid:0,
       };
 
       //console.log(req);

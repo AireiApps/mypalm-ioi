@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Breakdown / Downtime</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newbreakdowndowntimeForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Zone</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="h7 form-control text-dark readonly" value="{{zonename}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Station</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="h7 form-control text-dark readonly" value="{{stationname}}" readonly/>        
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Machinery</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">        
+        <input type="text" class="h7 form-control text-dark readonly" value="{{machineryname}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Breakdown Time <sup>*</sup></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_breakdowntime"
+          display-format="DD-MM-YYYY HH:mm"
+        ></ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row imgmarigin">
+      <label class="h7 text-dark">Complainant Image</label>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 nopadding" style="text-align: right">
+            <div
+              class="imagePreview"
+              *ngIf="imagePaths.complianantimagepath == ''"
+            ></div>
+            <div
+              class="imagePresent"
+              *ngIf="imagePaths.complianantimagepath != ''"
+            >
+              <img
+                class="imagePresent"
+                [src]="imagePaths.complianantimagepath"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 nopadding" style="text-align: right">
+            <label class="btn btn-warning">
+              Upload<input
+                type="button"
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('ComplainantImage')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Complainant Remarks <sup>*</sup></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <textarea
+          class="h7 form-control"
+          formControlName="tacomplaintremarks"
+          rows="4"
+          autosize
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">Assigned To <sup>*</sup></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_assignedto"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>Select</option>
+          <option
+            value="{{parseString(value)}}"
+            *ngFor="let value of assignedtoArr"
+          >
+            {{ value.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <button
+        type="submit"
+        class="btn btn-info"
+        (click)="save()"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</ion-content>

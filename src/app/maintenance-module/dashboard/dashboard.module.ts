@@ -8,8 +8,6 @@ import { DashboardPageRoutingModule } from "./dashboard-routing.module";
 
 import { DashboardPage } from "./dashboard.page";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +15,6 @@ import { TranslateModule } from "@ngx-translate/core";
     ReactiveFormsModule,
     IonicModule,
     DashboardPageRoutingModule,
-    TranslateModule,
   ],
   declarations: [DashboardPage],
 })

@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 import { AIREIService } from "src/app/api/api.service";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-maintenance-report",
@@ -22,82 +21,25 @@ export class MaintenanceReportPage implements OnInit {
     /*{
       title: this.translate.instant("REPORTS.jobdonereport"),
       path: "/maintenance-jobdonereport",
-    },*/
+    },
     {
       title: "Breakdown List",
       path: "/report-maintenance-breakdownlist",
-    },
+    },*/
     {
       title: "Breakdown Report",
       path: "/report-maintenance-breakdown",
     },
     {
-      title: "Boiler Log Report",
-      path: "/report-maintenance-boilerlog",
-    },
-    {
-      title: "VS Information Cycle",
-      path: "/ceo-vsinformationcycle",
-    },
-    {
-      title: "Hourly Report",
-      path: "/report-maintenance-hourly",
-    },
-    {
-      title: "Lab Hourly Report",
-      path: "/report-labhourlyreport",
-    },
-    {
-      title: "Lab Daily Report",
-      path: "/report-labdailyreport",
-    },
-    {
-      title: "Scheduling Report",
-      path: "/scheduling-report",
-    },
-    {
-      title: "SOP Compliance Report",
-      path: "/report-sopcompliance",
-    },
-    {
-      title: "Checklist Report",
-      path: "/report-maintenance-checklistreport",
-    },
-  ];
-
-  foremanArr = [
-    {
-      title: this.translate.instant("REPORTS.jobdonereport"),
-      path: "/maintenance-jobdonereport",
-    },
-  ];
-
-  chargemanArr = [
-    {
-      title: this.translate.instant("REPORTS.jobdonereport"),
-      path: "/maintenance-jobdonereport",
-    },
-  ];
-
-  maintenanceplannerArr = [
-    {
-      title: this.translate.instant("REPORTS.jobdonereport"),
-      path: "/maintenance-jobdonereport",
-    },
-  ];
-
-  operatorArr = [
-    {
-      title: this.translate.instant("REPORTS.jobdonereport"),
-      path: "/maintenance-jobdonereport",
+      title: "Predictive Maintenance Report",
+      path: "/predictivemaintenancereport",
     },
   ];
 
   constructor(
     private zone: NgZone,
     private router: Router,
-    private service: AIREIService,
-    private translate: TranslateService
+    private service: AIREIService
   ) {}
 
   ngOnInit() {}

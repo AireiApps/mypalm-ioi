@@ -64,6 +64,7 @@
 
       <ion-row class="rowalign">
         <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Plant 1</div>
           <div
             class="imagePreview"
             *ngIf="imagePaths.plantone_path == ''"
@@ -78,18 +79,19 @@
               class="uploadFile img"
               value="Upload Photo"
               style="width: 0px; height: 0px; overflow: hidden; display: none"
-              (click)="imageupload('SalesImage')"
+              (click)="imageupload('plantone')"
             />
           </label>
         </ion-col>
 
         <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Plant 2</div>
           <div
             class="imagePreview"
-            *ngIf="imagePaths.plantone_path == ''"
+            *ngIf="imagePaths.planttwo_path == ''"
           ></div>
-          <div class="imagePresent" *ngIf="imagePaths.plantone_path != ''">
-            <img class="imagePresent" [src]="imagePaths.plantone_path" />
+          <div class="imagePresent" *ngIf="imagePaths.planttwo_path != ''">
+            <img class="imagePresent" [src]="imagePaths.planttwo_path" />
           </div>
 
           <label class="btn btn-warning">
@@ -98,7 +100,7 @@
               class="uploadFile img"
               value="Upload Photo"
               style="width: 0px; height: 0px; overflow: hidden; display: none"
-              (click)="imageupload('SalesImage')"
+              (click)="imageupload('planttwo')"
             />
           </label>
         </ion-col>
@@ -106,6 +108,7 @@
 
       <ion-row class="rowalign">
         <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Plant 3</div>
           <div
             class="imagePreview"
             *ngIf="imagePaths.plantthree_path == ''"
@@ -120,12 +123,13 @@
               class="uploadFile img"
               value="Upload Photo"
               style="width: 0px; height: 0px; overflow: hidden; display: none"
-              (click)="imageupload('SalesImage')"
+              (click)="imageupload('plantthree')"
             />
           </label>
         </ion-col>
 
         <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Plant 4</div>
           <div
             class="imagePreview"
             *ngIf="imagePaths.plantfour_path == ''"
@@ -140,14 +144,15 @@
               class="uploadFile img"
               value="Upload Photo"
               style="width: 0px; height: 0px; overflow: hidden; display: none"
-              (click)="imageupload('SalesImage')"
+              (click)="imageupload('plantfour')"
             />
           </label>
         </ion-col>
       </ion-row>
 
-      <ion-row class="rowalign">
+      <ion-row class="rowalign">        
         <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Plant 5</div>
           <div
             class="imagePreview"
             *ngIf="imagePaths.plantfive_path == ''"
@@ -162,7 +167,7 @@
               class="uploadFile img"
               value="Upload Photo"
               style="width: 0px; height: 0px; overflow: hidden; display: none"
-              (click)="imageupload('SalesImage')"
+              (click)="imageupload('plantfive')"
             />
           </label>
         </ion-col>

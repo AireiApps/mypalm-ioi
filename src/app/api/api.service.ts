@@ -829,7 +829,7 @@ export class AIREIService {
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
       message: "Loading...",
-      duration: 2000,
+      duration: 1000,
       spinner: "circles",
       cssClass: "my-loading-class",
     });

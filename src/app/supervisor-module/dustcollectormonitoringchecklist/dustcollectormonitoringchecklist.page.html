@@ -8,260 +8,328 @@
 </ion-header>
 
 <ion-content>
-  <div class="h6" style="text-align: center; margin-top: 10px">
-    <b>Year: {{currentyear}}</b>
-  </div>
-
   <ion-card class="card">
     <form [formGroup]="dustcollectorForm">
       <ion-row class="form-row">
         <ion-col size="6">
-          <div class="h7 text-dark">Month <sup>*</sup></div>
+          <div class="h7 text-dark">Date <sup>*</sup></div>
           <ion-datetime
             class="h7 form-control"
-            formControlName="txt_month"
-            display-format="MM"
-            placeholder="Select Month"
+            formControlName="txt_date"
+            display-format="DD-MM-YYYY"
+            placeholder="Select Date"
           ></ion-datetime>
         </ion-col>
+
         <ion-col size="6">
-          <div class="h7 text-dark">Week <sup>*</sup></div>
-          <select formControlName="select_week" class="h7 form-control">
-            <option value="" selected disabled hidden>Select</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </ion-col>
-      </ion-row>
-
-      <hr/>
-
-      <div class="h7 text-dark" style="text-align: center">
-        <b>Pressure (mmHg/H2O)</b>
-      </div>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Pressure IN <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter Pressure IN"
+          <div class="h7 text-dark">Time <sup>*</sup></div>
+          <ion-datetime
             class="h7 form-control"
-            formControlName="txt_pressurein"
-          />
+            formControlName="txt_time"
+            display-format="HH:00"
+            placeholder="Select Hour"
+          ></ion-datetime>
         </ion-col>
       </ion-row>
 
       <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Pressure OUT <sup>*</sup></div>
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
         </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter Pressure OUT"
-            class="h7 form-control"
-            formControlName="txt_pressureout"
-          />
-        </ion-col>
-      </ion-row>
-
-      <hr />
-
-      <div class="h7 text-dark" style="text-align: center">
-        <b>Temperature (<sup>o</sup>C)</b>
-      </div>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">PT.1 <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter PT.1"
-            class="h7 form-control"
-            formControlName="txt_pt1"
-          />
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">PT.2 <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter PT.2"
-            class="h7 form-control"
-            formControlName="txt_pt2"
-          />
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">PT.3 <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter PT.3"
-            class="h7 form-control"
-            formControlName="txt_pt3"
-          />
-        </ion-col>
-      </ion-row>
-
-      <hr />
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Velocity (m/s) <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter Velocity"
-            class="h7 form-control"
-            formControlName="txt_velocity"
-          />
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Blower Current (Amp) <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
-          <input
-            type="number"
-            placeholder="Enter Blower Current"
-            class="h7 form-control"
-            formControlName="txt_blowercurrent"
-          />
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Opacity/Stack Condition <sup>*</sup></div>
-        </ion-col>
-
-        <ion-col>
+        <ion-col size="7">
           <select
-            formControlName="select_opacity"
+            formControlName="select_zone"
             class="h7 form-control text-dark"
+            (change)="onChangeZone()"
           >
             <option value="" selected disabled hidden>Select</option>
-            <option *ngFor="let value of conditionArr" value="{{value.id}}">
-              {{ value.status }}
+            <option *ngFor="let value of zoneArr" value="{{value.id}}">
+              {{ value.zone }}
             </option>
           </select>
         </ion-col>
       </ion-row>
 
       <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">
-            Discharge Hopper Condition <sup>*</sup>
-          </div>
+        <ion-col size="5">
+          <div class="h7 text-dark">Station <sup>*</sup></div>
         </ion-col>
-
-        <ion-col>
+        <ion-col size="7">
           <select
-            formControlName="select_dischargehopper"
-            class="h7 form-control text-dark"
+            formControlName="select_station"
+            class="h7 text-dark form-control"
+            (change)="onChangeStation()"
           >
             <option value="" selected disabled hidden>Select</option>
-            <option *ngFor="let value of conditionArr" value="{{value.id}}">
-              {{ value.status }}
+            <option value="{{item.id}}" *ngFor="let item of stationArr">
+              {{ item.station }}
             </option>
           </select>
         </ion-col>
       </ion-row>
 
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Bearings Fan Condition <sup>*</sup></div>
-        </ion-col>
+      <div *ngIf="uienable == true">
+        <hr />
 
-        <ion-col>
-          <select
-            formControlName="select_bearingfancondition"
-            class="h7 form-control text-dark"
-          >
-            <option value="" selected disabled hidden>Select</option>
-            <option *ngFor="let value of conditionArr" value="{{value.id}}">
-              {{ value.status }}
-            </option>
-          </select>
-        </ion-col>
-      </ion-row>
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Pressure (mmHg/H2O)</b>
+        </div>
 
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Any Leakages <sup>*</sup></div>
-        </ion-col>
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">IN <sup>*</sup></div>
+          </ion-col>
 
-        <ion-col>
-          <select
-            formControlName="select_leakges"
-            class="h7 form-control text-dark"
-          >
-            <option value="" selected disabled hidden>Select</option>
-            <option
-              *ngFor="let value of maintainArr"
-              value="{{value.id}}"
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter Pressure IN"
+              class="h7 form-control"
+              formControlName="txt_pressurein"
+              (input)="onChangePressureIn()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">OUT <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter Pressure OUT"
+              class="h7 form-control"
+              formControlName="txt_pressureout"
+              (input)="onChangePressureOut()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Variance <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              class="h7 form-control readonly"
+              formControlName="txt_variance"
+              value="{{variance}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Temperature (<sup>o</sup>C)</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">PT.1 (Top Cyclone) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter PT.1"
+              class="h7 form-control"
+              formControlName="txt_pt1"
+              (input)="onChangePT1()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">PT.2 (Top C-Ducting <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter PT.2"
+              class="h7 form-control"
+              formControlName="txt_pt2"
+              (input)="onChangePT2()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">PT.3 (Chimney) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter PT.3"
+              class="h7 form-control"
+              formControlName="txt_pt3"
+              (input)="onChangePT3()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Blower Fan</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Part <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <select
+              formControlName="select_part"
+              class="h7 form-control text-dark"
             >
-              {{ value.status }}
-            </option>
-          </select>
-        </ion-col>
-      </ion-row>
+              <option value="" selected disabled hidden>Select</option>
+              <option
+                *ngFor="let value of partblowerfanArr"
+                value="{{value.partsid}}"
+              >
+                {{ value.partsname }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
 
-      <ion-row class="form-row">
-        <ion-col>
-          <div class="h7 text-dark">Any Corrosion <sup>*</sup></div>
-        </ion-col>
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Amperage (A) <sup>*</sup></div>
+          </ion-col>
 
-        <ion-col>
-          <select
-            formControlName="select_corrosion"
-            class="h7 form-control text-dark"
-          >
-            <option value="" selected disabled hidden>Select</option>
-            <option
-              *ngFor="let value of maintainArr"
-              value="{{value.id}}"
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter Amperage"
+              class="h7 form-control"
+              formControlName="txt_amperage"
+              (input)="onChangeBlowerFan()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Air Velocity</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">End-Pipe <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter End-Pipe"
+              class="h7 form-control"
+              formControlName="txt_endpipe"
+              (input)="onChangeEndPipe()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">1st Down-Pipe <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter 1st Down-Pipe"
+              class="h7 form-control"
+              formControlName="txt_firstdownpipe"
+              (input)="onChangeFirstDownPipe()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">20th Down-Pipe <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col>
+            <input
+              type="number"
+              placeholder="Enter 20th Down-Pipe"
+              class="h7 form-control"
+              formControlName="txt_twentydownpipe"
+              (input)="onChangeTwentyDownPipe()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div *ngIf="overallstatus != ''">
+          <ion-row class="form-row">
+            <ion-col>
+              <div class="h7 text-dark">Overall Status</div>
+            </ion-col>
+            <ion-col>
+              <label class="h7" style="color: #ff0000">{{overallstatus}}</label>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Further Action <sup>*</sup></div>
+          </ion-col>
+          <ion-col>
+            <select
+              formControlName="select_furtheraction"
+              class="h7 form-control"
+              [(ngModel)]="selectaction.form"
             >
-              {{ value.status }}
-            </option>
-          </select>
-        </ion-col>
-      </ion-row>
+              <option value="" selected disabled hidden>Select Action</option>
+              <option value="NONE">None</option>
+              <option value="REPORT">Report</option>
+            </select>
+          </ion-col>
+        </ion-row>
 
-      <div style="text-align: center">
-        <button
-          type="submit"
-          class="btn btn-info"
-          (click)="save()"
-          style="margin-top: 10px; margin-bottom: 10px"
-        >
-          Save
-        </button>
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Remarks <sup>*</sup></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-info"
+            (click)="save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            Save
+          </button>
+        </div>
       </div>
     </form>
   </ion-card>

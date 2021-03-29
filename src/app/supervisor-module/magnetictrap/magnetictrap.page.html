@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Magnetic Traps Inspection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <form [formGroup]="magnetictrapForm">
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">Date <sup>*</sup></div>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_date"
+            display-format="DD-MM-YYYY"
+            placeholder="Select Date"
+          ></ion-datetime>
+        </ion-col>
+
+        <ion-col size="6">
+          <div class="h7 text-dark">Time <sup>*</sup></div>
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_time"
+            display-format="HH:00"
+            placeholder="Select Hour"
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="6">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="6">
+          <select
+            formControlName="select_zone"
+            class="h7 form-control text-dark"
+            (change)="onChangeZone()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of zoneArr" value="{{value.id}}">
+              {{ value.zone }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <hr />
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">Station</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_station"
+            class="h7 text-dark form-control"
+            (change)="onChangeStation()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of stationArr">
+              {{ item.station }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px">
+        <div class="col">
+          <div class="h7 text-dark">Machinery</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_machinery"
+            class="h7 text-dark form-control"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of machineryArr">
+              {{ item.machinery }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px">
+        <div class="col">
+          <div class="h7 text-dark">Scrap Metal Collection (Kg)</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="number"
+            class="h7 form-control readonly"
+            formControlName="txt_scrapmetalcollection"
+            (input)="onChangeScrapMetal()"
+          />
+        </div>
+      </div>
+
+      <div *ngIf="overallstatus != ''" style="margin-top: 10px">
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Overall Status</div>
+          </div>
+
+          <div class="col">
+            <label class="h7" style="color: #ff0000">{{overallstatus}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px">
+        <div class="col">
+          <div class="h7 text-dark">Further Action <sup>*</sup></div>
+        </div>
+        <div class="col">
+          <select
+            formControlName="select_furtheraction"
+            class="h7 form-control"
+            [(ngModel)]="selectaction.form"
+          >
+            <option value="" selected disabled hidden>Select Action</option>
+            <option value="NONE">None</option>
+            <option value="REPORT">Report</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px">
+        <div class="col">
+          <div class="h7 text-dark">Remarks <sup>*</sup></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea
+            class="h7 form-control"
+            formControlName="ta_remarks"
+            rows="4"
+            autosize
+          ></textarea>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-info"
+          (click)="save()"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

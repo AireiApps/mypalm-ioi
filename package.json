@@ -34,7 +34,6 @@
     "@ionic-native/file-path": "^5.25.0",
     "@ionic-native/file-transfer": "^5.25.0",
     "@ionic-native/geolocation": "^5.26.0",
-    "@ionic-native/keyboard": "^5.30.0",
     "@ionic-native/local-notifications": "^5.26.0",
     "@ionic-native/market": "^5.31.1",
     "@ionic-native/media-capture": "^5.27.0",
@@ -65,7 +64,6 @@
     "cordova-plugin-filepath": "^1.5.8",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-inappbrowser": "^4.0.0",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^4.0.0",
     "cordova-plugin-media-capture": "^3.0.3",
     "cordova-plugin-nativestorage": "^2.3.2",
@@ -101,7 +99,6 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-market": "^1.2.0",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -132,7 +129,6 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-datepicker": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
@@ -149,9 +145,7 @@
       "cordova-plugin-media-capture": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
-      "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      "phonegap-plugin-barcodescanner": {}
     },
     "platforms": [
       "android"

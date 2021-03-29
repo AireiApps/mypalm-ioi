@@ -22,13 +22,13 @@ export class SupervisorService {
     return postData;
   }
 
-  savekcp(params) {
+  savenirpke(params) {
     this.commonservice.presentLoading();
 
     var reqOpts: any;
     reqOpts = this.formParams(params);    
 
-    var api = appsettings.savekcp;
+    var api = appsettings.savenirpke;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -51,7 +51,7 @@ export class SupervisorService {
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.stationlist;
+    var api = appsettings.getstationlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -112,6 +112,46 @@ export class SupervisorService {
     reqOpts = this.formParams(params);
 
     var api = appsettings.departmentlist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getMachineryList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.machinerylist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getPartList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.partlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -205,11 +245,37 @@ export class SupervisorService {
     });
   }
 
-  getConditionStatusList(params) {
+  getAssignedToList(params) {
+    this.commonservice.presentLoading();
+
     var reqOpts: any;
     reqOpts = this.formParams(params);
 
-    var api = appsettings.conditionlist;
+    var api = appsettings.assignedtolist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getPartBlowerFanList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.partblowerfanlist;
     return new Promise((resolve, reject) => {
       this.httpClient.post(api, reqOpts).subscribe(
         (data) => {
@@ -296,6 +362,31 @@ export class SupervisorService {
     });
   }
 
+  saveelectricityconsumption(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);    
+
+    var api = appsettings.saveelectricityconsumption;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
   savedustplant(params) {
     this.commonservice.presentLoading();
 
@@ -311,6 +402,169 @@ export class SupervisorService {
           resolve(data);
         },
         (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+  
+  getzone(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.zonelist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getfutheraction(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.furtheractionlist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getdustsettingdetails(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.dustsettingdetails;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getwaterconsumptionprevious(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.previouswaterconsumption;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  saveMagneticTrap(params) {
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);    
+
+    var api = appsettings.savemagnetictrap;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          this.commonservice.dimmissLoading();
+          
+          resolve(data);
+        },
+        (error) => {
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getDustPlantReport(params) {
+
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.dustplantimage;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+
+          this.commonservice.dimmissLoading();
+
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+
+          this.commonservice.dimmissLoading();
+
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getbreakdownqrcodescandetails(params) {
+
+    this.commonservice.presentLoading();
+
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.breakdownqrcodescandetails;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+
+          this.commonservice.dimmissLoading();
+
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+
           this.commonservice.dimmissLoading();
 
           console.log(error);

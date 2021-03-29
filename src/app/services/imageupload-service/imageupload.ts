@@ -53,7 +53,7 @@ export class ImageUploadService {
     private mediaCapture: MediaCapture
   ) {}
 
-  ImageUploadMaintenancePlanning(imgtype) {
+  genericImageUpload(imgtype) {
     return new Promise((resolve, reject) => {
       var options = {
         quality: 100,
@@ -78,8 +78,6 @@ export class ImageUploadService {
             millcode: this.userlist.millcode,
           };
 
-          console.log(reqparam);
-
           var options = {
             fileKey: "upload_filename",
             fileName: filename,
@@ -101,71 +99,7 @@ export class ImageUploadService {
             },
             (err) => {
               reject(err);
-              this.commonservice.presentToast(
-                "error",
-                "Error while uploading file."
-              );
-            }
-          );
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
-  }
-
-  genericImageUpload(imgtype) {
-    return new Promise((resolve, reject) => {
-      var options = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        sourceType: this.camera.PictureSourceType.CAMERA,
-        saveToPhotoAlbum: false,
-        correctOrientation: true,
-        targetWidth: 500,
-        targetHeight: 500,
-        encodingType: this.camera.EncodingType.JPEG,
-      };
-      this.camera.getPicture(options).then(
-        (imageData) => {
-          var url = appsettings.generic_image_upload;
-
-          var filename = imageData;
-          var targetPath;
-          targetPath = imageData;
-
-          let reqparam = {
-            image_type: imgtype,
-          };
-
-          console.log(reqparam);
-
-          var options = {
-            fileKey: "upload_filename",
-            fileName: filename,
-            chunkedMode: false,
-            mimeType: "multipart/form-data",
-            params: reqparam,
-          };
-          console.log(reqparam);
-          const fileTransfer: FileTransferObject = this.transfer.create();
-          this.commonservice.presentLoading();
-
-          fileTransfer.upload(targetPath, url, options).then(
-            (data) => {
-              this.commonservice.dimmissLoading();
-              var resultdata: any;
-              resultdata = data;
-              console.log(JSON.stringify(resultdata.response));
-              resolve(resultdata);
-            },
-            (err) => {
-              reject(err);
-              this.commonservice.presentToast(
-                "error",
-                "Error while uploading file."
-              );
+              this.commonservice.presentToast("error","Error while uploading file.");
             }
           );
         },

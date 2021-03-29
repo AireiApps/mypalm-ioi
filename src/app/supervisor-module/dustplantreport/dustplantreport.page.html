@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dust Plant Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="dustplantForm">
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="pickdate"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+
+      <div class="col">
+        <div>
+          <button
+            type="button"
+            class="btn btn-outline-info btn-sm margin-5px float-right"
+            (click)="callAPI()"
+          >
+            <ion-icon name="filter"></ion-icon>
+            Get Record
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ion-card class="card" *ngFor="let value of dustreportlist">
+    <div class="form-row imgmarigin">
+      <div class="h7 text-dark">Stack Appearance</div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 nopadding" style="text-align: right">
+            <div class="imagePreview" *ngIf="value.stack_apperance == ''"></div>
+            <div class="imagePresent" *ngIf="value.stack_apperance != ''">
+              <img class="imagePresent" src="{{value.stack_apperance}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="h7 text-dark" style="text-align: left; padding-left: 10px">
+      Plant Appearance
+    </div>
+
+    <ion-row class="rowalign">
+      <ion-col style="padding: 0px; text-align: center">
+        <div class="h7 colmarginbottom text-muted">Plant 1</div>
+        <div class="imagePreview" *ngIf="value.plant_appearance1 == ''"></div>
+        <div class="imagePresent" *ngIf="value.plant_appearance1 != ''">
+          <img class="imagePresent" src="{{value.plant_appearance1}}" />
+        </div>
+      </ion-col>
+
+      <ion-col style="padding: 0px; text-align: center">
+        <div class="h7 colmarginbottom text-muted">Plant 2</div>
+        <div class="imagePreview" *ngIf="value.plant_appearance2 == ''"></div>
+        <div class="imagePresent" *ngIf="value.plant_appearance2 != ''">
+          <img class="imagePresent" src="{{value.plant_appearance2}}" />
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="rowalign">
+      <ion-col style="padding: 0px; text-align: center">
+        <div class="h7 colmarginbottom text-muted">Plant 3</div>
+        <div class="imagePreview" *ngIf="value.plant_appearance3 == ''"></div>
+        <div class="imagePresent" *ngIf="value.plant_appearance3 != ''">
+          <img class="imagePresent" src="{{value.plant_appearance3}}" />
+        </div>
+      </ion-col>
+
+      <ion-col style="padding: 0px; text-align: center">
+        <div class="h7 colmarginbottom text-muted">Plant 4</div>
+        <div class="imagePreview" *ngIf="value.plant_appearance4 == ''"></div>
+        <div class="imagePresent" *ngIf="value.plant_appearance4 != ''">
+          <img class="imagePresent" src="{{value.plant_appearance4}}" />
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="rowalign">
+      <ion-col style="padding: 0px; text-align: center">
+        <div class="h7 colmarginbottom text-muted">Plant 5</div>
+        <div class="imagePreview" *ngIf="value.plant_appearance5 == ''"></div>
+        <div class="imagePresent" *ngIf="value.plant_appearance5 != ''">
+          <img class="imagePresent" src="{{value.plant_appearance5}}" />
+        </div>
+      </ion-col>
+
+      <ion-col style="padding: 0px; text-align: center"> </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

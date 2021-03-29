@@ -100,8 +100,7 @@ export class DustplantPage implements OnInit {
         userid: this.userlist.userId,
         departmentid: this.userlist.dept_id,
         millcode: this.userlist.millcode,
-        plant: this.userlist.plant,
-        plantid: this.userlist.plantid,
+        zone: this.userlist.zoneid,
         stackappearance: this.imagePaths.stackappearance_path,
         plantappearanceone: this.imagePaths.plantone_path,
         plantappearancetwo: this.imagePaths.planttwo_path,
@@ -129,7 +128,7 @@ export class DustplantPage implements OnInit {
             "Dust Plant Images Inserted Successfully"
           );
 
-          this.router.navigate(["tabs/tabsupervisiorhome"]);
+          this.router.navigate(["tabs/tabsupervisordashboard"]);
         } else {
           this.commonservice.presentToast(
             "error",

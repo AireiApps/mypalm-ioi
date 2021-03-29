@@ -3,10 +3,10 @@ export class appsettings {
   //public static API_ENDPOINT = "http://103.27.72.29:9091/";
 
   /*Online*/
-  //public static API_ENDPOINT = "http://103.27.72.29:8080/";
+  //public static API_ENDPOINT = "http://103.27.72.29:9092/";
 
   /*Offline*/
-  public static API_ENDPOINT = "http://192.168.0.106:8082/";
+  public static API_ENDPOINT = "http://192.168.0.110:9092/";
 
   public static MILL_NAME = "MyPalm - IOI";
 
@@ -425,9 +425,9 @@ export class appsettings {
 
   /*Recently Developed*/
 
-  public static savekcp = appsettings.API_ENDPOINT + "save_kcp";
+  public static savenirpke = appsettings.API_ENDPOINT + "insert_pkeproduction";
 
-  public static conditionlist = appsettings.API_ENDPOINT + "condition_status";
+  public static partblowerfanlist = appsettings.API_ENDPOINT + "get_part";
 
   public static maintainlist = appsettings.API_ENDPOINT + "maintain_status";
 
@@ -435,5 +435,31 @@ export class appsettings {
 
   public static savewaterconsumption = appsettings.API_ENDPOINT + "insert_water_consumption";
 
+  public static saveelectricityconsumption = appsettings.API_ENDPOINT + "insert_electricity_consumption";
+
   public static savedustplant = appsettings.API_ENDPOINT + "insert_dust_plant_images";
+
+  public static dustplantimage = appsettings.API_ENDPOINT + "get_dust_plant imagepath";
+
+  public static machinerylist = appsettings.API_ENDPOINT + "machinary_list";
+
+  public static partlist = appsettings.API_ENDPOINT + "parts_list";
+
+  public static assignedtolist = appsettings.API_ENDPOINT + "assigned_user";
+
+  public static zonelist = appsettings.API_ENDPOINT + "get_zone";
+
+  public static getstationlist = appsettings.API_ENDPOINT + "get_station";
+
+  public static furtheractionlist = appsettings.API_ENDPOINT + "further_action";
+
+  public static previouswaterconsumption = appsettings.API_ENDPOINT + "consumption_previous_value";
+
+  public static dustsettingdetails = appsettings.API_ENDPOINT + "get_threshold_settings";
+
+  public static savemagnetictrap = appsettings.API_ENDPOINT + "insert_magnetic_trap_inspection";
+
+  public static breakdownqrcodescandetails = appsettings.API_ENDPOINT + "get_breakdown_qrcode_scan";
+  
+  
 }

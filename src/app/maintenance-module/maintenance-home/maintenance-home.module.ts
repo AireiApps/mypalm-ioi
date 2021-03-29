@@ -8,15 +8,12 @@ import { MaintenanceHomePageRoutingModule } from './maintenance-home-routing.mod
 
 import { MaintenanceHomePage } from './maintenance-home.page';
 
-import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MaintenanceHomePageRoutingModule,
-    TranslateModule
+    MaintenanceHomePageRoutingModule
   ],
   declarations: [MaintenanceHomePage]
 })

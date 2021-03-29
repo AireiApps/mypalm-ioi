@@ -1,10 +1,5 @@
 <ion-tabs *ngIf="getTabCheck('Maintenance')">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tabmaintenancedashboard">
-      <ion-icon name="grid-outline"></ion-icon>
-      <ion-label>Dashboard</ion-label>
-    </ion-tab-button>
-
     <ion-tab-button tab="tabmaintenancehome">
       <ion-icon name="home"></ion-icon>
       <ion-label>Home</ion-label>
@@ -20,11 +15,6 @@
 <ion-tabs *ngIf="getTabCheck('Production')">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tabsupervisordashboard">
-      <ion-icon name="grid-outline"></ion-icon>
-      <ion-label>Dashboard</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="tabsupervisiorhome">
       <ion-icon name="home"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
@@ -35,4 +25,3 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
-

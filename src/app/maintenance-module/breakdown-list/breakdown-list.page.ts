@@ -8,35 +8,31 @@ import { MaintenanceServiceService } from "src/app/services/maintenance-serivce/
 import { BreakdownDetailPage } from "src/app/maintenance-module/breakdown-detail/breakdown-detail.page";
 
 @Component({
-  selector: 'app-breakdown-list',
-  templateUrl: './breakdown-list.page.html',
-  styleUrls: ['./breakdown-list.page.scss'],
+  selector: "app-breakdown-list",
+  templateUrl: "./breakdown-list.page.html",
+  styleUrls: ["./breakdown-list.page.scss"],
 })
 export class BreakdownListPage implements OnInit {
-
   userlist = JSON.parse(localStorage.getItem("userlist"));
-  shiftid = localStorage.getItem("shiftid");
-  shiftdate = localStorage.getItem("shiftdate");
 
-  breakdowndowntimelistArr=[];
+  breakdowndowntimelistArr = [];
 
   constructor(
     public modalController: ModalController,
     private alertController: AlertController,
-    private zone: NgZone,    
+    private zone: NgZone,
     private router: Router,
-    private commonservice: AIREIService,    
+    private commonservice: AIREIService,
     private service: MaintenanceServiceService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngAfterViewInit(): void {    
+  ngAfterViewInit(): void {
     this.getBreakdownDowntime();
   }
 
-  ionViewDidEnter() {    
+  ionViewDidEnter() {
     this.getBreakdownDowntime();
   }
 
@@ -45,10 +41,12 @@ export class BreakdownListPage implements OnInit {
       user_id: this.userlist.userId,
       millcode: this.userlist.millcode,
       dept_id: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       category_id: 4,
-      language: this.userlist.language,
-      breakdownid	: 0,
+      breakdownid: 0,
     };
+
+    console.log(req);
 
     this.service.getBreakdownDowntimeList(req).then((result) => {
       var resultdata: any;
@@ -57,13 +55,12 @@ export class BreakdownListPage implements OnInit {
         this.breakdowndowntimelistArr = resultdata.data;
       } else {
         this.breakdowndowntimelistArr = [];
-        this.commonservice.presentToast("info","No Records Found...");
+        this.commonservice.presentToast("info", "No Records Found...");
       }
     });
   }
 
-  btn_BreakdownDowntime()
-  {
+  btn_BreakdownDowntime() {
     this.router.navigate(["/breakdown-new"]);
   }
 
@@ -71,7 +68,7 @@ export class BreakdownListPage implements OnInit {
     const modal = await this.modalController.create({
       component: BreakdownDetailPage,
       componentProps: {
-        breakdownid : value.breakdown        
+        breakdownid: value.breakdown,
       },
     });
 
@@ -81,5 +78,4 @@ export class BreakdownListPage implements OnInit {
 
     return await modal.present();
   }
-
 }

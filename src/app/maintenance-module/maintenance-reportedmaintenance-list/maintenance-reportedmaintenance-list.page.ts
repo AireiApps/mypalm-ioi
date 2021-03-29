@@ -43,11 +43,12 @@ export class MaintenanceReportedmaintenanceListPage implements OnInit {
       user_id: this.userlist.userId,
       millcode: this.userlist.millcode,
       dept_id: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       category_id: 3,
       breakdownid: 0,
     };
 
-    this.service.getReportedMaintenanceList(req).then((result) => {
+    this.service.getBreakdownDowntimeList(req).then((result) => {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {

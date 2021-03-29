@@ -3,7 +3,6 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
-import { LanguageService } from "./services/language-service/language.service";
 import { Badge } from '@ionic-native/badge/ngx';
 
 import {
@@ -62,21 +61,12 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private localNotifications: LocalNotifications,
     private badge: Badge,
-    private languageService: LanguageService
   ) {
     this.initializeApp();
 
     //this.languageService.setInitialAppLanguage();
 
     this.badge.clear();
-
-    if (localStorage.getItem("userlist") == null) {
-      this.languageService.setInitialAppLanguage();
-    } else {
-      this.languageService.setLanguage(
-        JSON.parse(localStorage.getItem("userlist")).language
-      );
-    }
   }
 
   initializeApp() {

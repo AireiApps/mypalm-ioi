@@ -14,18 +14,6 @@ const routes_maintenance: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: "tabmaintenancedashboard",
-        children: [
-          {
-            path: "",
-            loadChildren: () =>
-              import("../maintenance-module/dashboard/dashboard.module").then(
-                (m) => m.DashboardPageModule
-              ),
-          },
-        ],
-      },
-      {
         path: "tabmaintenancehome",
         children: [
           {
@@ -49,7 +37,7 @@ const routes_maintenance: Routes = [
       },
       {
         path: "",
-        redirectTo: "/tabs/tabmaintenancedashboard",
+        redirectTo: "/tabs/tabmaintenancehome",
         pathMatch: "full",
       },
     ],
@@ -76,19 +64,6 @@ const routes_Production: Routes = [
         ],
       },
       {
-        path: "tabsupervisiorhome",
-        children: [
-          {
-            path: "",
-            // tslint:disable-next-line: max-line-length
-            loadChildren: () =>
-              import(
-                "../supervisor-module/supervisor-home/supervisor-home.module"
-              ).then((m) => m.SupervisorHomePageModule),
-          },
-        ],
-      },
-      {
         path: "tab3",
         children: [
           {
@@ -111,7 +86,7 @@ const routes_Production: Routes = [
 
 if (userlist) {
   if (userlist.department) {
-   if (userlist.department == "Maintenance") {
+    if (userlist.department == "Maintenance") {
       newRoutes = routes_maintenance;
     } else if (userlist.department == "Production") {
       newRoutes = routes_Production;

@@ -40,13 +40,6 @@ const routes: Routes = [
       import("./more/more.module").then((m) => m.MorePageModule),
   },
   {
-    path: "supervisor-home",
-    loadChildren: () =>
-      import("./supervisor-module/supervisor-home/supervisor-home.module").then(
-        (m) => m.SupervisorHomePageModule
-      ),
-  },
-  {
     path: "forgotpassword",
     loadChildren: () =>
       import("./forgot-password/forgotpassword/forgotpassword.module").then(
@@ -61,39 +54,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: "reporthome",
-    loadChildren: () =>
-      import("./supervisor-module/reporthome/reporthome.module").then(
-        (m) => m.ReporthomePageModule
-      ),
-  },
-  {
     path: "dashboard",
     loadChildren: () =>
       import("./maintenance-module/dashboard/dashboard.module").then(
         (m) => m.DashboardPageModule
       ),
-  },
-  {
-    path: "maintenance-detail",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-detail/maintenance-detail.module"
-      ).then((m) => m.MaintenanceDetailPageModule),
-  },
-  {
-    path: "broadcastcommunicationreport",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/broadcastcommunicationreport/broadcastcommunicationreport.module"
-      ).then((m) => m.BroadcastcommunicationreportPageModule),
-  },
-  {
-    path: "personalizecommunicationreport",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/personalizecommunicationreport/personalizecommunicationreport.module"
-      ).then((m) => m.PersonalizecommunicationreportPageModule),
   },
   {
     path: "maintenance-home",
@@ -110,60 +75,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: "planning",
-    loadChildren: () =>
-      import("./maintenance-module/planning/planning.module").then(
-        (m) => m.PlanningPageModule
-      ),
-  },
-  {
-    path: "maintenance-attendance",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-attendance/maintenance-attendance.module"
-      ).then((m) => m.MaintenanceAttendancePageModule),
-  },
-  {
-    path: "maintenance-orderreq-list",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-orderreq-list/maintenance-orderreq-list.module"
-      ).then((m) => m.MaintenanceOrderreqListPageModule),
-  },
-  {
     path: "maintenance-addnewjob",
     loadChildren: () =>
       import(
         "./maintenance-module/maintenance-addnewjob/maintenance-addnewjob.module"
       ).then((m) => m.MaintenanceAddnewjobPageModule),
-  },
-  {
-    path: "maintenance-orderreq-add",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-orderreq-add/maintenance-orderreq-add.module"
-      ).then((m) => m.MaintenanceOrderreqAddPageModule),
-  },
-  {
-    path: "maintenance-orderreq-detail",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-orderreq-detail/maintenance-orderreq-detail.module"
-      ).then((m) => m.MaintenanceOrderreqDetailPageModule),
-  },
-  {
-    path: "requestitemhistory-report",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/requestitemhistory-report/requestitemhistory-report.module"
-      ).then((m) => m.RequestitemhistoryReportPageModule),
-  },
-  {
-    path: "maintenanceorder-details",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenanceorder-details/maintenanceorder-details.module"
-      ).then((m) => m.MaintenanceorderDetailsPageModule),
   },
   {
     path: "breakdown-list",
@@ -184,13 +100,6 @@ const routes: Routes = [
     loadChildren: () =>
       import("./maintenance-module/breakdown-new/breakdown-new.module").then(
         (m) => m.BreakdownNewPageModule
-      ),
-  },
-  {
-    path: "schedule",
-    loadChildren: () =>
-      import("./maintenance-module/schedule/schedule.module").then(
-        (m) => m.SchedulePageModule
       ),
   },
   {
@@ -278,55 +187,6 @@ const routes: Routes = [
       ).then((m) => m.ReportMaintenanceBreakdownPageModule),
   },
   {
-    path: "report-maintenance-boilerlog",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/report-maintenance-boilerlog/report-maintenance-boilerlog.module"
-      ).then((m) => m.ReportMaintenanceBoilerlogPageModule),
-  },
-  {
-    path: "report-maintenance-hourly",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/report-maintenance-hourly/report-maintenance-hourly.module"
-      ).then((m) => m.ReportMaintenanceHourlyPageModule),
-  },
-  {
-    path: "report-labhourlyreport",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/report-labhourlyreport/report-labhourlyreport.module"
-      ).then((m) => m.ReportLabhourlyreportPageModule),
-  },
-  {
-    path: "report-labdailyreport",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/report-labdailyreport/report-labdailyreport.module"
-      ).then((m) => m.ReportLabdailyreportPageModule),
-  },
-  {
-    path: "scheduling-report",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/scheduling-report/scheduling-report.module"
-      ).then((m) => m.SchedulingReportPageModule),
-  },
-  {
-    path: "maintenance-checklist",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/maintenance-checklist/maintenance-checklist.module"
-      ).then((m) => m.MaintenanceChecklistPageModule),
-  },
-  {
-    path: "report-maintenance-checklistreport",
-    loadChildren: () =>
-      import(
-        "./maintenance-module/report-maintenance-checklistreport/report-maintenance-checklistreport.module"
-      ).then((m) => m.ReportMaintenanceChecklistreportPageModule),
-  },
-  {
     path: "nirpkeproductioncalibration",
     loadChildren: () =>
       import(
@@ -353,6 +213,174 @@ const routes: Routes = [
       import("./supervisor-module/dustplant/dustplant.module").then(
         (m) => m.DustplantPageModule
       ),
+  },
+  {
+    path: "qrcodescanner",
+    loadChildren: () =>
+      import("./supervisor-module/qrcodescanner/qrcodescanner.module").then(
+        (m) => m.QrcodescannerPageModule
+      ),
+  },
+  {
+    path: "stationallocation",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/stationallocation/stationallocation.module"
+      ).then((m) => m.StationallocationPageModule),
+  },
+  {
+    path: "machinery-search",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/machinery-search/machinery-search.module"
+      ).then((m) => m.MachinerySearchPageModule),
+  },
+  {
+    path: "presstaperheadchecklist",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/presstaperheadchecklist/presstaperheadchecklist.module"
+      ).then((m) => m.PresstaperheadchecklistPageModule),
+  },
+  {
+    path: "electricityconsumption",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/electricityconsumption/electricityconsumption.module"
+      ).then((m) => m.ElectricityconsumptionPageModule),
+  },
+  {
+    path: "magnetictrap",
+    loadChildren: () =>
+      import("./supervisor-module/magnetictrap/magnetictrap.module").then(
+        (m) => m.MagnetictrapPageModule
+      ),
+  },
+  {
+    path: "nirpkeproductionreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/nirpkeproductionreport/nirpkeproductionreport.module"
+      ).then((m) => m.NirpkeproductionreportPageModule),
+  },
+  {
+    path: "pkeindividualspotcheck",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/pkeindividualspotcheck/pkeindividualspotcheck.module"
+      ).then((m) => m.PkeindividualspotcheckPageModule),
+  },
+  {
+    path: "pkeindividualspotcheckreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/pkeindividualspotcheckreport/pkeindividualspotcheckreport.module"
+      ).then((m) => m.PkeindividualspotcheckreportPageModule),
+  },
+  {
+    path: "dustcollectormonitoringchecklistreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/dustcollectormonitoringchecklistreport/dustcollectormonitoringchecklistreport.module"
+      ).then((m) => m.DustcollectormonitoringchecklistreportPageModule),
+  },
+  {
+    path: "presstaperheadchecklistreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/presstaperheadchecklistreport/presstaperheadchecklistreport.module"
+      ).then((m) => m.PresstaperheadchecklistreportPageModule),
+  },
+  {
+    path: "dustplantreport",
+    loadChildren: () =>
+      import("./supervisor-module/dustplantreport/dustplantreport.module").then(
+        (m) => m.DustplantreportPageModule
+      ),
+  },
+  {
+    path: "electricityconsumptionreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/electricityconsumptionreport/electricityconsumptionreport.module"
+      ).then((m) => m.ElectricityconsumptionreportPageModule),
+  },
+  {
+    path: "waterconsumptionreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/waterconsumptionreport/waterconsumptionreport.module"
+      ).then((m) => m.WaterconsumptionreportPageModule),
+  },
+  {
+    path: "magnetictrapreport",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/magnetictrapreport/magnetictrapreport.module"
+      ).then((m) => m.MagnetictrapreportPageModule),
+  },
+  {
+    path: "productionhome",
+    loadChildren: () =>
+      import("./supervisor-module/productionhome/productionhome.module").then(
+        (m) => m.ProductionhomePageModule
+      ),
+  },
+  {
+    path: "maintenancehome",
+    loadChildren: () =>
+      import("./supervisor-module/maintenancehome/maintenancehome.module").then(
+        (m) => m.MaintenancehomePageModule
+      ),
+  },
+  {
+    path: "supervisor-reports",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/supervisor-reports/supervisor-reports.module"
+      ).then((m) => m.SupervisorReportsPageModule),
+  },
+  {
+    path: "production-reports",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/production-reports/production-reports.module"
+      ).then((m) => m.ProductionReportsPageModule),
+  },
+  {
+    path: "maintenance-reports",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/maintenance-reports/maintenance-reports.module"
+      ).then((m) => m.MaintenanceReportsPageModule),
+  },
+  {
+    path: "supervisor-history",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/supervisor-history/supervisor-history.module"
+      ).then((m) => m.SupervisorHistoryPageModule),
+  },
+  {
+    path: "supervisor-breakdown-detail",
+    loadChildren: () =>
+      import(
+        "./supervisor-module/supervisor-breakdown-detail/supervisor-breakdown-detail.module"
+      ).then((m) => m.SupervisorBreakdownDetailPageModule),
+  },
+  {
+    path: "preventivemaintenance",
+    loadChildren: () =>
+      import(
+        "./maintenance-module/preventivemaintenance/preventivemaintenance.module"
+      ).then((m) => m.PreventivemaintenancePageModule),
+  },
+  {
+    path: "predictivemaintenancereport",
+    loadChildren: () =>
+      import(
+        "./maintenance-module/predictivemaintenancereport/predictivemaintenancereport.module"
+      ).then((m) => m.PredictivemaintenancereportPageModule),
   },
 ];
 

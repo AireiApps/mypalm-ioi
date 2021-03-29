@@ -3,17 +3,12 @@ import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { AIREIService } from "../api/api.service";
-import { Platform } from "@ionic/angular";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { LanguageService } from "src/app/services/language-service/language.service";
 
 import { PopoverController } from "@ionic/angular";
-import { LanguagePopoverPage } from "src/app/pages/language-popover/language-popover.page";
 import { TranslateService } from "@ngx-translate/core";
 import { Storage } from "@ionic/storage";
-import { appsettings } from "../appsettings";
-
-const LNG_KEY = "SELECTED_LANGUAGE";
 
 @Component({
   selector: "app-login",
@@ -49,58 +44,17 @@ export class LoginPage implements OnInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.callAPI();
-  }
-
-  callAPI() {
-    this.service.getDepartment().then((result) => {
-      let resultdata: any;
-      resultdata = result;
-      if (resultdata.httpcode == 200) {
-        this.departmentArr = resultdata.data;
-      }
-    });
   }
 
   btn_login() {
-    //console.log(this.languageService.selected);
-
-    var selectedlanguageid = "1";
-    var selectedlanguage = "English";
-
-    if (this.loginForm.value.millcode == "") {
-      this.service.presentToast(
-        "error",
-        this.translate.instant("LOGIN.millcodeerrortoast")
-      );
-      return;
-    }
-
-    if (this.loginForm.value.username == "") {
-      this.service.presentToast(
-        "error",
-        this.translate.instant("LOGIN.usernameerrortoast")
-      );
-      return;
-    }
-
-    if (this.loginForm.value.password == "") {
-      this.service.presentToast(
-        "error",
-        this.translate.instant("LOGIN.passworderrortoast")
-      );
-      return;
-    }
-
     var req = {
-      millcode: "1001",
+      millcode: "1010",
       username: this.loginForm.value.username,
       password: this.loginForm.value.password,
-      language: selectedlanguage,
-      languageid: selectedlanguageid,
+      languageid: "1",
     };
 
-    console.log(req);
+    //console.log(req);
 
     this.service.signIn(req).then((result) => {
       var resultdata: any;
@@ -131,15 +85,5 @@ export class LoginPage implements OnInit {
         this.service.presentToast("error", "Login Failed!");
       }
     });
-  }
-
-  async openLanguagePopOver($event) {
-    console.log($event);
-
-    const popover = await this.popoverController.create({
-      component: LanguagePopoverPage,
-      event: $event,
-    });
-    await popover.present();
   }
 }

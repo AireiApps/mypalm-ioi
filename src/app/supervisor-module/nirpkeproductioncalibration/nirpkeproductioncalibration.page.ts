@@ -38,17 +38,16 @@ export class NirpkeproductioncalibrationPage implements OnInit {
       var req = {
         userid: this.userlist.userId,
         departmentid: this.userlist.dept_id,
-        millcode: this.userlist.millcode,
-        plant: this.userlist.plant,
-        plantid: this.userlist.plantid,
+        millcode: this.userlist.millcode,        
+        zone: this.userlist.zoneid,
         time: this.nirpkeproductioncalibrationForm.value.txt_kcptime,
-        oc: this.nirpkeproductioncalibrationForm.value.txt_oc,
-        m: this.nirpkeproductioncalibrationForm.value.txt_m,
+        kcp_oc: this.nirpkeproductioncalibrationForm.value.txt_oc,
+        kcp_m: this.nirpkeproductioncalibrationForm.value.txt_m,
       };
 
       //console.log(req);
 
-      this.service.savekcp(req).then((result) => {
+      this.service.savenirpke(req).then((result) => {
         var resultdata: any;
         resultdata = result;
 
@@ -64,7 +63,7 @@ export class NirpkeproductioncalibrationPage implements OnInit {
             "KCP Inserted Successfully"
           );
 
-          this.router.navigate(["tabs/tabsupervisiorhome"]);
+          this.router.navigate(["tabs/tabsupervisordashboard"]);
         } else {
           this.commonservice.presentToast("error", "KCP Insert Failed");
         }

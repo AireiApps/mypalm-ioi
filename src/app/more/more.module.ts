@@ -8,16 +8,8 @@ import { MorePageRoutingModule } from "./more-routing.module";
 
 import { MorePage } from "./more.page";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MorePageRoutingModule,
-    TranslateModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, MorePageRoutingModule],
   declarations: [MorePage],
 })
 export class MorePageModule {}

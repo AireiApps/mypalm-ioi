@@ -1,5 +1,5 @@
 .home-box {
-  padding: 5px 5px 5px 5px;  
+  padding: 5px 5px 5px 5px;
 }
 .img-home {
   margin: 0px 28px 0px 28px;
@@ -22,9 +22,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */
-}
-.bg-light-color {
-  --color: var(--ion-color-lightorange);
 }
 
 div.item {
@@ -61,7 +58,7 @@ img {
 }
 
 .bg-yellow {
-  background-color: #474747;
+  background-color: #000000;
   padding: 10px;
 }
 .card-height {
@@ -71,7 +68,7 @@ img {
 }
 
 .bg-light-color {
-  --color: var(--ion-color-light-contrast);
+  --color: var(--ion-color-white);
 }
 
 .lbl-head {
@@ -101,8 +98,7 @@ img {
   padding: 0.6rem;
 }
 
-p 
-{
+p {
   font-size: 10px;
 }
 

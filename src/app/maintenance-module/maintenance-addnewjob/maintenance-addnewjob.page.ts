@@ -24,10 +24,9 @@ export class MaintenanceAddnewjobPage implements OnInit {
   addnewjobForm;
 
   categoryArr = [];
-  departmentArr = [];
+  zoneArr = [];
   stationArr = [];
   machineryArr = [];
-  //partArr = [];
   observationArr = [];
   typeArr = [];
 
@@ -48,9 +47,9 @@ export class MaintenanceAddnewjobPage implements OnInit {
     this.addnewjobForm = this.fb.group({
       txt_plandate: new FormControl(this.plandate),
       select_category: new FormControl("", Validators.required),
-      select_department: new FormControl("", Validators.required),
+      select_zone: new FormControl("", Validators.required),
       select_station: new FormControl("", Validators.required),
-      select_machinery: new FormControl(""),
+      select_machinery: new FormControl("", Validators.required),
       // select_part: new FormControl("", Validators.required),
       select_observation: new FormControl("", Validators.required),
       select_type: new FormControl("", Validators.required),
@@ -83,8 +82,9 @@ export class MaintenanceAddnewjobPage implements OnInit {
   getCategory() {
     const req = {
       user_id: this.userlist.userId,
-      millcode: this.userlist.millcode,
       dept_id: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      millcode: this.userlist.millcode,
     };
 
     this.service.getMaintenanceCategory(req).then((result) => {
@@ -92,31 +92,45 @@ export class MaintenanceAddnewjobPage implements OnInit {
       resultdata = result;
       if (resultdata.httpcode == 200) {
         this.categoryArr = resultdata.data;
-        this.getDepartment();
+        this.getZone();
+      } else {
+        this.getZone();
       }
     });
   }
 
-  getDepartment() {
+  getZone() {
     const req = {
-      user_id: this.userlist.userId,
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
-      dept_id: this.userlist.dept_id,
+      type: 0,
     };
 
-    this.service.getDepartment(req).then((result) => {
+    this.service.getzone(req).then((result) => {
       let resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
-        this.departmentArr = resultdata.data;
-        this.getStation();
+        this.zoneArr = resultdata.data;
+
+        this.getObservation();
+      } else {
+        this.getObservation();
       }
     });
   }
 
   getStation() {
+    let zone = JSON.parse(this.addnewjobForm.value.select_zone);
+
     const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      userzoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
+      zoneid: zone.id,
+      type: 0,
     };
 
     this.service.getStationList(req).then((result) => {
@@ -124,7 +138,6 @@ export class MaintenanceAddnewjobPage implements OnInit {
       resultdata = result;
       if (resultdata.httpcode == 200) {
         this.stationArr = resultdata.data;
-        this.getObservation();
       }
     });
   }
@@ -133,11 +146,15 @@ export class MaintenanceAddnewjobPage implements OnInit {
     let station = JSON.parse(this.addnewjobForm.value.select_station);
 
     const req = {
-      stationid: station.station_id,
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
+      stationid: station.id,
+      type: 0,
     };
 
-    this.service.getLocation(req).then((result) => {
+    this.service.getMachineryList(req).then((result) => {
       let resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
@@ -146,27 +163,12 @@ export class MaintenanceAddnewjobPage implements OnInit {
     });
   }
 
-  // getParts() {
-  //   const req = {
-  //     millcode: this.userlist.millcode,
-  //     stationid: this.addnewjobForm.value.select_station,
-  //     locationid: this.addnewjobForm.value.select_machinery,
-  //   };
-
-  //   this.service.getItems(req).then((result) => {
-  //     let resultdata: any;
-  //     resultdata = result;
-  //     if (resultdata.httpcode == 200) {
-  //       this.partArr = resultdata.data;
-  //     }
-  //   });
-  // }
-
   getObservation() {
     const req = {
-      user_id: this.userlist.userId,
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
-      dept_id: this.userlist.dept_id,
     };
 
     this.service.getMaintenanceObservation(req).then((result) => {
@@ -177,15 +179,17 @@ export class MaintenanceAddnewjobPage implements OnInit {
         this.getType();
       } else {
         this.observationArr = [];
+        this.getType();
       }
     });
   }
 
   getType() {
     const req = {
-      user_id: this.userlist.userId,
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
-      dept_id: this.userlist.dept_id,
     };
 
     this.service.getMaintenanceType(req).then((result) => {
@@ -194,18 +198,21 @@ export class MaintenanceAddnewjobPage implements OnInit {
       if (resultdata.httpcode == 200) {
         this.typeArr = resultdata.data;
         this.getAssignedTo();
+      } else {
+        this.getAssignedTo();
       }
     });
   }
 
   getAssignedTo() {
     const req = {
-      user_id: this.userlist.userId,
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
-      dept_id: this.userlist.dept_id,
     };
 
-    this.service.getAssignedTo(req).then((result) => {
+    this.service.getAssignedToList(req).then((result) => {
       let resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
@@ -214,38 +221,38 @@ export class MaintenanceAddnewjobPage implements OnInit {
     });
   }
 
-  onChangeStation() {
-    //this.partArr = [];
+  onChangeZone() {
+    this.stationArr = [];
+
     this.machineryArr = [];
 
-    //this.addnewjobForm.controls.select_part.setValue("");
+    this.addnewjobForm.controls.select_station.setValue("");
+    this.addnewjobForm.controls.select_machinery.setValue("");
+
+    this.getStation();
+  }
+
+  onChangeStation() {
+    this.machineryArr = [];
+
     this.addnewjobForm.controls.select_machinery.setValue("");
 
     this.getMachinery();
   }
-
-  /*onChangeMachinery() {
-    this.partArr = [];
-
-    this.addnewjobForm.controls.select_part.setValue("");
-
-    this.getParts();
-  }*/
 
   get formArr() {
     return this.addnewjobForm.get("itemRows") as FormArray;
   }
 
   initItemRows(value) {
+    console.log(value.select_machinery);
+
     return this.fb.group({
       select_category: new FormControl(
         value.select_category,
         Validators.required
       ),
-      select_department: new FormControl(
-        value.select_department,
-        Validators.required
-      ),
+      select_zone: new FormControl(value.select_zone, Validators.required),
       select_station: new FormControl(
         value.select_station,
         Validators.required
@@ -273,72 +280,64 @@ export class MaintenanceAddnewjobPage implements OnInit {
       this.formArr.push(this.initItemRows(this.addnewjobForm.value));
       this.addnewjobForm.controls.select_machinery.setValue("");
     } else {
-      this.commonservice.presentToast("warning","Please Fill the Form...");
+      this.commonservice.presentToast("warning", "Please Fill the Form...");
     }
   }
 
   save() {
     let item_machineryArr = [];
 
-    if (this.addnewjobForm.valid) {
-      this.getplandate = moment(this.addnewjobForm.value.txt_plandate).format(
-        "YYYY-MM-DD HH:mm:00"
+    this.getplandate = moment(this.addnewjobForm.value.txt_plandate).format(
+      "YYYY-MM-DD HH:mm:00"
+    );
+
+    const rowcontrol = this.addnewjobForm.get("itemRows");
+
+    for (let i = 0; i < rowcontrol.length; i++) {
+      const controlsub = <FormGroup>this.addnewjobForm.get(["itemRows", i]);
+      const eachmachinery = JSON.parse(
+        controlsub.get("select_machinery").value
       );
 
-      const rowcontrol = this.addnewjobForm.get("itemRows");
-
-      for (let i = 0; i < rowcontrol.length; i++) {
-        const controlsub = <FormGroup>this.addnewjobForm.get(["itemRows", i]);
-        const eachmachinery = JSON.parse(
-          controlsub.get("select_machinery").value
-        );
-
-        item_machineryArr.push(eachmachinery.location_id);
-      }
-
-      var req = {
-        user_id: this.userlist.userRoleId,
-        millcode: this.userlist.millcode,
-        department_id: this.userlist.dept_id,
-        plandate: this.getplandate,
-        foreman_dept_id: JSON.parse(this.addnewjobForm.value.select_department)
-          .id,
-        station_id: JSON.parse(this.addnewjobForm.value.select_station)
-          .station_id,
-        machine_id: item_machineryArr.join(","),
-        part_id: 0,
-        observation: JSON.parse(this.addnewjobForm.value.select_observation)
-          .observationid,
-        typeid: JSON.parse(this.addnewjobForm.value.select_type).typeid,
-        remarks: this.addnewjobForm.value.taremarks,
-        assignedto: JSON.parse(this.addnewjobForm.value.select_assignedto)
-          .user_id,
-        assignedto_deptid: JSON.parse(
-          this.addnewjobForm.value.select_assignedto
-        ).dept_id,
-        categoryid: JSON.parse(this.addnewjobForm.value.select_category)
-          .categoryid,
-      };
-
-      console.log(req);
-
-      this.service.savenewjob(req).then((result) => {
-        var resultdata: any;
-        resultdata = result;
-
-        if (resultdata.httpcode == 200) {
-          this.addnewjobForm.reset();
-
-          this.commonservice.presentToast("success","Job Added Successfully");
-
-          this.dismiss();
-        } else {
-          this.commonservice.presentToast("error","Job Addition Failed");
-        }
-      });
-    } else {
-      this.commonservice.presentToast("warning","Please Fill the Form");
+      item_machineryArr.push(eachmachinery.id);
     }
+
+    var req = {
+      user_id: this.userlist.userRoleId,
+      millcode: this.userlist.millcode,
+      department_id: this.userlist.dept_id,
+      plandate: this.getplandate,
+      categoryid: JSON.parse(this.addnewjobForm.value.select_category)
+        .categoryid,
+      zoneid: JSON.parse(this.addnewjobForm.value.select_zone).id,
+      station_id: JSON.parse(this.addnewjobForm.value.select_station).id,
+      machine_id: item_machineryArr.join(","),
+      observation: JSON.parse(this.addnewjobForm.value.select_observation)
+        .observationid,
+      typeid: JSON.parse(this.addnewjobForm.value.select_type).typeid,
+      remarks: this.addnewjobForm.value.taremarks,
+      assignedto: JSON.parse(this.addnewjobForm.value.select_assignedto)
+        .user_id,
+      assignedto_deptid: JSON.parse(this.addnewjobForm.value.select_assignedto)
+        .dept_id,
+    };
+
+    console.log(req);
+
+    this.service.savenewjob(req).then((result) => {
+      var resultdata: any;
+      resultdata = result;
+
+      if (resultdata.httpcode == 200) {
+        this.addnewjobForm.reset();
+
+        this.commonservice.presentToast("success", "Job Added Successfully");
+
+        this.dismiss();
+      } else {
+        this.commonservice.presentToast("error", "Job Addition Failed");
+      }
+    });
   }
 
   deleteRow(index: number) {

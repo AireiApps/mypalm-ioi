@@ -16,11 +16,11 @@ import {
 import { AuthGuardService } from "src/app/services/authguard/auth-guard.service";
 const { PushNotifications } = Plugins;
 
-import { ModalController } from "@ionic/angular";
-import { MaintenanceAddnewjobPage } from "src/app/maintenance-module/maintenance-addnewjob/maintenance-addnewjob.page";
+import { Platform, AlertController, ModalController } from "@ionic/angular";
+import { Market } from "@ionic-native/market/ngx";
+import { AppVersion } from "@ionic-native/app-version/ngx";
 
-import { TranslateService } from "@ngx-translate/core";
-import { LanguageService } from "src/app/services/language-service/language.service";
+import { MaintenanceAddnewjobPage } from "src/app/maintenance-module/maintenance-addnewjob/maintenance-addnewjob.page";
 
 @Component({
   selector: "app-maintenance-home",
@@ -42,210 +42,49 @@ export class MaintenanceHomePage implements OnInit {
   itemsArr = [
     [
       {
-        title: this.translate.instant("MAINTENANCEHOME.breakdowndowntime"),
-        name: "Breakdown/Downtime",
+        title: "Breakdown / Downtime",
+        name: "Breakdown / Downtime",
         path: "/breakdown-list",
         imgpath: "../../assets/img/breakdownreport.png",
       },
       {
-        title: this.translate.instant("MAINTENANCEHOME.reportedmaintenace"),
+        title: "Report Maintenance",
+        name: "Report Maintenance",
         path: "/maintenance-reportedmaintenance-list",
         imgpath: "../../assets/img/reportedmaintenance.png",
       },
     ],
     [
-      /*{
-        title: this.translate.instant("MAINTENANCEHOME.attendance"),
-        name: "Attendance",
-        path: "/maintenance-attendance",
-        imgpath: "../../assets/img/attendance.png",
-      },*/
       {
-        title: this.translate.instant("MAINTENANCEHOME.addnewjob"),
+        title: "Add New Job",
         name: "Add New Job",
         path: "/maintenance-addnewjob",
         imgpath: "../../assets/img/weeklymaintenance.png",
       },
       {
-        title: this.translate.instant("MAINTENANCEHOME.jobbyengineer"),
-        name: "Job By Engineer",
-        path: "/planning",
+        title: "Predictive Maintenance",
+        name: "Predictive Maintenance",
+        path: "/preventivemaintenance",
         imgpath: "../../assets/img/preventivemaintenance.png",
       },
     ],
     [
       {
-        title: this.translate.instant("MAINTENANCEHOME.requestitem"),
-        name: "Request Item",
-        path: "/maintenance-orderreq-list",
-        imgpath: "../../assets/img/orderrequest.png",
+        title: "Scanner",
+        name: "Scanner",
+        path: "/qrcodescanner",
+        imgpath: "../../assets/img/qrcodescanner.png",
       },
       {
-        title: this.translate.instant("MAINTENANCEHOME.reports"),
+        title: "Reports",
         name: "Reports",
         path: "/maintenance-report",
         imgpath: "../../assets/img/ceoreport.png",
       },
     ],
   ];
-
-  foremanArr = [
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.breakdowndowntime"),
-        name: "Breakdown/Downtime",
-        path: "/breakdown-list",
-        imgpath: "../../assets/img/breakdownreport.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reportedmaintenace"),
-        path: "/maintenance-reportedmaintenance-list",
-        imgpath: "../../assets/img/reportedmaintenance.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.jobbyengineer"),
-        name: "Job By Engineer",
-        path: "/planning",
-        imgpath: "../../assets/img/preventivemaintenance.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.requestitem"),
-        name: "Request Item",
-        path: "/maintenance-orderreq-list",
-        imgpath: "../../assets/img/orderrequest.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reports"),
-        name: "Reports",
-        path: "/maintenance-report",
-        imgpath: "../../assets/img/ceoreport.png",
-      },
-    ],
-  ];
-
-  chargemanArr = [
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.breakdowndowntime"),
-        name: "Breakdown/Downtime",
-        path: "/breakdown-list",
-        imgpath: "../../assets/img/breakdownreport.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reportedmaintenace"),
-        path: "/maintenance-reportedmaintenance-list",
-        imgpath: "../../assets/img/reportedmaintenance.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.jobbyengineer"),
-        name: "Job By Engineer",
-        path: "/planning",
-        imgpath: "../../assets/img/preventivemaintenance.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.requestitem"),
-        name: "Request Item",
-        path: "/maintenance-orderreq-list",
-        imgpath: "../../assets/img/orderrequest.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reports"),
-        name: "Reports",
-        path: "/maintenance-report",
-        imgpath: "../../assets/img/ceoreport.png",
-      },
-    ],
-  ];
-
-  maintenanceplannerArr = [
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.breakdowndowntime"),
-        name: "Breakdown/Downtime",
-        path: "/breakdown-list",
-        imgpath: "../../assets/img/breakdownreport.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reportedmaintenace"),
-        path: "/maintenance-reportedmaintenance-list",
-        imgpath: "../../assets/img/reportedmaintenance.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.jobbyengineer"),
-        name: "Job By Engineer",
-        path: "/planning",
-        imgpath: "../../assets/img/preventivemaintenance.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.requestitem"),
-        name: "Request Item",
-        path: "/maintenance-orderreq-list",
-        imgpath: "../../assets/img/orderrequest.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reports"),
-        name: "Reports",
-        path: "/maintenance-report",
-        imgpath: "../../assets/img/ceoreport.png",
-      },
-    ],
-  ];
-
-  operatorArr = [
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.breakdowndowntime"),
-        name: "Breakdown/Downtime",
-        path: "/breakdown-list",
-        imgpath: "../../assets/img/breakdownreport.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reportedmaintenace"),
-        path: "/maintenance-reportedmaintenance-list",
-        imgpath: "../../assets/img/reportedmaintenance.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.jobbyengineer"),
-        name: "Job By Engineer",
-        path: "/planning",
-        imgpath: "../../assets/img/preventivemaintenance.png",
-      },
-      {
-        title: this.translate.instant("MAINTENANCEHOME.requestitem"),
-        name: "Request Item",
-        path: "/maintenance-orderreq-list",
-        imgpath: "../../assets/img/orderrequest.png",
-      },
-    ],
-    [
-      {
-        title: this.translate.instant("MAINTENANCEHOME.reports"),
-        name: "Reports",
-        path: "/maintenance-report",
-        imgpath: "../../assets/img/ceoreport.png",
-      },
-    ],
-  ];
-
-  currentlanguage = "";
 
   constructor(
-    private translate: TranslateService,
-    private languageService: LanguageService,
     public modalController: ModalController,
     private zone: NgZone,
     private router: Router,
@@ -253,29 +92,32 @@ export class MaintenanceHomePage implements OnInit {
     private notifi: AuthGuardService,
     private commonservice: AIREIService,
     private service: MaintenanceServiceService,
-    private httpservice: HttpserviceService
-  ) {
-    this.currentlanguage = this.languageService.selected;
-  }
+    private platform: Platform,
+    private alertController: AlertController,
+    private appVersion: AppVersion,
+    private market: Market
+  ) {}
 
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    this.httpservice.getContactLogin();
+    PushNotifications.removeAllDeliveredNotifications();
 
     this.count = parseInt(localStorage.getItem("badge_count"));
     this.notifi.updateNotification();
     this.updateNotification();
     this.getLiveNotification();
+    this.forceUpdated();
   }
 
   ionViewDidEnter() {
-    this.httpservice.getContactLogin();
+    PushNotifications.removeAllDeliveredNotifications();
 
     this.count = parseInt(localStorage.getItem("badge_count"));
     this.notifi.updateNotification();
     this.updateNotification();
     this.getLiveNotification();
+    this.forceUpdated();
   }
 
   btn_notification() {
@@ -297,6 +139,70 @@ export class MaintenanceHomePage implements OnInit {
         this.updateNotification();
       }
     );
+  }
+
+  forceUpdated() {
+    var app_version;
+
+    this.appVersion.getVersionNumber().then(
+      (versionNumber) => {
+        app_version = versionNumber;
+
+        let req = {
+          userid: this.userlist.userId,
+          departmentid: this.userlist.dept_id,
+          millcode: this.userlist.millcode,
+          zoneid: this.userlist.zoneid,
+        };
+
+        this.commonservice.getSettings(req).then((result) => {
+          var resultdata: any;
+          resultdata = result;
+          let updateVersion = resultdata.appVersion;
+
+          if (updateVersion > app_version) {
+            this.alertForce(updateVersion);
+          }
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  async alertForce(app_version) {
+    let alert = await this.alertController.create({
+      header: "New Version Available",
+      backdropDismiss: false,
+      message:
+        "A new version of MyPalm - KCP IOIEO is available, Please update a version " +
+        app_version,
+      buttons: [
+        {
+          text: "Update",
+          handler: () => {
+            let appId;
+
+            if (this.platform.is("android")) {
+              appId = "com.airei.milltracking.mypalmioi";
+            } else {
+              appId = "id1534533301";
+            }
+
+            this.market
+              .open(appId)
+              .then((response) => {
+                console.debug(response);
+              })
+              .catch((error) => {
+                console.warn(error);
+              });
+          },
+        },
+      ],
+    });
+    alert.present();
   }
 
   btn_Action(item) {

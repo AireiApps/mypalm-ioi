@@ -7,7 +7,6 @@
         <ion-icon name="notifications"></ion-icon>
       </ion-button>
     </ion-buttons> -->
-
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +19,18 @@
     </ion-row>
   </ion-grid>
 
-  <div class="home-box">
-
+  <div class="home-box" *ngIf="userlist">
+    <ion-row *ngFor="let item of itemsArr">
+      <ion-col size="6" *ngFor="let eachitem of item">
+        <div class="card item-img" (click)="btn_Action(eachitem)">
+          <div class="item">
+            <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+            <div class="container txt-home">
+              <p>{{eachitem.title}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>

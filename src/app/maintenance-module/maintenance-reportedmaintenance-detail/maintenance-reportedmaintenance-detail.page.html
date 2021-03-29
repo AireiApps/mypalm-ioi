@@ -14,59 +14,94 @@
   <form [formGroup]="breakdowndowntimedetailForm">
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.department' | translate}}</b></div>
-      </div>
-      <div class="col">
-        <div class="h7 text-dark">{{department}}</div>
+        <div class="h7 text-dark"><b>Zone</b></div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.station' | translate}}</b></div>
-      </div>
-      <div class="col">
-        <div class="h7 text-dark">{{station}}</div>
+        <input type="text" class="h7 form-control text-dark" value="{{zone}}" />
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.machinery' | translate}}</b></div>
-      </div>
-      <div class="col">
-        <div class="h7 text-dark">{{machinery}}</div>
+        <div class="h7 text-dark"><b>Station</b></div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.part' | translate}}</b></div>
-      </div>
-      <div class="col">
-        <div class="h7 text-dark">{{part}}</div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.breakdowntime' | translate}}</b></div>
-      </div>
-      <div class="col">
-        <div class="h7 text-dark">{{breakdowntime}}</div>
+        <input
+          type="text"
+          class="h7 form-control text-dark"
+          value="{{station}}"
+        />
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.complainantremarks' | translate}}</b></div>
+        <div class="h7 text-dark"><b>Machinery</b></div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{complainantremarks}}
+        <input
+          type="text"
+          class="h7 form-control text-dark"
+          value="{{machinery}}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Part</b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="h7 form-control text-dark"
+          value="{{part}}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Breakdown Time</b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="h7 form-control text-dark"
+          value="{{breakdowntime}}"
+        />
+      </div>
+    </div>
+
+    <div *ngIf="complainantremarks != ''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <div class="h7 text-dark"><b>Complainant Remarks</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{complainantremarks}}
+          </div>
         </div>
       </div>
     </div>
@@ -74,7 +109,7 @@
     <div *ngIf="complainantimage != ''">
       <div class="form-row">
         <div class="col">
-          <div class="h7 text-dark"><b>{{ 'BREAKDOWNDOWNTIME.complainantimage' | translate}}</b></div>
+          <div class="h7 text-dark"><b>Complainant Image</b></div>
         </div>
       </div>
 
@@ -92,9 +127,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.rectifiedtime' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark"><b>Reported Time <sup>*</sup></b></div>
       </div>
     </div>
 
@@ -110,9 +143,7 @@
 
     <div class="form-row">
       <div class="col">
-        <div class="h7 text-dark">
-          <b>{{ 'BREAKDOWNDOWNTIME.foremanremarks' | translate}} <sup>*</sup></b>
-        </div>
+        <div class="h7 text-dark"><b>Foreman Remarks <sup>*</sup></b></div>
       </div>
     </div>
 
@@ -127,9 +158,7 @@
     </div>
 
     <div class="form-row imgmarigin">
-      <label class="h7 text-dark"
-        ><b>{{ 'BREAKDOWNDOWNTIME.rectifiedimage' | translate}}</b></label
-      >
+      <label class="h7 text-dark"><b>Rectified Image</b></label>
       <div class="container">
         <div class="row">
           <div class="col-sm-8 nopadding" style="text-align: right">
@@ -149,7 +178,8 @@
         <div class="row">
           <div class="col-sm-4 nopadding" style="text-align: right">
             <label class="btn btn-warning">
-              {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+              Upload
+              <input
                 type="button"
                 class="uploadFile img"
                 value="Upload Photo"
@@ -165,11 +195,11 @@
     <div style="text-align: center">
       <button
         type="submit"
-        class="btn btn-success"
+        class="btn btn-info"
         (click)="save()"
         style="margin-top: 10px; margin-bottom: 10px"
       >
-      {{ 'GENERALBUTTON.savebutton' | translate}}
+        Save
       </button>
     </div>
   </form>

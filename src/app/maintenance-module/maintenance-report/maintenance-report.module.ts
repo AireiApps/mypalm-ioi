@@ -10,16 +10,13 @@ import { MaintenanceReportPage } from './maintenance-report.page';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     SharedModule,
-    MaintenanceReportPageRoutingModule,
-    TranslateModule
+    MaintenanceReportPageRoutingModule,    
   ],
   declarations: [MaintenanceReportPage]
 })

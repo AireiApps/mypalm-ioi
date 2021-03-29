@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-report-maintenance-breakdown',
-  templateUrl: './report-maintenance-breakdown.page.html',
-  styleUrls: ['./report-maintenance-breakdown.page.scss'],
+  selector: "app-report-maintenance-breakdown",
+  templateUrl: "./report-maintenance-breakdown.page.html",
+  styleUrls: ["./report-maintenance-breakdown.page.scss"],
 })
 export class ReportMaintenanceBreakdownPage implements OnInit {
-
   userlist = JSON.parse(localStorage.getItem("userlist"));
-  user_id = this.userlist.userId;
-  department_id = this.userlist.dept_id;
-  mill_code = this.userlist.millcode;
-  language = this.userlist.language;
+  userid = this.userlist.userId;
+  departmentid = this.userlist.dept_id;
+  millcode = this.userlist.millcode;
+  zoneid = this.userlist.zoneid;
 
   baseurl = this.userlist.report_url;
 
@@ -31,15 +30,18 @@ export class ReportMaintenanceBreakdownPage implements OnInit {
 
   getUrl() {
     let formatedurl =
-    this.baseurl +
-    "/index.php/Maintain_report/Breakdown_report?mobile=1&user_id=" +
-    this.user_id +
-    "&language=" +
-    this.language;
+      this.baseurl +
+      "/index.php/MobileAPI/Breakdownlist?user_id=" +
+      this.userid +
+      "&departmentid=" +
+      this.departmentid +
+      "&millcode=" +
+      this.millcode +
+      "&zoneid=" +
+      this.zoneid;
 
     //console.log(formatedurl);
 
     this.weburl = formatedurl;
   }
-
 }

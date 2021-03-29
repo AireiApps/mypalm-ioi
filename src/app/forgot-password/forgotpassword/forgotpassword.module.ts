@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { ForgotpasswordPageRoutingModule } from './forgotpassword-routing.module';
+import { ForgotpasswordPageRoutingModule } from "./forgotpassword-routing.module";
 
-import { ForgotpasswordPage } from './forgotpassword.page';
-
-import { TranslateModule } from "@ngx-translate/core";
+import { ForgotpasswordPage } from "./forgotpassword.page";
 
 @NgModule({
   imports: [
@@ -17,8 +15,7 @@ import { TranslateModule } from "@ngx-translate/core";
     IonicModule,
     ForgotpasswordPageRoutingModule,
     ReactiveFormsModule,
-    TranslateModule
   ],
-  declarations: [ForgotpasswordPage]
+  declarations: [ForgotpasswordPage],
 })
 export class ForgotpasswordPageModule {}

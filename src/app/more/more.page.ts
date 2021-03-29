@@ -4,9 +4,6 @@ import { MoreServiceService } from "src/app/services/more-service/more-service.s
 import { HttpserviceService } from "../services/httpservice/httpservice.service";
 import { AuthGuardService } from "src/app/services/authguard/auth-guard.service";
 
-import { PopoverController } from "@ionic/angular";
-import { LanguagePopoverPage } from "src/app/pages/language-popover/language-popover.page";
-import { TranslateService } from "@ngx-translate/core";
 import { Storage } from "@ionic/storage";
 
 const LNG_KEY = "SELECTED_LANGUAGE";
@@ -37,14 +34,12 @@ export class MorePage implements OnInit {
   ];
   userlist = JSON.parse(localStorage.getItem("userlist"));
 
-  department = '';
+  department = "";
 
   getbodytemperature = "";
   getbodytemperaturetime = "";
 
   constructor(
-    private popoverController: PopoverController,
-    private translate: TranslateService,
     private storage: Storage,
     private notifi: AuthGuardService,
     private router: Router,
@@ -65,20 +60,20 @@ export class MorePage implements OnInit {
         icon: 'document'
       });
 
-    }*/    
+    }*/
 
-    this.department = this.translate.instant("DEPARTMENTS."+this.userlist.department);
+    this.department = this.userlist.department;
 
     //console.log(this.department);
 
     this.appPages.push({
-      title: this.translate.instant("MORE.logout"),
+      title: 'Logout',
       name: "logout",
       icon: "exit-outline",
     });
 
     this.appPages.push({
-      title: this.translate.instant("MORE.changepassword"),
+      title: 'Change Password',
       name: "change_password",
       icon: "lock-closed-outline",
     });
@@ -88,61 +83,10 @@ export class MorePage implements OnInit {
 
   ngAfterViewInit(): void {
     //console.log(this.translate.currentLang);
-
-    if (
-      this.userlist.department != "Ffbsupplier" &&
-      this.userlist.department != "Driver" &&
-      this.userlist.department != "Estate Manager"
-    ) {
-      this.httpservice.getContactLogin();
-
-      this.getBodyTemperature();
-    }
   }
 
   ionViewDidEnter() {
     //console.log(this.translate.currentLang);
-
-    if (
-      this.userlist.department != "Ffbsupplier" &&
-      this.userlist.department != "Driver" &&
-      this.userlist.department != "Estate Manager"
-    ) {
-      this.httpservice.getContactLogin();
-
-      this.getBodyTemperature();
-    }
-  }
-
-  async openLanguagePopOver($event) {
-    //console.log($event);
-
-    const popover = await this.popoverController.create({
-      component: LanguagePopoverPage,
-      event: $event,
-    });
-    await popover.present();
-  }
-
-  getBodyTemperature() {
-    const req = {
-      user_id: this.userlist.userId,
-      millcode: this.userlist.millcode,
-    };
-
-    //console.log(req);
-
-    this.service.getBodyTemperature(req).then((result) => {
-      var resultdata: any;
-      resultdata = result;
-      if (resultdata.httpcode == 200) {
-        this.getbodytemperature = resultdata.temp;
-        this.getbodytemperaturetime = resultdata.date;
-      } else {
-        this.getbodytemperature = "";
-        this.getbodytemperaturetime = "";
-      }
-    });
   }
 
   menu_action(info) {
@@ -152,20 +96,8 @@ export class MorePage implements OnInit {
       this.router.navigateByUrl("/login");
     }
 
-    // if (info.name == "contacts" || info.name == "sms" || info.name == "image") {
-    //   this.router.navigate(["/contacts", { item: JSON.stringify(info) }]);
-    // }
-
     if (info == "changepassword") {
       this.router.navigate(["/forgotpassword"]);
     }
-
-    // if (info.name == 'sms') {
-    //   this.router.navigate(["/contacts", { item: JSON.stringify(info) }]);
-    // }
-
-    // if (info.name == 'image') {
-    //   this.router.navigate(["/contacts", { item: JSON.stringify(info) }]);
-    // }
   }
 }

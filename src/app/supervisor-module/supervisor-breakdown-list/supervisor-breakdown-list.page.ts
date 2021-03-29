@@ -12,8 +12,6 @@ import { SupervisorService } from "src/app/services/supervisor-service/superviso
 })
 export class SupervisorBreakdownListPage implements OnInit {
   userlist = JSON.parse(localStorage.getItem("userlist"));
-  shiftid = localStorage.getItem("shiftid");
-  shiftdate = localStorage.getItem("shiftdate");
 
   breakdowndowntimelistArr = [];
 
@@ -36,14 +34,18 @@ export class SupervisorBreakdownListPage implements OnInit {
     this.getBreakdownDowntime();
   }
 
-  getBreakdownDowntime() {
+  getBreakdownDowntime() {    
+    
     let req = {
       user_id: this.userlist.userId,
       millcode: this.userlist.millcode,
       dept_id: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
       category_id: 4,
       breakdownid: 0,
     };
+
+    console.log(req);
 
     this.service.getBreakdownDowntimeList(req).then((result) => {
       var resultdata: any;
