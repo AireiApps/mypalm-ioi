@@ -28,12 +28,12 @@ export class ProductionhomePage implements OnInit {
       },
     ],
     [
-      {
+      /*{
         title: "PKE Individual Spot Check",
         name: "PKE Individual Spot Check",
         path: "/pkeindividualspotcheck",
         imgpath: "../../assets/img/pke.png",
-      },
+      },*/
       {
         title: "Dust Plant",
         name: "Dust Plant",

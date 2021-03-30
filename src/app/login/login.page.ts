@@ -47,6 +47,17 @@ export class LoginPage implements OnInit {
   }
 
   btn_login() {
+
+     if (this.loginForm.value.username == '') {
+      this.service.presentToast('error', 'Username Required');
+      return;
+    }
+
+    if (this.loginForm.value.password == '') {
+      this.service.presentToast('error', 'Password Required');
+      return;
+    }
+    
     var req = {
       millcode: "1010",
       username: this.loginForm.value.username,
