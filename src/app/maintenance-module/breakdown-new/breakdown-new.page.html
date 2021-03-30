@@ -102,6 +102,29 @@
 
     <div class="form-row">
       <div class="col">
+        <div class="h7 text-dark">Replaced Part <sup>*</sup></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select
+          formControlName="select_replacedpart"
+          class="h7 text-dark form-control"
+        >
+          <option value="" selected disabled hidden>Select</option>
+          <option
+            value="{{item.replacedpartid}}"
+            *ngFor="let item of replacedpartArr"
+          >
+            {{ item.replacedpart }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
         <div class="h7 text-dark">
           <b>Breakdown Time <sup>*</sup></b>
         </div>

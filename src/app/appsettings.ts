@@ -445,6 +445,8 @@ export class appsettings {
 
   public static partlist = appsettings.API_ENDPOINT + "parts_list";
 
+  public static unallocatedpartlist = appsettings.API_ENDPOINT + "unallocated_parts";
+
   public static assignedtolist = appsettings.API_ENDPOINT + "assigned_user";
 
   public static zonelist = appsettings.API_ENDPOINT + "get_zone";

@@ -167,6 +167,26 @@ export class SupervisorService {
     });
   }
 
+  getUnallocatedPartList(params) {
+    var reqOpts: any;
+    reqOpts = this.formParams(params);
+
+    var api = appsettings.unallocatedpartlist;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+
+          reject(error);
+        }
+      );
+    });
+  }
+
   getBreakdownDowntimeList(params) {
     this.commonservice.presentLoading();
 

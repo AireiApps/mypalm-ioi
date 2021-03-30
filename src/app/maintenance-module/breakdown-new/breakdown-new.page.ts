@@ -26,6 +26,7 @@ export class BreakdownNewPage implements OnInit {
   stationArr = [];
   machineryArr = [];
   partArr = [];
+  replacedpartArr = [];
   assignedtoArr = [];
 
   selectedpartid = 0;
@@ -34,6 +35,25 @@ export class BreakdownNewPage implements OnInit {
   breakdowntime = new Date().toISOString();
 
   partflag = false;
+
+  /*replacedpartArr=[
+    {
+      replacedpartid: '1',
+      replacedpart: 'Replaced Part 1',
+    },
+    {
+      replacedpartid: '2',
+      replacedpart: 'Replaced Part 2',
+    },
+    {
+      replacedpartid: '3',
+      replacedpart: 'Replaced Part 3',
+    },
+    {
+      replacedpartid: '4',
+      replacedpart: 'Replaced Part 4',
+    },
+  ];*/
 
   constructor(
     private router: Router,
@@ -47,6 +67,7 @@ export class BreakdownNewPage implements OnInit {
       select_station: new FormControl("", Validators.required),
       select_machinery: new FormControl("", Validators.required),
       select_part: new FormControl(""),
+      select_replacedpart: new FormControl("", Validators.required),
       txt_breakdowntime: new FormControl(this.breakdowntime),
       tacomplaintremarks: new FormControl("", Validators.required),
       select_assignedto: new FormControl("", Validators.required),
@@ -167,15 +188,39 @@ export class BreakdownNewPage implements OnInit {
       }
     });
   }
+  
+  getUnallocatedPart() {
+    const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      millcode: this.userlist.millcode,
+      zone: this.newbreakdowndowntimeForm.value.select_zone,
+      station_id: this.newbreakdowndowntimeForm.value.select_station,
+      machine_id: this.newbreakdowndowntimeForm.value.select_machinery,
+    };
+
+    this.service.getUnallocatedPartList(req).then((result) => {
+      let resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.replacedpartArr = resultdata.data;
+      }else{
+        this.replacedpartArr=[];
+      }
+    });
+  }
 
   onChangeZone() {
     this.stationArr = [];
     this.machineryArr = [];
     this.partArr = [];
+    this.replacedpartArr = [];
 
     this.newbreakdowndowntimeForm.controls.select_station.setValue("");
     this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_replacedpart.setValue("");
 
     this.getStation();
   }
@@ -183,17 +228,21 @@ export class BreakdownNewPage implements OnInit {
   onChangeStation() {
     this.machineryArr = [];
     this.partArr = [];
+    this.replacedpartArr = [];
 
     this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_replacedpart.setValue("");
 
     this.getMachinery();
   }
 
   onChangeMachinery() {
     this.partArr = [];
+    this.replacedpartArr = [];
 
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_replacedpart.setValue("");
 
     this.getPart();
   }
@@ -254,6 +303,7 @@ export class BreakdownNewPage implements OnInit {
         machineid: this.newbreakdowndowntimeForm.value.select_machinery,
         partid: this.selectedpartid,
         parttype: this.selectedparttype,
+        replacedpartid: this.newbreakdowndowntimeForm.value.select_replacedpart,
         categoryid: 4,
         breakdowntime: this.getbreakdowntime,
         complaintimagepath: this.imagePaths.complianantimagepath,
