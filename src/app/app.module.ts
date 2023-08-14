@@ -41,6 +41,7 @@ import { AppVersion } from "@ionic-native/app-version/ngx";
 import { GeneralserviceService } from "src/app/services/generalservice/generalservice.service";
 import { Badge } from '@ionic-native/badge/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { DecimalPipe } from '@angular/common';
 
 /*Translate Language --- Starts*/
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
@@ -117,6 +118,7 @@ const environment = {
     GeneralserviceService,
     Badge,
     BarcodeScanner,
+    DecimalPipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

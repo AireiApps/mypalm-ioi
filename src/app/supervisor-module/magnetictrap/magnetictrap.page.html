@@ -33,10 +33,10 @@
       </ion-row>
 
       <ion-row class="form-row">
-        <ion-col size="6">
+        <ion-col size="5">
           <div class="h7 text-dark">Zone <sup>*</sup></div>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="7">
           <select
             formControlName="select_zone"
             class="h7 form-control text-dark"
@@ -50,16 +50,11 @@
         </ion-col>
       </ion-row>
 
-      <hr />
-
-      <div class="form-row">
-        <div class="col">
-          <div class="h7 text-dark">Station</div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="col">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Station <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
           <select
             formControlName="select_station"
             class="h7 text-dark form-control"
@@ -70,91 +65,114 @@
               {{ item.station }}
             </option>
           </select>
-        </div>
-      </div>
+        </ion-col>
+      </ion-row>
 
-      <div class="form-row" style="margin-top: 10px">
-        <div class="col">
-          <div class="h7 text-dark">Machinery</div>
-        </div>
-      </div>
+      <div *ngIf="uistatusenable == true">
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Status <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_status"
+              class="h7 form-control"
+              (change)="onChangeStatus()"
+            >
+              <option value="" selected disabled hidden>Select Status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+          </ion-col>
+        </ion-row>
+      </div>  
 
-      <div class="form-row">
-        <div class="col">
-          <select
-            formControlName="select_machinery"
-            class="h7 text-dark form-control"
-          >
-            <option value="" selected disabled hidden>Select</option>
-            <option value="{{item.id}}" *ngFor="let item of machineryArr">
-              {{ item.machinery }}
-            </option>
-          </select>
-        </div>
-      </div>
+      <div *ngIf="uienable == true">
+        <hr />
 
-      <div class="form-row" style="margin-top: 10px">
-        <div class="col">
-          <div class="h7 text-dark">Scrap Metal Collection (Kg)</div>
+        <div class="form-row" style="margin-top: 10px">
+          <div class="col">
+            <div class="h7 text-dark">Machinery</div>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col">
-          <input
-            type="number"
-            class="h7 form-control readonly"
-            formControlName="txt_scrapmetalcollection"
-            (input)="onChangeScrapMetal()"
-          />
-        </div>
-      </div>
 
-      <div *ngIf="overallstatus != ''" style="margin-top: 10px">
         <div class="form-row">
           <div class="col">
-            <div class="h7 text-dark">Overall Status</div>
+            <select
+              formControlName="select_machinery"
+              class="h7 text-dark form-control"
+            >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of machineryArr">
+                {{ item.machinery }}
+              </option>
+            </select>
           </div>
+        </div>
 
+        <div class="form-row" style="margin-top: 10px">
           <div class="col">
-            <label class="h7" style="color: #ff0000">{{overallstatus}}</label>
+            <div class="h7 text-dark">Scrap Metal Collection (Kg)</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="number"
+              class="h7 form-control readonly"
+              formControlName="txt_scrapmetalcollection"
+              (input)="onChangeScrapMetal()"
+            />
+          </div>
+        </div>
+
+        <div *ngIf="overallstatus != ''" style="margin-top: 10px">
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Overall Status</div>
+            </div>
+
+            <div class="col">
+              <label class="h7" style="color: #ff0000">{{overallstatus}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 10px">
+          <div class="col">
+            <div class="h7 text-dark">Further Action <sup>*</sup></div>
+          </div>
+          <div class="col">
+            <select
+              formControlName="select_furtheraction"
+              class="h7 form-control"
+              [(ngModel)]="selectaction.form"
+            >
+              <option value="" selected disabled hidden>Select Action</option>
+              <option value="NONE">None</option>
+              <option value="REPORT">Report</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 10px">
+          <div class="col">
+            <div class="h7 text-dark">Remarks <sup>*</sup></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
           </div>
         </div>
       </div>
-
-      <div class="form-row" style="margin-top: 10px">
-        <div class="col">
-          <div class="h7 text-dark">Further Action <sup>*</sup></div>
-        </div>
-        <div class="col">
-          <select
-            formControlName="select_furtheraction"
-            class="h7 form-control"
-            [(ngModel)]="selectaction.form"
-          >
-            <option value="" selected disabled hidden>Select Action</option>
-            <option value="NONE">None</option>
-            <option value="REPORT">Report</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row" style="margin-top: 10px">
-        <div class="col">
-          <div class="h7 text-dark">Remarks <sup>*</sup></div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="col">
-          <textarea
-            class="h7 form-control"
-            formControlName="ta_remarks"
-            rows="4"
-            autosize
-          ></textarea>
-        </div>
-      </div>
-
+      
       <div style="text-align: center">
         <button
           type="submit"

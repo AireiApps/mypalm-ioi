@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  <div class="wrapper">
+    <ion-grid>
+      <ion-row *ngFor="let item of generalmanagerdetailsArr">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10" *ngFor="let eachitem of item">
+          <div class="card" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="IMAGE" />
+
+              <div class="container txt-home">
+                <p>{{eachitem.name}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -63,7 +63,7 @@ export class NirpkeproductioncalibrationPage implements OnInit {
             "KCP Inserted Successfully"
           );
 
-          this.router.navigate(["tabs/tabsupervisordashboard"]);
+          this.router.navigate(["/productionhome"]);
         } else {
           this.commonservice.presentToast("error", "KCP Insert Failed");
         }

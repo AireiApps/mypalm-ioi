@@ -11,7 +11,9 @@
   <div class="card marigin-10px" *ngFor="let value of notificationArr">
     <ion-row class="marigin-10px row-reverse" (click)="updateitem(value)">
       <ion-col>
-        <div class="h7 m-0">{{value.title}}</div>
+        <div class="h7 m-0" [style.color]="getStatusColor(value.redirect)">
+          {{value.title}}
+        </div>
         <div class="h7 text-muted">{{value.notification_text}}</div>
         <div class="h7 text-dark" style="float: right">
           {{value.notification_date}}

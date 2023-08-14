@@ -12,16 +12,8 @@ export class ProductionReportsPage implements OnInit {
 
   reportArr = [
     {
-      title: "NIR-PKE Production Report",
-      path: "/nirpkeproductionreport",
-    },
-    {
       title: "Press Taper Head & Sampling Checklist Report",
       path: "/presstaperheadchecklistreport",
-    },
-    {
-      title: "PKE Individual Spot Check Report",
-      path: "/pkeindividualspotcheckreport",
     },
     {
       title: "Dust Plant Report",

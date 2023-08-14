@@ -143,12 +143,14 @@ export class MaintenanceAddnewjobPage implements OnInit {
   }
 
   getMachinery() {
+    let zone = JSON.parse(this.addnewjobForm.value.select_zone);
     let station = JSON.parse(this.addnewjobForm.value.select_station);
 
     const req = {
       userid: this.userlist.userId,
       departmentid: this.userlist.dept_id,
-      zoneid: this.userlist.zoneid,
+      userzoneid: this.userlist.zoneid,
+      zoneid: zone.id,
       millcode: this.userlist.millcode,
       stationid: station.id,
       type: 0,
@@ -295,31 +297,29 @@ export class MaintenanceAddnewjobPage implements OnInit {
 
     for (let i = 0; i < rowcontrol.length; i++) {
       const controlsub = <FormGroup>this.addnewjobForm.get(["itemRows", i]);
-      const eachmachinery = JSON.parse(
-        controlsub.get("select_machinery").value
-      );
+      const eachmachinery = JSON.parse(controlsub.get("select_machinery").value);
 
       item_machineryArr.push(eachmachinery.id);
     }
 
     var req = {
-      user_id: this.userlist.userRoleId,
+      user_id: this.userlist.userId,
       millcode: this.userlist.millcode,
       department_id: this.userlist.dept_id,
       plandate: this.getplandate,
+      part_id: 0,
       categoryid: JSON.parse(this.addnewjobForm.value.select_category)
         .categoryid,
-      zoneid: JSON.parse(this.addnewjobForm.value.select_zone).id,
+      zone_id: JSON.parse(this.addnewjobForm.value.select_zone).id,
       station_id: JSON.parse(this.addnewjobForm.value.select_station).id,
       machine_id: item_machineryArr.join(","),
       observation: JSON.parse(this.addnewjobForm.value.select_observation)
         .observationid,
       typeid: JSON.parse(this.addnewjobForm.value.select_type).typeid,
       remarks: this.addnewjobForm.value.taremarks,
-      assignedto: JSON.parse(this.addnewjobForm.value.select_assignedto)
-        .user_id,
-      assignedto_deptid: JSON.parse(this.addnewjobForm.value.select_assignedto)
-        .dept_id,
+      assignedto: JSON.parse(this.addnewjobForm.value.select_assignedto).user_id,
+      assignedto_deptid: JSON.parse(this.addnewjobForm.value.select_assignedto).dept_id,
+      foreman_dept_id: JSON.parse(this.addnewjobForm.value.select_assignedto).dept_id,
     };
 
     console.log(req);
@@ -329,7 +329,7 @@ export class MaintenanceAddnewjobPage implements OnInit {
       resultdata = result;
 
       if (resultdata.httpcode == 200) {
-        this.addnewjobForm.reset();
+        //this.addnewjobForm.reset();
 
         this.commonservice.presentToast("success", "Job Added Successfully");
 

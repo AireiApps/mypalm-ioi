@@ -1,0 +1,174 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Electricity Consumption</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <form [formGroup]="electricityconsumptionForm">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{zonename}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="stationflag==true">
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Station <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{stationname}}" readonly/>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="stationflag==false">
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Station <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select formControlName="select_station" class="h7 text-dark form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of stationArr">
+                {{ item.station }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Timestamp <sup>*</sup></div>
+        </ion-col>
+
+        <ion-col size="7">
+          <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_date"
+          display-format="DD-MM-YYYY HH:mm:ss"
+          placeholder="Select Date"></ion-datetime>
+        </ion-col>     
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Period Hour <sup>*</sup></div>
+        </ion-col>
+        
+        <ion-col size="7">
+          <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_time"
+          display-format="HH:00"
+          placeholder="Select Hour"></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Mode <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select
+            formControlName="select_mode"
+            class="h7 form-control text-dark"
+            (change)="onChangeMode()">
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of modeArr" value="{{value.id}}">
+              {{ value.mode }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="uienable == true">
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Opening (kWh)<sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              type="number"
+              class="h7 form-control readonly"
+              formControlName="txt_previous"              
+              (input)="onChangePrevious()"
+              readonly          
+            />
+          </ion-col>
+        </ion-row>
+        
+          <ion-row class="form-row">
+            <ion-col size="5">
+              <div class="h7 text-dark">Closing (kWh)<sup>*</sup></div>
+            </ion-col>
+            <ion-col size="7">
+              <input
+                type="number"
+                class="h7 form-control"
+                formControlName="txt_current"
+                (keypress)="numberFilter($event)"
+                (input)="onChangeCurrent()"
+              />
+            </ion-col>
+          </ion-row>
+          
+          <ion-row class="form-row">
+            <ion-col size="5">
+              <div class="h7 text-dark">Variance (kWh)</div>
+            </ion-col>
+            <ion-col size="7">
+              <input
+                class="h7 form-control readonly"
+                formControlName="txt_variance"
+                value="{{variance}}"
+                readonly
+              />
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="form-row">
+            <ion-col size="5">
+              <div class="h7 text-dark">ToDate (kWh)</div>
+            </ion-col>
+            <ion-col size="7">
+              <input type="text" class="h7 form-control text-dark readonly" value="{{todate}}" readonly/>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="form-row">
+            <ion-col>
+              <div class="h7 text-dark">Remarks</div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="form-row">
+            <ion-col>
+              <textarea
+                class="h7 form-control"
+                formControlName="ta_remarks"
+                rows="4"
+                autosize
+              ></textarea>
+            </ion-col>
+          </ion-row>
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-info" (click)="save()" style="margin-top: 10px; margin-bottom: 10px">Save</button>
+          </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

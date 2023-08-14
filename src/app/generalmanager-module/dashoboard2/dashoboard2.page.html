@@ -1,0 +1,801 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dashboard 2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="dashboard2Form">
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 10px 10px 10px 10px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="heading"><b>OVERALL PRESS PERFORMANCE</b></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">DATE</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="gaugedate"
+          [(ngModel)]="selected_pressamperage_date"
+          display-format="DD-MM-YYYY"
+        >
+        </ion-datetime>
+      </div>
+      <div class="col">
+        <div class="mdfont">TIME</div>
+        <ion-datetime
+          presentation="time"
+          mode="ios"
+          class="h7 form-control"
+          formControlName="gaugetime"
+          [(ngModel)]="selected_pressamperage_time"
+          display-format="HH:mm"
+        ></ion-datetime>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">PLANT</div>
+        <div>
+          <select
+            formControlName="select_plant"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_pressamperage_plant"
+            (change)="onChangePressAmperagePlant()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of gauge_plantArr">
+              {{ item.plant_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="mdfont">STATION</div>
+        <div>
+          <select
+            formControlName="select_station"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_pressamperage_station"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of gauge_stationArr">
+              {{ item.station_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; margin-right: 5px">
+      <button
+        type="button"
+        class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="getpressamperagedata()"
+      >
+        <ion-icon name="calendar"></ion-icon>
+        Get Records
+      </button>
+    </div>
+    <div style="text-align: center; margin-top: 50px">
+      <div class="col">
+        <div class="userfont usertext"><b>PRESS AMPERAGE</b></div>
+      </div>
+    </div>
+
+    <div class="prediction-box" *ngIf="gaugedataArr.length>0">
+      <!-- <apx-chart
+        [series]="barchartOptions.series"
+        [chart]="barchartOptions.chart"
+        [dataLabels]="barchartOptions.dataLabels"
+        [plotOptions]="barchartOptions.plotOptions"
+        [yaxis]="barchartOptions.yaxis"
+        [xaxis]="barchartOptions.xaxis"
+        [legend]="barchartOptions.legend"
+        [colors]="barchartOptions.colors"
+        [grid]="barchartOptions.grid"
+      ></apx-chart> -->
+
+      <apx-chart
+        [series]="pressamperageOptions.series"
+        [chart]="pressamperageOptions.chart"
+        [yaxis]="pressamperageOptions.yaxis"
+        [xaxis]="pressamperageOptions.xaxis"
+        [dataLabels]="pressamperageOptions.dataLabels"
+        [legend]="pressamperageOptions.legend"
+        [labels]="pressamperageOptions.labels"
+        [stroke]="pressamperageOptions.stroke"
+        [markers]="pressamperageOptions.markers"
+        [fill]="pressamperageOptions.fill"
+        [colors]="pressamperageOptions.colors"
+        [tooltip]="pressamperageOptions.tooltip"
+      ></apx-chart>
+    </div>
+
+    <div class="norecords" *ngIf="gaugedataArr.length==0">No Records Found</div>
+
+    <hr />
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">Date</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="linechartdate"
+          [(ngModel)]="selected_dailypressperformance_date"
+          display-format="DD-MM-YYYY"
+        >
+        </ion-datetime>
+      </div>
+      <div class="col">
+        <div class="mdfont">PRESS NO</div>
+        <div>
+          <select
+            formControlName="select_press"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_dailypressperformance_pressno"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of line_pressArr">
+              {{ item.press_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; margin-right: 5px">
+      <button
+        type="button"
+        class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="getdailypressperformance()"
+      >
+        <ion-icon name="calendar"></ion-icon>
+        Get Records
+      </button>
+    </div>
+    <div
+      *ngIf="overalllinechartperformancedata.length>0"
+      style="text-align: center; margin-top: 50px; margin-left: 20"
+    >
+      <div class="col">
+        <div class="userfont usertext">
+          <b
+            >Press No.{{linechartpressno}} DAILY PERFORMANCE FOR
+            {{linechartdate}}</b
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      class="prediction-box"
+      *ngIf="overalllinechartperformancedata.length>0"
+    >
+      <apx-chart
+        [series]="lineOptions.series"
+        [chart]="lineOptions.chart"
+        [yaxis]="lineOptions.yaxis"
+        [xaxis]="lineOptions.xaxis"
+        [labels]="lineOptions.labels"
+        [stroke]="lineOptions.stroke"
+        [markers]="lineOptions.markers"
+        [fill]="lineOptions.fill"
+        [tooltip]="lineOptions.tooltip"
+      ></apx-chart>
+    </div>
+
+    <div class="norecords" *ngIf="overalllinechartperformancedata.length==0">
+      No Records Found
+    </div>
+
+    <hr />
+
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">DATE</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="pressqualitydate"
+          [(ngModel)]="selected_qualitycheck_date"
+          display-format="DD-MM-YYYY"
+        >
+        </ion-datetime>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">PLANT</div>
+        <div>
+          <select
+            formControlName="select_qualityplant"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_qualitycheck_plant"
+            (change)="onChangeQualityCheckPlant()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              value="{{item.id}}"
+              *ngFor="let item of pressquality_plantArr"
+            >
+              {{ item.plant_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="mdfont">PRESS STATION</div>
+        <div>
+          <select
+            formControlName="select_qualitystation"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_qualitycheck_pressstation"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              value="{{item.id}}"
+              *ngFor="let item of pressquality_pressArr"
+            >
+              {{ item.station_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; margin-right: 5px">
+      <button
+        type="button"
+        class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="getqualitycheck()"
+      >
+        <ion-icon name="calendar"></ion-icon>
+        Get Records
+      </button>
+    </div>
+    <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext"><b>PRESS MACHINE QUALITY CHECK</b></div>
+      </div>
+    </div>
+    <div
+      *ngIf="qualitydataoc.length > 0 || qualitydatam.length > 0"
+      class="prediction-box"
+    >
+      <apx-chart
+        [series]="multilineOptions.series"
+        [chart]="multilineOptions.chart"
+        [yaxis]="multilineOptions.yaxis"
+        [xaxis]="multilineOptions.xaxis"
+        [dataLabels]="multilineOptions.dataLabels"
+        [legend]="multilineOptions.legend"
+        [labels]="multilineOptions.labels"
+        [stroke]="multilineOptions.stroke"
+        [markers]="multilineOptions.markers"
+        [fill]="multilineOptions.fill"
+        [tooltip]="multilineOptions.tooltip"
+      ></apx-chart>
+    </div>
+
+    <div
+      class="norecords"
+      *ngIf="(qualitydataoc.length == 0 || qualitydatam.length == 0)"
+    >
+      No Records Found
+    </div>
+    <hr />
+    <div class="form-row">
+      <div style="margin: 5px" class="col">
+        <div class="mdfont">DATE</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="warehousedate"
+          [(ngModel)]="selected_warehouse_date"
+          display-format="DD-MM-YYYY"
+        >
+        </ion-datetime>
+      </div>
+      <div class="col">
+        <div class="mdfont">WAREHOUSE</div>
+        <div class="col">
+          <select
+            formControlName="select_warehouseplant"
+            class="h7 text-dark form-control"
+            [(ngModel)]="selected_warehouse"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of warehouseArr">
+              {{ item.station_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; margin-right: 5px">
+      <button
+        type="button"
+        class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="getwarehouse()"
+      >
+        <ion-icon name="calendar"></ion-icon>
+        Get Records
+      </button>
+    </div>
+
+    <div *ngIf="warehousedata!=''">
+      <div *ngIf="warehouseArr_oc1.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.1</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions1.series"
+            [chart]="warehouseOptions1.chart"
+            [yaxis]="warehouseOptions1.yaxis"
+            [xaxis]="warehouseOptions1.xaxis"
+            [dataLabels]="warehouseOptions1.dataLabels"
+            [legend]="warehouseOptions1.legend"
+            [labels]="warehouseOptions1.labels"
+            [stroke]="warehouseOptions1.stroke"
+            [markers]="warehouseOptions1.markers"
+            [fill]="warehouseOptions1.fill"
+            [tooltip]="warehouseOptions1.tooltip"
+            [plotOptions]="warehouseOptions1.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc2.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.2</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions2.series"
+            [chart]="warehouseOptions2.chart"
+            [yaxis]="warehouseOptions2.yaxis"
+            [xaxis]="warehouseOptions2.xaxis"
+            [dataLabels]="warehouseOptions2.dataLabels"
+            [legend]="warehouseOptions2.legend"
+            [labels]="warehouseOptions2.labels"
+            [stroke]="warehouseOptions2.stroke"
+            [markers]="warehouseOptions2.markers"
+            [fill]="warehouseOptions2.fill"
+            [tooltip]="warehouseOptions2.tooltip"
+            [plotOptions]="warehouseOptions2.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc3.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.3</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions3.series"
+            [chart]="warehouseOptions3.chart"
+            [yaxis]="warehouseOptions3.yaxis"
+            [xaxis]="warehouseOptions3.xaxis"
+            [dataLabels]="warehouseOptions3.dataLabels"
+            [legend]="warehouseOptions3.legend"
+            [labels]="warehouseOptions3.labels"
+            [stroke]="warehouseOptions3.stroke"
+            [markers]="warehouseOptions3.markers"
+            [fill]="warehouseOptions3.fill"
+            [tooltip]="warehouseOptions3.tooltip"
+            [plotOptions]="warehouseOptions3.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc4.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.4</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions4.series"
+            [chart]="warehouseOptions4.chart"
+            [yaxis]="warehouseOptions4.yaxis"
+            [xaxis]="warehouseOptions4.xaxis"
+            [dataLabels]="warehouseOptions4.dataLabels"
+            [legend]="warehouseOptions4.legend"
+            [labels]="warehouseOptions4.labels"
+            [stroke]="warehouseOptions4.stroke"
+            [markers]="warehouseOptions4.markers"
+            [fill]="warehouseOptions4.fill"
+            [tooltip]="warehouseOptions4.tooltip"
+            [plotOptions]="warehouseOptions4.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc5.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.5</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions5.series"
+            [chart]="warehouseOptions5.chart"
+            [yaxis]="warehouseOptions5.yaxis"
+            [xaxis]="warehouseOptions5.xaxis"
+            [dataLabels]="warehouseOptions5.dataLabels"
+            [legend]="warehouseOptions5.legend"
+            [labels]="warehouseOptions5.labels"
+            [stroke]="warehouseOptions5.stroke"
+            [markers]="warehouseOptions5.markers"
+            [fill]="warehouseOptions5.fill"
+            [tooltip]="warehouseOptions5.tooltip"
+            [plotOptions]="warehouseOptions5.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc6.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.6</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions6.series"
+            [chart]="warehouseOptions6.chart"
+            [yaxis]="warehouseOptions6.yaxis"
+            [xaxis]="warehouseOptions6.xaxis"
+            [dataLabels]="warehouseOptions6.dataLabels"
+            [legend]="warehouseOptions6.legend"
+            [labels]="warehouseOptions6.labels"
+            [stroke]="warehouseOptions6.stroke"
+            [markers]="warehouseOptions6.markers"
+            [fill]="warehouseOptions6.fill"
+            [tooltip]="warehouseOptions6.tooltip"
+            [plotOptions]="warehouseOptions6.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc7.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.7</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions7.series"
+            [chart]="warehouseOptions7.chart"
+            [yaxis]="warehouseOptions7.yaxis"
+            [xaxis]="warehouseOptions7.xaxis"
+            [dataLabels]="warehouseOptions7.dataLabels"
+            [legend]="warehouseOptions7.legend"
+            [labels]="warehouseOptions7.labels"
+            [stroke]="warehouseOptions7.stroke"
+            [markers]="warehouseOptions7.markers"
+            [fill]="warehouseOptions7.fill"
+            [tooltip]="warehouseOptions7.tooltip"
+            [plotOptions]="warehouseOptions7.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc8.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.8</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions8.series"
+            [chart]="warehouseOptions8.chart"
+            [yaxis]="warehouseOptions8.yaxis"
+            [xaxis]="warehouseOptions8.xaxis"
+            [dataLabels]="warehouseOptions8.dataLabels"
+            [legend]="warehouseOptions8.legend"
+            [labels]="warehouseOptions8.labels"
+            [stroke]="warehouseOptions8.stroke"
+            [markers]="warehouseOptions8.markers"
+            [fill]="warehouseOptions8.fill"
+            [tooltip]="warehouseOptions8.tooltip"
+            [plotOptions]="warehouseOptions8.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc9.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.9</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions9.series"
+            [chart]="warehouseOptions9.chart"
+            [yaxis]="warehouseOptions9.yaxis"
+            [xaxis]="warehouseOptions9.xaxis"
+            [dataLabels]="warehouseOptions9.dataLabels"
+            [legend]="warehouseOptions9.legend"
+            [labels]="warehouseOptions9.labels"
+            [stroke]="warehouseOptions9.stroke"
+            [markers]="warehouseOptions9.markers"
+            [fill]="warehouseOptions9.fill"
+            [tooltip]="warehouseOptions9.tooltip"
+            [plotOptions]="warehouseOptions9.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc10.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.10</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions10.series"
+            [chart]="warehouseOptions10.chart"
+            [yaxis]="warehouseOptions10.yaxis"
+            [xaxis]="warehouseOptions10.xaxis"
+            [dataLabels]="warehouseOptions10.dataLabels"
+            [legend]="warehouseOptions10.legend"
+            [labels]="warehouseOptions10.labels"
+            [stroke]="warehouseOptions10.stroke"
+            [markers]="warehouseOptions10.markers"
+            [fill]="warehouseOptions10.fill"
+            [tooltip]="warehouseOptions10.tooltip"
+            [plotOptions]="warehouseOptions10.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc11.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.11</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions11.series"
+            [chart]="warehouseOptions11.chart"
+            [yaxis]="warehouseOptions11.yaxis"
+            [xaxis]="warehouseOptions11.xaxis"
+            [dataLabels]="warehouseOptions11.dataLabels"
+            [legend]="warehouseOptions11.legend"
+            [labels]="warehouseOptions11.labels"
+            [stroke]="warehouseOptions11.stroke"
+            [markers]="warehouseOptions11.markers"
+            [fill]="warehouseOptions11.fill"
+            [tooltip]="warehouseOptions11.tooltip"
+            [plotOptions]="warehouseOptions11.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc12.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.12</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions12.series"
+            [chart]="warehouseOptions12.chart"
+            [yaxis]="warehouseOptions12.yaxis"
+            [xaxis]="warehouseOptions12.xaxis"
+            [dataLabels]="warehouseOptions12.dataLabels"
+            [legend]="warehouseOptions12.legend"
+            [labels]="warehouseOptions12.labels"
+            [stroke]="warehouseOptions12.stroke"
+            [markers]="warehouseOptions12.markers"
+            [fill]="warehouseOptions12.fill"
+            [tooltip]="warehouseOptions12.tooltip"
+            [plotOptions]="warehouseOptions12.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc13.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.13</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions13.series"
+            [chart]="warehouseOptions13.chart"
+            [yaxis]="warehouseOptions13.yaxis"
+            [xaxis]="warehouseOptions13.xaxis"
+            [dataLabels]="warehouseOptions13.dataLabels"
+            [legend]="warehouseOptions13.legend"
+            [labels]="warehouseOptions13.labels"
+            [stroke]="warehouseOptions13.stroke"
+            [markers]="warehouseOptions13.markers"
+            [fill]="warehouseOptions13.fill"
+            [tooltip]="warehouseOptions13.tooltip"
+            [plotOptions]="warehouseOptions13.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc14.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.14</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions14.series"
+            [chart]="warehouseOptions14.chart"
+            [yaxis]="warehouseOptions14.yaxis"
+            [xaxis]="warehouseOptions14.xaxis"
+            [dataLabels]="warehouseOptions14.dataLabels"
+            [legend]="warehouseOptions14.legend"
+            [labels]="warehouseOptions14.labels"
+            [stroke]="warehouseOptions14.stroke"
+            [markers]="warehouseOptions14.markers"
+            [fill]="warehouseOptions14.fill"
+            [tooltip]="warehouseOptions14.tooltip"
+            [plotOptions]="warehouseOptions14.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div *ngIf="warehouseArr_oc15.length>0">
+        <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+          <div class="col">
+            <div class="userfont usertext">
+              <b>WAREHOUSE QUALITY CHECK - DOOR NO.15</b>
+            </div>
+          </div>
+        </div>
+        <div class="prediction-box">
+          <apx-chart
+            [series]="warehouseOptions15.series"
+            [chart]="warehouseOptions15.chart"
+            [yaxis]="warehouseOptions15.yaxis"
+            [xaxis]="warehouseOptions15.xaxis"
+            [dataLabels]="warehouseOptions15.dataLabels"
+            [legend]="warehouseOptions15.legend"
+            [labels]="warehouseOptions15.labels"
+            [stroke]="warehouseOptions15.stroke"
+            [markers]="warehouseOptions15.markers"
+            [fill]="warehouseOptions15.fill"
+            [tooltip]="warehouseOptions15.tooltip"
+            [plotOptions]="warehouseOptions15.plotOptions"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="norecords" style="margin-top: 50px" *ngIf="warehousedata==''">
+      No Records Found
+    </div>
+
+    <hr />
+
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 10px 10px 10px 10px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="heading"><b>PLANT APPEARANCE AND HOUSEKEEPING</b></div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext"><b>PLANT IMAGES</b></div>
+      </div>
+    </div>
+    <div style="margin: 10px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="tablemdfont">PLANT</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="tablemdfont">DATE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="tablemdfont">TIME</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="tablemdfont">IMAGE</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of plantimagesArr">
+          <tr>
+            <td>{{value.plant_name}}</td>
+            <td>{{value.date}}</td>
+            <td>{{value.time}}</td>
+            <td scope="row">
+              <button
+                type="button"
+                class="h7 btn btn-outline-info btn-sm"
+                (click)="getwarehousehistory(value)"
+              >
+                <span class="icontext">History</span>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </form>
+</ion-content>

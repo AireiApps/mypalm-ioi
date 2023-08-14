@@ -28,6 +28,7 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
   overallstatus = "";
 
   uienable = false;
+  uistatusenable = false;
 
   /*Variables for Threshold Values*/
   pressure_min = 0;
@@ -93,13 +94,14 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
       txt_pt1: new FormControl("", Validators.required),
       txt_pt2: new FormControl("", Validators.required),
       txt_pt3: new FormControl("", Validators.required),
-      select_part: new FormControl("", Validators.required),
+      //select_part: new FormControl("", Validators.required),
       txt_amperage: new FormControl("", Validators.required),
       txt_endpipe: new FormControl("", Validators.required),
-      txt_firstdownpipe: new FormControl("", Validators.required),
-      txt_twentydownpipe: new FormControl("", Validators.required),      
+      //txt_firstdownpipe: new FormControl("", Validators.required),
+      //txt_twentydownpipe: new FormControl("", Validators.required),      
       ta_remarks: new FormControl("", Validators.required),
       select_furtheraction: new FormControl("", Validators.required),
+      select_status: new FormControl("", Validators.required),
     });
 
     this.selectaction.form = "";
@@ -241,7 +243,7 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
       userzoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
       zoneid: this.dustcollectorForm.value.select_zone,
-      type: 1,
+      type: 4,
     };
 
     //console.log(req);
@@ -265,23 +267,40 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
 
   onChangeStation() {
     if (this.dustcollectorForm.controls.select_zone != "") {
-      this.uienable = true;
+      this.uistatusenable = true;
 
       this.partblowerfanArr = [];
 
-      this.dustcollectorForm.controls.select_part.setValue("");
+      //this.dustcollectorForm.controls.select_part.setValue("");
 
       this.getPartBlowerFan();
     } else {
 
-      this.uienable = false;
+      this.uistatusenable = false;
 
       this.partblowerfanArr = [];
 
-      this.dustcollectorForm.controls.select_part.setValue("");
+      //this.dustcollectorForm.controls.select_part.setValue("");
 
       this.commonservice.presentToast("error", "Zone is mandatory...");
     }
+  }
+
+  onChangeStatus() {
+
+    if (this.dustcollectorForm.controls.select_zone != "" && this.dustcollectorForm.controls.select_station != "") {
+
+      if(this.dustcollectorForm.value.select_status == '1')
+      {
+        this.uienable = true;
+      }else{
+        this.uienable = false;
+      }
+      
+    }else{
+      this.commonservice.presentToast("error", "Zone and Station Selection is mandatory...");
+    }
+
   }
 
   onChangePressureIn() {
@@ -579,90 +598,161 @@ export class DustcollectormonitoringchecklistPage implements OnInit {
   }
 
   save() {
-    if (this.dustcollectorForm.valid) {
-      var getdc_date = moment(this.dustcollectorForm.value.txt_date).format(
-        "YYYY-MM-DD"
-      );
-
-      var getdc_time = moment(this.dustcollectorForm.value.txt_time).format(
-        "HH:00:00"
-      );
-
-      var getdc_datetime = getdc_date.concat(" ", getdc_time);
-
-      /*if (
-        this.pressure_flag > 0 ||
-        this.pt1_flag > 0 ||
-        this.pt2_flag > 0 ||
-        this.pt3_flag > 0 ||
-        this.endpipe_flag > 0 ||
-        this.firstdownpipe_flag > 0 ||
-        this.twentydownpipe_flag > 0 ||
-        this.blowerfan_flag > 0
-      ) {
-        this.thresholdflag = 1;
-        this.furtheraction = "REPORT";
-      } else {
-        this.thresholdflag = 0;
-        this.furtheraction = "NONE";
-      }*/
-
-      var req = {
-        user_id: this.userlist.userId,
-        departmentid: this.userlist.dept_id,
-        millcode: this.userlist.millcode,
-        userzoneid: this.userlist.zoneid,
-        date: getdc_date,
-        time: getdc_time,
-        datetime: getdc_datetime,
-        zone: this.dustcollectorForm.value.select_zone,
-        station: this.dustcollectorForm.value.select_station,
-        pressure_in: this.dustcollectorForm.value.txt_pressurein,
-        pressure_out: this.dustcollectorForm.value.txt_pressureout,
-        variance: this.variance,
-        temp_pt1: this.dustcollectorForm.value.txt_pt1,
-        temp_pt2: this.dustcollectorForm.value.txt_pt2,
-        temp_pt3: this.dustcollectorForm.value.txt_pt3,
-        part_id: this.dustcollectorForm.value.select_part,
-        blower_current_amp: this.dustcollectorForm.value.txt_amperage,
-        air_velocity_endpipe: this.dustcollectorForm.value.txt_endpipe,
-        air_velocity_1stdownpipe: this.dustcollectorForm.value
-          .txt_firstdownpipe,
-        air_velocity_20stdownpipe: this.dustcollectorForm.value
-          .txt_twentydownpipe,
-        overall_status: this.overallstatus,
-        remarks: this.dustcollectorForm.value.ta_remarks,
-        threshold_flag: this.thresholdflag,
-        furtheraction: this.dustcollectorForm.value.select_furtheraction,
-      };
-
-      //console.log(req);
-
-      this.service.savedustcollector(req).then((result) => {
-        var resultdata: any;
-        resultdata = result;
-
-        if (resultdata.httpcode == 200) {
-          this.dustcollectorForm.reset();
-
-          this.dustcollectorForm.controls.txt_date.setValue(this.currentdate);
-          this.dustcollectorForm.controls.txt_time.setValue(this.currenthour);
-
-          this.commonservice.presentToast(
-            "success",
-            "Dust Collector Monitoring Data Inserted Successfully"
+    if (this.dustcollectorForm.value.select_zone != "" && this.dustcollectorForm.value.select_station != "" && this.dustcollectorForm.value.select_status != "") 
+    {
+      if(this.dustcollectorForm.value.select_status=='1')
+      {
+        if (this.dustcollectorForm.valid) {
+          var getdc_date = moment(this.dustcollectorForm.value.txt_date).format(
+            "YYYY-MM-DD"
           );
 
-          this.router.navigate(["/maintenancehome"]);
+          var getdc_time = moment(this.dustcollectorForm.value.txt_time).format(
+            "HH:00:00"
+          );
+
+          var getdc_datetime = getdc_date.concat(" ", getdc_time);
+
+          /*if (
+            this.pressure_flag > 0 ||
+            this.pt1_flag > 0 ||
+            this.pt2_flag > 0 ||
+            this.pt3_flag > 0 ||
+            this.endpipe_flag > 0 ||
+            this.firstdownpipe_flag > 0 ||
+            this.twentydownpipe_flag > 0 ||
+            this.blowerfan_flag > 0
+          ) {
+            this.thresholdflag = 1;
+            this.furtheraction = "REPORT";
+          } else {
+            this.thresholdflag = 0;
+            this.furtheraction = "NONE";
+          }*/
+
+          var req = {
+              user_id: this.userlist.userId,
+              departmentid: this.userlist.dept_id,
+              millcode: this.userlist.millcode,
+              userzoneid: this.userlist.zoneid,
+              date: getdc_date,
+              time: getdc_time,
+              datetime: getdc_datetime,
+              zone: this.dustcollectorForm.value.select_zone,
+              station: this.dustcollectorForm.value.select_station,
+              pressure_in: this.dustcollectorForm.value.txt_pressurein,
+              pressure_out: this.dustcollectorForm.value.txt_pressureout,
+              variance: this.variance,
+              temp_pt1: this.dustcollectorForm.value.txt_pt1,
+              temp_pt2: this.dustcollectorForm.value.txt_pt2,
+              temp_pt3: this.dustcollectorForm.value.txt_pt3,              
+              part_id: 1,
+              blower_current_amp: this.dustcollectorForm.value.txt_amperage,
+              air_velocity_endpipe: this.dustcollectorForm.value.txt_endpipe,
+              air_velocity_1stdownpipe: "",
+              air_velocity_20stdownpipe: "",
+              overall_status: this.overallstatus,
+              remarks: this.dustcollectorForm.value.ta_remarks,
+              threshold_flag: this.thresholdflag,
+              furtheraction: this.dustcollectorForm.value.select_furtheraction,
+              status: this.dustcollectorForm.value.select_status,
+          };
+
+          //console.log(req);
+
+          this.service.savedustcollector(req).then((result) => {
+            var resultdata: any;
+            resultdata = result;
+
+            if (resultdata.httpcode == 200) {
+              this.dustcollectorForm.reset();
+
+              this.dustcollectorForm.controls.txt_date.setValue(this.currentdate);
+              this.dustcollectorForm.controls.txt_time.setValue(this.currenthour);
+
+              this.commonservice.presentToast(
+                "success",
+                "Dust Collector Monitoring Data Inserted Successfully"
+              );
+
+              this.router.navigate(["/maintenancehome"]);
+            } else {
+              this.commonservice.presentToast(
+                "error",
+                "Dust Collector Monitoring Data Insert Failed"
+              );
+            }
+          });
         } else {
-          this.commonservice.presentToast(
-            "error",
-            "Dust Collector Monitoring Data Insert Failed"
-          );
+          this.commonservice.presentToast("warning", "Please Fill the Form");
         }
-      });
-    } else {
-      this.commonservice.presentToast("warning", "Please Fill the Form");
+      }else{
+        var getdc_date = moment(this.dustcollectorForm.value.txt_date).format(
+          "YYYY-MM-DD"
+        );
+
+        var getdc_time = moment(this.dustcollectorForm.value.txt_time).format(
+          "HH:00:00"
+        );
+
+        var getdc_datetime = getdc_date.concat(" ", getdc_time);
+        
+        var areq = {
+          user_id: this.userlist.userId,
+          departmentid: this.userlist.dept_id,
+          millcode: this.userlist.millcode,
+          userzoneid: this.userlist.zoneid,
+          date: getdc_date,
+          time: getdc_time,
+          datetime: getdc_datetime,
+          zone: this.dustcollectorForm.value.select_zone,
+          station: this.dustcollectorForm.value.select_station,
+          pressure_in: 0,
+          pressure_out: 0,
+          variance: "",
+          temp_pt1: 0,
+          temp_pt2: 0,
+          temp_pt3: 0,
+          part_id: 1,
+          blower_current_amp: 0,
+          air_velocity_endpipe: "",
+          air_velocity_1stdownpipe: "",
+          air_velocity_20stdownpipe: "",
+          overall_status: "",
+          remarks: "",
+          threshold_flag: 0,
+          furtheraction: "",
+          status: this.dustcollectorForm.value.select_status,
+        };
+
+        console.log(areq);
+
+        this.service.savedustcollector(areq).then((result) => {
+          var resultdata: any;
+          resultdata = result;
+
+          if (resultdata.httpcode == 200) {
+            this.dustcollectorForm.reset();
+
+            this.dustcollectorForm.controls.txt_date.setValue(this.currentdate);
+            this.dustcollectorForm.controls.txt_time.setValue(this.currenthour);
+
+            this.commonservice.presentToast(
+              "success",
+              "Dust Collector Monitoring Data Inserted Successfully"
+            );
+
+            this.router.navigate(["/maintenancehome"]);
+          } else {
+            this.commonservice.presentToast(
+              "error",
+              "Dust Collector Monitoring Data Insert Failed"
+            );
+          }
+        });
+      }
+    }else{
+      this.commonservice.presentToast("error", "Zone, Station and Status Selection is mandatory...");
     }
   }
 }

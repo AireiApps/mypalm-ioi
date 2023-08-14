@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="pressamperageArr.length > 0">
+    <div style="text-align: center;margin-top: 10px;">
+      <div class="col">
+        <div class="userfont usertext"><b>History of Records (Press Amperage)</b></div>
+      </div>
+    </div>
+    <table style="width: 98%; height: 100%;" class="table table-bordered">
+      <tr class="table_head">
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont" style="font-size: 14px">Date</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Press No</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Time</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Amp</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Trend</span>
+        </th>
+      </tr>
+      <ng-container *ngFor="let value of pressamperageArr">
+        <tr>
+          <td class="usertext" width="20%">{{value.date}}</td>
+          <td class="usertext" width="20%">{{value.press_id}}</td>
+          <td class="usertext" width="20%">{{value.time_val}}</td>
+          <td class="usertext"width="20%">{{value.amp}}</td>
+          <td class="usertext" width="20%">
+            <div class="backgroundstatus" [style.background-color]="getBackGroundColor(value.status)"
+              [style.color]="gettextColor(value.status)">
+              {{value.status}}
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+  <div *ngIf="pressqualityArr.length > 0">
+    <div style="text-align: center;margin-top: 10px;">
+      <div class="col">
+        <div class="userfont usertext"><b>History of Records (Press Quality)</b></div>
+      </div>
+    </div>
+    <table width="90%" style="height: 100%" class="table table-bordered">
+      <tr class="table_head">
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont" style="font-size: 14px">Date</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Press No</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">OC %</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">Trend</span>
+        </th>
+      </tr>
+      <ng-container *ngFor="let value of pressqualityArr">
+        <tr>
+          <td class="usertext" width="25%">{{value.date}}</td>
+          <td class="usertext" width="25%">{{value.press_id}}</td>
+          <td class="usertext" width="25%">{{value.oc}}</td>
+          <td class="usertext" width="25%">
+            <div class="backgroundstatus" [style.background-color]="getBackGroundColor(value.status)"
+              [style.color]="gettextColor(value.status)">
+              {{value.status}}
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+</ion-content>

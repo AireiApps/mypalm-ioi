@@ -1,24 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ScreenOrientation } from "@ionic-native/screen-orientation/ngx";
 import { AIREIService } from "src/app/api/api.service";
 
 @Component({
-  selector: 'app-preventivemaintenance',
-  templateUrl: './preventivemaintenance.page.html',
-  styleUrls: ['./preventivemaintenance.page.scss'],
+  selector: "app-preventivemaintenance",
+  templateUrl: "./preventivemaintenance.page.html",
+  styleUrls: ["./preventivemaintenance.page.scss"],
 })
 export class PreventivemaintenancePage implements OnInit {
-
   userlist = JSON.parse(localStorage.getItem("userlist"));
   userid = this.userlist.userId;
   departmentid = this.userlist.dept_id;
-  millcode = this.userlist.millcode;  
+  millcode = this.userlist.millcode;
   zoneid = this.userlist.zoneid;
 
   baseurl = this.userlist.report_url;
 
   weburl;
 
-  constructor(private commonservice: AIREIService) {}
+  constructor(
+    private commonservice: AIREIService,
+    private screenOrientation: ScreenOrientation
+  ) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+  }
 
   ngOnInit() {}
 
@@ -30,10 +35,17 @@ export class PreventivemaintenancePage implements OnInit {
     this.getUrl();
   }
 
+  ngOnDestroy() {
+    this.screenOrientation.unlock();
+    this.screenOrientation.lock(
+      this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY
+    );
+  }
+
   getUrl() {
     let formatedurl =
       this.baseurl +
-      "/index.php/Mobile/Predictive_maintenance?user_id=" +
+      "/index.php/Mobile/Preventive_maintenance?user_id=" +
       this.userid +
       "&departmentid=" +
       this.departmentid +
@@ -42,10 +54,9 @@ export class PreventivemaintenancePage implements OnInit {
       "&zoneid=" +
       this.zoneid;
 
-      //console.log(formatedurl);
-      //this.commonservice.presentToast("info", formatedurl);
+    console.log(formatedurl);
+    //this.commonservice.presentToast("info", formatedurl);
 
     this.weburl = formatedurl;
   }
-
 }

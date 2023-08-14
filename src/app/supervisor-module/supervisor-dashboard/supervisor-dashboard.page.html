@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar class="bg-brown-color">
     <ion-title color="light">{{mill_name}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="callmodalcontroller('ScheduleMaintenance')">        
+        <ion-icon name="calendar"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
     <!-- <ion-buttons slot="primary">
       <ion-button class="bg-light-color" (click)="btn_notification()">        

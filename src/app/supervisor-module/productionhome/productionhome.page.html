@@ -9,17 +9,17 @@
 
 <ion-content *ngIf="userlist">
   <div class="home-box">
-    <ion-row *ngFor="let item of itemsArr">
-      <ion-col size="6" *ngFor="let eachitem of item">
-        <div class="card item-img" (click)="btn_Action(eachitem)">
-          <div class="item">
-            <img src="{{eachitem.imgpath}}" alt="PROFILE" />
-            <div class="container txt-home">
-              <p>{{eachitem.title}}</p>
+      <ion-row *ngFor="let item of operatoritemsArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title1}}<br>{{eachitem.title2}}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </ion-col>
-    </ion-row>
+        </ion-col>
+      </ion-row>
   </div>
 </ion-content>

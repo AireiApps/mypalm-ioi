@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title style="text-align: center;" color="light">{{partname}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="updatestatusForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Possible Cause <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_possiblecause" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Possible Cause</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of possiblecauseArr">
+            {{ value.cause }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Action Taken <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_actiontaken" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Action Taken</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of actiontakenArr">
+            {{ value.action }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <ion-row class="form-row">
+      <ion-col size="11">
+        <div class="h7 text-dark">
+          <b>Reset Part Running Hour</b>
+        </div>        
+      </ion-col>
+      <ion-col size="1">
+        <ion-checkbox style="vertical-align: middle;" (ionChange)="isPartRunningHoursChecked($event)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="form-row">
+      <ion-col size="11">
+        <div class="h7 text-dark">
+          <b>Replaced Part</b>
+        </div>        
+      </ion-col>
+      <ion-col size="1">
+        <ion-checkbox style="vertical-align: middle;" (ionChange)="isReplacedPartChecked($event)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+        
+    <ion-row style="margin-top: 10px;">
+      <ion-col style="text-align: right !important;">
+        <button type="submit" class="btn btn-info" (click)="save()">
+          Save
+        </button>
+      </ion-col>
+
+      <ion-col style="text-align: left !important;">
+        <button type="submit" class="btn btn-danger" (click)="cancel()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -1,0 +1,346 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Corrective Maintenance - Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="savecorrectivemaintenanceForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Main System <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_mainsystem" placeholder="Main System" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Work Order No <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_workorderno" placeholder="Work Order No" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Issued On <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_issuedon" placeholder="Issued On" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Urgency <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_urgency" placeholder="Urgency" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Type <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_type" placeholder="Type" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Zone <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_zone" placeholder="Zone" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Station <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_station" placeholder="Stationi" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Machinery <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_machinery" placeholder="Machinery" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Location ID <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_locationid" placeholder="Location ID" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Previous Maintenance On <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_previousmaintenanceon" placeholder="Previous Maintenance On" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Next Maintenance On <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_nextmaintenanceon" placeholder="Next Maintenance On" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Previous Running Hour <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_previousrunninghour" placeholder="Previous Running Hour" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Current Running Hour <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_currentrunninghour" placeholder="Current Running Hour" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Total Running Hour <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_totalrunninghour" placeholder="Total Running Hour" class="h7 form-control text-dark readonly" readonly/>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="h7" style="text-align: center; color: #E53327;">
+      <b>Part(s)</b>
+    </div>
+
+    <div>
+      <ion-row>
+        <div class="card gedf-card margin-bottom" *ngFor="let value of partsArr" style="width: 100%; margin: 0px 10px 10px 10px">
+        <div class="card-header" style="text-align: center">
+          <div class="h7 text-danger"><b>WON: {{workorderno}}</b></div>
+        </div>
+        <div style="margin: 10px 5px 10px 5px;">
+          <div class="h7 text-dark" *ngIf="value.part!=''"><b>Part:</b> {{value.part}}</div>
+          <div class="h7 text-dark" *ngIf="value.observation!=''"><b>Observation:</b> {{value.observation}}</div>
+          
+          <ion-row class="row-reverse">
+            <button type="button" class="h7 btn btn-outline-success btn-sm margin-5px" (click)="viewImage(value)">
+              <ion-icon name="eye-outline"></ion-icon>
+              View Image
+            </button>              
+          </ion-row>
+        </div>
+      </div>
+      </ion-row>
+    </div>
+
+    <div *ngIf="partsArr.length > 0">
+
+      <hr>
+
+      <div class="h7" style="text-align: center; color: #E53327;">
+        <b>Assinged To</b>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Leader <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_leader"
+            class="h7 text-dark form-control">
+            <option value="" selected disabled hidden>Select Leader</option>
+            <option value="{{parseString(value)}}" *ngFor="let value of leaderArr">
+              {{ value.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Staff <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_staff"
+            class="h7 text-dark form-control">
+            <option value="" selected disabled hidden>Select Staff</option>
+            <option value="{{parseString(value)}}" *ngFor="let value of staffArr">
+              {{ value.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="addNewassignedtoRow()"
+          style="margin: 10px">
+          Add Staff
+        </button>
+      </div>
+
+      <div formArrayName="assignedtoRows">
+        <ion-row>
+          <div class="card gedf-card margin-bottom" *ngFor="let itemrow of savecorrectivemaintenanceForm.controls.assignedtoRows.controls; let i=index"
+          [formGroupName]="i" style="width: 100%; margin: 0px 10px 10px 10px">
+
+          <div style="margin: 10px 5px 10px 5px;">
+            <div class="h7 text-dark">
+              <b>Staff :</b> {{getItembyKey('select_staff',itemrow,'name')}}
+            </div>            
+
+            <ion-row class="row-reverse">
+              <button type="button" class="h7 btn btn-outline-danger btn-sm margin-5px" (click)="deleteassignedtoRow(i)">
+                <ion-icon name="trash-outline"></ion-icon>
+                  Delete
+              </button>             
+            </ion-row>
+          </div>
+
+        </div>
+        </ion-row>
+      </div>
+    </div>
+
+    <div *ngIf="partsArr.length > 0">
+        
+      <hr>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Remarks <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{remarks}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <ion-row style="margin-top: 10px;" *ngIf="partsArr.length > 0 && savecorrectivemaintenanceForm.controls.assignedtoRows.controls.length > 0">
+      <ion-col style="text-align: center;">
+        <button type="submit" class="btn btn-info" (click)="save()">
+          Save
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

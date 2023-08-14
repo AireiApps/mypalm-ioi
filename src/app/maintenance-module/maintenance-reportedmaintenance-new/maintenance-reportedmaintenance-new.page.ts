@@ -18,14 +18,20 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
   newbreakdowndowntimeForm;
 
   imagePaths = {
-    complianantimagepath: "",
+    complianantimagepath1: "",
+    complianantimagepath2: "",
+    complianantimagepath3: "",
+    complianantimagepath4: "",
   };
 
   getbreakdowntime;
   getrectifiedtime;
+  machinerytypeArr = [];
   zoneArr = [];
   stationArr = [];
+  machinerycategoryArr = [];
   machineryArr = [];
+  partcategoryArr = [];
   partArr = [];
   observationArr = [];
   assignedtoArr = [];
@@ -36,6 +42,7 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
   breakdowntime = new Date().toISOString();
 
   partflag = false;
+  uienable = false;
 
   constructor(
     private router: Router,
@@ -48,26 +55,29 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
     this.newbreakdowndowntimeForm = this.fb.group({
       select_zone: new FormControl("", Validators.required),
       select_station: new FormControl("", Validators.required),
+      select_machinerycategory: new FormControl(""),
       select_machinery: new FormControl("", Validators.required),
+      select_partcategory: new FormControl(""),
       select_part: new FormControl(""),
       select_observation: new FormControl("", Validators.required),
       txt_breakdowntime: new FormControl(this.breakdowntime),
       tacomplaintremarks: new FormControl("", Validators.required),
       //select_assignedto: new FormControl("", Validators.required),
+      select_breakdowntype: new FormControl("", Validators.required),
     });
   }
 
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    this.getZone();
+    this.getMachineryType();
   }
 
   ionViewDidEnter() {
-    this.getZone();
+    this.getMachineryType();
   }
 
-  getZone() {
+  getMachineryType() {
     const req = {
       userid: this.userlist.userId,
       departmentid: this.userlist.dept_id,
@@ -76,15 +86,40 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
       type: 0,
     };
 
+    console.log(req);
+
+    this.service.getMachineryType(req).then((result) => {
+      let resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.machinerytypeArr = resultdata.data;
+      } else {
+        this.machinerytypeArr = [];
+
+        this.getObservation();
+      }
+    });
+  }
+
+  getZone() {
+    const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
+      millcode: this.userlist.millcode,
+      type: 0,
+    };
+
+    console.log(req);
+
     this.service.getzone(req).then((result) => {
       let resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
         this.zoneArr = resultdata.data;
-
-        this.getObservation();
       } else {
-        this.getObservation();
+        this.zoneArr = [];
       }
     });
   }
@@ -96,6 +131,7 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
       userzoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
       zoneid: this.newbreakdowndowntimeForm.value.select_zone,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
       type: 0,
     };
 
@@ -104,6 +140,36 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
       resultdata = result;
       if (resultdata.httpcode == 200) {
         this.stationArr = resultdata.data;
+      } else {
+        this.stationArr = [];
+      }
+    });
+  }
+
+  getMachineryCategory() {
+    const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      millcode: this.userlist.millcode,
+      stationid: this.newbreakdowndowntimeForm.value.select_station,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
+      type: 0,
+    };
+
+    console.log(req);
+
+    this.service.getMachineryCategoryList(req).then((result) => {
+      let resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.machinerycategoryArr = resultdata.data;
+
+        this.getMachinery();
+      } else {
+        this.machinerycategoryArr = [];
+
+        this.getMachinery();
       }
     });
   }
@@ -115,6 +181,9 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
       zoneid: this.userlist.zoneid,
       millcode: this.userlist.millcode,
       stationid: this.newbreakdowndowntimeForm.value.select_station,
+      machinecategoryid:
+        this.newbreakdowndowntimeForm.value.select_machinerycategory,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
       type: 0,
     };
 
@@ -125,6 +194,67 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
       resultdata = result;
       if (resultdata.httpcode == 200) {
         this.machineryArr = resultdata.data;
+      } else {
+        this.machineryArr = [];
+      }
+    });
+  }
+
+  getPartCategory() {
+    const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      millcode: this.userlist.millcode,
+      zone: this.newbreakdowndowntimeForm.value.select_zone,
+      station_id: this.newbreakdowndowntimeForm.value.select_station,
+      machinecategoryid:
+        this.newbreakdowndowntimeForm.value.select_machinerycategory,
+      machine_id: this.newbreakdowndowntimeForm.value.select_machinery,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
+    };
+
+    console.log(req);
+
+    this.service.getPartCategoryList(req).then((result) => {
+      let resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.partcategoryArr = resultdata.data;
+        this.getPart();
+      } else {
+        this.partcategoryArr = [];
+        this.getPart();
+      }
+    });
+  }
+
+  getPart() {
+    const req = {
+      userid: this.userlist.userId,
+      departmentid: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+      millcode: this.userlist.millcode,
+      zone: this.newbreakdowndowntimeForm.value.select_zone,
+      station_id: this.newbreakdowndowntimeForm.value.select_station,
+      machinecategoryid:
+        this.newbreakdowndowntimeForm.value.select_machinerycategory,
+      machine_id: this.newbreakdowndowntimeForm.value.select_machinery,
+      partcategoryid: this.newbreakdowndowntimeForm.value.select_partcategory,
+      breakdowntype: this.newbreakdowndowntimeForm.value.select_breakdowntype,
+    };
+
+    //console.log(req);
+
+    this.service.getPartList(req).then((result) => {
+      let resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.partArr = resultdata.data;
+        this.partflag = true;
+      } else {
+        this.partArr = [];
+        this.partflag = false;
       }
     });
   }
@@ -145,60 +275,91 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
     });
   }
 
-  getPart() {
-    const req = {
-      userid: this.userlist.userId,
-      departmentid: this.userlist.dept_id,
-      zoneid: this.userlist.zoneid,
-      millcode: this.userlist.millcode,
-      zone: this.newbreakdowndowntimeForm.value.select_zone,
-      station_id: this.newbreakdowndowntimeForm.value.select_station,
-      machine_id: this.newbreakdowndowntimeForm.value.select_machinery,
-    };
+  onChangeMachineryType() {
+    this.zoneArr = [];
+    this.stationArr = [];
+    this.machinerycategoryArr = [];
+    this.machineryArr = [];
+    this.partcategoryArr = [];
+    this.partArr = [];
 
-    //console.log(req);
+    if (this.newbreakdowndowntimeForm.value.select_breakdowntype != "") {
+      this.newbreakdowndowntimeForm.controls.select_zone.setValue("");
+      this.newbreakdowndowntimeForm.controls.select_station.setValue("");
+      this.newbreakdowndowntimeForm.controls.select_machinerycategory.setValue(
+        ""
+      );
+      this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
+      this.newbreakdowndowntimeForm.controls.select_partcategory.setValue("");
+      this.newbreakdowndowntimeForm.controls.select_part.setValue("");
 
-    this.service.getPartList(req).then((result) => {
-      let resultdata: any;
-      resultdata = result;
-      if (resultdata.httpcode == 200) {
-        this.partArr = resultdata.data;
-        this.partflag = true;
-      } else {
-        this.partArr = [];
-        this.partflag = false;
-      }
-    });
+      this.uienable = true;
+
+      this.getZone();
+    } else {
+      this.uienable = false;
+
+      this.commonservice.presentToast(
+        "error",
+        "Zone Selection is mandatory..."
+      );
+    }
   }
 
   onChangeZone() {
     this.stationArr = [];
+    this.machinerycategoryArr = [];
     this.machineryArr = [];
+    this.partcategoryArr = [];
     this.partArr = [];
 
     this.newbreakdowndowntimeForm.controls.select_station.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_machinerycategory.setValue(
+      ""
+    );
     this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_partcategory.setValue("");
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
 
     this.getStation();
   }
 
   onChangeStation() {
+    this.machinerycategoryArr = [];
     this.machineryArr = [];
+    this.partcategoryArr = [];
+    this.partArr = [];
+
+    this.newbreakdowndowntimeForm.controls.select_machinerycategory.setValue(
+      ""
+    );
+    this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_partcategory.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_part.setValue("");
+
+    this.getMachineryCategory();
+  }
+
+  onChangeMachineryCategory() {
+    this.machineryArr = [];
+    this.partcategoryArr = [];
     this.partArr = [];
 
     this.newbreakdowndowntimeForm.controls.select_machinery.setValue("");
+    this.newbreakdowndowntimeForm.controls.select_partcategory.setValue("");
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
 
     this.getMachinery();
   }
 
   onChangeMachinery() {
+    this.partcategoryArr = [];
     this.partArr = [];
 
+    this.newbreakdowndowntimeForm.controls.select_partcategory.setValue("");
     this.newbreakdowndowntimeForm.controls.select_part.setValue("");
 
-    this.getPart();
+    this.getPartCategory();
   }
 
   ImageUpload(type) {
@@ -210,12 +371,33 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
         resultdata = JSON.parse(resultdata.response);
 
         if (resultdata.httpcode == 200) {
-          if (type == "ComplainantImage") {
-            this.imagePaths.complianantimagepath =
+          if (type == "ComplainantImage1") {
+            this.imagePaths.complianantimagepath1 =
               resultdata.data.uploaded_path;
           }
+
+          if (type == "ComplainantImage2") {
+            this.imagePaths.complianantimagepath2 =
+              resultdata.data.uploaded_path;
+          }
+
+          if (type == "ComplainantImage3") {
+            this.imagePaths.complianantimagepath3 =
+              resultdata.data.uploaded_path;
+          }
+
+          if (type == "ComplainantImage4") {
+            this.imagePaths.complianantimagepath4 =
+              resultdata.data.uploaded_path;
+          }
+        } else if (resultdata.httpcode == 403) {
+          this.commonservice.presentToast("error", "Invalid Image Format");
+        } else if (resultdata.httpcode == 413) {
+          this.commonservice.presentToast("error", "File is too large.");
+        } else if (resultdata.httpcode == 202) {
+          this.commonservice.presentToast("error", "Image Uploded Failed!");
         } else {
-          this.commonservice.presentToast("error", "Image Added Failed!");
+          this.commonservice.presentToast("error", "File is too large.");
         }
       },
       (err) => {
@@ -244,7 +426,7 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
         ).type;
       } else {
         this.selectedpartid = 0;
-        this.selectedparttype = "";
+        this.selectedparttype = "0";
       }
 
       var req = {
@@ -252,26 +434,40 @@ export class MaintenanceReportedmaintenanceNewPage implements OnInit {
         departmentid: this.userlist.dept_id,
         userzoneid: this.userlist.zoneid,
         millcode: this.userlist.millcode,
-        zoneid: this.newbreakdowndowntimeForm.value.select_zone,
+        zone_id: this.newbreakdowndowntimeForm.value.select_zone,
+        breakdowntype: 0,
         stationid: this.newbreakdowndowntimeForm.value.select_station,
+        machinecategory:
+          this.newbreakdowndowntimeForm.value.select_machinerycategory,
         machineid: this.newbreakdowndowntimeForm.value.select_machinery,
+        partcategory: this.newbreakdowndowntimeForm.value.select_partcategory,
         partid: this.selectedpartid,
         parttype: this.selectedparttype,
+        replacedpartid: 0,
         categoryid: 3,
         observation: this.newbreakdowndowntimeForm.value.select_observation,
         breakdowntime: this.getbreakdowntime,
-        complianantimagepath: this.imagePaths.complianantimagepath,
-        complaintremarks: this.newbreakdowndowntimeForm.value
-          .tacomplaintremarks,
+        complianantimagepath1: this.imagePaths.complianantimagepath1,
+        complianantimagepath2: this.imagePaths.complianantimagepath2,
+        complianantimagepath3: this.imagePaths.complianantimagepath3,
+        complianantimagepath4: this.imagePaths.complianantimagepath4,
+        complainantremarks:
+          this.newbreakdowndowntimeForm.value.tacomplaintremarks,
+        complaintremarks:
+          this.newbreakdowndowntimeForm.value.tacomplaintremarks,
         foremanremarks: "",
+        foremanstatus: 0,
         rectifiedtime: this.getbreakdowntime,
         rectifiedimagepath: "",
+        severitylevel: "0",
         assignedto: 0,
         assignedtodeptid: 0,
         breakdownid: 0,
+        breakdownstatus: "",
+        clearflag: "0",
       };
 
-      //console.log(req);
+      console.log(req);
 
       this.service.savebreakdowndowntime(req).then((result) => {
         var resultdata: any;

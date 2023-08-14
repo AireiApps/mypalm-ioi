@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AIREIService } from "src/app/api/api.service";
+import { ScreenOrientation } from "@ionic-native/screen-orientation/ngx";
 
 @Component({
   selector: 'app-presstaperheadchecklist',
@@ -18,7 +19,9 @@ export class PresstaperheadchecklistPage implements OnInit {
 
   weburl;
 
-  constructor(private commonservice: AIREIService) {}
+  constructor(private commonservice: AIREIService, private screenOrientation: ScreenOrientation) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+  }
 
   ngOnInit() {}
 
@@ -26,8 +29,11 @@ export class PresstaperheadchecklistPage implements OnInit {
     this.getUrl();
   }
 
-  ionViewWillEnter() {
-    this.getUrl();
+  ngOnDestroy() {
+    this.screenOrientation.unlock();
+    this.screenOrientation.lock(
+      this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY
+    );
   }
 
   getUrl() {

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Preventive Maintenance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of preventivemaintenancelistArr">
+      <div class="card-header" style="text-align: center">
+        <div class="h7 text-danger"><b>{{value.category}}</b></div>
+      </div>
+
+      <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 5px;margin-right: 5px;">
+        <div class="h7 text-dark">Zone: {{value.zone}}</div>
+        <div class="h7 text-dark" *ngIf="value.station!=''">Station: {{value.station}}</div>
+        <div class="h7 text-dark" *ngIf="value.machinery!=''">Machinery: {{value.machinery}}</div>
+        <div class="h7 text-dark" *ngIf="value.type!=''">Type: {{value.type}}</div>        
+        <div class="h7 text-dark" style="float: right">Date: {{value.planningdate}}</div>
+      </div>
+
+      <ion-row class="row-reverse">
+        <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="callmodalcontroller(value)">
+          Update
+        </button>
+      </ion-row>
+    </div>
+
+    <div class="norecords" *ngIf="norecordflag==true">No Records Found...</div>
+  </div>
+</ion-content>

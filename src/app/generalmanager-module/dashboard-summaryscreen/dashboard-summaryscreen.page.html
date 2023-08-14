@@ -1,0 +1,1234 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dashboard 1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="dashboard1Form">
+    <div class="form-row">
+      <div class="col">
+        <div class="mdfont">From</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="fromdate"
+          display-format="DD-MM-YYYY"
+        >
+        </ion-datetime>
+      </div>
+      <div class="col">
+        <div class="mdfont">To</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="todate"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+    </div>
+    <div style="margin-top: 10px; margin-right: 5px">
+      <button
+        type="button"
+        class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="getdetails()"
+      >
+        <ion-icon name="calendar"></ion-icon>
+        Get Records
+      </button>
+    </div>
+    <div style="text-align: center; margin-top: 50px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b
+            >Daily Total Production Report for KCP A from {{getfromdate}} and to
+            {{gettodate}}</b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">DAY</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATUS</span>
+          </th>
+          <th
+            colspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">WATER ADDED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ELECTRICITY USED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (%)</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of getkcpaArr">
+          <tr>
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.date}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.date}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='Active'"
+              style="color: green"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='In Active'"
+              style="color: red"
+            >
+              {{value.status}}
+            </td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_pk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_pk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_cspk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_cspk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cspko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cspko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cspo}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cspo}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.water_added}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.water_added}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.electricity_used}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.electricity_used}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.remarks}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.remarks}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+
+    <hr />
+
+    <div style="text-align: center; margin-top: 40px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b
+            >Daily Total Production Report for KCP B from {{getfromdate}} and to
+            {{gettodate}}</b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">DAY</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATUS</span>
+          </th>
+          <th
+            colspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">WATER ADDED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ELECTRICITY USED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (%)</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of getkcpbArr">
+          <tr>
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.date}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.date}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='Active'"
+              style="color: green"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='In Active'"
+              style="color: red"
+            >
+              {{value.status}}
+            </td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_pk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_pk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_cspk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_cspk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cspko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cspko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cspo}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cspo}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.water_added}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.water_added}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.electricity_used}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.electricity_used}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.remarks}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.remarks}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+
+    <hr />
+
+    <div style="text-align: center; margin-top: 40px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b
+            >Daily Total Production Report for KCP C from {{getfromdate}} and to
+            {{gettodate}}</b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">DAY</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATUS</span>
+          </th>
+          <th
+            colspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">WATER ADDED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ELECTRICITY USED</span>
+          </th>
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPK (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (MT)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE (%)</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of getkcpcArr">
+          <tr>
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.date}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.date}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='Active'"
+              style="color: green"
+            >
+              {{value.status}}
+            </td>
+            <td
+              *ngIf="value.date != 'Total' && value.status=='In Active'"
+              style="color: red"
+            >
+              {{value.status}}
+            </td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_pk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_pk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_cspk}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_cspk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.procured_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.procured_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_cspko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_cspko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.production_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.production_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cpko}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_cspo}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_cspo}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_total}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.yield_pke}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.yield_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.water_added}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.water_added}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.electricity_used}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.electricity_used}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.date == 'Total'"
+            >
+              {{value.remarks}}
+            </td>
+            <td *ngIf="value.date != 'Total'">{{value.remarks}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+
+    <hr />
+
+    <div style="text-align: center; margin-top: 40px; margin-left: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b
+            >Total Processed, Production and Yield from {{getfromdate}} to
+            {{gettodate}}</b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+          <th
+            colspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION</span>
+          </th>
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED PK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED CSPK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED TOTAL</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION CPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION CSPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION TOTAL</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION PKE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD CPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD CSPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD TOTAL</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD PKE</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of gettotalArr">
+          <tr>
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.plant}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.plant}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.processed_pk}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.processed_pk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.processed_cspk}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.processed_cspk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.processed_total}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.processed_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.production_cpk}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.production_cpk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.production_cspk}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.production_cspk}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.production_total}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.production_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.production_pke}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.production_pke}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.yield_cpko}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.yield_cpko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.yield_cspko}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.yield_cspko}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.yield_total}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.yield_total}}</td>
+
+            <td
+              scope="row"
+              style="background-color: #dfe7ef; font-weight: bold"
+              *ngIf="value.plant == 'Total'"
+            >
+              {{value.yield_pke}}
+            </td>
+            <td *ngIf="value.plant != 'Total'">{{value.yield_pke}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </form>
+</ion-content>

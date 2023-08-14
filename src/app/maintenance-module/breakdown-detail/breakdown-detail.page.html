@@ -14,6 +14,23 @@
   <form [formGroup]="breakdowndowntimedetailForm">
     <div class="form-row">
       <div class="col">
+        <div class="h7 text-dark"><b>Machinery Type</b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="h7 form-control text-dark readonly"
+          value="{{breakdowntype}}"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
         <div class="h7 text-dark"><b>Zone</b></div>
       </div>
     </div>
@@ -29,37 +46,41 @@
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark"><b>Station</b></div>
+    <div *ngIf="station!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Station</b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{station}}"
+            readonly
+          />
+        </div>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="col">
-        <input
-          type="text"
-          class="h7 form-control text-dark readonly"
-          value="{{station}}"
-          readonly
-        />
+    <div *ngIf="machinery!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Machinery</b></div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark"><b>Machinery</b></div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <input
-          type="text"
-          class="h7 form-control text-dark readonly"
-          value="{{machinery}}"
-          readonly
-        />
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{machinery}}"
+            readonly
+          />
+        </div>
       </div>
     </div>
 
@@ -92,9 +113,29 @@
       <div class="col">
         <input
           type="text"
-          class="h7 form-control text-dark"
+          class="h7 form-control text-dark readonly"
           value="{{breakdowntime}}"
+          readonly
         />
+      </div>
+    </div>
+
+    <div *ngIf="severitylevel!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Severity Level</b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{severitylevel}}"
+            readonly
+          />
+        </div>
       </div>
     </div>
 
@@ -116,24 +157,69 @@
       </div>
     </div>
 
-    <div *ngIf="complainantimage != ''">
-      <div class="form-row">
-        <div class="col">
-          <div class="h7 text-dark"><b>Complainant Image</b></div>
-        </div>
+    <div *ngIf="complainantimage > 0">
+      <div class="h7 text-dark" style="text-align: left; padding-left: 10px">
+        <b>Complainant Image</b>
       </div>
 
-      <div class="form-row imgmarigin">
-        <div class="col nopadding" style="text-align: center">
-          <div class="imagePreview" *ngIf="complainantimage == ''"></div>
-          <div class="complainantimagePresent" *ngIf="complainantimage != ''">
-            <img class="complainantimagePresent" src="{{complainantimage}}" />
+      <ion-row class="rowalign" *ngIf="complainantimage1 != '' || complainantimage2 != ''">
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 1</div>
+          <div class="imagePreview" *ngIf="complainantimage1 == ''"></div>
+          <div class="imagePresent" *ngIf="complainantimage1 != ''">
+            <img class="imagePresent" src="{{complainantimage1}}" />
           </div>
-        </div>
-      </div>
+        </ion-col>
+
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 2</div>
+          <div class="imagePreview" *ngIf="complainantimage2 == ''"></div>
+          <div class="imagePresent" *ngIf="complainantimage2 != ''">
+            <img class="imagePresent" src="{{complainantimage2}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="rowalign" *ngIf="complainantimage3 != '' || complainantimage4 != ''">
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 3</div>
+          <div class="imagePreview" *ngIf="complainantimage3 == ''"></div>
+          <div class="imagePresent" *ngIf="complainantimage3 != ''">
+            <img class="imagePresent" src="{{complainantimage3}}" />
+          </div>
+        </ion-col>
+
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 4</div>
+          <div class="imagePreview" *ngIf="complainantimage4 == ''"></div>
+          <div class="imagePresent" *ngIf="complainantimage4 != ''">
+            <img class="imagePresent" src="{{complainantimage4}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+
     </div>
 
     <hr />
+
+    <!-- <div *ngIf="replacepartflag==true">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Replaced Part <sup>*</sup></b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select formControlName="select_replacedpart" class="h7 text-dark form-control">
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of replacedpartArr">
+              {{ item.part }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div> -->
 
     <div class="form-row">
       <div class="col">
@@ -170,6 +256,55 @@
         ></textarea>
       </div>
     </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Foreman Status <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_status" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Status</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of statusArr">
+            {{ value.status }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Action <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_breakdownaction" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Action</option>
+          <option value="{{value.id}}" *ngFor="let value of breakdownactionArr">
+            {{ value.action }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <ion-row class="form-row">
+      <ion-col size="11">
+        <div class="h7 text-dark">
+          <b>Reset Machine Running Hour</b>
+        </div>        
+      </ion-col>
+      <ion-col size="1">
+        <ion-checkbox style="vertical-align: middle;" (ionChange)="isMachineRunningHourChecked($event)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
 
     <div class="form-row imgmarigin">
       <label class="h7 text-dark"><b>Rectified Image</b></label>

@@ -12,6 +12,30 @@
     <div class="form-row">
       <div class="col">
         <div class="h7 text-dark">
+          <b>Machinery Type <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_breakdowntype" class="h7 form-control" (change)="onChangeMachineryType()">
+          <!-- <option value="" selected disabled hidden>Select Machinery Type</option>
+          <option value="1">Plant System</option>
+          <option value="2">Press Machine</option>
+          <option value="3">Complementary</option> -->
+          <option value="" selected disabled hidden>Select Machinery Type</option>
+          <option value="{{item.id}}" *ngFor="let item of machinerytypeArr">
+            {{ item.system }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="uienable == true">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
           <b>Zone <sup>*</sup></b>
         </div>
       </div>
@@ -31,206 +55,325 @@
         </select>
       </div>
     </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>Station <sup>*</sup></b>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <select
-          formControlName="select_station"
-          class="h7 text-dark form-control"
-          (change)="onChangeStation()"
-        >
-          <option value="" selected disabled hidden>Select Station</option>
-          <option value="{{item.id}}" *ngFor="let item of stationArr">
-            {{ item.station }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>Machinery <sup>*</sup></b>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <select
-          formControlName="select_machinery"
-          class="h7 text-dark form-control"
-          (change)="onChangeMachinery()"
-        >
-          <option value="" selected disabled hidden>Select Machinery</option>
-          <option value="{{item.id}}" *ngFor="let item of machineryArr">
-            {{ item.machinery }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div *ngIf="partflag==true">
+    
       <div class="form-row">
         <div class="col">
-          <div class="h7 text-dark">Part <sup>*</sup></div>
+          <div class="h7 text-dark">
+            <b>Station <sup>*</sup></b>
+          </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="col">
           <select
-            formControlName="select_part"
+            formControlName="select_station"
             class="h7 text-dark form-control"
+            (change)="onChangeStation()"
           >
+            <option value="" selected disabled hidden>Select Station</option>
+            <option value="{{item.id}}" *ngFor="let item of stationArr">
+              {{ item.station }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Machinery Category <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_machinerycategory"
+            class="h7 text-dark form-control"
+            (change)="onChangeMachineryCategory()"
+          >
+            <option value="" selected disabled hidden>Select Machinery Category</option>
+            <option value="{{item.id}}" *ngFor="let item of machinerycategoryArr">
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Machinery <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_machinery"
+            class="h7 text-dark form-control"
+            (change)="onChangeMachinery()"
+          >
+            <option value="" selected disabled hidden>Select Machinery</option>
+            <option value="{{item.id}}" *ngFor="let item of machineryArr">
+              {{ item.machinery }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Part Category <sup>*</sup></b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select formControlName="select_partcategory" class="h7 text-dark form-control" (change)="onChangePartCategory()">
             <option value="" selected disabled hidden>Select</option>
-            <option value="{{ parseString(item)}}" *ngFor="let item of partArr">
+            <option value="{{item.id}}" *ngFor="let item of partcategoryArr">
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Part <sup>*</sup></b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <select formControlName="select_part" class="h7 text-dark form-control">
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{item.id}}" *ngFor="let item of partArr">
               {{ item.part }}
             </option>
           </select>
         </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">Replaced Part <sup>*</sup></div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <select
-          formControlName="select_replacedpart"
-          class="h7 text-dark form-control"
-        >
-          <option value="" selected disabled hidden>Select</option>
-          <option
-            value="{{item.replacedpartid}}"
-            *ngFor="let item of replacedpartArr"
-          >
-            {{ item.replacedpart }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>Breakdown Time <sup>*</sup></b>
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Breakdown Time <sup>*</sup></b>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <ion-datetime
-          class="h7 form-control"
-          formControlName="txt_breakdowntime"
-          display-format="DD-MM-YYYY HH:mm"
-        ></ion-datetime>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>Complainant Remarks <sup>*</sup></b>
+      <div class="form-row">
+        <div class="col">
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_breakdowntime"
+            display-format="DD-MM-YYYY HH:mm"
+          ></ion-datetime>
         </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <textarea
-          class="h7 form-control"
-          formControlName="tacomplaintremarks"
-          rows="4"
-          autosize
-        ></textarea>
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Severity Level <sup>*</sup></b>
+          </div>
+        </div>
       </div>
-    </div>
+  
+      <div class="form-row">
+        <div class="col">
+          <select formControlName="select_severity" class="h7 form-control">
+            <option value="" selected disabled hidden>Select Severity Level</option>
+            <option value="Minor">Minor</option>
+            <option value="Major">Major</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+      </div>
 
-    <div class="form-row imgmarigin">
-      <label class="h7 text-dark"><b>Complainant Image</b></label>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 nopadding" style="text-align: right">
-            <div
-              class="imagePreview"
-              *ngIf="imagePaths.complianantimagepath == ''"
-            ></div>
-            <div
-              class="imagePresent"
-              *ngIf="imagePaths.complianantimagepath != ''"
-            >
-              <img
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Complainant Remarks <sup>*</sup></b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea
+            class="h7 form-control"
+            formControlName="tacomplaintremarks"
+            rows="4"
+            autosize
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- <div class="form-row imgmarigin">
+        <label class="h7 text-dark"><b>Complainant Image</b></label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 nopadding" style="text-align: right">
+              <div
+                class="imagePreview"
+                *ngIf="imagePaths.complianantimagepath == ''"
+              ></div>
+              <div
                 class="imagePresent"
-                [src]="imagePaths.complianantimagepath"
-              />
+                *ngIf="imagePaths.complianantimagepath != ''"
+              >
+                <img
+                  class="imagePresent"
+                  [src]="imagePaths.complianantimagepath"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4 nopadding" style="text-align: right">
+              <label class="btn btn-warning">
+                Upload<input
+                  type="button"
+                  class="uploadFile img"
+                  value="Upload Photo"
+                  style="width: 0px; height: 0px; overflow: hidden; display: none"
+                  (click)="ImageUpload('ComplainantImage')"
+                />
+              </label>
             </div>
           </div>
         </div>
+      </div> -->
 
-        <div class="row">
-          <div class="col-sm-4 nopadding" style="text-align: right">
-            <label class="btn btn-warning">
-              Upload<input
-                type="button"
-                class="uploadFile img"
-                value="Upload Photo"
-                style="width: 0px; height: 0px; overflow: hidden; display: none"
-                (click)="ImageUpload('ComplainantImage')"
-              />
-            </label>
+      <!-- <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">
+            <b>Assigned To <sup>*</sup></b>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark">
-          <b>Assigned To <sup>*</sup></b>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <select
-          formControlName="select_assignedto"
-          class="h7 text-dark form-control"
-        >
-          <option value="" selected disabled hidden>Select</option>
-          <option
-            value="{{parseString(value)}}"
-            *ngFor="let value of assignedtoArr"
+      <div class="form-row">
+        <div class="col">
+          <select
+            formControlName="select_assignedto"
+            class="h7 text-dark form-control"
           >
-            {{ value.name }}
-          </option>
-        </select>
-      </div>
-    </div>
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              value="{{parseString(value)}}"
+              *ngFor="let value of assignedtoArr"
+            >
+              {{ value.name }}
+            </option>
+          </select>
+        </div>
+      </div> -->
 
-    <div style="text-align: center">
-      <button
-        type="submit"
-        class="btn btn-info"
-        (click)="save()"
-        style="margin-top: 10px; margin-bottom: 10px"
-      >
-        Save
-      </button>
+      <div class="h7 text-dark" style="text-align: left; padding-left: 10px">
+        <b>Complainant Image</b>
+      </div>
+
+      <ion-row class="rowalign">
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 1</div>
+          <div
+            class="imagePreview"
+            *ngIf="imagePaths.complianantimagepath1 == ''"
+          ></div>
+          <div class="imagePresent" *ngIf="imagePaths.complianantimagepath1 != ''">
+            <img class="imagePresent" [src]="imagePaths.complianantimagepath1" />
+          </div>
+
+          <label class="btn btn-warning">
+            Upload<input
+              type="button"
+              class="uploadFile img"
+              value="Upload Photo"
+              style="width: 0px; height: 0px; overflow: hidden; display: none"
+              (click)="ImageUpload('ComplainantImage1')"
+            />
+          </label>
+        </ion-col>
+
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 2</div>
+          <div
+            class="imagePreview"
+            *ngIf="imagePaths.complianantimagepath2 == ''"
+          ></div>
+          <div class="imagePresent" *ngIf="imagePaths.complianantimagepath2 != ''">
+            <img class="imagePresent" [src]="imagePaths.complianantimagepath2" />
+          </div>
+
+          <label class="btn btn-warning">
+            Upload<input
+              type="button"
+              class="uploadFile img"
+              value="Upload Photo"
+              style="width: 0px; height: 0px; overflow: hidden; display: none"
+              (click)="ImageUpload('ComplainantImage2')"
+            />
+          </label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="rowalign">
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 3</div>
+          <div
+            class="imagePreview"
+            *ngIf="imagePaths.complianantimagepath3 == ''"
+          ></div>
+          <div class="imagePresent" *ngIf="imagePaths.complianantimagepath3 != ''">
+            <img class="imagePresent" [src]="imagePaths.complianantimagepath3" />
+          </div>
+
+          <label class="btn btn-warning">
+            Upload<input
+              type="button"
+              class="uploadFile img"
+              value="Upload Photo"
+              style="width: 0px; height: 0px; overflow: hidden; display: none"
+              (click)="ImageUpload('ComplainantImage3')"
+            />
+          </label>
+        </ion-col>
+
+        <ion-col style="padding: 0px; text-align: center">
+          <div class="h7 colmarginbottom text-muted">Image 4</div>
+          <div
+            class="imagePreview"
+            *ngIf="imagePaths.complianantimagepath4 == ''"
+          ></div>
+          <div class="imagePresent" *ngIf="imagePaths.complianantimagepath4 != ''">
+            <img class="imagePresent" [src]="imagePaths.complianantimagepath4" />
+          </div>
+
+          <label class="btn btn-warning">
+            Upload<input
+              type="button"
+              class="uploadFile img"
+              value="Upload Photo"
+              style="width: 0px; height: 0px; overflow: hidden; display: none"
+              (click)="ImageUpload('ComplainantImage4')"
+            />
+          </label>
+        </ion-col>
+      </ion-row>
+
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-info" (click)="save()" style="margin-top: 10px; margin-bottom: 10px">
+          Save
+        </button>
+      </div>
     </div>
   </form>
 </ion-content>

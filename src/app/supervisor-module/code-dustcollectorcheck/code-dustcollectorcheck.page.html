@@ -1,0 +1,374 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Dust Collector</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <form [formGroup]="dustcollectorForm">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{zonename}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Station <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{stationname}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Machinery <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{machineryname}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Type <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{machinerytypename}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Timestamp <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_date"
+          display-format="DD-MM-YYYY HH:mm:ss"
+          placeholder="Select Date"></ion-datetime>
+        </ion-col>     
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Period Hour <sup>*</sup></div>
+        </ion-col>
+        
+        <ion-col size="7">
+          <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_time"
+          display-format="HH:00"
+          placeholder="Select Hour"></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Mode <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select
+            formControlName="select_mode"
+            class="h7 form-control text-dark"
+            (change)="onChangeMode()">
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of modeArr" value="{{value.id}}">
+              {{ value.mode }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="uienable == true">     
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Pressure (mmH2O)</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Pressure IN <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Pressure IN"
+              class="h7 form-control"
+              formControlName="txt_pressurein"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangePressureIn()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Pressure OUT <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Pressure OUT"
+              class="h7 form-control"
+              formControlName="txt_pressureout"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangePressureOut()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Total Pressure</div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              class="h7 form-control readonly"
+              formControlName="txt_variance"
+              value="{{variance}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Temperature (<sup>o</sup>C)</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Point 1 <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Point 1"
+              class="h7 form-control"
+              formControlName="txt_pt1"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangePT1()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Point 2 <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Point 2"
+              class="h7 form-control"
+              formControlName="txt_pt2"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangePT2()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Point 3 <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Point 3"
+              class="h7 form-control"
+              formControlName="txt_pt3"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangePT3()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Fan</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Amperage (A) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Amperage"
+              class="h7 form-control"
+              formControlName="txt_amperage"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeFan()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Air Velocity</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">End-Pipe (m/s) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter End-Pipe"
+              class="h7 form-control"
+              formControlName="txt_endpipe"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeEndPipe()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Status</div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+                type="text"
+                class="h7 form-control readonly"                
+                [style.color]="getStatusColor(status)"
+                value="{{status}}"
+                formControlName="txt_status"
+                readonly              
+              />
+          </ion-col>
+        </ion-row>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">1st Pressing Line</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div class="imagePreview" *ngIf="imagePaths.firstpressingline_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.firstpressingline_path != ''">
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.firstpressingline_path"
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  Upload
+                <input type="button" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;display: none;"(click)="imageupload('firstpressingline')"/>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">2nd Pressing Line</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div class="imagePreview" *ngIf="imagePaths.secondpressingline_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.secondpressingline_path != ''">
+                  <img
+                      class="imagePresent"
+                      [src]="imagePaths.secondpressingline_path"
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  Upload
+                <input type="button" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;display: none;"(click)="imageupload('secondpressingline')"/>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">Main System</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div class="imagePreview" *ngIf="imagePaths.mainsystem_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.mainsystem_path != ''">
+                  <img
+                      class="imagePresent"
+                      [src]="imagePaths.mainsystem_path"
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  Upload
+                <input type="button" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;display: none;"(click)="imageupload('mainsystem')"/>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Remarks</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-info" (click)="save()" style="margin-top: 10px; margin-bottom: 10px">Save</button>
+        </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

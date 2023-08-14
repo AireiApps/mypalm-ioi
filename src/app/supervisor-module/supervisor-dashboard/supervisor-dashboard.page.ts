@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild } from "@angular/core";
 import { AIREIService } from "src/app/api/api.service";
 import { Router } from "@angular/router";
-import { Platform, AlertController } from "@ionic/angular";
+import { Platform, AlertController, ModalController } from "@ionic/angular";
 import * as moment from "moment";
 import { SupervisorService } from "src/app/services/supervisor-service/supervisor.service";
 
@@ -20,6 +20,9 @@ import { GeneralserviceService } from "src/app/services/generalservice/generalse
 
 import { Market } from "@ionic-native/market/ngx";
 import { AppVersion } from "@ionic-native/app-version/ngx";
+
+import { SchedulemaintenancePage } from "src/app/maintenance-module/schedulemaintenance/schedulemaintenance.page";
+import { QualitycheckPage } from "src/app/supervisor-module/qualitycheck/qualitycheck.page";
 
 @Component({
   selector: "app-supervisor-dashboard",
@@ -50,13 +53,11 @@ export class SupervisorDashboardPage implements OnInit {
         path: "/maintenancehome",
         imgpath: "../../assets/img/preventivemaintenance.png",
       },
-    ],
-    [
       {
-        title: "Reports",
-        name: "Reports",
-        path: "/supervisor-reports",
-        imgpath: "../../assets/img/ceoreport.png",
+        title: "Quality Check",
+        name: "Quality Check",
+        path: "/qualityhome",
+        imgpath: "../../assets/img/quality.png",
       },
       {
         title: "Breakdown / Downtime",
@@ -64,14 +65,30 @@ export class SupervisorDashboardPage implements OnInit {
         path: "/supervisor-breakdown-list",
         imgpath: "../../assets/img/breakdownreport.png",
       },
-    ],
-    [
       {
-        title: "Scanner",
-        name: "Scanner",
-        path: "/qrcodescanner",
-        imgpath: "../../assets/img/qrcodescanner.png",
-      },
+        title: "Corrective Maintenance",
+        name: "Corrective Maintenance",        
+        path: "/correctivemaintenance-list",
+        imgpath: "../../assets/img/reportedmaintenance.png",
+      },     
+      /*{
+        title: "Press Running Hours",
+        name: "Press Running Hours",
+        path: "/machinerunninghours-update",
+        imgpath: "../../assets/img/correctivemaintenanceassign.png",
+      },*/
+      {
+        title: "Machine Lubrication",
+        name: "Machine Lubrication",
+        path: "/maintenance-machinelubrication",
+        imgpath: "../../assets/img/lubricantconsumption.png",
+      },   
+      {
+        title: "Reports",
+        name: "Reports",
+        path: "/supervisor-reports",
+        imgpath: "../../assets/img/ceoreport.png",
+      },  
     ],
   ];
 
@@ -85,7 +102,8 @@ export class SupervisorDashboardPage implements OnInit {
     private platform: Platform,
     private alertController: AlertController,
     private appVersion: AppVersion,
-    private market: Market
+    private market: Market,
+    public modalController: ModalController
   ) {}
 
   ngOnInit() {}
@@ -130,11 +148,15 @@ export class SupervisorDashboardPage implements OnInit {
     );
   }
 
-  forceUpdated() {
+  forceUpdated() {    
+
     var app_version;
 
     this.appVersion.getVersionNumber().then(
       (versionNumber) => {
+
+        //this.commonservice.presentToast('info', 'hai');
+
         app_version = versionNumber;
 
         let req = {
@@ -143,6 +165,9 @@ export class SupervisorDashboardPage implements OnInit {
           millcode: this.userlist.millcode,
           zoneid: this.userlist.zoneid,
         };
+
+        //this.commonservice.presentToast('info', app_version);
+        //this.commonservice.presentToast('info', versionNumber);
 
         this.commonservice.getSettings(req).then((result) => {
           var resultdata: any;
@@ -176,7 +201,7 @@ export class SupervisorDashboardPage implements OnInit {
             if (this.platform.is("android")) {
               appId = "com.airei.milltracking.mypalmioi";
             } else {
-              appId = "id1534533301";
+              appId = "id1561911863";
             }
 
             this.market
@@ -195,6 +220,22 @@ export class SupervisorDashboardPage implements OnInit {
   }
   
   btn_Action(item) {
-    this.router.navigate([item.path]);
+      this.router.navigate([item.path]);
+  }
+
+  async callmodalcontroller(type) 
+  {
+    if(type == "ScheduleMaintenance")
+    {
+      const modal = await this.modalController.create({
+        component: SchedulemaintenancePage,
+      });
+
+      modal.onDidDismiss().then((data) => {
+        this.ngAfterViewInit();
+      });
+
+      return await modal.present();
+    }
   }
 }

@@ -14,6 +14,7 @@ export class SupervisorBreakdownListPage implements OnInit {
   userlist = JSON.parse(localStorage.getItem("userlist"));
 
   breakdowndowntimelistArr = [];
+  norecordflag = false;
 
   constructor(
     public modalController: ModalController,
@@ -51,10 +52,12 @@ export class SupervisorBreakdownListPage implements OnInit {
       var resultdata: any;
       resultdata = result;
       if (resultdata.httpcode == 200) {
+        this.norecordflag = false;
         this.breakdowndowntimelistArr = resultdata.data;
       } else {
+        this.norecordflag = true;
         this.breakdowndowntimelistArr = [];
-        this.commonservice.presentToast("info", "No Records Found...");
+        //this.commonservice.presentToast("info", "No Records Found...");
       }
     });
   }

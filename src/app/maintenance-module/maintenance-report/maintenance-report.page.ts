@@ -18,21 +18,61 @@ export class MaintenanceReportPage implements OnInit {
   personalizedcommcount = 0; /*Personalized notification count*/
 
   reportArr = [
-    /*{
-      title: this.translate.instant("REPORTS.jobdonereport"),
-      path: "/maintenance-jobdonereport",
-    },
-    {
-      title: "Breakdown List",
-      path: "/report-maintenance-breakdownlist",
-    },*/
     {
       title: "Breakdown Report",
       path: "/report-maintenance-breakdown",
     },
+    /*{
+      title: "Corrective Maintenance Report",
+      path: "/correctivemaintenancereport",
+    },
+    {
+      title: "Preventive Maintenance Report",
+      path: "/preventivemaintenancereport",
+    },
     {
       title: "Predictive Maintenance Report",
       path: "/predictivemaintenancereport",
+    },*/
+    {
+      title: "Press Running Hours Report",
+      path: "/machinerunninghoursreport",
+    },
+    {
+      title: "Machine Lubrication Report",
+      path: "/maintenance-machinelubrication-report",
+    },
+    {
+      title: "Press Machine Maintenance Report",
+      path: "/code-report-pressmachinemaintenancereport",
+    },
+    {
+      title: "Plant System Maintenance Report",
+      path: "/code-report-plantsystemmaintenancereport",
+    },
+    {
+      title: "Press Machine Routine Check",
+      path: "/code-report-pressmachineroutinecheck",
+    },
+    {
+      title: "Air Compressor Routine Check",
+      path: "/code-report-aircompressorroutinecheck",
+    }, 
+    {
+      title: "Press Machine Lubrication Report",
+      path: "/code-report-pressmachinelubricationreport",
+    },
+    {
+      title: "Screw Conveyor Routine Check",
+      path: "/code-report-screwconveyorroutinecheck",
+    },
+    {
+      title: "Bucket Elevator Routine Check",
+      path: "/code-report-bucketelevatorroutinecheck",
+    },
+    {
+      title: "Press Machine Vibration Check",
+      path: "/code-report-pressmachinevibrationcheck",
     },
   ];
 
@@ -49,6 +89,14 @@ export class MaintenanceReportPage implements OnInit {
   ionViewDidEnter() {}
 
   btn_Action(item) {
-    this.router.navigate([item.path]);
+    this.router.navigate([item.path,
+      {
+        machinerytype_id: "0",
+        zone_id: "0",
+        station_id: "0",        
+        machinery_id: "0",        
+        part_id: "0",              
+      },
+    ]);
   }
 }

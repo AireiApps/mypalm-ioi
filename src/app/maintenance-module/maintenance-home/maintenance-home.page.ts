@@ -1,9 +1,7 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { appsettings } from "src/app/appsettings";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MaintenanceServiceService } from "src/app/services/maintenance-serivce/maintenance-service.service";
-import { HttpserviceService } from "src/app/services/httpservice/httpservice.service";
 import { AIREIService } from "src/app/api/api.service";
 import * as moment from "moment";
 
@@ -21,6 +19,7 @@ import { Market } from "@ionic-native/market/ngx";
 import { AppVersion } from "@ionic-native/app-version/ngx";
 
 import { MaintenanceAddnewjobPage } from "src/app/maintenance-module/maintenance-addnewjob/maintenance-addnewjob.page";
+import { SchedulemaintenancePage } from "src/app/maintenance-module/schedulemaintenance/schedulemaintenance.page";
 
 @Component({
   selector: "app-maintenance-home",
@@ -38,8 +37,9 @@ export class MaintenanceHomePage implements OnInit {
   mill_name = this.userlist.millname;
 
   count = 0;
+  apicount = 0;
 
-  itemsArr = [
+  maintenanceengineeritemsArr = [
     [
       {
         title: "Breakdown / Downtime",
@@ -48,32 +48,146 @@ export class MaintenanceHomePage implements OnInit {
         imgpath: "../../assets/img/breakdownreport.png",
       },
       {
-        title: "Report Maintenance",
-        name: "Report Maintenance",
-        path: "/maintenance-reportedmaintenance-list",
+        title: "Corrective Maintenance",
+        name: "Corrective Maintenance",
+        path: "/correctivemaintenance-me-list",
         imgpath: "../../assets/img/reportedmaintenance.png",
       },
-    ],
-    [
       {
-        title: "Add New Job",
-        name: "Add New Job",
-        path: "/maintenance-addnewjob",
+        title: "Preventive Maintenance",
+        name: "Preventive Maintenance",
+        path: "/preventivemaintenance",
         imgpath: "../../assets/img/weeklymaintenance.png",
       },
       {
         title: "Predictive Maintenance",
         name: "Predictive Maintenance",
-        path: "/preventivemaintenance",
+        path: "/predictivemaintenance",
         imgpath: "../../assets/img/preventivemaintenance.png",
       },
-    ],
-    [
-      {
+      /*{
         title: "Scanner",
         name: "Scanner",
         path: "/qrcodescanner",
         imgpath: "../../assets/img/qrcodescanner.png",
+      },
+      {
+        title: "Press Running Hours",
+        name: "Press Running Hours",
+        path: "/machinerunninghours-update",
+        imgpath: "../../assets/img/machinerunninghours.png",
+      },*/
+      {
+        title: "Machine Lubrication",
+        name: "Machine Lubrication",
+        path: "/maintenance-machinelubrication",
+        imgpath: "../../assets/img/lubricantconsumption.png",
+      },
+      {
+        title: "Reports",
+        name: "Reports",
+        path: "/maintenance-report",
+        imgpath: "../../assets/img/ceoreport.png",
+      },
+    ],
+  ];
+
+  foremanteamleadArr = [
+    [
+      {
+        title: "Breakdown / Downtime",
+        name: "Breakdown / Downtime",
+        path: "/breakdown-list",
+        imgpath: "../../assets/img/breakdownreport.png",
+      },
+      {
+        title: "Corrective Maintenance",
+        name: "Corrective Maintenance",
+        path: "/correctivemaintenance-new-list",
+        imgpath: "../../assets/img/reportedmaintenance.png",
+      },
+      {
+        title: "Preventive Maintenance",
+        name: "Preventive Maintenance",
+        path: "/preventivemaintenance",
+        imgpath: "../../assets/img/weeklymaintenance.png",
+      },
+      {
+        title: "Predictive Maintenance",
+        name: "Predictive Maintenance",
+        path: "/predictivemaintenance",
+        imgpath: "../../assets/img/preventivemaintenance.png",
+      },
+      /*{
+        title: "Scanner",
+        name: "Scanner",
+        path: "/qrcodescanner",
+        imgpath: "../../assets/img/qrcodescanner.png",
+      },
+      {
+        title: "Press Running Hours",
+        name: "Press Running Hours",
+        path: "/machinerunninghours-update",
+        imgpath: "../../assets/img/machinerunninghours.png",
+      },*/
+      {
+        title: "Machine Lubrication",
+        name: "Machine Lubrication",
+        path: "/maintenance-machinelubrication",
+        imgpath: "../../assets/img/lubricantconsumption.png",
+      },
+      {
+        title: "Reports",
+        name: "Reports",
+        path: "/maintenance-report",
+        imgpath: "../../assets/img/ceoreport.png",
+      },
+    ],
+  ];
+
+  operatorArr = [
+    [
+      {
+        title: "Breakdown / Downtime",
+        name: "Breakdown / Downtime",
+        path: "/breakdown-list",
+        imgpath: "../../assets/img/breakdownreport.png",
+      },
+      {
+        title: "Corrective Maintenance",
+        name: "Corrective Maintenance",
+        path: "/correctivemaintenance-new-list",
+        imgpath: "../../assets/img/reportedmaintenance.png",
+      },
+      {
+        title: "Preventive Maintenance",
+        name: "Preventive Maintenance",
+        path: "/preventivemaintenance",
+        imgpath: "../../assets/img/weeklymaintenance.png",
+      },
+      {
+        title: "Predictive Maintenance",
+        name: "Predictive Maintenance",
+        path: "/predictivemaintenance",
+        imgpath: "../../assets/img/preventivemaintenance.png",
+      },
+      /*{
+        title: "Scanner",
+        name: "Scanner",
+        path: "/qrcodescanner",
+        imgpath: "../../assets/img/qrcodescanner.png",
+      },
+      {
+        title: "Press Running Hours",
+        name: "Press Running Hours",
+        path: "/machinerunninghours-update",
+        imgpath: "../../assets/img/machinerunninghours.png",
+      },*/
+      {
+        title: "Machine Lubrication",
+        name: "Machine Lubrication",
+        path: "/maintenance-machinelubrication",
+        imgpath: "../../assets/img/lubricantconsumption.png",
       },
       {
         title: "Reports",
@@ -87,6 +201,7 @@ export class MaintenanceHomePage implements OnInit {
   constructor(
     public modalController: ModalController,
     private zone: NgZone,
+    private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private notifi: AuthGuardService,
@@ -96,18 +211,22 @@ export class MaintenanceHomePage implements OnInit {
     private alertController: AlertController,
     private appVersion: AppVersion,
     private market: Market
-  ) {}
+  ) {
+    route.params.subscribe((val) => {
+      this.ionViewDidEnter();
+    });
+  }
 
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    PushNotifications.removeAllDeliveredNotifications();
+    /*PushNotifications.removeAllDeliveredNotifications();
 
     this.count = parseInt(localStorage.getItem("badge_count"));
     this.notifi.updateNotification();
     this.updateNotification();
     this.getLiveNotification();
-    this.forceUpdated();
+    this.forceUpdated();*/
   }
 
   ionViewDidEnter() {
@@ -128,6 +247,7 @@ export class MaintenanceHomePage implements OnInit {
   updateNotification() {
     this.zone.run(() => {
       this.count = parseInt(localStorage.getItem("badge_count"));
+      this.getbadgecount();
     });
   }
 
@@ -139,6 +259,27 @@ export class MaintenanceHomePage implements OnInit {
         this.updateNotification();
       }
     );
+  }
+
+  getbadgecount() {
+    let req = {
+      userid: this.userlist.userId,
+      millcode: this.userlist.millcode,
+      dept_id: this.userlist.dept_id,
+      zoneid: this.userlist.zoneid,
+    };
+
+    //alert(JSON.stringify(req));
+
+    this.service.getBadgeCount(req).then((result) => {
+      var resultdata: any;
+      resultdata = result;
+      if (resultdata.httpcode == 200) {
+        this.apicount = resultdata.badgecount;
+      } else {
+        this.apicount = 0;
+      }
+    });
   }
 
   forceUpdated() {
@@ -187,7 +328,7 @@ export class MaintenanceHomePage implements OnInit {
             if (this.platform.is("android")) {
               appId = "com.airei.milltracking.mypalmioi";
             } else {
-              appId = "id1534533301";
+              appId = "id1561911863";
             }
 
             this.market
@@ -206,7 +347,7 @@ export class MaintenanceHomePage implements OnInit {
   }
 
   btn_Action(item) {
-    if (item.name == "Add New Job") {
+    if (item.name == "Planned Job" && this.userlist.desigId != 58) {
       this.callmodalcontroller(item.name);
     } else {
       this.router.navigate([item.path]);
@@ -214,9 +355,19 @@ export class MaintenanceHomePage implements OnInit {
   }
 
   async callmodalcontroller(value) {
-    if (value == "Add New Job") {
+    if (value == "Planned Job") {
       const modal = await this.modalController.create({
         component: MaintenanceAddnewjobPage,
+      });
+
+      return await modal.present();
+    } else {
+      const modal = await this.modalController.create({
+        component: SchedulemaintenancePage,
+      });
+
+      modal.onDidDismiss().then((data) => {
+        this.ngAfterViewInit();
       });
 
       return await modal.present();

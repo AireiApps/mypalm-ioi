@@ -56,7 +56,7 @@ export class ImageUploadService {
   genericImageUpload(imgtype) {
     return new Promise((resolve, reject) => {
       var options = {
-        quality: 100,
+        quality: 80,
         destinationType: this.camera.DestinationType.FILE_URI,
         sourceType: this.camera.PictureSourceType.CAMERA,
         saveToPhotoAlbum: false,
@@ -99,7 +99,10 @@ export class ImageUploadService {
             },
             (err) => {
               reject(err);
-              this.commonservice.presentToast("error","Error while uploading file.");
+              this.commonservice.presentToast(
+                "error",
+                "Error while uploading file."
+              );
             }
           );
         },
@@ -108,5 +111,153 @@ export class ImageUploadService {
         }
       );
     });
+  }
+
+  ImageUploadfromLibrary(imgtype) {
+    var sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
+
+    return new Promise((resolve, reject) => {
+      var options = {
+        quality: 80,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        saveToPhotoAlbum: false,
+        correctOrientation: true,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+      };
+
+      this.camera.getPicture(options).then(
+        (imageData) => {
+          if (
+            this.platform.is("android") &&
+            sourceType === this.camera.PictureSourceType.PHOTOLIBRARY
+          ) {
+            this.filePath.resolveNativePath(imageData).then((filePath) => {
+              let correctPath = filePath.substr(
+                0,
+                filePath.lastIndexOf("/") + 1
+              );
+              let currentName = imageData.substring(
+                imageData.lastIndexOf("/") + 1,
+                imageData.lastIndexOf("?")
+              );
+
+              this.copyFileToLocalDir(
+                imgtype,
+                correctPath,
+                currentName,
+                this.createFileName(),
+                resolve,
+                reject
+              );
+              //this.commonservice.presentToast(currentName + '\n' + correctPath);
+            });
+          } else {
+            var currentName = imageData.substr(imageData.lastIndexOf("/") + 1);
+            var correctPath = imageData.substr(
+              0,
+              imageData.lastIndexOf("/") + 1
+            );
+
+            this.copyFileToLocalDir(
+              imgtype,
+              correctPath,
+              currentName,
+              this.createFileName(),
+              resolve,
+              reject
+            );
+
+            //this.commonservice.presentToast(currentName + '\n' + correctPath);
+          }
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  private copyFileToLocalDir(
+    imgtype,
+    namePath,
+    currentName,
+    newFileName,
+    resolve,
+    reject
+  ) {
+    this.file
+      .copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName)
+      .then(
+        (success) => {
+          this.uploadMedia(newFileName, "gallery", resolve, reject, imgtype);
+        },
+        (error) => {
+          reject(error);
+          this.commonservice.presentToast("error", "Error while storing file.");
+        }
+      );
+  }
+
+  public uploadMedia(mediapath, type, resolve, reject, imgtype) {
+    var url = appsettings.generic_image_upload;
+    var filename = mediapath;
+    var targetPath;
+    if (type == "gallery") {
+      targetPath = this.pathForImage(mediapath);
+    } else {
+      targetPath = mediapath;
+    }
+
+    //console.log(targetPath);
+
+    let reqparam = {
+      request: imgtype,
+      millcode: this.userlist.millcode,
+    };
+
+    var options = {
+      fileKey: "upload_filename",
+      fileName: filename,
+      chunkedMode: false,
+      mimeType: "multipart/form-data",
+      params: reqparam,
+    };
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    //this.commonservice.presentToast(targetPath + "\n" + url + "\n" + options);
+
+    this.commonservice.presentLoading();
+
+    // Use the FileTransfer to upload the image
+    fileTransfer.upload(targetPath, url, options).then(
+      (data) => {
+        this.commonservice.dimmissLoading();
+        var resultdata: any;
+        resultdata = data;
+        console.log(JSON.stringify(resultdata.response));
+        resolve(resultdata);
+      },
+      (err) => {
+        reject(err);
+        this.commonservice.presentToast("error", "Error while uploading file.");
+      }
+    );
+  }
+
+  public pathForImage(img) {
+    if (img === null) {
+      return "";
+    } else {
+      return cordova.file.dataDirectory + img;
+    }
+  }
+
+  private createFileName() {
+    var d = new Date(),
+      n = d.getTime(),
+      newFileName = n + ".jpg";
+    return newFileName;
   }
 }

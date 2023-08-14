@@ -1,0 +1,67 @@
+.mdfont{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+.userfont {
+    font-size: 14px;
+  }
+  
+  .usertext {
+    font-size: 12px;
+    color: #000000;
+  }
+  .prediction-box {
+    margin: 10px;
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+    background-color: #000000;
+    text-shadow: 0 1px 1px 1px #666;
+    position: relative;
+    border-radius: 5px;
+  }
+  .form-row {
+    margin: 5px;
+    align-items: center;
+  }
+  table {
+    font-size: 11px;
+    color: #333;
+    border-collapse: collapse;
+    margin: 5px;
+  }
+  .table td,
+  .table th {
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem !important;
+  }
+  .mat-sort-header-container {
+    justify-content: center !important;
+  }
+  b {
+    font-size: 13px;
+  }
+  .tablemdfont{
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+  }
+  .backgroundstatus{
+    margin:10;
+    border-width: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 5px;
+  }
+  .backgroundview{
+    margin:10;
+    border-width: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: darkgreen;
+    color: #fff;
+  }

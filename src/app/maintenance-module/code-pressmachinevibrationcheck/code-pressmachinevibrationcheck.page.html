@@ -1,0 +1,361 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Press Machine Vibration Check</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <form [formGroup]="pressmachinevibrationForm">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone</div>
+        </ion-col>
+        <ion-col size="7">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{zonename}}"
+            readonly
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Station</div>
+        </ion-col>
+        <ion-col size="7">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{stationname}}"
+            readonly
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Machinery</div>
+        </ion-col>
+        <ion-col size="7">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{machineryname}}"
+            readonly
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Location ID</div>
+        </ion-col>
+        <ion-col size="7">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{locationid}}"
+            readonly
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Type</div>
+        </ion-col>
+        <ion-col size="7">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{type}}"
+            readonly
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Timestamp <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <ion-datetime
+            class="h7 form-control"
+            formControlName="txt_date"
+            display-format="DD-MM-YYYY HH:mm:ss"
+            placeholder="Select Date"
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <!-- As said by Previna by client and also confimed by Veda Sir on 10.08.2023 
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Maintenance Type <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select
+            formControlName="select_maintenancetype"
+            class="h7 form-control"
+            (change)="onChangeMaintenanceType()"
+          >
+            <option value="" selected disabled hidden>Select</option>
+            <option
+              value="{{parseString(item)}}"
+              *ngFor="let item of maintenancetypeArr"
+            >
+              {{ item.maintenancetype }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row> -->
+
+      <div>
+        <!-- As said by Previna by client and also confimed by Veda Sir on 10.08.2023 
+        <hr>
+      
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Work Order Number </div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{workorderno}}" readonly/> 
+          </ion-col>
+        </ion-row>
+  
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Work Type <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_worktype"
+              class="h7 form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of worktypeArr">
+                {{ item.worktype }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Urgency <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_urgency"
+              class="h7 form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of urgencyArr">
+                {{ item.urgency }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Mode <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_mode"
+              class="h7 form-control"  >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of modeArr">
+                {{ item.mode }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row> -->
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Gear Box</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Overall Reading (mm/s) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Overall Reading"
+              class="h7 form-control"
+              formControlName="txt_gearboxoverallreading"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeGearBoxOverallReading()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Bearing Reading (gE) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Bearing Reading"
+              class="h7 form-control"
+              formControlName="txt_gearboxbearingreading"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeGearBoxBearingReading()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">
+              Temperature (<sup>o</sup>C) <sup>*</sup>
+            </div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Temperature"
+              class="h7 form-control"
+              formControlName="txt_gearboxtemperature"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeGearBoxTemperature()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Condition</div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              type="text"
+              class="h7 form-control readonly"
+              [style.color]="getStatusColor(gearboxcondition)"
+              value="{{gearboxcondition}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Motor</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Overall Reading (mm/s) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Overall Reading"
+              class="h7 form-control"
+              formControlName="txt_motoroverallreading"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeMotorOverallReading()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Bearing Reading (gE) <sup>*</sup></div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Bearing Reading"
+              class="h7 form-control"
+              formControlName="txt_motorbearingreading"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeMotorBearingReading()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">
+              Temperature (<sup>o</sup>C) <sup>*</sup>
+            </div>
+          </ion-col>
+
+          <ion-col size="7">
+            <input
+              type="number"
+              placeholder="Enter Temperature"
+              class="h7 form-control"
+              formControlName="txt_motortemperature"
+              (keypress)="decimalFilter($event)"
+              (input)="onChangeMotorTemperature()"
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Condition</div>
+          </ion-col>
+          <ion-col size="7">
+            <input
+              type="text"
+              class="h7 form-control readonly"
+              [style.color]="getStatusColor(motorcondition)"
+              value="{{motorcondition}}"
+              readonly
+            />
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Remarks</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-info"
+            (click)="save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

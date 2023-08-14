@@ -27,28 +27,16 @@
       <div class="card-header" style="text-align: center">
         <div class="h7 text-danger"><b>{{value.category}}</b></div>
       </div>
-      <div
-        style="
-          margin-top: 10px;
-          margin-bottom: 10px;
-          margin-left: 5px;
-          margin-right: 5px;
-        "
-      >
-        <div class="h7 text-dark">Department: {{value.department}}</div>
-        <div class="h7 text-dark">Zone: {{value.zone}}</div>
-        <div class="h7 text-dark">Station: {{value.station}}</div>
-        <div class="h7 text-dark">Machinery: {{value.machinery}}</div>
-        <div class="h7 text-dark" *ngIf="value.part!=''">
-          Part: {{value.part}}
-        </div>
-        <div class="h7 text-dark">Breakdown Time: {{value.breakdownTime}}</div>
-        <div class="h7 text-dark" *ngIf="value.complainantRemarks!=''">
-          Complainant Remarks: {{value.complainantRemarks}}
-        </div>
-        <div class="h7 text-dark" style="float: right">
-          Date: {{value.insDate}}
-        </div>
+      <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 5px;margin-right: 5px;">
+        <div class="h7 text-dark" *ngIf="value.department!=''"><b>Department:</b> {{value.department}}</div>
+        <div class="h7 text-dark"><b>Machinery Type:</b> {{value.breakdowntype}}</div>
+        <div class="h7 text-dark"><b>Zone:</b> {{value.zone}}</div>
+        <div class="h7 text-dark" *ngIf="value.station!=''"><b>Station:</b> {{value.station}}</div>        
+        <div class="h7 text-dark" *ngIf="value.machinery!=''"><b>Machinery:</b> {{value.machinery}}</div>        
+        <div class="h7 text-dark" *ngIf="value.part!=''"><b>Part:</b> {{value.part}}</div>
+        <div class="h7 text-dark"><b>Breakdown Time:</b> {{value.breakdownTime}}</div>
+        <div class="h7 text-dark" *ngIf="value.complainantRemarks!=''"><b>Complainant Remarks:</b> {{value.complainantRemarks}}</div>
+        <div class="h7 text-dark" style="float: right"><b>Date:</b> {{value.insDate}}</div>
       </div>
 
       <ion-row class="row-reverse">
@@ -62,4 +50,6 @@
       </ion-row>
     </div>
   </div>
+
+  <div class="norecords" *ngIf="norecordflag==true">No Records Found...</div>
 </ion-content>

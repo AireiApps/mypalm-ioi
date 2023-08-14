@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="scanqrcode()">
+        <ion-icon name="qr-code"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Scanner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userlist">
+  <!-- <ion-row>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4" class="colalign">
+      <img
+        class="qrcodeimage"
+        src="../../assets/img/qrcodescanner.png"
+        alt="PROFILE"
+        (click)="scanqrcode()"
+      /><br>
+      <span class="h7 text-muted">Scan QR Code</span>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+  </ion-row> -->
+
+  <div class="home-box" *ngIf="uiEnable == true"> 
+    
+    <!-- Maintenance Engineer -->
+    <div *ngIf="userlist.desigId==81">
+      <ion-row *ngFor="let item of maintenanceengineeritemsArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div> 
+
+    <!-- Foreman/TeamLead -->
+    <div *ngIf="userlist.desigId!=81">
+      <ion-row *ngFor="let item of foremanteamleadArr">
+        <ion-col size="6" *ngFor="let eachitem of item">
+          <div class="card item-img" (click)="btn_Action(eachitem)">
+            <div class="item">
+              <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+              <div class="container txt-home">
+                <p>{{eachitem.title}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+    
+  </div>
+</ion-content>

@@ -41,6 +41,8 @@ export class WaterconsumptionPage implements OnInit {
   };
 
   uienable = false;
+  uistatusenable = false;
+  previousuienable = false;
 
   constructor(
     private router: Router,
@@ -57,6 +59,7 @@ export class WaterconsumptionPage implements OnInit {
       txt_variance: new FormControl(""),
       select_furtheraction: new FormControl("", Validators.required),
       ta_remarks: new FormControl(""),
+      select_status: new FormControl("", Validators.required),
     });
 
     this.selectaction.form = "";
@@ -169,13 +172,13 @@ export class WaterconsumptionPage implements OnInit {
 
   onChangeZone() {
     if (this.waterconsumptionForm.value.txt_date != "") {
-      this.uienable = true;
+      this.uistatusenable = true;
 
       this.previous = "";
 
-      this.getPrevious();
+      //this.getPrevious();
     } else {
-      this.uienable = false;
+      this.uistatusenable = false;
 
       this.commonservice.presentToast(
         "error",
@@ -184,6 +187,48 @@ export class WaterconsumptionPage implements OnInit {
     }
   }
 
+  onChangeStatus() {
+
+    if (this.waterconsumptionForm.controls.select_zone != "" && this.waterconsumptionForm.controls.select_station != "") {
+
+      if(this.waterconsumptionForm.value.select_status == '1')
+      {
+        this.uienable = true;
+      }else{
+        this.uienable = false;
+      }
+      
+    }else{
+      this.commonservice.presentToast("error", "Zone and Station Selection is mandatory...");
+    }
+
+  }
+
+  onChangePrevious() {
+    if (this.waterconsumptionForm.value.txt_previous != "") {
+      this.previousuienable = true;
+
+      if(this.waterconsumptionForm.value.txt_current != "")
+      {
+        if (Number(this.waterconsumptionForm.value.txt_current) >= Number(this.waterconsumptionForm.value.txt_previous))
+        {
+          let diff =
+          Number(this.waterconsumptionForm.value.txt_current) -
+          Number(this.waterconsumptionForm.value.txt_previous);
+          this.variance = String(diff.toFixed(3));                  
+        }else{
+          this.waterconsumptionForm.controls.txt_current.setValue("");
+          this.variance = "";
+
+          this.overallstatus="";
+        }
+      }
+    } else {
+      this.previousuienable = false;
+    }
+  }
+
+  /* Commented on 07-05-2021 by Suresh Kumar K for to make previous value editable
   onChangeCurrent() {
     if (this.previous != "") {
       if (
@@ -193,6 +238,33 @@ export class WaterconsumptionPage implements OnInit {
         let diff =
           Number(this.waterconsumptionForm.value.txt_current) -
           Number(this.previous);
+        this.variance = String(diff.toFixed(3));
+
+        this.alert_overallstatus("water", "water consumption", this.variance);
+      } else {
+        this.variance = "";
+        this.overallstatus = "";
+      }
+    } else {
+      this.variance = "";
+      this.overallstatus = "";
+
+      this.commonservice.presentToast(
+        "error",
+        "Previous Value is Mandatory..."
+      );
+    }
+  }*/
+
+  onChangeCurrent() {
+    if (this.waterconsumptionForm.value.txt_previous != "") {
+      if (
+        Number(this.waterconsumptionForm.value.txt_current) >=
+        Number(this.waterconsumptionForm.value.txt_previous)
+      ) {
+        let diff =
+          Number(this.waterconsumptionForm.value.txt_current) -
+          Number(this.waterconsumptionForm.value.txt_previous);
         this.variance = String(diff.toFixed(3));
 
         this.alert_overallstatus("water", "water consumption", this.variance);
@@ -235,8 +307,83 @@ export class WaterconsumptionPage implements OnInit {
   save() {
     //console.log(this.waterconsumptionForm.value.select_zone);
 
-    if (this.waterconsumptionForm.valid) {
-      if (this.variance != "") {
+    if (this.waterconsumptionForm.value.select_zone != "" && this.waterconsumptionForm.value.select_status != "") 
+    {
+      if(this.waterconsumptionForm.value.select_status=='1')
+      {
+        if (this.waterconsumptionForm.valid) {
+          if (this.variance != "") {
+            var getec_date = moment(
+              this.waterconsumptionForm.value.txt_date
+            ).format("YYYY-MM-DD");
+    
+            var getec_time = moment(
+              this.waterconsumptionForm.value.txt_time
+            ).format("HH:00:00");
+    
+            /*if (this.waterconsumption_flag > 0) {
+              this.thresholdflag = 1;
+              this.furtheraction = "REPORT";
+            } else {
+              this.thresholdflag = 0;
+              this.furtheraction = "NONE";
+            }*/
+    
+            var req = {
+              userid: this.userlist.userId,
+              departmentid: this.userlist.dept_id,
+              millcode: this.userlist.millcode,
+              userzoneid: this.userlist.zoneid,
+              date: getec_date,
+              time: getec_time,
+              zone: this.waterconsumptionForm.value.select_zone,
+              //previous: this.previous,
+              previous: this.waterconsumptionForm.value.txt_previous,
+              current: this.waterconsumptionForm.value.txt_current,
+              variance: this.variance,
+              supervisorremarks: this.waterconsumptionForm.value.ta_remarks,
+              overall_status: this.overallstatus,
+              flag: this.thresholdflag,
+              furtheraction: this.waterconsumptionForm.value.select_furtheraction,
+              status: this.waterconsumptionForm.value.select_status,
+            };
+    
+            console.log(req);
+    
+            this.service.savewaterconsumption(req).then((result) => {
+              var resultdata: any;
+              resultdata = result;
+    
+              if (resultdata.httpcode == 200) {
+                this.waterconsumptionForm.reset();
+    
+                this.waterconsumptionForm.controls.txt_time.setValue(
+                  this.currenthour
+                );
+    
+                this.commonservice.presentToast(
+                  "success",
+                  "Water Consumption Inserted Successfully"
+                );
+    
+                this.router.navigate(["/maintenancehome"]);
+              } else {
+                this.commonservice.presentToast(
+                  "error",
+                  "Water Consumption Insert Failed"
+                );
+              }
+            });
+          } else {
+            this.commonservice.presentToast(
+              "error",
+              "Variance should not be Empty"
+            );
+          }
+        } else {
+          this.commonservice.presentToast("warning", "Please Fill the Form");
+        }
+      }else{
         var getec_date = moment(
           this.waterconsumptionForm.value.txt_date
         ).format("YYYY-MM-DD");
@@ -245,15 +392,7 @@ export class WaterconsumptionPage implements OnInit {
           this.waterconsumptionForm.value.txt_time
         ).format("HH:00:00");
 
-        /*if (this.waterconsumption_flag > 0) {
-          this.thresholdflag = 1;
-          this.furtheraction = "REPORT";
-        } else {
-          this.thresholdflag = 0;
-          this.furtheraction = "NONE";
-        }*/
-
-        var req = {
+        var areq = {
           userid: this.userlist.userId,
           departmentid: this.userlist.dept_id,
           millcode: this.userlist.millcode,
@@ -261,18 +400,20 @@ export class WaterconsumptionPage implements OnInit {
           date: getec_date,
           time: getec_time,
           zone: this.waterconsumptionForm.value.select_zone,
-          previous: this.previous,
-          current: this.waterconsumptionForm.value.txt_current,
-          variance: this.variance,
-          supervisorremarks: this.waterconsumptionForm.value.ta_remarks,
-          overall_status: this.overallstatus,
-          flag: this.thresholdflag,
-          furtheraction: this.waterconsumptionForm.value.select_furtheraction,
+          //previous: this.previous,
+          previous: '',
+          current: '',
+          variance: '',
+          supervisorremarks: '',
+          overall_status: '',
+          flag: 0,
+          furtheraction: '',
+          status: this.waterconsumptionForm.value.select_status,
         };
 
-        console.log(req);
+        console.log(areq);
 
-        this.service.savewaterconsumption(req).then((result) => {
+        this.service.savewaterconsumption(areq).then((result) => {
           var resultdata: any;
           resultdata = result;
 
@@ -296,14 +437,11 @@ export class WaterconsumptionPage implements OnInit {
             );
           }
         });
-      } else {
-        this.commonservice.presentToast(
-          "error",
-          "Variance should not be Empty"
-        );
       }
-    } else {
-      this.commonservice.presentToast("warning", "Please Fill the Form");
+
+    }else{
+      this.commonservice.presentToast("error", "Zone and Status Selection is mandatory...");
     }
+
   }
 }

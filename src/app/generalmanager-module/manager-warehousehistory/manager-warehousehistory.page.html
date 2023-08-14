@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dashboard 2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div style="text-align: center; margin-top: 20px">
+      <div class="col">
+        <div style="font-size: 14px">
+          <b
+            >Dust Plant Image Report from {{dustreportdate}} for
+            {{plantname}}</b
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="usertext">PLANT</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="usertext">DATE & TIME</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #1f2739"
+          >
+            <span class="usertext">IMAGE</span>
+          </th>
+        </tr>
+        <ng-container *ngFor="let value of dusthistoryArr">
+          <tr>
+            <td class="tablemdfont">{{value.plant_name}}</td>
+            <td class="tablemdfont">{{value.datetime}}</td>
+            <td scope="row">
+              <button
+                type="button"
+                class="h7 btn btn-outline-info btn-sm"
+                (click)="btn_ViewImages(value.image_id)"
+              >
+                <span class="icontext">View</span>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr *ngIf="dusthistoryArr==null || dusthistoryArr.length<=0">
+          <td colspan="3" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ion-content>

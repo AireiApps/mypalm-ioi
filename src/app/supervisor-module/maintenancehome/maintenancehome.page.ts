@@ -15,14 +15,14 @@ export class MaintenancehomePage implements OnInit {
   itemsArr = [
     [
       {
-        title: "Dust Collector Monitoring Checklist",
-        name: "dust collector monitoring checklist",
+        title: "Dust Collector",
+        name: "Dust Collector",
         path: "/dustcollectormonitoringchecklist",
         imgpath: "../../assets/img/dustcollector.png",
       },
       {
-        title: "Magnetic Traps Inspection",
-        name: "Magnetic Traps Inspection",
+        title: "Magnetic Trap",
+        name: "Magnetic Trap",
         path: "/magnetictrap",
         imgpath: "../../assets/img/magnetictrap.png",
       },

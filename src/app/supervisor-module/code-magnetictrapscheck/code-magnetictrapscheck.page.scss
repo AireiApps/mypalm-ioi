@@ -1,0 +1,90 @@
+.home-box {
+  padding: 0px 5px 5px 5px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+form {
+  padding: 5px;
+}
+
+.form-row {
+  margin: 5px;
+  align-items: center;
+}
+
+.imgmarigin {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.colmarginbottom{
+  margin-bottom: 5px;
+}
+
+.imagePreview {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  background-position: center center;
+  background: url("../../../assets/img/noimage.png");
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+}
+
+.imagePresent {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  background-position: center center;
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nopadding {
+  padding-right: 6px !important;
+}
+
+.btn-info {
+  width: 150px;
+  font-size: 12px;
+}
+
+.btn-warning {
+  width: 150px;
+  font-size: 12px;
+}
+
+.textbold {
+  font-weight: bold;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border-top: 1px solid #c2c2c2;
+}
+
+.rowalign
+{
+  margin-top: 10px;
+}
+
+.readonly {
+  background-color: #ffffff;
+}
+
+sup{
+  color: red;
+}

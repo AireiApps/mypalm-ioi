@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ScreenOrientation } from "@ionic-native/screen-orientation/ngx";
 
 @Component({
   selector: "app-report-maintenance-breakdown",
@@ -16,7 +17,9 @@ export class ReportMaintenanceBreakdownPage implements OnInit {
 
   weburl;
 
-  constructor() {}
+  constructor(private screenOrientation: ScreenOrientation) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+  }
 
   ngOnInit() {}
 
@@ -26,6 +29,11 @@ export class ReportMaintenanceBreakdownPage implements OnInit {
 
   ionViewWillEnter() {
     this.getUrl();
+  }
+
+  ngOnDestroy(){
+    this.screenOrientation.unlock();
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
   }
 
   getUrl() {

@@ -14,6 +14,20 @@
 
   <ion-card class="card">
     <form [formGroup]="dustplantForm">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select formControlName="select_zone" class="h7 form-control text-dark">
+            <option value="" selected disabled hidden>Select</option>
+            <option *ngFor="let value of zoneArr" value="{{value.id}}">
+              {{ value.zone }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
       <div class="form-row imgmarigin">
         <label class="h7 text-dark">Stack Appearance</label>
         <div class="container">

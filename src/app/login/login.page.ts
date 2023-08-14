@@ -22,6 +22,8 @@ export class LoginPage implements OnInit {
   loginForm;
   userlist = JSON.parse(localStorage.getItem("userlist"));
 
+  uiEnable = false;
+
   constructor(
     private popoverController: PopoverController,
     private translate: TranslateService,
@@ -44,22 +46,48 @@ export class LoginPage implements OnInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
+    this.checkButtonFlag();
+  }
+
+  checkButtonFlag() {
+    this.service.checkFlag().then((result) => {
+      var resultdata: any;
+      resultdata = result;
+
+      //console.log(resultdata);
+
+      if (resultdata.login_check == "1") {
+        //console.log(resultdata.login_check);
+        this.uiEnable = true;
+      } else {
+        //console.log(resultdata.login_check);
+        this.uiEnable = false;
+      }
+    });
   }
 
   btn_login() {
-
-     if (this.loginForm.value.username == '') {
-      this.service.presentToast('error', 'Username Required');
+    if (this.loginForm.value.username == "") {
+      this.service.presentToast("error", "Username Required");
       return;
     }
 
-    if (this.loginForm.value.password == '') {
-      this.service.presentToast('error', 'Password Required');
+    if (this.loginForm.value.password == "") {
+      this.service.presentToast("error", "Password Required");
       return;
     }
-    
-    var req = {
+
+    /*Live*/
+    /*var req = {
       millcode: "1010",
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+      languageid: "1",
+    };*/
+
+    /*Test*/
+    var req = {
+      millcode: "1011",
       username: this.loginForm.value.username,
       password: this.loginForm.value.password,
       languageid: "1",
@@ -79,6 +107,8 @@ export class LoginPage implements OnInit {
 
         localStorage.setItem("userlist", JSON.stringify(resultdata.data));
 
+        localStorage.setItem("endpoint", resultdata.data.report_url);
+
         this.nativeStorage
           .setItem("userlist", JSON.stringify(resultdata.data))
           .then(
@@ -91,10 +121,15 @@ export class LoginPage implements OnInit {
         this.location.go("/");
         window.location.reload();
         this.router.navigate(["/tabs"]);
+
         this.service.presentToast("success", "Login Successfully!");
       } else {
         this.service.presentToast("error", "Login Failed!");
       }
     });
+  }
+
+  signup() {
+    this.router.navigate(["/signup"]);
   }
 }

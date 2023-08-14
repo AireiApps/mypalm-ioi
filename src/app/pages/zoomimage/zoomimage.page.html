@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <ion-row style="padding: 10px;">
+    <ion-col style="text-align: center">
+      <div class="imagePreview"  *ngIf="imageurl== ''"></div>
+      <div class="imagePresent"  *ngIf="imageurl != ''">
+        <img class="imagePresent" src="{{imageurl}}" />        
+      </div>
+    </ion-col>
+  </ion-row>  
+</ion-content>

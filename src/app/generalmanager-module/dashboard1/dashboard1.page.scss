@@ -1,0 +1,154 @@
+.content-background {
+  background-color: #000000;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.chart-title {
+  font-size: 14px;
+  color: #73879c;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
+}
+
+.processed_background {
+  background-color: darkblue;
+  border-width: 5px;
+  border-color: #fff;
+}
+
+.content-background1 {
+  background-color: #977a7a;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  border-width: 10px;
+  border-color: rgb(22, 20, 20);
+  margin: 10px;
+  box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+}
+
+.content-background2 {
+  background-color: #ff0000;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  border-width: 10px;
+  border-color: #fff;
+  margin: 10px;
+}
+
+.form-row {
+  margin: 5px;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.userfont {
+  font-size: 14px;
+}
+
+.usertext {
+  color: #556577;
+}
+
+.bg-blue {
+  background: #03a9f4 !important;
+  border: 2px solid #ffffff;
+}
+
+.bg-violet {
+  background: #673ab7 !important;
+  border: 2px solid #ffffff;
+}
+
+.bg-green {
+  background: #6db82c !important;
+  border: 2px solid #ffffff;
+}
+
+.bg-amber {
+  background: #ffbf00 !important;
+  border: 2px solid #ffffff;
+}
+.card-height {
+  height: 80%;
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+}
+.bottompad-10px {
+  padding-bottom: 0px !important;
+}
+.mdfont {
+  font-size: 20px;
+  font-weight: bold;
+}
+.imagecenter {
+  text-align: center;
+  opacity: 0.6;
+}
+hr {
+  display: block;
+  height: 1px;
+  border-top: 1px solid #c2c2c2;
+}
+.prediction-box {
+  margin: 10px;
+  box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+  background-color: #e6e9ed;
+  text-shadow: 0 1px 1px 1px #666;
+  position: relative;
+  border-radius: 5px;
+}
+
+table {
+  font-size: 11px;
+  color: #333;
+  border-collapse: collapse;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem !important;
+}
+
+.mat-sort-header-container {
+  justify-content: center !important;
+}
+
+b {
+  font-size: 12px;
+}
+
+.table_head {
+  background-color: #fac57a;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table_head1 {
+  background-color: #90cdfc;
+  font-weight: bold;
+}
+
+.tablemdfont {
+  font-size: 11px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.norecords {
+  text-align: center;
+  color: #e30414;
+}

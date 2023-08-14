@@ -7,8 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OvalShapeComponent implements OnInit {
   @Input() status: string;
+  @Input() statusid: string;
 
-  constructor() { }
+  constructor() {     
+  }
 
   ngOnInit() { }
 

@@ -13,34 +13,41 @@ export class ProductionhomePage implements OnInit {
   mill_name = this.userlist.millname;
 
   itemsArr = [
-    [
+    [    
       {
-        title: "NIR-PKE Production Calibration",
-        name: "nir-pke production calibration",
-        path: "/nirpkeproductioncalibration",
-        imgpath: "../../assets/img/verticalsterilizer.png",
-      },
-      {
-        title: "Press Taper Head & Sampling Checklist",
-        name: "PTH & Sampling Checklist",
+        title1: "Press Taper Head &",
+        title2: "Sampling Checklist",
+        name: "Press Taper Head & Sampling Checklist",
         path: "/presstaperheadchecklist",
         imgpath: "../../assets/img/presstaperheadchecklist.png",
       },
-    ],
-    [
-      /*{
-        title: "PKE Individual Spot Check",
-        name: "PKE Individual Spot Check",
-        path: "/pkeindividualspotcheck",
-        imgpath: "../../assets/img/pke.png",
-      },*/
       {
-        title: "Dust Plant",
+        title1: "Dust",
+        title2: "Plant",
         name: "Dust Plant",
         path: "/dustplant",
         imgpath: "../../assets/img/boilerreport.png",
       },
     ],
+  ];
+
+  operatoritemsArr = [
+    [
+      {
+        title1: "Press Taper Head &",
+        title2: "Sampling Checklist",
+        name: "Press Taper Head & Sampling Checklist",
+        path: "/presstaperheadchecklist",
+        imgpath: "../../assets/img/presstaperheadchecklist.png",
+      },
+      {
+        title1: "",
+        title2: "Dust Plant",
+        name: "Dust Plant",
+        path: "/dustplant",
+        imgpath: "../../assets/img/boilerreport.png",
+      },
+    ],    
   ];
 
   constructor(

@@ -1,0 +1,222 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Electricity Consumption</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="electricityconsumptionForm">
+    <div class="form-row">
+      <div style="margin: 5px" class="col">
+        <div class="mdfont">From</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="electricityconsumptionfromdate"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+
+      <div style="margin: 5px" class="col">
+        <div class="mdfont">To</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="electricityconsumptiontodate"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+
+      <div style="margin-top: 35px">
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getelectricityconsumptiondetails()"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext">
+          <b>Electricity Consumption from {{getfromDate}} to {{gettoDate}}</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="prediction-box">
+      <apx-chart
+        [series]="multilineOptions.series"
+        [chart]="multilineOptions.chart"
+        [yaxis]="multilineOptions.yaxis"
+        [xaxis]="multilineOptions.xaxis"
+        [labels]="multilineOptions.labels"
+        [stroke]="multilineOptions.stroke"
+        [markers]="multilineOptions.markers"
+        [fill]="multilineOptions.fill"
+        [tooltip]="multilineOptions.tooltip"
+      ></apx-chart>
+    </div>
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center; margin-left: 5px">
+        <b>Year</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="electricityconsumptionyear"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getelectricityconsumptionyeardetails()"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext">
+          <b>Electricity Consumption for the year {{getYear}}</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="prediction-box">
+      <apx-chart
+        [series]="yearOptions.series"
+        [chart]="yearOptions.chart"
+        [yaxis]="yearOptions.yaxis"
+        [xaxis]="yearOptions.xaxis"
+        [labels]="yearOptions.labels"
+        [stroke]="yearOptions.stroke"
+        [markers]="yearOptions.markers"
+        [fill]="yearOptions.fill"
+        [tooltip]="yearOptions.tooltip"
+      ></apx-chart>
+    </div>
+
+    <hr />
+
+    <div style="margin: 9px" *ngFor="let value of electricityconsumptionArr">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr
+          style="padding: 4px !important; background-color: #002933"
+          class="tablemdfont"
+        >
+          <th
+            colspan="9"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span style="font-size: 14px">
+              Electricity Consumption Data for the Year {{value.year}}</span
+            >
+          </th>
+        </tr>
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">MONTH</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ELECTRICITY CONSUMPTION</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let item of value.data">
+          <td scope="row" *ngIf="item.month != 'Total'">{{item.month}}</td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            colspan="2"
+            *ngIf="item.month == 'Total'"
+          >
+            {{item.month}}
+          </td>
+
+          <!-- Plant Name -->
+
+          <td
+            scope="row"
+            *ngIf="item.plant_name != null && item.plant_name != '' && item.month != 'Total'"
+          >
+            {{item.plant_name}}
+          </td>
+
+          <td
+            scope="row"
+            *ngIf="(item.plant_name == null || item.plant_name == '') && item.month != 'Total'"
+          >
+            -
+          </td>
+
+          <!-- Electricity -->
+
+          <td
+            scope="row"
+            *ngIf="item.electricity != null && item.electricity != '' && item.month != 'Total'"
+          >
+            {{item.electricity | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            *ngIf="(item.electricity == null || item.plant_name == '') && item.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="item.electricity != null && item.electricity != '' && item.month == 'Total'"
+          >
+            {{item.electricity | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="item.electricity == null && item.electricity == '' && item.month == 'Total'"
+          >
+            0.00
+          </td>
+        </tr>
+
+        <tr *ngIf="value.data.length<0">
+          <td>No records found</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</ion-content>

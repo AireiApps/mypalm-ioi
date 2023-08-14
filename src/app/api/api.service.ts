@@ -33,6 +33,26 @@ export class AIREIService {
     return postData;
   }
 
+  checkFlag() {
+    var reqOpts: any;
+    reqOpts = "";
+
+    var api = appsettings.checkbuttonflag;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  }
+
   getNotification(params) {
     var reqOpts: any;
     reqOpts = this.formParams(params);
@@ -286,7 +306,6 @@ export class AIREIService {
         },
         (error) => {
           console.log(error);
-
           /*if (error.status == 0) {
             this.presentToast("Unable to Connect Server");
           }*/
@@ -784,6 +803,27 @@ export class AIREIService {
     });
   }
 
+  signup(req) {
+    var reqOpts: any;
+
+    console.log(JSON.stringify(req));
+
+    reqOpts = this.formParams(req);
+    var api = appsettings.signup;
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(api, reqOpts).subscribe(
+        (data) => {
+          console.log(data);
+          resolve(data);
+        },
+        (error) => {
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  }
+
   async presentToast(type, message) {
     if (type == "error") {
       const toast = await this.toastCtrl.create({
@@ -830,6 +870,16 @@ export class AIREIService {
     this.loading = await this.loadingCtrl.create({
       message: "Loading...",
       duration: 1000,
+      spinner: "circles",
+      cssClass: "my-loading-class",
+    });
+    await this.loading.present();
+  }
+
+  async webviewpresentLoading() {
+    this.loading = await this.loadingCtrl.create({
+      message: "Generating...",
+      duration: 3000,
       spinner: "circles",
       cssClass: "my-loading-class",
     });

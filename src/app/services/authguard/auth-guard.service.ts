@@ -35,9 +35,9 @@ export class AuthGuardService implements CanActivate {
         this.updateNotification();
         return true;
       }
-      console.log(this.userlist);
+      //console.log(this.userlist);
     }
-    console.log(this.userlist);
+    //console.log(this.userlist);
 
     this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
     return true;
@@ -64,7 +64,7 @@ export class AuthGuardService implements CanActivate {
     this.service.updatePushNotification(req).then((result) => {});
   }
 
-  logoutupdateNotification() {    
+  logoutupdateNotification() {
     var req = {
       login_id: this.userlist.userId,
     };

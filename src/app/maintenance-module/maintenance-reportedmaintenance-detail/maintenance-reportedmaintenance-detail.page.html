@@ -6,7 +6,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title color="light">{{machinery}}</ion-title>
+    <ion-title color="light">Corrective Maintenance Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +20,7 @@
 
     <div class="form-row">
       <div class="col">
-        <input type="text" class="h7 form-control text-dark" value="{{zone}}" />
+        <input type="text" class="h7 form-control text-dark readonly" value="{{zone}}" readonly/>
       </div>
     </div>
 
@@ -34,8 +34,9 @@
       <div class="col">
         <input
           type="text"
-          class="h7 form-control text-dark"
+          class="h7 form-control text-dark readonly"
           value="{{station}}"
+          readonly
         />
       </div>
     </div>
@@ -50,25 +51,29 @@
       <div class="col">
         <input
           type="text"
-          class="h7 form-control text-dark"
+          class="h7 form-control text-dark readonly"
           value="{{machinery}}"
+          readonly
         />
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="col">
-        <div class="h7 text-dark"><b>Part</b></div>
+    <div *ngIf="part!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Part</b></div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="col">
-        <input
-          type="text"
-          class="h7 form-control text-dark"
-          value="{{part}}"
-        />
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{part}}"
+            readonly
+          />
+        </div>
       </div>
     </div>
 

@@ -1,0 +1,315 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Press Machine Maintenance Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+    <form [formGroup]="pressmachinemaintenancereportForm">
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Zone</div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{zonename}}" readonly/>
+      
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Station</div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{stationname}}" readonly/>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Machinery</div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{machineryname}}" readonly/>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Location ID</div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{locationid}}" readonly/>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Type</div>
+        </ion-col>
+        <ion-col size="7">
+          <input type="text" class="h7 form-control text-dark readonly" value="{{type}}" readonly/>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Timestamp <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_date"
+          display-format="DD-MM-YYYY HH:mm:ss"
+          placeholder="Select Date"></ion-datetime>
+        </ion-col>     
+      </ion-row>
+            
+      <ion-row class="form-row">
+        <ion-col size="5">
+          <div class="h7 text-dark">Maintenance Type <sup>*</sup></div>
+        </ion-col>
+        <ion-col size="7">
+          <select
+            formControlName="select_maintenancetype"
+            class="h7 form-control" (change)="onChangeMaintenanceType()">
+            <option value="" selected disabled hidden>Select</option>
+            <option value="{{parseString(item)}}" *ngFor="let item of maintenancetypeArr">
+              {{ item.maintenancetype }}
+            </option>
+          </select>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="uienable == true">
+        <hr>
+      
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Work Order Number </div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{workorderno}}" readonly/> 
+          </ion-col>
+        </ion-row>
+  
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Work Type <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_worktype"
+              class="h7 form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of worktypeArr">
+                {{ item.worktype }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Urgency <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_urgency"
+              class="h7 form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of urgencyArr">
+                {{ item.urgency }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Mode <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_mode"
+              class="h7 form-control"  >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of modeArr">
+                {{ item.mode }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Toal Running Hour (HR)</div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{totalrunninghours}}" readonly/> 
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Previous Maintenance</div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{previousmaintenance}}" readonly/> 
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Scheduled Maintenance</div>
+          </ion-col>
+          <ion-col size="7">
+            <input type="text" class="h7 form-control text-dark readonly" value="{{scheduledmaintenance}}" readonly/> 
+          </ion-col>
+        </ion-row>
+
+        <hr>
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Parts Details</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Part <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_part"
+              class="h7 form-control">
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.partsid}}" *ngFor="let item of partArr">
+                {{ item.partsname }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Observation <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_observation"
+              class="h7 form-control"  >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.id}}" *ngFor="let item of observationArr">
+                {{ item.observation_name }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <hr>
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Assigned To</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Team Lead <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_teamlead"
+              class="h7 form-control"  >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{item.userId}}" *ngFor="let item of leaderArr">
+                {{ item.name }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Staff</div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_staff"
+              class="h7 form-control"  >
+              <option value="" selected disabled hidden>Select</option>
+              <option value="{{parseString(item)}}" *ngFor="let item of staffArr">
+                {{ item.name }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="addNewassignedtoRow()"
+            style="margin: 10px">
+            Add Staff
+          </button>
+        </div>
+
+        <div formArrayName="assignedtoRows">
+          <ion-row>
+            <div class="card gedf-card margin-bottom" *ngFor="let itemrow of pressmachinemaintenancereportForm.controls.assignedtoRows.controls; let i=index"
+            [formGroupName]="i" style="width: 100%; margin: 0px 10px 10px 10px">
+  
+            <div style="margin: 10px 5px 10px 5px;">
+              <div class="h7 text-dark">
+                <b>Staff :</b> {{getItembyKey('select_staff',itemrow,'name')}}
+              </div>            
+  
+              <ion-row class="row-reverse">
+                <button type="button" class="h7 btn btn-outline-danger btn-sm margin-5px" (click)="deleteassignedtoRow(i)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                    Delete
+                </button>             
+              </ion-row>
+            </div>
+  
+          </div>
+          </ion-row>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <div class="h7 text-dark">Remarks</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col>
+            <textarea
+              class="h7 form-control"
+              formControlName="ta_remarks"
+              rows="4"
+              autosize
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center" *ngIf="pressmachinemaintenancereportForm.controls.assignedtoRows.controls.length > 0">
+          <button
+            type="submit"
+            class="btn btn-info"
+            (click)="save()"
+            style="margin-top: 10px; margin-bottom: 10px">
+            Save
+          </button>
+        </div>
+      </div>
+      </form>
+    </ion-card>
+</ion-content>

@@ -41,6 +41,8 @@ export class ElectricityconsumptionPage implements OnInit {
   };
 
   uienable = false;
+  uistatusenable = false;
+  previousuienable = false;
 
   constructor(
     private router: Router,
@@ -52,11 +54,12 @@ export class ElectricityconsumptionPage implements OnInit {
       txt_date: new FormControl(this.currentdate),
       txt_time: new FormControl(this.currenthour),
       select_zone: new FormControl("", Validators.required),
-      txt_previous: new FormControl(""),
+      txt_previous: new FormControl("", Validators.required),
       txt_current: new FormControl("", Validators.required),
       txt_variance: new FormControl(""),      
       select_furtheraction: new FormControl("", Validators.required),
       ta_remarks: new FormControl(""),
+      select_status: new FormControl("", Validators.required),
     });
 
     this.selectaction.form = "";
@@ -129,12 +132,8 @@ export class ElectricityconsumptionPage implements OnInit {
           if (getname == "electricity") {
             if (getmachinename == "electricity variance") {
               this.electricity_min = resultdata.data[i].minmum_value.toFixed(3);
-              this.electricity_max = resultdata.data[i].maximum_value.toFixed(
-                3
-              );
-              this.electricity_alert_if = resultdata.data[i].alert_if.toFixed(
-                3
-              );
+              this.electricity_max = resultdata.data[i].maximum_value.toFixed(3);
+              this.electricity_alert_if = resultdata.data[i].alert_if.toFixed(3);
             }
           }
         }
@@ -163,21 +162,19 @@ export class ElectricityconsumptionPage implements OnInit {
         this.previous = "0";
       }
     });
-
-    //this.previous = "6";
   }
 
   onChangeZone() {
     if (this.electricityconsumptionForm.value.txt_date != "") {
 
-      this.uienable = true;
+      this.uistatusenable = true;
 
       this.previous = "";
 
-      this.getPrevious();
+      //this.getPrevious();
     } else {
 
-      this.uienable = false;
+      this.uistatusenable = false;
 
       this.commonservice.presentToast(
         "error",
@@ -186,6 +183,49 @@ export class ElectricityconsumptionPage implements OnInit {
     }
   }
 
+
+  onChangeStatus() {
+
+    if (this.electricityconsumptionForm.controls.select_zone != "" && this.electricityconsumptionForm.controls.select_station != "") {
+
+      if(this.electricityconsumptionForm.value.select_status == '1')
+      {
+        this.uienable = true;
+      }else{
+        this.uienable = false;
+      }
+      
+    }else{
+      this.commonservice.presentToast("error", "Zone and Station Selection is mandatory...");
+    }
+
+  }
+
+  onChangePrevious() {
+    if (this.electricityconsumptionForm.value.txt_previous != "") {
+      this.previousuienable = true;
+
+      if(this.electricityconsumptionForm.value.txt_current != "")
+      {
+        if (Number(this.electricityconsumptionForm.value.txt_current) >= Number(this.electricityconsumptionForm.value.txt_previous))
+        {
+          let diff =
+          Number(this.electricityconsumptionForm.value.txt_current) -
+          Number(this.electricityconsumptionForm.value.txt_previous);
+          this.variance = String(diff.toFixed(3));                  
+        }else{
+          this.electricityconsumptionForm.controls.txt_current.setValue("");
+          this.variance = "";
+
+          this.overallstatus="";
+        }
+      }
+    } else {
+      this.previousuienable = false;
+    }
+  }
+
+  /* Commented on 07-05-2021 by Suresh Kumar K for to make previous value editable
   onChangeCurrent() {
     if (this.previous != "") {
       if (
@@ -195,6 +235,37 @@ export class ElectricityconsumptionPage implements OnInit {
         let diff =
           Number(this.electricityconsumptionForm.value.txt_current) -
           Number(this.previous);
+        this.variance = String(diff.toFixed(3));
+
+        this.alert_overallstatus(
+          "electricity",
+          "electricity variance",
+          this.variance
+        );
+      } else {
+        this.variance = "";
+        this.overallstatus="";
+      }
+    } else {
+      this.variance = "";
+      this.overallstatus="";
+
+      this.commonservice.presentToast(
+        "error",
+        "Previous Value is Mandatory..."
+      );
+    }
+  }*/
+
+  onChangeCurrent() {
+    if (this.electricityconsumptionForm.value.txt_previous != "") {
+      if (
+        Number(this.electricityconsumptionForm.value.txt_current) >=
+        Number(this.electricityconsumptionForm.value.txt_previous)
+      ) {
+        let diff =
+          Number(this.electricityconsumptionForm.value.txt_current) -
+          Number(this.electricityconsumptionForm.value.txt_previous);
         this.variance = String(diff.toFixed(3));
 
         this.alert_overallstatus(
@@ -259,9 +330,71 @@ export class ElectricityconsumptionPage implements OnInit {
       this.furtheraction = "NONE";
     }*/
 
-    if (this.electricityconsumptionForm.valid) {
-      if (this.variance != "") {
-        var req = {
+    if (this.electricityconsumptionForm.value.select_zone != "" && this.electricityconsumptionForm.value.select_status != "") 
+    {
+      if(this.electricityconsumptionForm.value.select_status=='1')
+      {
+        if (this.electricityconsumptionForm.valid) {
+          if (this.variance != "") {
+            var req = {
+              userid: this.userlist.userId,
+              departmentid: this.userlist.dept_id,
+              millcode: this.userlist.millcode,
+              userzoneid: this.userlist.zoneid,
+              date: getec_date,
+              time: getec_time,
+              datetime: getec_datetime,
+              zone: this.electricityconsumptionForm.value.select_zone,
+              //electricity_previous: this.previous,
+              electricity_previous: this.electricityconsumptionForm.value.txt_previous,
+              electricity_current: this.electricityconsumptionForm.value
+                .txt_current,
+              electricity_varience: this.variance,
+              remarks: "",
+              remarks_supervisor: this.electricityconsumptionForm.value.ta_remarks,
+              overall_status: this.overallstatus,
+              flag: this.thresholdflag,
+              furtheraction: this.electricityconsumptionForm.value.select_furtheraction,
+              status: this.electricityconsumptionForm.value.select_status,
+            };
+
+            //console.log(req);
+
+            this.service.saveelectricityconsumption(req).then((result) => {
+              var resultdata: any;
+              resultdata = result;
+
+              if (resultdata.httpcode == 200) {
+                this.electricityconsumptionForm.reset();
+
+                this.electricityconsumptionForm.controls.txt_time.setValue(
+                  this.currenthour
+                );
+
+                this.commonservice.presentToast(
+                  "success",
+                  "Electricity Consumption Inserted Successfully"
+                );
+
+                this.router.navigate(["/maintenancehome"]);
+              } else {
+                this.commonservice.presentToast(
+                  "error",
+                  "Electricity Consumption Insert Failed"
+                );
+              }
+            });
+          } else {
+            this.commonservice.presentToast(
+              "error",
+              "Variance should not be Empty"
+            );
+          }
+        } else {
+          this.commonservice.presentToast("warning", "Please Fill the Form");
+        }
+      }else{
+        var areq = {
           userid: this.userlist.userId,
           departmentid: this.userlist.dept_id,
           millcode: this.userlist.millcode,
@@ -269,21 +402,21 @@ export class ElectricityconsumptionPage implements OnInit {
           date: getec_date,
           time: getec_time,
           datetime: getec_datetime,
-          zone: this.electricityconsumptionForm.value.select_zone,
-          electricity_previous: this.previous,
-          electricity_current: this.electricityconsumptionForm.value
-            .txt_current,
-          electricity_varience: this.variance,
+          zone: this.electricityconsumptionForm.value.select_zone,          
+          electricity_previous: '',
+          electricity_current: '',
+          electricity_varience: '',
           remarks: "",
-          remarks_supervisor: this.electricityconsumptionForm.value.ta_remarks,
-          overall_status: this.overallstatus,
-          flag: this.thresholdflag,
-          furtheraction: this.electricityconsumptionForm.value.select_furtheraction,
+          remarks_supervisor: '',
+          overall_status: '',
+          flag: 0,
+          furtheraction: '',
+          status: this.electricityconsumptionForm.value.select_status,
         };
 
-        console.log(req);
+        //console.log(areq);
 
-        this.service.saveelectricityconsumption(req).then((result) => {
+        this.service.saveelectricityconsumption(areq).then((result) => {
           var resultdata: any;
           resultdata = result;
 
@@ -307,14 +440,9 @@ export class ElectricityconsumptionPage implements OnInit {
             );
           }
         });
-      } else {
-        this.commonservice.presentToast(
-          "error",
-          "Variance should not be Empty"
-        );
       }
-    } else {
-      this.commonservice.presentToast("warning", "Please Fill the Form");
+    }else{
+      this.commonservice.presentToast("error", "Zone and Status Selection is mandatory...");
     }
   }
 }

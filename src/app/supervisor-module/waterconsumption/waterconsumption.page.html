@@ -54,6 +54,25 @@
         </ion-col>
       </ion-row>
 
+      <div *ngIf="uistatusenable == true">
+        <ion-row class="form-row">
+          <ion-col size="5">
+            <div class="h7 text-dark">Status <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="7">
+            <select
+              formControlName="select_status"
+              class="h7 form-control"
+              (change)="onChangeStatus()"
+            >
+              <option value="" selected disabled hidden>Select Status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+          </ion-col>
+        </ion-row>
+      </div> 
+
       <div *ngIf="uienable == true">
         <hr />
 
@@ -63,21 +82,22 @@
 
         <ion-row class="form-row">
           <ion-col size="5">
-            <div class="h7 text-dark">Previous</div>
+            <div class="h7 text-dark">Opening <sup>*</sup></div>
           </ion-col>
           <ion-col size="7">
             <input
-              class="h7 form-control readonly"
+              class="h7 form-control"
               formControlName="txt_previous"
               value="{{previous}}"
-              readonly
+              (input)="onChangePrevious()"       
             />
           </ion-col>
         </ion-row>
 
+        <div *ngIf="previousuienable == true">
         <ion-row class="form-row">
           <ion-col size="5">
-            <div class="h7 text-dark">Current <sup>*</sup></div>
+            <div class="h7 text-dark">Closing <sup>*</sup></div>
           </ion-col>
           <ion-col size="7">
             <input
@@ -91,7 +111,7 @@
 
         <ion-row class="form-row">
           <ion-col size="5">
-            <div class="h7 text-dark">Variance</div>
+            <div class="h7 text-dark">Consumption</div>
           </ion-col>
           <ion-col size="7">
             <input
@@ -147,17 +167,13 @@
             ></textarea>
           </ion-col>
         </ion-row>
-
-        <div style="text-align: center">
-          <button
-            type="submit"
-            class="btn btn-info"
-            (click)="save()"
-            style="margin-top: 10px; margin-bottom: 10px"
-          >
-            Save
-          </button>
         </div>
+      </div>
+      
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-info" (click)="save()" style="margin-top: 10px; margin-bottom: 10px">
+          Save
+        </button>
       </div>
     </form>
   </ion-card>

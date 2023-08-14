@@ -1,0 +1,75 @@
+.mdfont {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.userfont {
+  font-size: 14px;
+}
+
+.usertext {
+  color: #556577;
+}
+
+.prediction-box {
+  margin: 10px;
+  box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+  background-color: #000000;
+  text-shadow: 0 1px 1px 1px #666;
+  position: relative;
+  border-radius: 5px;
+}
+
+.form-row {
+  margin: 5px;
+  align-items: center;
+}
+
+table {
+  font-size: 11px;
+  color: #333;
+  border-collapse: collapse;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem !important;
+}
+
+.mat-sort-header-container {
+  justify-content: center !important;
+}
+
+b {
+  font-size: 12px;
+}
+
+.table_head {
+  background-color: #fac57a;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table_head1 {
+  background-color: #90cdfc;
+  font-weight: bold;
+}
+
+.tablemdfont {
+  font-size: 11px;
+  color: #fff;
+  font-weight: bold;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border-top: 1px solid #c2c2c2;
+}

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Overview</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngIf="barcodelength == '2'">
+      <ion-item *ngFor="let eachitem of zoneArr" (click)="btn_Action(eachitem)">
+        <ion-icon slot="start" name="newspaper-outline"></ion-icon>
+        <ion-label class="h7">{{eachitem.title}}</ion-label>
+      </ion-item>
+    </div>
+
+    <div *ngIf="barcodelength == '5'">
+      <ion-item *ngFor="let eachitem of machineryArr" (click)="btn_Action(eachitem)">
+        <ion-icon slot="start" name="newspaper-outline"></ion-icon>
+        <ion-label class="h7">{{eachitem.title}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

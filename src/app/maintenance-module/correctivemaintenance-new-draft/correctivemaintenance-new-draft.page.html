@@ -1,0 +1,412 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Edit Corrective Maintenance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newcorrectivemaintenanceForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Main System <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_mainsystem" class="h7 form-control" [(ngModel)]="selectmainsystem.form" (change)="onChangeMainSystem()">
+          <option value="" selected disabled hidden>Select Main System</option>
+          <option value="{{value.id}}" *ngFor="let value of mainsystemArr">
+            {{ value.system }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Work Order No <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_workorderno" placeholder="Work Order No" class="h7 form-control text-dark readonly" value="{{workorderno}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Issued On <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime
+          class="h7 form-control"
+          formControlName="txt_issuedon"
+          display-format="DD-MM-YYYY HH:mm"
+        ></ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Urgency <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_urgency" class="h7 form-control" [(ngModel)]="selecturgency.form">
+          <option value="" selected disabled hidden>Select Urgency</option>
+          <option value="{{value.id}}" *ngFor="let value of urgencyArr">
+            {{ value.urgency }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Work Type <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_type" class="h7 form-control" [(ngModel)]="selecttype.form">
+          <option value="" selected disabled hidden>Select Work Type</option>
+          <option value="{{value.id}}" *ngFor="let value of typeArr">
+            {{ value.type }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Zone <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_zone" class="h7 text-dark form-control" (change)="onChangeZone()" [(ngModel)]="selectzone.form">
+          <option value="" selected disabled hidden>Select Zone</option>
+          <option value="{{value.id}}" *ngFor="let value of zoneArr">
+            {{ value.zone }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Station <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_station" class="h7 text-dark form-control" (change)="onChangeStation()" [(ngModel)]="selectstation.form">
+          <option value="" selected disabled hidden>Select Station</option>
+          <option value="{{value.id}}" *ngFor="let value of stationArr">
+            {{ value.station }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Machinery <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_machinery" class="h7 text-dark form-control" (change)="onChangeMachinery()" [(ngModel)]="selectmachinery.form">
+          <option value="" selected disabled hidden>Select Machinery</option>
+          <option value="{{value.id}}" *ngFor="let value of machineryArr">
+            {{ value.machinery }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Location ID <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" formControlName="txt_locationid" placeholder="Location ID" class="h7 form-control text-dark readonly" [(ngModel)]="locationid" value="{{locationid}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Previous Maintenance On <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text"  type="text" formControlName="txt_previousmaintenanceon" placeholder="Previous Maintenance On" class="h7 form-control text-dark readonly" [(ngModel)]="previousmaintenanceon" value="{{previousmaintenanceon}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Next Maintenance On <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="h7 form-control text-dark readonly" value="{{nextmaintenanceon}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Previous Running Hour <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="h7 form-control text-dark readonly" value="{{previousrunninghour}}" readonly/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Current Running Hour <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="number" class="h7 form-control text-dark" formControlName="txt_currentrunninghour" (input)="onChangeCurrentRunningHour()" value="{{currentrunninghour}}" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Total Running Hour <sup>*</sup></b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input class="h7 form-control readonly" formControlName="txt_totalrunninghour" value="{{totalrunninghour}}" readonly/>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="h7" style="text-align: center; color: #E53327;">
+      <b>Part(s)</b>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Part <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_part" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Part</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of partArr">
+            {{ value.partsname }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Observation <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_observation" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Observation</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of observationArr">
+            {{ value.observation_name  }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+      <div class="form-row imgmarigin">
+        <label class="h7 text-dark"><b>Image <sup>*</sup></b></label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 nopadding" style="text-align: right">
+              <div class="imagePreview" *ngIf="imagePaths.correctivemaintenanceImagePath == ''"></div>
+              <div class="imagePresent" *ngIf="imagePaths.correctivemaintenanceImagePath != ''">
+                <img class="imagePresent" [src]="imagePaths.correctivemaintenanceImagePath"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4 nopadding" style="text-align: right">
+              <label class="btn btn-warning">
+                Upload<input
+                  type="button"
+                  class="uploadFile img"
+                  value="Upload Photo"
+                  style="width: 0px; height: 0px; overflow: hidden; display: none"
+                  (click)="presentActionSheet('CorrectiveMaintenanceImage')"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="addNewRow()"
+          style="margin: 10px">
+          Add
+        </button>
+      </div>
+
+      <div>
+        <ion-row>
+          <div class="card gedf-card margin-bottom" *ngFor="let value of partsArr" style="width: 100%; margin: 0px 10px 10px 10px">
+          <div class="card-header" style="text-align: center">
+            <div class="h7 text-danger"><b>WON: {{workorderno}}</b></div>
+          </div>
+          <div style="margin: 10px 5px 10px 5px;">
+            <div class="h7 text-dark" *ngIf="value.part!=''"><b>Part:</b> {{value.part}}</div>
+            <div class="h7 text-dark" *ngIf="value.observation!=''"><b>Observation:</b> {{value.observation}}</div>
+            
+            <ion-row class="row-reverse">
+              <button type="button" class="h7 btn btn-outline-danger btn-sm margin-5px" (click)="deleteDraftRow(value)">
+                <ion-icon name="trash-outline"></ion-icon>
+                  Delete
+              </button>
+
+              <button type="button" class="h7 btn btn-outline-success btn-sm margin-5px" (click)="viewDraftImage(value)">
+                <ion-icon name="eye-outline"></ion-icon>
+                View Image
+              </button>              
+            </ion-row>
+          </div>
+
+        </div>
+        </ion-row>
+      </div>
+
+      <div formArrayName="itemRows">
+        <ion-row>
+          <div class="card gedf-card margin-bottom" *ngFor="let itemrow of newcorrectivemaintenanceForm.controls.itemRows.controls; let i=index"
+          [formGroupName]="i" style="width: 100%; margin: 0px 10px 10px 10px">
+
+          <div class="card-header" style="text-align: center">
+            <div class="h7 text-danger">
+              <b>WON: {{workorderno}}</b>
+            </div>
+          </div>
+
+          <div style="margin: 10px 5px 10px 5px;">
+            <div class="h7 text-dark">
+              <b>Part :</b> {{getItembyKey('select_part',itemrow,'partsname')}}
+            </div>
+
+            <div class="h7 text-dark">
+              <b>Observation :</b> {{getItembyKey('select_observation',itemrow,'observation_name')}}
+            </div>       
+
+            <ion-row class="row-reverse">
+              <button type="button" class="h7 btn btn-outline-danger btn-sm margin-5px" (click)="deleteRow(i)">
+                <ion-icon name="trash-outline"></ion-icon>
+                  Delete
+              </button>
+
+              <button type="button" class="h7 btn btn-outline-success btn-sm margin-5px" (click)="viewImage(itemrow, i)">
+                <ion-icon name="eye-outline"></ion-icon>
+                View Image
+              </button>              
+            </ion-row>
+
+          </div>
+
+        </div>
+        </ion-row>
+      </div>
+
+      <div *ngIf="(partsArr.length > 0 || newcorrectivemaintenanceForm.controls.itemRows.controls.length > 0)">
+        
+        <hr>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">
+              <b>Remarks <sup>*</sup></b>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <textarea
+              class="h7 form-control"
+              formControlName="taremarks"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <ion-row style="margin-top: 10px;" *ngIf="(partsArr.length > 0 || newcorrectivemaintenanceForm.controls.itemRows.controls.length > 0)">
+        <ion-col style="text-align: center;">
+          <button type="submit" class="btn btn-primary" (click)="save(1)">
+            Draft Now
+          </button>
+        </ion-col>
+
+        <ion-col style="text-align: center;">
+          <button type="submit" class="btn btn-info" (click)="save(2)">
+            Create Now
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+</ion-content>

@@ -1,0 +1,310 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Activity Log</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin: 10px">
+    <form [formGroup]="activitylogform">
+      <div class="form-row">
+        <div class="h7 text-dark" style="text-align: center">
+          <b>Date </b>
+        </div>
+        <div class="col">
+          <ion-datetime
+            mode="ios"
+            class="h7 form-control"
+            formControlName="pickdate"
+            display-format="DD-MM-YYYY"
+          ></ion-datetime>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+            (click)="getactivitylog()"
+          >
+            <ion-icon name="filter"></ion-icon>
+            Get Records
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="activitylogArr!=null || activitylogArr.length > 0">
+      <div *ngFor="let general of activitylogArr" style="margin-top: 20px">
+        <div class="title">Status of {{general.date}} data update</div>
+
+        <div class="legend" style="margin-top: 10px">
+          <div class="subtitle" style="color: #274e91">Legend</div>
+
+          <ion-row>
+            <ion-col size="1.5" style="text-align: left">
+              <img
+                class="icon"
+                style="width: 20px; height: 20px"
+                src="../../../assets/img/entry.png"
+              />
+            </ion-col>
+
+            <ion-col size="8.5">
+              <span class="icontext"> Fully Updated</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="1.5" style="text-align: left">
+              <img
+                class="icon"
+                style="width: 20px; height: 20px"
+                src="../../../assets/img/partial.png"
+              />
+            </ion-col>
+
+            <ion-col size="8.5">
+              <span class="icontext"> Partially Updated</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="1.5" style="text-align: left">
+              <img
+                class="icon"
+                style="width: 20px; height: 20px"
+                src="../../../assets/img/noentry.png"
+              />
+            </ion-col>
+
+            <ion-col size="8.5">
+              <span class="icontext"> Not Updated</span>
+            </ion-col>
+          </ion-row>
+        </div>
+        <hr />
+
+        <div class="subtitle" style="margin-top: 10px; color: brown">
+          Production Module
+        </div>
+
+        <table
+          style="width: 100%; height: 100%"
+          class="table table-bordered"
+          *ngIf="general.pressamperage!=null || general.pressamperage.length > 0"
+        >
+          <tr>
+            <th colspan="2" scope="colgroup" style="padding: 4px !important">
+              <span>Press Amperage</span>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Plant</span>
+            </th>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Status</span>
+            </th>
+          </tr>
+
+          <tr *ngFor="let item of general.pressamperage">
+            <td style="text-align: left" width="75%">{{item.plant}}</td>
+            <td width="25%">
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==0"
+                src="../../../assets/img/noentry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==1"
+                src="../../../assets/img/entry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==2"
+                src="../../../assets/img/partial.png"
+              />
+            </td>
+          </tr>
+
+          <tr
+            *ngIf="general.pressamperage==null || general.pressamperage.length<=0"
+          >
+            <td colspan="2" class="norecords">No Records Found</td>
+          </tr>
+        </table>
+
+        <table
+          style="width: 100%; height: 100%"
+          class="table table-bordered"
+          *ngIf="general.production!=null || general.production.length > 0"
+        >
+          <tr>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Data</span>
+            </th>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Status</span>
+            </th>
+          </tr>
+
+          <tr *ngFor="let item of general.production">
+            <td style="text-align: left" width="75%">{{item.parameter}}</td>
+            <td width="25%">
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==0"
+                src="../../../assets/img/noentry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==1"
+                src="../../../assets/img/entry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==2"
+                src="../../../assets/img/partial.png"
+              />
+            </td>
+          </tr>
+
+          <tr *ngIf="general.production==null || general.production.length<=0">
+            <td colspan="2" class="norecords">No Records Found</td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <div class="subtitle" style="margin-top: 10px; color: brown">
+          Maintenance Module
+        </div>
+
+        <table
+          style="width: 100%; height: 100%"
+          class="table table-bordered"
+          *ngIf="general.maintenance!=null || general.maintenance.length > 0"
+        >
+          <tr>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Data</span>
+            </th>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Status</span>
+            </th>
+          </tr>
+
+          <tr *ngFor="let item of general.maintenance">
+            <td style="text-align: left" width="75%">{{item.parameter}}</td>
+            <td width="25%">
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==0"
+                src="../../../assets/img/noentry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==1"
+                src="../../../assets/img/entry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==2"
+                src="../../../assets/img/partial.png"
+              />
+            </td>
+          </tr>
+
+          <tr
+            *ngIf="general.maintenance==null || general.maintenance.length<=0"
+          >
+            <td colspan="2" class="norecords">No Records Found</td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <div class="subtitle" style="margin-top: 10px; color: brown">
+          Integrated for both Maintenance and Production Module
+        </div>
+
+        <table
+          style="width: 100%; height: 100%"
+          class="table table-bordered"
+          *ngIf="general.integrated!=null || general.integrated.length > 0"
+        >
+          <tr>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Data</span>
+            </th>
+            <th colspan="1" scope="colgroup" style="padding: 4px !important">
+              <span>Status</span>
+            </th>
+          </tr>
+
+          <tr *ngFor="let item of general.integrated">
+            <td style="text-align: left" width="75%">{{item.parameter}}</td>
+            <td width="25%">
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==0"
+                src="../../../assets/img/noentry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==1"
+                src="../../../assets/img/entry.png"
+              />
+
+              <img
+                style="width: 20px; height: 20px"
+                *ngIf="item.status==2"
+                src="../../../assets/img/partial.png"
+              />
+            </td>
+          </tr>
+
+          <tr *ngIf="general.integrated==null || general.integrated.length<=0">
+            <td colspan="2" class="norecords">No Records Found</td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <div>
+          <table
+            style="width: 100%; height: 100%"
+            class="table table-bordered"
+            *ngIf="general.comments!=null || general.comments !=''"
+          >
+            <tr>
+              <th colspan="1" scope="colgroup" style="padding: 4px !important">
+                <span>Comments</span>
+              </th>
+            </tr>
+
+            <tr>
+              <td *ngIf="general.comments!=''" style="text-align: left">
+                {{general.comments}}
+              </td>
+
+              <td *ngIf="general.comments==''" class="norecords">
+                No Comments Found
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

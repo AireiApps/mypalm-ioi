@@ -1,0 +1,868 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Trend Analysis</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment
+      (ionChange)="segmentChanged($event)"
+      [(ngModel)]="tabs_segment"
+      style="background-color: white"
+    >
+      <ion-segment-button value="KCP A" *ngIf="kcpauiflag">
+        <ion-label class="h7">KCP A</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="KCP B" *ngIf="kcpauiflag">
+        <ion-label class="h7">KCP B</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="KCP C" *ngIf="kcpauiflag">
+        <ion-label class="h7">KCP C</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #pageTop>
+  <div [ngSwitch]="tabs_segment">
+      <div *ngSwitchCase="'KCP A'">
+          <div class="card gedf-card margin-bottom">
+            <div class="card-header">
+              <div class="form-row">
+                  <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                  <div class="h4 text-dark" style="float: left">Electricity Consumption</div>
+              </div>
+            </div>
+            <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+            <div class="background">
+              <div class="inner-background">
+                <div class="content-background">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityimage}}" alt="IMAGE" />
+                    <div class="title text-dark">{{kcpaelectricityusagetext}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaelectricityusagehour}}</div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagevalue}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title"></div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagestatus}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-background">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityassumtionimage}}" alt="IMAGE" />
+                    <div class="title text-dark">{{kcpaelectricityassumtiontitle}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaelectricityassumtiontext1}}</div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtionvalue}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaelectricityassumtiontext2}}</div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtiontext2_val}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaelectricityassumtiontext3}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inner-background" style="margin-top: 10px">
+                <div class="box">
+                  <apx-chart
+                      [series]="lineOptions.series"
+                      [chart]="lineOptions.chart"
+                      [yaxis]="lineOptions.yaxis"
+                      [xaxis]="lineOptions.xaxis"
+                      [labels]="lineOptions.labels"
+                      [stroke]="lineOptions.stroke"
+                      [markers]="lineOptions.markers"
+                      [fill]="lineOptions.fill"
+                      [tooltip]="lineOptions.tooltip"
+                    ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="chart-title">Prediction</div>
+            <div class="prediction-box">
+              <div class="chart-title">{{kcpadetailsArrforpredictioncharttitle}}</div>
+              <apx-chart
+                  [series]="multilineOptions.series"
+                  [chart]="multilineOptions.chart"
+                  [yaxis]="multilineOptions.yaxis"
+                  [xaxis]="multilineOptions.xaxis"
+                  [labels]="multilineOptions.labels"
+                  [stroke]="multilineOptions.stroke"
+                  [markers]="multilineOptions.markers"
+                  [fill]="multilineOptions.fill"
+                  [tooltip]="multilineOptions.tooltip"
+                ></apx-chart>
+            </div>
+          </div>
+          <div class="card gedf-card margin-bottom">
+            <div class="card-header">
+              <div class="form-row">
+                  <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                  <div class="h4 text-dark" style="float: left">Oil Losses</div>
+              </div>
+            </div>
+            <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+            <div class="background">
+              <div class="inner-background">
+                <div class="content-background">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox1image}}" alt="IMAGE"  />
+                    <div class="title text-dark">{{kcpaoillossesbox1itle}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaoillossesbox1text1}}</div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col">
+                        <div class="content">
+                          <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text1_val}}</div>
+                        </div>
+                      </div>
+                      <div class="col" >
+                        <div class="content">
+                          <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpaoillossesbox1text2}}</div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col">
+                        <div class="content">
+                          <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text2_val}}</div>
+                        </div>
+                      </div>
+                      <div class="col" >
+                        <div class="content">
+                          <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status2}}</div>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="content-background1">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox2image}}" alt="IMAGE"  />
+                    <div class="title text-dark">{{kcpaoillossesbox2text1}}</div>
+                  </div>
+                  <div>
+                    <div class="col">
+                      <div class="sub-title">{{kcpaoillossesbox2text2}}</div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col" *ngFor="let item of kcpaoillossesbox2abnormal_press" >
+                        <div class="content">
+                          <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{item}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inner-background" style="margin-top: 10px">
+                <div class="box">
+                  <apx-chart
+                      [series]="oillineOptions.series"
+                      [chart]="oillineOptions.chart"
+                      [yaxis]="oillineOptions.yaxis"
+                      [xaxis]="oillineOptions.xaxis"
+                      [labels]="oillineOptions.labels"
+                      [stroke]="oillineOptions.stroke"
+                      [markers]="oillineOptions.markers"
+                      [fill]="oillineOptions.fill"
+                      [tooltip]="oillineOptions.tooltip"
+                    ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="chart-title">Prediction</div>
+            <div class="prediction-box">
+              <div class="chart-title">{{kcpaoilloassespredictioncharttitle}}</div>
+              <apx-chart
+                  [series]="oilmultilineOptions.series"
+                  [chart]="oilmultilineOptions.chart"
+                  [yaxis]="oilmultilineOptions.yaxis"
+                  [xaxis]="oilmultilineOptions.xaxis"
+                  [labels]="oilmultilineOptions.labels"
+                  [stroke]="oilmultilineOptions.stroke"
+                  [markers]="oilmultilineOptions.markers"
+                  [fill]="oilmultilineOptions.fill"
+                  [tooltip]="oilmultilineOptions.tooltip"
+                ></apx-chart>
+            </div>
+          </div>
+          <div class="card gedf-card margin-bottom">
+            <div class="card-header">
+              <div class="form-row">
+                  <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                  <div class="h4 text-dark" style="float: left">Water Consumption</div>
+              </div>
+            </div>
+            <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+            <div class="background">
+              <div class="inner-background">
+                <div class="content-background3">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox1image}}" alt="IMAGE" />
+                    <div class="title text-dark">{{kcpawaterbox1title}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpawaterbox1text}}</div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox1value}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-background3">
+                  <div class="form-row">
+                    <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox2image}}" alt="IMAGE" />
+                    <div class="title text-dark">{{kcpawaterbox2title}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="sub-title">{{kcpawaterbox2text}}</div>
+                    </div>
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox2value}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inner-background" style="margin-top: 10px">
+                <div class="box">
+                  <apx-chart
+                      [series]="waterbarOptions.series"
+                      [chart]="waterbarOptions.chart"
+                      [yaxis]="waterbarOptions.yaxis"
+                      [xaxis]="waterbarOptions.xaxis"
+                      [labels]="waterbarOptions.labels"
+                      [stroke]="waterbarOptions.stroke"
+                      [markers]="waterbarOptions.markers"
+                      [fill]="waterbarOptions.fill"
+                      [tooltip]="waterbarOptions.tooltip"
+                    ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="chart-title">Prediction</div>
+            <div class="prediction-box">
+              <div class="chart-title">Water Prediction for next 7 days</div>
+              <apx-chart
+                  [series]="watermultilineOptions.series"
+                  [chart]="watermultilineOptions.chart"
+                  [yaxis]="watermultilineOptions.yaxis"
+                  [xaxis]="watermultilineOptions.xaxis"
+                  [labels]="watermultilineOptions.labels"
+                  [stroke]="watermultilineOptions.stroke"
+                  [markers]="watermultilineOptions.markers"
+                  [fill]="watermultilineOptions.fill"
+                  [tooltip]="watermultilineOptions.tooltip"
+                ></apx-chart>
+            </div>
+          </div>
+      </div>
+
+      <div *ngSwitchCase="'KCP B'">
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Electricity Consumption</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityimage}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpaelectricityusagetext}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityusagehour}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagevalue}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title"></div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagestatus}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityassumtionimage}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpaelectricityassumtiontitle}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext1}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtionvalue}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext2}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtiontext2_val}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext3}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="lineOptions.series"
+                    [chart]="lineOptions.chart"
+                    [yaxis]="lineOptions.yaxis"
+                    [xaxis]="lineOptions.xaxis"
+                    [labels]="lineOptions.labels"
+                    [stroke]="lineOptions.stroke"
+                    [markers]="lineOptions.markers"
+                    [fill]="lineOptions.fill"
+                    [tooltip]="lineOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">{{kcpadetailsArrforpredictioncharttitle}}</div>
+            <apx-chart
+                [series]="multilineOptions.series"
+                [chart]="multilineOptions.chart"
+                [yaxis]="multilineOptions.yaxis"
+                [xaxis]="multilineOptions.xaxis"
+                [labels]="multilineOptions.labels"
+                [stroke]="multilineOptions.stroke"
+                [markers]="multilineOptions.markers"
+                [fill]="multilineOptions.fill"
+                [tooltip]="multilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Oil Losses</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox1image}}" alt="IMAGE"  />
+                  <div class="title text-dark">{{kcpaoillossesbox1itle}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox1text1}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text1_val}}</div>
+                      </div>
+                    </div>
+                    <div class="col" >
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox1text2}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text2_val}}</div>
+                      </div>
+                    </div>
+                    <div class="col" >
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status2}}</div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+              <div class="content-background1">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox2image}}" alt="IMAGE"  />
+                  <div class="title text-dark">{{kcpaoillossesbox2text1}}</div>
+                </div>
+                <div>
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox2text2}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col" *ngFor="let item of kcpaoillossesbox2abnormal_press" >
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{item}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="oillineOptions.series"
+                    [chart]="oillineOptions.chart"
+                    [yaxis]="oillineOptions.yaxis"
+                    [xaxis]="oillineOptions.xaxis"
+                    [labels]="oillineOptions.labels"
+                    [stroke]="oillineOptions.stroke"
+                    [markers]="oillineOptions.markers"
+                    [fill]="oillineOptions.fill"
+                    [tooltip]="oillineOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">{{kcpaoilloassespredictioncharttitle}}</div>
+            <apx-chart
+                [series]="oilmultilineOptions.series"
+                [chart]="oilmultilineOptions.chart"
+                [yaxis]="oilmultilineOptions.yaxis"
+                [xaxis]="oilmultilineOptions.xaxis"
+                [labels]="oilmultilineOptions.labels"
+                [stroke]="oilmultilineOptions.stroke"
+                [markers]="oilmultilineOptions.markers"
+                [fill]="oilmultilineOptions.fill"
+                [tooltip]="oilmultilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Water Consumption</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background3">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox1image}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpawaterbox1title}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpawaterbox1text}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox1value}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-background3">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox2image}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpawaterbox2title}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpawaterbox2text}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox2value}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="waterbarOptions.series"
+                    [chart]="waterbarOptions.chart"
+                    [yaxis]="waterbarOptions.yaxis"
+                    [xaxis]="waterbarOptions.xaxis"
+                    [labels]="waterbarOptions.labels"
+                    [stroke]="waterbarOptions.stroke"
+                    [markers]="waterbarOptions.markers"
+                    [fill]="waterbarOptions.fill"
+                    [tooltip]="waterbarOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">Water Prediction for next 7 days</div>
+            <apx-chart
+                [series]="watermultilineOptions.series"
+                [chart]="watermultilineOptions.chart"
+                [yaxis]="watermultilineOptions.yaxis"
+                [xaxis]="watermultilineOptions.xaxis"
+                [labels]="watermultilineOptions.labels"
+                [stroke]="watermultilineOptions.stroke"
+                [markers]="watermultilineOptions.markers"
+                [fill]="watermultilineOptions.fill"
+                [tooltip]="watermultilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'KCP C'">
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Electricity Consumption</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityimage}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpaelectricityusagetext}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityusagehour}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagevalue}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title"></div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityusagestatus}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaelectricityassumtionimage}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpaelectricityassumtiontitle}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext1}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtionvalue}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext2}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpaelectricityassumtiontext2_val}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaelectricityassumtiontext3}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="lineOptions.series"
+                    [chart]="lineOptions.chart"
+                    [yaxis]="lineOptions.yaxis"
+                    [xaxis]="lineOptions.xaxis"
+                    [labels]="lineOptions.labels"
+                    [stroke]="lineOptions.stroke"
+                    [markers]="lineOptions.markers"
+                    [fill]="lineOptions.fill"
+                    [tooltip]="lineOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">{{kcpadetailsArrforpredictioncharttitle}}</div>
+            <apx-chart
+                [series]="multilineOptions.series"
+                [chart]="multilineOptions.chart"
+                [yaxis]="multilineOptions.yaxis"
+                [xaxis]="multilineOptions.xaxis"
+                [labels]="multilineOptions.labels"
+                [stroke]="multilineOptions.stroke"
+                [markers]="multilineOptions.markers"
+                [fill]="multilineOptions.fill"
+                [tooltip]="multilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Oil Losses</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox1image}}" alt="IMAGE"  />
+                  <div class="title text-dark">{{kcpaoillossesbox1itle}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox1text1}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text1_val}}</div>
+                      </div>
+                    </div>
+                    <div class="col" >
+                      <div class="content">
+                        <div style="color: #3c763d;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox1text2}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1text2_val}}</div>
+                      </div>
+                    </div>
+                    <div class="col" >
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{kcpaoillossesbox1status2}}</div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+              <div class="content-background1">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpaoillossesbox2image}}" alt="IMAGE"  />
+                  <div class="title text-dark">{{kcpaoillossesbox2text1}}</div>
+                </div>
+                <div>
+                  <div class="col">
+                    <div class="sub-title">{{kcpaoillossesbox2text2}}</div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col" *ngFor="let item of kcpaoillossesbox2abnormal_press" >
+                      <div class="content">
+                        <div style="color: #ff0000;font-weight: bold;margin-top: 5px">{{item}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="oillineOptions.series"
+                    [chart]="oillineOptions.chart"
+                    [yaxis]="oillineOptions.yaxis"
+                    [xaxis]="oillineOptions.xaxis"
+                    [labels]="oillineOptions.labels"
+                    [stroke]="oillineOptions.stroke"
+                    [markers]="oillineOptions.markers"
+                    [fill]="oillineOptions.fill"
+                    [tooltip]="oillineOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">{{kcpaoilloassespredictioncharttitle}}</div>
+            <apx-chart
+                [series]="oilmultilineOptions.series"
+                [chart]="oilmultilineOptions.chart"
+                [yaxis]="oilmultilineOptions.yaxis"
+                [xaxis]="oilmultilineOptions.xaxis"
+                [labels]="oilmultilineOptions.labels"
+                [stroke]="oilmultilineOptions.stroke"
+                [markers]="oilmultilineOptions.markers"
+                [fill]="oilmultilineOptions.fill"
+                [tooltip]="oilmultilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+        <div class="card gedf-card margin-bottom">
+          <div class="card-header">
+            <div class="form-row">
+                <img style="width: 30px;height: 30px;" src="../../../assets/img/thundericon.png" />
+                <div class="h4 text-dark" style="float: left">Water Consumption</div>
+            </div>
+          </div>
+          <div class="h4" style="margin-top: 10px;margin-left: 10px;">Notification</div>
+          <div class="background">
+            <div class="inner-background">
+              <div class="content-background3">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox1image}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpawaterbox1title}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpawaterbox1text}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox1value}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-background3">
+                <div class="form-row">
+                  <img style="width: 40px;height: 40px;margin-left: 10px;" src="{{kcpawaterbox2image}}" alt="IMAGE" />
+                  <div class="title text-dark">{{kcpawaterbox2title}}</div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="sub-title">{{kcpawaterbox2text}}</div>
+                  </div>
+                  <div class="col">
+                    <div class="content">
+                      <div style="color: #3c763d;font-weight: bold;font-size: 14px;">{{kcpawaterbox2value}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-background" style="margin-top: 10px">
+              <div class="box">
+                <apx-chart
+                    [series]="waterbarOptions.series"
+                    [chart]="waterbarOptions.chart"
+                    [yaxis]="waterbarOptions.yaxis"
+                    [xaxis]="waterbarOptions.xaxis"
+                    [labels]="waterbarOptions.labels"
+                    [stroke]="waterbarOptions.stroke"
+                    [markers]="waterbarOptions.markers"
+                    [fill]="waterbarOptions.fill"
+                    [tooltip]="waterbarOptions.tooltip"
+                  ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="chart-title">Prediction</div>
+          <div class="prediction-box">
+            <div class="chart-title">Water Prediction for next 7 days</div>
+            <apx-chart
+                [series]="watermultilineOptions.series"
+                [chart]="watermultilineOptions.chart"
+                [yaxis]="watermultilineOptions.yaxis"
+                [xaxis]="watermultilineOptions.xaxis"
+                [labels]="watermultilineOptions.labels"
+                [stroke]="watermultilineOptions.stroke"
+                [markers]="watermultilineOptions.markers"
+                [fill]="watermultilineOptions.fill"
+                [tooltip]="watermultilineOptions.tooltip"
+              ></apx-chart>
+          </div>
+        </div>
+      </div>
+  </div>
+</ion-content>

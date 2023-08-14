@@ -1,0 +1,190 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Preventive Maintenance Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="preventivemaintenancedetailForm">
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Category</b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="h7 form-control text-dark readonly"
+          value="{{category}}"
+          readonly
+        />
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark"><b>Zone</b></div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="h7 form-control text-dark readonly"
+          value="{{zone}}"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div *ngIf="station!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Station</b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{station}}"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="machinery!=''">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark"><b>Machinery</b></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input
+            type="text"
+            class="h7 form-control text-dark readonly"
+            value="{{machinery}}"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Foreman Observation <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_observation" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Observation</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of observationArr">
+            {{ value.observation }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Foreman Status <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="select_status" class="h7 text-dark form-control">
+          <option value="" selected disabled hidden>Select Status</option>
+          <option value="{{parseString(value)}}" *ngFor="let value of statusArr">
+            {{ value.status }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h7 text-dark">
+          <b>Foreman Remarks <sup>*</sup></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <textarea
+          class="h7 form-control"
+          formControlName="taforemanremarks"
+          rows="4"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row imgmarigin">
+      <label class="h7 text-dark"><b>Image</b></label>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 nopadding" style="text-align: right">
+            <div
+              class="imagePreview"
+              *ngIf="imagePaths.preventivemaintenanceimagepath == ''"
+            ></div>
+            <div
+              class="imagePresent"
+              *ngIf="imagePaths.preventivemaintenanceimagepath != ''"
+            >
+              <img class="imagePresent" [src]="imagePaths.preventivemaintenanceimagepath" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 nopadding" style="text-align: right">
+            <label class="btn btn-warning">
+              Upload
+              <input
+                type="button"
+                class="uploadFile img"
+                value="Upload Photo"
+                style="width: 0px; height: 0px; overflow: hidden; display: none"
+                (click)="ImageUpload('JobDetail')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <button
+        type="submit"
+        class="btn btn-info"
+        (click)="save()"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        Save
+      </button>
+    </div>
+
+  </form>
+</ion-content>

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="whitefav"></ion-back-button>
     </ion-buttons>
-    <ion-title color="light">Reported Maintenance</ion-title>
+    <ion-title color="light">Corrective Maintenance</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
         class="btn btn-outline-danger btn-sm margin-5px"
         (click)="btn_BreakdownDowntime()"
       >
-        New Reported Maintenance
+        New Corrective Maintenance
       </button>
     </ion-col>
   </ion-row>
@@ -35,12 +35,12 @@
           margin-right: 5px;
         "
       >
-        <div class="h7 text-dark">
-          <div class="h7 text-dark">Department: {{value.department}}</div>
-        </div>
+
+        <div class="h7 text-dark" *ngIf="value.department!=''">Department: {{value.department}}</div>
+        <div class="h7 text-dark">Machinery Type: {{value.breakdowntype}}</div>
         <div class="h7 text-dark">Zone: {{value.zone}}</div>
         <div class="h7 text-dark">Station: {{value.station}}</div>
-        <div class="h7 text-dark">Machinery: {{value.machinery}}</div>
+        <div class="h7 text-dark" *ngIf="value.machinery!=''">Machinery: {{value.machinery}}</div>
         <div class="h7 text-dark" *ngIf="value.part!=''">Part: {{value.part}}</div>
         <div class="h7 text-dark">Reported Time: {{value.breakdownTime}}</div>
         <div class="h7 text-dark" *ngIf="value.complainantRemarks!=''">
@@ -62,4 +62,6 @@
       </ion-row>
     </div>
   </div>
+
+  <div class="norecords" *ngIf="norecordflag==true">No Records Found...</div>
 </ion-content>

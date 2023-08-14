@@ -1,0 +1,1067 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Dashboard 1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="dashboard1Form">
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="productionformdate"
+          display-format="MMMM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getdashboardfilterdetails()"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>PROCESSED(MT)</b></div>
+      </div>
+    </div>
+
+    <ion-row *ngFor="let item of processedArr">
+      <ion-card class="bg-blue card-height bottompad-10px" no-margin>
+        <ion-row>
+          <ion-col size="9">
+            <span
+              *ngIf="item.text != 'Remarks'"
+              class="mdfont common-whitecolor"
+              >{{item.value}}</span
+            >
+            <ion-row>
+              <span
+                *ngIf="item.text == 'Remarks'"
+                class="common-whitecolor"
+                (click)="getsummaryscreen()"
+              >
+                <strong class="h7" style="font-size: 20px">View Summary</strong>
+              </span>
+              <span *ngIf="item.text != 'Remarks'" class="common-whitecolor">
+                <strong class="h7">{{item.text}}</strong>
+              </span>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="imagecenter" size="3">
+            <img
+              src="{{item.image}}"
+              alt="PROFILE"
+              style="width: 50px; height: 50px"
+            />
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>PRODUCTION(MT)</b></div>
+      </div>
+    </div>
+
+    <ion-row *ngFor="let item of productionArr">
+      <ion-card class="bg-violet card-height bottompad-10px" no-margin>
+        <ion-row>
+          <ion-col size="9">
+            <span class="mdfont common-whitecolor">{{item.value}}</span>
+            <ion-row>
+              <span class="common-whitecolor">
+                <strong class="h7">{{item.text}}</strong>
+              </span>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="imagecenter" size="3">
+            <img
+              src="{{item.image}}"
+              alt="PROFILE"
+              style="width: 50px; height: 50px"
+            />
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>YIELD(%)</b></div>
+      </div>
+    </div>
+
+    <ion-row *ngFor="let item of yieldArr">
+      <ion-card class="bg-green card-height bottompad-10px" no-margin>
+        <ion-row>
+          <ion-col size="9">
+            <span class="mdfont common-whitecolor">{{item.value}}</span>
+            <ion-row>
+              <span class="common-whitecolor">
+                <strong class="h7">{{item.text}}</strong>
+              </span>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="imagecenter" size="3">
+            <img
+              src="{{item.image}}"
+              alt="PROFILE"
+              style="width: 50px; height: 50px"
+            />
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+
+    <hr />
+
+    <div *ngIf="productionchartArr.length>0">
+      <div style="text-align: center">
+        <div class="col">
+          <div class="userfont usertext"><b>PRODUCTION (CSPKO & CPKO)</b></div>
+        </div>
+      </div>
+
+      <div class="prediction-box">
+        <apx-chart
+          [series]="multilineOptions.series"
+          [chart]="multilineOptions.chart"
+          [yaxis]="multilineOptions.yaxis"
+          [xaxis]="multilineOptions.xaxis"
+          [dataLabels]="multilineOptions.dataLabels"
+          [labels]="multilineOptions.labels"
+          [stroke]="multilineOptions.stroke"
+          [markers]="multilineOptions.markers"
+          [fill]="multilineOptions.fill"
+          [tooltip]="multilineOptions.tooltip"
+        ></apx-chart>
+      </div>
+
+      <div style="text-align: center">
+        <div class="col">
+          <div class="userfont usertext"><b>PRODUCTION(PKE)</b></div>
+        </div>
+      </div>
+
+      <div class="prediction-box">
+        <apx-chart
+          [series]="productionmultilineOptions.series"
+          [chart]="productionmultilineOptions.chart"
+          [yaxis]="productionmultilineOptions.yaxis"
+          [xaxis]="productionmultilineOptions.xaxis"
+          [dataLabels]="productionmultilineOptions.dataLabels"
+          [labels]="productionmultilineOptions.labels"
+          [stroke]="productionmultilineOptions.stroke"
+          [markers]="productionmultilineOptions.markers"
+          [fill]="productionmultilineOptions.fill"
+          [tooltip]="productionmultilineOptions.tooltip"
+        ></apx-chart>
+      </div>
+
+      <hr />
+    </div>
+
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 5px 5px 10px 5px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="title">PRODUCTION</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="todaysformdate"
+          [(ngModel)]="selected_todaysplanning_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(1)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>TODAY'S PLANNING</b></div>
+      </div>
+    </div>
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TIME</span>
+          </th>
+          <th
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+          <th
+            colspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PK SILO</span>
+          </th>
+          <th
+            colspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE WAREHOUSE</span>
+          </th>
+          <th
+            colspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TANK FARM</span>
+          </th>
+          <th
+            rowspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATION</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TYPE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATION</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">DOOR NUMBER</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CSPKO</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of todaysplanningArr">
+          <td scope="row">{{value.time}}</td>
+          <td scope="row">{{value.plant}}</td>
+          <td scope="row">{{value.station_name}}</td>
+          <td scope="row">{{value.type}}</td>
+          <td scope="row">{{value.station}}</td>
+          <td scope="row">{{value.pke_warehouse_number}}</td>
+          <td scope="row">{{value.tank_farm_cpko}}</td>
+          <td scope="row">{{value.tank_farm_cspko}}</td>
+          <td scope="row">{{value.remarks}}</td>
+        </tr>
+
+        <tr *ngIf="todaysplanningArr==null || todaysplanningArr.length<=0">
+          <td colspan="9" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="qualityformdate"
+          [(ngModel)]="selected_quality_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(2)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>QUALITY</b></div>
+      </div>
+    </div>
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            rowspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">DAY</span>
+          </th>
+
+          <th
+            rowspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+
+          <th
+            colspan="4"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">FEED PK</span>
+          </th>
+          <th
+            colspan="7"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CPKO</span>
+          </th>
+          <th
+            colspan="2"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PKE</span>
+          </th>
+          <th
+            rowspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OC (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">M (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">FFA (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont"> D & S (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">FFA (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">M (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">I (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont"> IV (%)</span>
+          </th>
+          <th
+            colspan="3"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont"> COLOUR (5 1/4")</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont"> OC (%)</span>
+          </th>
+          <th
+            rowspan="2"
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont"> M (%)</span>
+          </th>
+        </tr>
+        <tr>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">R</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">Y</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">N</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of qualityArr">
+          <td scope="row">{{value.date}}</td>
+          <td scope="row">{{value.zone}}</td>
+          <td scope="row">{{value.feed_pk_oc}}</td>
+          <td scope="row">{{value.feed_pk_m}}</td>
+          <td scope="row">{{value.feed_pk_ffa}}</td>
+          <td scope="row">{{value.feed_pk_dgs}}</td>
+          <td scope="row">{{value.feed_pk_ffa1}}</td>
+          <td scope="row">{{value.cpko_m}}</td>
+          <td scope="row">{{value.cpko_i}}</td>
+          <td scope="row">{{value.cpko_iv}}</td>
+          <td scope="row">{{value.cpko_colour_r}}</td>
+          <td scope="row">{{value.cpko_colour_y}}</td>
+          <td scope="row">{{value.cpko_colour_n}}</td>
+          <td scope="row">{{value.pke_oc}}</td>
+          <td scope="row">{{value.pke_m}}</td>
+          <td scope="row">{{value.remarks}}</td>
+        </tr>
+
+        <tr *ngIf="qualityArr==null">
+          <td colspan="16" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 5px 5px 10px 5px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="title">STOCK MOVEMENT</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="receivinpkformdate"
+          [(ngModel)]="selected_receivingpk_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(3)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>RECEIVING PK</b></div>
+      </div>
+    </div>
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TYPE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATION</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OPENING</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">RECEIVED</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CONSUMED</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CURRENT STOCK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of receivedpkArr">
+          <td scope="row">{{value.type}}</td>
+          <td scope="row">{{value.plant_name}}</td>
+          <td scope="row">{{value.station_name}}</td>
+          <td scope="row">{{value.opening_mt}}</td>
+          <td scope="row">{{value.received_mt}}</td>
+          <td scope="row">{{value.consumed_mt}}</td>
+          <td scope="row">{{value.total_mt}}</td>
+          <td scope="row">{{value.remarks}}</td>
+        </tr>
+
+        <tr *ngIf="receivedpkArr==null || receivedpkArr.length<=-0">
+          <td colspan="8" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="receivingpkeformdate"
+          [(ngModel)]="selected_receivingpke_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(4)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>RECEIVING PKE</b></div>
+      </div>
+    </div>
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">ZONE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">STATION</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OPENING</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">SHIPPED OUT</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">SHIPPED IN</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TOTAL</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">RECONCILE </span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of receivedpkeArr">
+          <td scope="row">{{value.plant_name}}</td>
+          <td scope="row">{{value.station_name}}</td>
+          <td scope="row">{{value.opening_mt}}</td>
+          <td scope="row">{{value.production_mt}}</td>
+          <td scope="row">{{value.shipped_out}}</td>
+          <td scope="row">{{value.shipped_in}}</td>
+          <td scope="row">{{value.total_mt}}</td>
+          <td scope="row">{{value.reconcile_mt}}</td>
+          <td scope="row">{{value.remarks}}</td>
+        </tr>
+
+        <tr *ngIf="receivedpkeArr==null || receivedpkeArr.length<=0">
+          <td colspan="9" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 5px 5px 10px 5px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="title">STOCK</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="stockformdate"
+          [(ngModel)]="selected_stock_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(5)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <!-- <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>STOCK</b></div>
+      </div>
+    </div> -->
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">TYPE</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OPENING STOCK </span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CONSUMED</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">RECEIVED</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CURRENT STOCK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of stockArr">
+          <td scope="row">{{value.type}}</td>
+          <td scope="row">{{value.opening_mt}}</td>
+          <td scope="row">{{value.consumed_mt}}</td>
+          <td scope="row">{{value.received_mt}}</td>
+          <td scope="row">{{value.total_mt}}</td>
+          <td scope="row">{{value.remarks}}</td>
+        </tr>
+
+        <tr *ngIf="stockArr==null || stockArr.length<=0">
+          <td colspan="6" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <div
+      style="
+        text-align: center;
+        background-color: #000000;
+        margin: 5px 5px 10px 5px;
+        padding: 5px;
+      "
+    >
+      <div class="col">
+        <div class="title">SUMMARY</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Date</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="summaryformdate"
+          [(ngModel)]="selected_summary_date"
+          display-format="DD-MM-YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getajaxdetails(6)"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+
+    <!-- <div style="text-align: center">
+      <div class="col">
+        <div class="userfont usertext"><b>SUMMARY</b></div>
+      </div>
+    </div> -->
+
+    <div style="margin: 5px">
+      <table style="width: 100%; height: 100%" class="table table-bordered">
+        <tr class="table_head">
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OVERALL</span>
+          </th>
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">OPENING (MT)</span>
+          </th>
+
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">RECEIVED (MT)</span>
+          </th>
+
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CONSUMED (MT)</span>
+          </th>
+
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">CURRENT STOCK (MT)</span>
+          </th>
+
+          <th
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">REMARKS</span>
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of summaryArr">
+          <td scope="row" *ngIf="value.type != 'Total'">{{value.type}}</td>
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.type}}
+          </td>
+
+          <td scope="row" *ngIf="value.type != 'Total'">
+            {{value.opening_mt}}
+          </td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.opening_mt}}
+          </td>
+
+          <td scope="row" *ngIf="value.type != 'Total'">
+            {{value.received_mt}}
+          </td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.received_mt}}
+          </td>
+
+          <td scope="row" *ngIf="value.type != 'Total'">
+            {{value.consumed_mt}}
+          </td>
+
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.consumed_mt}}
+          </td>
+
+          <td scope="row" *ngIf="value.type != 'Total'">{{value.total_mt}}</td>
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.total_mt}}
+          </td>
+
+          <td scope="row" *ngIf="value.type != 'Total'">{{value.remarks}}</td>
+          <td
+            scope="row"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.type == 'Total'"
+          >
+            {{value.remarks}}
+          </td>
+        </tr>
+
+        <tr *ngIf="summaryArr==null || summaryArr.length<=0">
+          <td colspan="6" class="norecords">No Records Found</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</ion-content>

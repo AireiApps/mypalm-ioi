@@ -93,7 +93,7 @@ export class MorePage implements OnInit {
     if (info == "logout") {
       localStorage.clear();
       this.notifi.logoutupdateNotification();
-      this.router.navigateByUrl("/login");
+      this.router.navigate(["/login"], {replaceUrl: true});
     }
 
     if (info == "changepassword") {

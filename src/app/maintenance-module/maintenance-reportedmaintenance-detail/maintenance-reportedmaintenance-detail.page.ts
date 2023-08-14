@@ -26,7 +26,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
   zone = "";
   category = "";
   station = "";
-  machinery = "Details";
+  machinery = "";
   part = "";
   breakdowntime = "";
   complainantremarks = "";
@@ -83,7 +83,7 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         this.zone = resultdata.data[0].zone;
         this.category = resultdata.data[0].category;
         this.station = resultdata.data[0].station;
-        this.machinery = resultdata.data[0].machinery;        
+        this.machinery = resultdata.data[0].machinery;
         this.part = resultdata.data[0].part;
         this.breakdowntime = resultdata.data[0].breakdownTime;
         this.complainantremarks = resultdata.data[0].complainantRemarks;
@@ -93,14 +93,14 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         this.zone = "";
         this.category = "";
         this.station = "";
-        this.machinery = "Details";
-        this.part = "";        
+        this.machinery = "";
+        this.part = "";
         this.breakdowntime = "";
         this.complainantremarks = "";
         this.complainantimage = "";
         this.requesteduser = "";
 
-        this.commonservice.presentToast("info","No Records Found...");
+        this.commonservice.presentToast("info", "No Records Found...");
       }
     });
   }
@@ -114,9 +114,15 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         resultdata = JSON.parse(resultdata.response);
 
         if (resultdata.httpcode == 200) {
-          this.imagePaths.rectifiedimagepath = resultdata.data.uploaded_path;          
+          this.imagePaths.rectifiedimagepath = resultdata.data.uploaded_path;
+        } else if (resultdata.httpcode == 403) {
+          this.commonservice.presentToast("error", "Invalid Image Format");
+        } else if (resultdata.httpcode == 413) {
+          this.commonservice.presentToast("error", "File is too large.");
+        } else if (resultdata.httpcode == 202) {
+          this.commonservice.presentToast("error", "Image Uploded Failed!");
         } else {
-          this.commonservice.presentToast("error","Image Added Failed!");
+          this.commonservice.presentToast("error", "File is too large.");
         }
       },
       (err) => {
@@ -142,21 +148,27 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         departmentid: this.userlist.dept_id,
         userzoneid: this.userlist.zoneid,
         millcode: this.userlist.millcode,
-        zoneid: "0",
+        zone_id: "0",
         stationid: 0,
         machineid: "0",
+        partid: 0,
         categoryid: 3,
+        replacedpartid: 0,
         breakdowntime: this.getrectifiedtime,
         rectifiedtime: this.getrectifiedtime,
         complainant_remarks: this.complainantremarks,
-        foremanremakrs: this.breakdowndowntimedetailForm.value.taforemanremarks,
+        foremanremarks: this.breakdowndowntimedetailForm.value.taforemanremarks,
+        foremanstatus: 0,
         rectifiedimagepath: this.imagePaths.rectifiedimagepath,
+        severitylevel: "0",
         breakdownid: this.breakdownid,
         assignedto: 0,
-        assignedtodeptid:0,
+        assignedtodeptid: 0,
+        breakdownstatus: "",
+        clearflag: "0",
       };
 
-      //console.log(req);
+      console.log(req);
 
       this.service.savebreakdowndowntime(req).then((result) => {
         var resultdata: any;
@@ -165,15 +177,15 @@ export class MaintenanceReportedmaintenanceDetailPage implements OnInit {
         if (resultdata.httpcode == 200) {
           this.breakdowndowntimedetailForm.reset();
 
-          this.commonservice.presentToast("success","Updated Successfully");
+          this.commonservice.presentToast("success", "Updated Successfully");
 
           this.dismiss();
         } else {
-          this.commonservice.presentToast("error","Updation Failed");
+          this.commonservice.presentToast("error", "Updation Failed");
         }
       });
     } else {
-      this.commonservice.presentToast("warning","Please Fill the Form");
+      this.commonservice.presentToast("warning", "Please Fill the Form");
     }
   }
 

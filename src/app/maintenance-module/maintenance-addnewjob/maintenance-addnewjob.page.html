@@ -6,7 +6,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title color="light">Add New Job</ion-title>
+    <ion-title color="light">Planned Job</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -147,7 +147,7 @@
     <div class="form-row">
       <div class="col">
         <div class="h7 text-dark">
-          <b>Type <sup>*</sup></b>
+          <b>Work Type <sup>*</sup></b>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
     <div class="form-row">
       <div class="col">
         <select formControlName="select_type" class="h7 text-dark form-control">
-          <option value="" selected disabled hidden>Select Type</option>
+          <option value="" selected disabled hidden>Select Work Type</option>
           <option value="{{parseString(value)}}" *ngFor="let value of typeArr">
             {{ value.type }}
           </option>
@@ -213,7 +213,7 @@
         (click)="addNewRow()"
         style="margin: 10px"
       >
-        Add Item
+        Add
       </button>
     </div>
 

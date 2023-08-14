@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Trend Analysis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding-right: 10px;">
+    <table
+        style="width: 100%; height: 100%"
+        class="table table-bordered">
+      <tr class="table_head">
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont" style="font-size: 14px"></span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">AMP</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">QUALITY</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">ELECTRICITY</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">WATER</span>
+        </th>
+        <th colspan="1" scope="colgroup" style="padding: 4px !important; background-color: #1f2739">
+          <span class="tablemdfont">ACTION</span>
+        </th>
+      </tr>
+     <ng-container *ngFor="let value of trendanalysisArr">
+        <tr><td>{{value.kcp_name}}</td></tr>
+        <tr>
+          <td width="30%">1st Pressing Line</td>
+          <td width="15%">
+            <div 
+              class="backgroundstatus"  
+              [style.background-color]="getBackGroundColor(value.firstpressinglineamp)"
+              [style.color]="gettextColor(value.firstpressinglineamp)">
+              {{value.firstpressinglineamp}}
+            </div>
+          </td>
+          <td width="15%">
+            <div 
+              class="backgroundstatus" 
+              [style.background-color]="getBackGroundColor(value.firstpressinglinequality)"
+              [style.color]="gettextColor(value.firstpressinglinequality)">
+              {{value.firstpressinglinequality}}
+            </div>
+          </td>
+          <td rowspan="2" width="15%">
+            <div 
+              class="backgroundstatus" 
+              [style.background-color]="getBackGroundColor(value.electricity)"
+              [style.color]="gettextColor(value.electricity)">
+              {{value.electricity}}
+            </div>
+          </td>
+          <td rowspan="2" width="15%">
+            <div 
+              class="backgroundstatus" 
+              [style.background-color]="getBackGroundColor(value.water)"
+              [style.color]="gettextColor(value.water)">
+              {{value.water}}
+            </div>
+          </td>
+          <td rowspan="2" width="15%">
+            <div class="backgroundview" (click)="gethistory(value)">View</div>
+          </td>
+        </tr>
+        <tr>
+          <td width="30%">2nd Pressing Line</td>
+          <td width="15%">
+            <div 
+              class="backgroundstatus" 
+              [style.background-color]="getBackGroundColor(value.secondpressinglineamp)"
+              [style.color]="gettextColor(value.secondpressinglineamp)">
+              {{value.secondpressinglineamp}}
+            </div>
+          </td>
+          <td width="15%">
+            <div 
+              class="backgroundstatus" 
+              [style.background-color]="getBackGroundColor(value.secondpressinglinequality)"
+              [style.color]="gettextColor(value.secondpressinglinequality)">
+              {{value.secondpressinglinequality}}
+            </div>
+          </td>
+        </tr>
+      </ng-container> 
+    </table>
+  </div>
+</ion-content>

@@ -1,16 +1,20 @@
 export class appsettings {
-  /*Online TestBed*/
-  //public static API_ENDPOINT = "http://103.27.72.29:9091/";
-
   /*Online*/
   //public static API_ENDPOINT = "http://103.27.72.29:9092/";
 
-  /*Offline*/
-  public static API_ENDPOINT = "http://192.168.0.110:9092/";
+  /*Test*/
+  public static API_ENDPOINT = "http://103.27.72.29:9094/";
+
+  //TEST
+  //public static WEBAPI_ENDPOINT = "http://test.mypalmioieo.com/";
 
   public static MILL_NAME = "MyPalm - IOI";
 
   public static login = appsettings.API_ENDPOINT + "login";
+
+  public static signup = appsettings.API_ENDPOINT + "signup";
+
+  public static checkbuttonflag = "https://mypalmioieo.com/Login_check";
 
   public static profileView = appsettings.API_ENDPOINT + "profile";
 
@@ -127,6 +131,9 @@ export class appsettings {
   public static maintenanceplanninglist =
     appsettings.API_ENDPOINT + "maintenance_planning";
 
+  public static correctivemaintenancelist =
+    appsettings.API_ENDPOINT + "get_corrective_list";
+
   public static maintenanceplanningupdate =
     appsettings.API_ENDPOINT + "maintenance_planning_update";
 
@@ -137,6 +144,9 @@ export class appsettings {
 
   public static reportedmaintenancelist =
     appsettings.API_ENDPOINT + "reported_maintain_inserted_list";
+
+  public static savecorrectivemaintenance =
+    appsettings.API_ENDPOINT + "insert_corrective_maintentance";
 
   public static savebreakdowndowntime =
     appsettings.API_ENDPOINT + "breakdown_insert";
@@ -278,7 +288,8 @@ export class appsettings {
 
   public static saveboilerstatus = appsettings.API_ENDPOINT + "boiler_status";
 
-  public static saveproductionstatus = appsettings.API_ENDPOINT + "production_status";
+  public static saveproductionstatus =
+    appsettings.API_ENDPOINT + "production_status";
 
   public static supervisortotalmillrunninghours =
     appsettings.API_ENDPOINT + "supervisor_totalmillrunninghours";
@@ -431,37 +442,239 @@ export class appsettings {
 
   public static maintainlist = appsettings.API_ENDPOINT + "maintain_status";
 
-  public static savedustcollector = appsettings.API_ENDPOINT + "insert_dust_collection";
+  public static savedustcollector =
+    appsettings.API_ENDPOINT + "insert_dust_collection";
 
-  public static savewaterconsumption = appsettings.API_ENDPOINT + "insert_water_consumption";
+  public static saveqrdustcollector =
+    appsettings.API_ENDPOINT + "qrinsert_dust_collection";
 
-  public static saveelectricityconsumption = appsettings.API_ENDPOINT + "insert_electricity_consumption";
+  public static savewaterconsumption =
+    appsettings.API_ENDPOINT + "insert_water_consumption";
 
-  public static savedustplant = appsettings.API_ENDPOINT + "insert_dust_plant_images";
+  public static saveqrwaterconsumption =
+    appsettings.API_ENDPOINT + "qrinsert_water_consumption";
 
-  public static dustplantimage = appsettings.API_ENDPOINT + "get_dust_plant imagepath";
+  public static saveelectricityconsumption =
+    appsettings.API_ENDPOINT + "insert_electricity_consumption";
+
+  public static saveqrelectricityconsumption =
+    appsettings.API_ENDPOINT + "qrinsert_electricity_consumption";
+
+  public static savedustplant =
+    appsettings.API_ENDPOINT + "insert_dust_plant_images";
+
+  public static dustplantimage =
+    appsettings.API_ENDPOINT + "get_dust_plant imagepath";
+
+  public static machinerycategorylist =
+    appsettings.API_ENDPOINT + "get_machinecategory";
+
+  public static correctivemachinerylist =
+    appsettings.API_ENDPOINT + "get_corrective_machine";
 
   public static machinerylist = appsettings.API_ENDPOINT + "machinary_list";
 
+  public static breakdownmachinerylist =
+    appsettings.API_ENDPOINT + "breakdown_machinary_list";
+
+  public static magnetictapemachinerylist =
+    appsettings.API_ENDPOINT + "magnetic_machinary_list";
+
+  public static partcategorylist =
+    appsettings.API_ENDPOINT + "get_partcategory";
+
+  public static machinerydetails =
+    appsettings.API_ENDPOINT + "get_machinery_details";
+
+  public static correctivepartlist =
+    appsettings.API_ENDPOINT + "get_corrective_part";
+
   public static partlist = appsettings.API_ENDPOINT + "parts_list";
 
-  public static unallocatedpartlist = appsettings.API_ENDPOINT + "unallocated_parts";
+  public static breakdownpartlist =
+    appsettings.API_ENDPOINT + "breakdown_parts_list";
+
+  public static unallocatedpartlist =
+    appsettings.API_ENDPOINT + "unallocated_parts";
 
   public static assignedtolist = appsettings.API_ENDPOINT + "assigned_user";
+
+  public static mainsystem = appsettings.API_ENDPOINT + "get_system_details";
+
+  public static workorderno =
+    appsettings.API_ENDPOINT + "get_work_order_sequence";
+
+  public static observation =
+    appsettings.API_ENDPOINT + "get_corrective_observation";
+
+  public static urgency = appsettings.API_ENDPOINT + "get_urgency";
+
+  public static leader = appsettings.API_ENDPOINT + "get_led_users";
+
+  public static correctiveparts =
+    appsettings.API_ENDPOINT + "get_corrective_detail_part";
+
+  public static correctivestaffs =
+    appsettings.API_ENDPOINT + "get_corrective_detail_staff";
+
+  public static staff = appsettings.API_ENDPOINT + "get_sub_users";
+
+  public static machinerytypelist =
+    appsettings.API_ENDPOINT + "get_system_details";
+
+  public static maintenancetypelist =
+    appsettings.API_ENDPOINT + "get_maintenancetype";
+
+  public static worktypelist = appsettings.API_ENDPOINT + "get_worktype";
+
+  public static modelist = appsettings.API_ENDPOINT + "get_press_mode";
 
   public static zonelist = appsettings.API_ENDPOINT + "get_zone";
 
   public static getstationlist = appsettings.API_ENDPOINT + "get_station";
 
+  public static getbreakdownstationlist =
+    appsettings.API_ENDPOINT + "get_breakdownstation";
+
   public static furtheractionlist = appsettings.API_ENDPOINT + "further_action";
 
-  public static previouswaterconsumption = appsettings.API_ENDPOINT + "consumption_previous_value";
+  public static previouswaterconsumption =
+    appsettings.API_ENDPOINT + "consumption_previous_value";
 
-  public static dustsettingdetails = appsettings.API_ENDPOINT + "get_threshold_settings";
+  public static previousvalueconsumption =
+    appsettings.API_ENDPOINT + "get_previousvalue";
 
-  public static savemagnetictrap = appsettings.API_ENDPOINT + "insert_magnetic_trap_inspection";
+  public static dustsettingdetails =
+    appsettings.API_ENDPOINT + "get_threshold_settings";
 
-  public static breakdownqrcodescandetails = appsettings.API_ENDPOINT + "get_breakdown_qrcode_scan";
-  
-  
+  public static savemagnetictrap =
+    appsettings.API_ENDPOINT + "insert_magnetic_trap_inspection";
+
+  public static saveqrmagnetictrap =
+    appsettings.API_ENDPOINT + "qrinsert_magnetic_trap_inspection";
+
+  public static breakdownqrcodescandetails =
+    appsettings.API_ENDPOINT + "get_breakdown_qrcode_scan";
+
+  public static jobstatus = appsettings.API_ENDPOINT + "planning_status";
+
+  public static jobbyengineerlist =
+    appsettings.API_ENDPOINT + "maintenance_planning";
+
+  public static jobbyengineersave =
+    appsettings.API_ENDPOINT + "maintenance_planning_update";
+
+  public static preventivemaintenancestatus =
+    appsettings.API_ENDPOINT + "preventivemaintenance_status";
+
+  public static preventivemaintenancelist =
+    appsettings.API_ENDPOINT + "predictive_maintenance";
+
+  public static preventivemaintenancesave =
+    appsettings.API_ENDPOINT + "predictive_maintenance_update";
+
+  public static correctivemaintenancerequestsave =
+    appsettings.API_ENDPOINT + "get_correctiverequest_save";
+
+  public static correctivemaintenanceresponsesave =
+    appsettings.API_ENDPOINT + "get_corrective_response_save";
+
+  public static getpossiblecauses =
+    appsettings.API_ENDPOINT + "get_possiblecause";
+
+  public static getactiontaken = appsettings.API_ENDPOINT + "get_actiontaken";
+
+  public static getbreakdownaction =
+    appsettings.API_ENDPOINT + "get_breakdownaction";
+
+  public static gettodatedetails =
+    appsettings.API_ENDPOINT + "get_todate_value";
+
+  public static processtypelist =
+    appsettings.API_ENDPOINT + "get_process_type_value";
+
+  public static pksilolist = "https://mypalmioieo.com/MobileAPI/get_silo";
+
+  public static cpkotanklist = "https://mypalmioieo.com/MobileAPI/get_cpkotank";
+
+  public static warehouselist =
+    "https://mypalmioieo.com/MobileAPI/get_warehouse";
+
+  public static taperheadandamperagecheck =
+    appsettings.API_ENDPOINT + "insert_taper_head_amperage";
+
+  public static productionactivityandqualityreport =
+    appsettings.API_ENDPOINT + "insert_production_activity";
+
+  public static productionlevellist =
+    appsettings.API_ENDPOINT + "get_level_value";
+
+  public static runninghours =
+    appsettings.API_ENDPOINT + "insert_running_hours";
+
+  public static gettaperheadvalue =
+    appsettings.API_ENDPOINT + "get_taper_head_value";
+
+  public static savepressmachinemaintenancereport =
+    appsettings.API_ENDPOINT + "insert_machine_maintenance";
+
+  public static saveplantsystemmaintenancereport =
+    appsettings.API_ENDPOINT + "insert_machine_maintenance";
+
+  public static savemachinecheck =
+    appsettings.API_ENDPOINT + "insert_machine_check_details";
+
+  public static gmhomedetails = appsettings.API_ENDPOINT + "get_dashboard_list";
+
+  public static plantperformancehomedetails =
+    appsettings.API_ENDPOINT + "get_dashboard_plant_performance";
+
+  public static trendanalysis = "/MobileAPI/trend_analysis";
+
+  public static dashboard1 = "/MobileAPI/dashboard1";
+
+  public static dashboard1filter = "/MobileAPI/dashboard1_data";
+
+  public static dashboard1today = "/MobileAPI/get_today_ajax_data";
+
+  public static productionmanager = "/MobileAPI/production";
+
+  public static productionmanagerforyear = "/MobileAPI/get_ajax_production";
+
+  public static waterconsumption = "/MobileAPI/water_consumption";
+
+  public static waterconsumptionyear = "/MobileAPI/get_ajax_data_water";
+
+  public static electricitydetails = "/MobileAPI/electric_consumption";
+
+  public static electricityconsumptionyear =
+    "/MobileAPI/get_ajax_data_electric";
+
+  public static filterdetails = "/MobileAPI/dashboard2";
+
+  public static dashboardtwodetails = "/MobileAPI/dashboard1_data";
+
+  public static trendanalysis_new = "/MobileAPI/Trend_production";
+
+  public static trendanalysis_history = "/MobileAPI/view_history";
+
+  public static gauge_details = "/MobileAPI/dashboard1_data";
+
+  public static warehousehistory = "/MobileAPI/view_dust_history";
+
+  public static getimageslist = "/MobileAPI/get_images";
+
+  public static getdashboard2summary =
+    "/MobileAPI/daily_total_production_report";
+
+  public static getpressamperagebasedonplant = "/MobileAPI/get_pressing_line";
+
+  public static getqualitycheckbasedonplant = "/MobileAPI/get_pressing_line";
+
+  public static getactivitylog = "/MobileAPI/yesterday_status";
+
+  public static getbadgecount = appsettings.API_ENDPOINT + "get_badge_count";
+
+  public static resetbadgecount =
+    appsettings.API_ENDPOINT + "update_badge_count";
 }

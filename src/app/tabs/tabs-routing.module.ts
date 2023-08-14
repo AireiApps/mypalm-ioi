@@ -26,6 +26,16 @@ const routes_maintenance: Routes = [
         ],
       },
       {
+        path: "tabqrcodescanner",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../maintenance-module/maintenance-qrcodescanner/maintenance-qrcodescanner.module").then((m) => m.MaintenanceQrcodescannerPageModule),
+          },
+        ],
+      },
+      {
         path: "tab3",
         children: [
           {
@@ -44,7 +54,7 @@ const routes_maintenance: Routes = [
   },
 ];
 
-const routes_Production: Routes = [
+const routes_production: Routes = [
   {
     path: "",
     component: TabsPage,
@@ -60,6 +70,16 @@ const routes_Production: Routes = [
               import(
                 "../supervisor-module/supervisor-dashboard/supervisor-dashboard.module"
               ).then((m) => m.SupervisorDashboardPageModule),
+          },
+        ],
+      },
+      {
+        path: "tabqrcodescanner",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../supervisor-module/qrcodescanner/qrcodescanner.module").then((m) => m.QrcodescannerPageModule),
           },
         ],
       },
@@ -82,6 +102,44 @@ const routes_Production: Routes = [
   },
 ];
 
+const routes_gm: Routes = [
+  {
+    path: "",
+    component: TabsPage,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: "tabgmhome",
+        children: [
+          {
+            path: "",
+            // tslint:disable-next-line: max-line-length
+            loadChildren: () =>
+              import(
+                "../generalmanager-module/home/home-routing.module"
+              ).then((m) => m.HomePageRoutingModule),
+          },
+        ],
+      },      
+      {
+        path: "tab3",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../more/more.module").then((m) => m.MorePageModule),
+          },
+        ],
+      },
+      {
+        path: "",
+        redirectTo: "/tabs/tabgmhome",
+        pathMatch: "full",
+      },
+    ],
+  },
+];
+
 //console.log(userlist);
 
 if (userlist) {
@@ -89,7 +147,9 @@ if (userlist) {
     if (userlist.department == "Maintenance") {
       newRoutes = routes_maintenance;
     } else if (userlist.department == "Production") {
-      newRoutes = routes_Production;
+      newRoutes = routes_production;
+    } else if (userlist.department == "GM") {
+      newRoutes = routes_gm;
     } else {
       localStorage.clear();
       router.navigateByUrl("/login");

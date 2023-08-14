@@ -44,10 +44,9 @@
 }
 
 .lbl-companybrand {
-  font-size: 50px;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: bold;
   color: white;
-  text-shadow: 4px 4px 5px rgb(61, 61, 61);
   src: url("./assets/fonts/Franklin.ttf");
   letter-spacing: 2px;
 }
@@ -153,4 +152,10 @@ ion-title {
 .bg-green {
   background-color: green;
   padding: 10px;
+}
+
+.apexcharts-zoom-icon,
+.apexcharts-reset-icon,
+.apexcharts-menu-icon {
+  visibility: collapse;
 }

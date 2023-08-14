@@ -40,7 +40,7 @@ export class PredictivemaintenancereportPage implements OnInit {
       "&zoneid=" +
       this.zoneid;
 
-    //console.log(formatedurl);
+    console.log(formatedurl);
 
     this.weburl = formatedurl;
   }

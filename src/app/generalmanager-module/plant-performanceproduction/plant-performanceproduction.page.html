@@ -1,0 +1,504 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Production</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="productionForm">
+    <div class="form-row" style="margin: 10px">
+      <div class="col">
+        <div class="mdfont">From</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="productionfromdate"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+      <div class="col">
+        <div class="mdfont">To</div>
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="productiontodate"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+      <div style="margin-top: 35px">
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-10px float-right"
+          (click)="getdashboarddetails()"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b>Production from {{getfromDate}} to {{gettoDate}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="prediction-box">
+      <apx-chart
+        [series]="multilineOptions.series"
+        [chart]="multilineOptions.chart"
+        [yaxis]="multilineOptions.yaxis"
+        [xaxis]="multilineOptions.xaxis"
+        [dataLabels]="multilineOptions.dataLabels"
+        [legend]="multilineOptions.legend"
+        [labels]="multilineOptions.labels"
+        [stroke]="multilineOptions.stroke"
+        [markers]="multilineOptions.markers"
+        [fill]="multilineOptions.fill"
+        [tooltip]="multilineOptions.tooltip"
+      ></apx-chart>
+    </div>
+    <hr />
+    <div class="form-row" style="margin: 10px">
+      <div class="h7 text-dark" style="text-align: center">
+        <b>Year</b>
+      </div>
+      <div class="col">
+        <ion-datetime
+          mode="ios"
+          class="h7 form-control"
+          formControlName="productionyear"
+          display-format="YYYY"
+        ></ion-datetime>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="h7 btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="getdashboardyeardetails()"
+        >
+          <ion-icon name="calendar"></ion-icon>
+          Get Records
+        </button>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px">
+      <div class="col">
+        <div class="userfont usertext">
+          <b>Production for the year {{getyear}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="prediction-box">
+      <apx-chart
+        [series]="yearOptions.series"
+        [chart]="yearOptions.chart"
+        [yaxis]="yearOptions.yaxis"
+        [xaxis]="yearOptions.xaxis"
+        [dataLabels]="yearOptions.dataLabels"
+        [legend]="yearOptions.legend"
+        [labels]="yearOptions.labels"
+        [stroke]="yearOptions.stroke"
+        [markers]="yearOptions.markers"
+        [fill]="yearOptions.fill"
+        [tooltip]="yearOptions.tooltip"
+      ></apx-chart>
+    </div>
+    <hr />
+    <div style="margin: 9px" *ngFor="let item of productionArr">
+      <table width="100%" height="100%" class="table table-bordered">
+        <tr
+          style="padding: 2px !important; background-color: #002933"
+          class="tablemdfont"
+        >
+          <th
+            colspan="9"
+            scope="colgroup"
+            style="padding: 4px !important; background-color: #002933"
+          >
+            <span class="tablemdfont" style="font-size: 14px">
+              Production Data for the Year {{item.year}}</span
+            >
+          </th>
+        </tr>
+        <tr class="table_head">
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">MONTH</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED CSPK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PROCESSED PK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION CPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION CSPKO</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">PRODUCTION PK</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont">YIELD CSPKO (%)</span>
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont" style="white-space: pre-line"
+              >YIELD CPKO (%)</span
+            >
+          </th>
+          <th
+            colspan="1"
+            scope="colgroup"
+            style="padding: 2px !important; background-color: #002933"
+          >
+            <span class="tablemdfont" style="white-space: pre-line"
+              >YIELD PKE (%)</span
+            >
+          </th>
+        </tr>
+
+        <tr *ngFor="let value of item.data">
+          <td scope="row" width="10%" *ngIf="value.month != 'Total'">
+            {{value.month}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total'"
+          >
+            {{value.month}}
+          </td>
+
+          <!-- Processsed CSPK -->
+
+          <td
+            scope="row"
+            width="15%"
+            *ngIf="value.processed_cspk != null && value.processed_cspk != '' && value.month != 'Total'"
+          >
+            {{value.processed_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            *ngIf="(value.processed_cspk == null || value.processed_cspk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_processed_cspk != null"
+          >
+            {{value.total_processed_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_processed_cspk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Processsed PK -->
+
+          <td
+            scope="row"
+            width="15%"
+            *ngIf="value.processed_pk != null && value.processed_pk != '' && value.month != 'Total'"
+          >
+            {{value.processed_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            *ngIf="(value.processed_pk == null || value.processed_pk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_processed_pk != null"
+          >
+            {{value.total_processed_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="15%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_processed_pk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Production CPK -->
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.production_cpk != null && value.production_cpk != '' && value.month != 'Total'"
+          >
+            {{value.production_cpk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.production_cpk == null || value.production_cpk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_production_cpk != null"
+          >
+            {{value.total_production_cpk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total'  && value.total_production_cpk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Production CSPK -->
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.production_cspk != null && value.production_cspk != '' && value.month != 'Total'"
+          >
+            {{value.production_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.production_cspk == null || value.production_cspk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_production_cspk != null"
+          >
+            {{value.total_production_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_production_cspk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Production PK -->
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.production_pk != null && value.production_pk != '' && value.month != 'Total'"
+          >
+            {{value.production_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.production_pk == null || value.production_pk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_production_pk != null"
+          >
+            {{value.total_production_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_production_pk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Yield CSPK -->
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.yield_cspk != null && value.yield_cspk != '' && value.month != 'Total'"
+          >
+            {{value.yield_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.yield_cspk == null || value.yield_cspk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_cspk != null"
+          >
+            {{value.total_yield_cspk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_cspk == null"
+          >
+            0.00
+          </td>
+
+          <!-- Yield CPKO -->
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.yield_cpko != null && value.yield_cpko != '' && value.month != 'Total'"
+          >
+            {{value.yield_cpko | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.yield_cpko == null || value.yield_cpko == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_cpko != null"
+          >
+            {{value.total_yield_cpko | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_cpko == null"
+          >
+            0.00
+          </td>
+
+          <!-- Yield PKE -->
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="value.yield_pk != null && value.yield_pk != '' && value.month != 'Total'"
+          >
+            {{value.yield_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            *ngIf="(value.yield_pk == null || value.yield_pk == '') && value.month != 'Total'"
+          >
+            0.00
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_pk != null"
+          >
+            {{value.total_yield_pk | number: "1.2-2"}}
+          </td>
+
+          <td
+            scope="row"
+            width="10%"
+            style="background-color: #dfe7ef; font-weight: bold"
+            *ngIf="value.month == 'Total' && value.total_yield_pk == null"
+          >
+            0.00
+          </td>
+        </tr>
+
+        <tr *ngIf="item.data.length<0">
+          <td>No records found</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</ion-content>

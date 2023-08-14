@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Corrective Maintenance - Response</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of correctivemaintenancelistArr">
+      <!-- <ion-badge class="badgecolor">{{value.pendingparts}}/{{value.totalparts}}</ion-badge> -->
+      <div class="card-header" style="text-align: center">
+        <div class="h7 text-danger"><b>WON: {{value.workorderno}}</b></div>
+      </div>
+      <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 5px;margin-right: 5px;">
+        <div class="h7 text-dark" *ngIf="value.mainsystem!=''"><b>MainSystem:</b> {{value.mainsystem}}</div>
+        <div class="h7 text-dark" *ngIf="value.zone!=''"><b>Zone:</b> {{value.zone}}</div>
+        <div class="h7 text-dark" *ngIf="value.station!=''"><b>Station:</b> {{value.station}}</div>
+        <div class="h7 text-dark" *ngIf="value.machinery!=''"><b>Machinery:</b> {{value.machinery}}</div>
+        <div class="h7 text-dark" *ngIf="value.locationid!=''"><b>Location ID:</b> {{value.locationid}}</div>
+        <div class="h7" *ngIf="value.urgency!=''" [style.color]="getStatusColor(value.urgency)"><b>Urgency:</b> {{value.urgency}}</div>
+        <div class="h7 text-dark" *ngIf="value.workstatus!=''"><b>Status:</b> {{ value.workstatus }}</div>
+        <div class="h7 text-dark" style="float: right"><b>Issued On:</b> {{value.issuedon}}</div>
+      </div>
+
+      <ion-row class="row-reverse" *ngIf="(value.workstatus!='Finished' || value.workstatus=='')">
+        <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_CorrectiveMaintenanceResponse(value)">
+          <ion-icon class="icon" name="create-outline"></ion-icon>
+          <span class="icontext">Update</span>
+        </button>        
+      </ion-row>      
+    </div>
+  </div>
+
+  <div class="norecords" *ngIf="norecordflag==true">No Records Found...</div>
+</ion-content>
